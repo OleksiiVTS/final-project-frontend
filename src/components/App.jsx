@@ -1,16 +1,16 @@
+import React, { lazy } from 'react';
+// import { Routes, Route } from 'react-router-dom';
+// import { Circles } from 'react-loader-spinner';
+// import css from '../components/Loader/Loader.module.css';
+
+// import PrivateRoute from './PrivateRoute';
+// import PublicRoute from './PublicRoute';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    // <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
+    <div>
+      <h1>New project!</h1>
     </div>
   );
 };
