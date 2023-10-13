@@ -11,14 +11,13 @@ const NotFound = lazy(() => import('../pages/NotFound.jsx'));
 
 export const App = () => {
   return (
-    // <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
-    <Routes>
-      <Route>
-        <div>
-          <h1>New project!</h1>
-        </div>
+    <>
+      <div>
+        <h1>New project!</h1>
+      </div>
+      <Routes>
         <Route path="*" element={<NotFound />}></Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 };
