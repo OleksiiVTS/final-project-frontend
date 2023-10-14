@@ -1,1 +1,0 @@
-(self.webpackChunkfinal_project_frontend=self.webpackChunkfinal_project_frontend||[]).push([[805],{805:function(){}}]);
