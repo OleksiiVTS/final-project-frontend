@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Day from './Day/Day.jsx';
 // import { Routes, Route } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner';
 // import css from '../components/Loader/Loader.module.css';
@@ -16,7 +17,8 @@ export const App = () => {
         <h1>New project!</h1>
       </div>
       <Routes>
-        <Route path="*" element={<NotFound />}></Route>
+        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<Day />} />
       </Routes>
     </>
   );
