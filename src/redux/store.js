@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { authReducer } from './auth/authSlice';
+import { authReducer } from './auth/authSlice';
 // import { tasksReducer } from "";
 // import { reviewsReducer } from "";
 import {
@@ -14,7 +14,7 @@ import {
 
 export const store = configureStore({
   reducer: {
-    // auth: authReducer,
+    auth: authReducer,
     // task: tasksReducer,
     // review: reviewsReducer,
   },
