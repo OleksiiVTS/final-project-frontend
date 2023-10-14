@@ -8,7 +8,6 @@ import {
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
-//! Імпорт знизу відсутній!!!!!!!
 import { getUser, createUser, loginUser, logoutUser } from './authOperations';
 
 export const authSlice = createSlice({
