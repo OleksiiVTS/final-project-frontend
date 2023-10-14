@@ -1,14 +1,17 @@
-import React from 'react';
-// import { Route, Routes } from 'react-router-dom';
-// import { Circles } from 'react-loader-spinner';
-// import css from '../components/Loader/Loader.module.css';
+import React, { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import NotFound from 'pages/NotFound/NotFound.jsx';
+import { Circles } from 'react-loader-spinner';
+import css from '../components/Loader/Loader.module.css';
+import { useSelector } from 'react-redux';
+import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 
 // import PrivateRoute from './PrivateRoute';
 // import PublicRoute from './PublicRoute';
 
-// const MainLayout = lazy(() =>
-//   import('../components/MainLayout/MainLayout.jsx')
-// );
+const MainLayout = lazy(() =>
+  import('../components/MainLayout/MainLayout.jsx')
+);
 // const MainPage = lazy(() => import('../pages/Public/MainPage/MainPage.jsx'));
 // const RegisterPage = lazy(() =>
 //   import('../pages/Public/RegisterPage/RegisterPage.jsx')
@@ -23,13 +26,25 @@ import React from 'react';
 // const StatisticsPage = lazy(() =>
 //   import('../pages/Private/StatisticsPage/StatisticsPage.jsx')
 // );
-// const NotFound = lazy(() => import('../pages/NotFound/NotFound.jsx'));
 
 export const App = () => {
-  return (
-    // <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
-    <div>
-      <h1>APP starting!</h1>
-    </div>
+  const IsRefreshing = useSelector(selectIsRefreshing);
+  const Loading = (
+    <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
+  );
+  return IsRefreshing ? (
+    Loading
+  ) : (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={Loading}>
+            <MainLayout />
+          </Suspense>
+        }
+      />
+      <Route path="*" element={<NotFound />}></Route>
+    </Routes>
   );
 };
