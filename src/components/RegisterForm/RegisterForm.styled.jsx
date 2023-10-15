@@ -156,6 +156,7 @@ export const RegButton = styled.button`
   font-size: 14px;
   background-color: #3e85f3;
   color: #ffffff;
+  cursor: pointer;
 
   &:hover {
     background-color: #2b78ef;

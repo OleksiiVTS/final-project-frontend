@@ -8,7 +8,7 @@ import {
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
-import { getUser, createUser, loginUser, logoutUser } from './authOperations';
+import { getUser, register, login, logoutUser } from './authOperations';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -22,15 +22,16 @@ export const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(createUser.fulfilled, (state, action) => {
-        state.dataUser = action.payload.user;
-        state.token = action.payload.token;
+      .addCase(register.fulfilled, (state, { payload }) => {
+        state.dataUser = payload;
         state.isLoggedIn = true;
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.dataUser = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
+      })      
+      .addCase(login.fulfilled, (state, { payload }) => {
+        return {
+        ...state,
+        token: payload,
+        isLoggedIn: true,
+        }        
       })
       .addCase(logoutUser.fulfilled, state => {
         state.dataUser = null;
@@ -50,20 +51,20 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addMatcher(
-        isAnyOf(isPending(createUser, loginUser, logoutUser, getUser)),
+        isAnyOf(isPending(register, login, logoutUser, getUser)),
         state => {
           state.isLoading = true;
         }
       )
       .addMatcher(
-        isAnyOf(isRejected(createUser, loginUser, logoutUser, getUser)),
+        isAnyOf(isRejected(register, login, logoutUser, getUser)),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         }
       )
       .addMatcher(
-        isAnyOf(isFulfilled(createUser, loginUser, logoutUser, getUser)),
+        isAnyOf(isFulfilled(register, login, logoutUser, getUser)),
         state => {
           state.isLoading = false;
           state.error = null;
