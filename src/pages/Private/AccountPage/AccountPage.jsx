@@ -8,7 +8,7 @@ const AccountPage = () => {
   return (
     <MainLayout>
     <div>
-      <h1> AccountPage</h1>
+      {/* <h1> AccountPage</h1> */}
     </div>
     </MainLayout>
     // {isLoading && !error && (

@@ -1,13 +1,10 @@
-//all comments should be uncomment after finished backend
-
 import React from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-// import { selectLoggedIn } from 'redux/auth/authSelectors';
+import { selectLoggedIn } from 'redux/auth/authSelectors';
 
 const PrivateRoute = ({ children, redirectTo = '/' }) => {
-  // const logedIn = useSelector(selectLoggedIn);
-  const logedIn = true;
+  const logedIn = useSelector(selectLoggedIn);
 
   return logedIn ? children : <Navigate to={redirectTo} />;
 };

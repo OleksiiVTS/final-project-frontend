@@ -7,6 +7,7 @@ import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -38,9 +39,9 @@ export const App = () => {
     <main>
       <Suspense fallback={Loading}>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <PublicRoute path="/" element={<MainPage />} />
+          <PublicRoute path="/login" element={<LoginPage />} />
+          <PublicRoute path="/register" element={<RegisterPage />} />
 
           <Route
             path="/account"

@@ -1,21 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {
+  NavTitle,
+  UserNavBox,
+  LogoBox,
+  StyledNavLink,
+  NavItem,
+} from './UserNav.styled';
+import sprite from '../Pictures/sprite.svg';
+import menuGoose from '../Pictures/menu-goose.svg';
 
 const UserNav = () => (
-  <div>
-    <h4>User Panel</h4>
+  <UserNavBox>
+    <LogoBox>
+    <span>
+            <img src={menuGoose}  alt="menu goose"/>
+          </span>
+       GooseTrack</LogoBox>
+    <NavTitle>User Panel</NavTitle>
     <ul>
-      <li>
-        <Link to="/account">Ma Account</Link>
-      </li>
-      <li>
-        <Link to="/calendar">Calendar</Link>
-      </li>
-      <li>
-        <Link to="/statistics">Statistics</Link>
-      </li>
+      <NavItem>
+        <StyledNavLink to="/account">
+          <span>
+          <svg width="24" height="24">
+              <use href={sprite + '#icon-user'}></use>
+            </svg>
+          </span>
+          <p>My Account</p>
+        </StyledNavLink>
+      </NavItem>
+
+      <NavItem>
+        <StyledNavLink to="/calendar">
+          <span>
+            <svg width="24" height="24">
+              <use href={sprite + '#icon-calendar'}></use>
+            </svg>
+          </span>
+          <p> Calendar</p>
+        </StyledNavLink>
+      </NavItem>
+
+      <NavItem>
+        <StyledNavLink to="/statistics">
+        <span>
+            <svg width="24" height="24">
+              <use href={sprite + '#icon-statistics'}></use>
+            </svg>
+          </span>
+          <p> Statistics</p>
+        </StyledNavLink>
+      </NavItem>
     </ul>
-  </div>
+  </UserNavBox>
 );
 
 export default UserNav;
