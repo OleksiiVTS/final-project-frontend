@@ -5,6 +5,8 @@ import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
+import RegisterForm from './RegisterForm/RegisterForm';
+import LoginForm from './LoginForm/LoginForm';
 
 // import PrivateRoute from './PrivateRoute';
 // import PublicRoute from './PublicRoute';
@@ -43,7 +45,9 @@ export const App = () => {
             <MainLayout />
           </Suspense>
         }
-      />
+        />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
   );
