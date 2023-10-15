@@ -6,8 +6,6 @@ import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
-
-
 import PrivateRoute from './PrivateRoute';
 
 const MainPage = loadable(() =>

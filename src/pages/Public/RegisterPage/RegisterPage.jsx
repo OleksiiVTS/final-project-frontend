@@ -1,25 +1,21 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 import RegisterForm from '../../../components/RegisterForm/RegisterForm.jsx';
 
 const RegisterPage = () => {
-  return (
-    <div>
-      <RegisterForm></RegisterForm>
-        </div>
-    // {isLoading && !error && (
-    //     <Circles
-    //       height="80"
-    //       width="80"
-    //       color="#4d78a9"
-    //!       wrapperClass={css.loader}
-    //     />
-    //   )}
-  );
+  return <RegisterForm></RegisterForm>;
 };
 
 export default RegisterPage;
+
+// {isLoading && !error && (
+//     <Circles
+//       height="80"
+//       width="80"
+//       color="#4d78a9"
+//!       wrapperClass={css.loader}
+//     />
+//   )}
 
 // .loader {
 //     position: fixed;
