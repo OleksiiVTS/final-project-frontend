@@ -1,7 +1,6 @@
 @import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@700&display=swap');
 
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,6 +8,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-theme-dark: #13151a;
+  --color-theme-light: #f8f8f8;
+  --color-button-blue: #3e85f3;
+  --color-button-blue-hover: #2b78ef;
+  --color-choice-light-active: #cae8ff;
+  --color-choice-light-no-active: #e3f3ff;
+  --color-choice-dark-active: #3e85f3;
+  --color-choice-dark-no-active: #21222c;
 }
 
 code {

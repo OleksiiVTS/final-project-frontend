@@ -79,6 +79,7 @@ export const BoxInput = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  position: relative;
 `;
 
 export const FormField = styled(styledField)`
@@ -93,6 +94,7 @@ export const FormField = styled(styledField)`
   border-radius: 8px;
   border: 1px solid #dce3e599;
 
+ 
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
@@ -100,6 +102,25 @@ export const FormField = styled(styledField)`
   ::placeholder {
     color: #dce3e5;
   }
+`;
+
+export const InputIconEmail = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 88%;
+`;
+
+export const InputIconPassword = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 88%;
+`;
+
+export const CorrectInput = styled.p`
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  color: #3cbc81;
 `;
 
 export const Error = styled.p`
@@ -121,11 +142,20 @@ export const LoginButton = styled.button`
   margin-top: 8px;
   padding: 14px 0;
   border-radius: 16px;
+  border: 1px solid transparent;
+  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   font-size: 14px;
   background-color: #3e85f3;
   color: #ffffff;
   margin-left: auto;
   margin-right: auto;
+
+  &:hover {
+    background-color: #2b78ef;
+  }
+  &:focus {
+    background-color: #2b78ef;
+  }
 
   @media screen and (min-width: 768px) {
     margin-top: 30px;
