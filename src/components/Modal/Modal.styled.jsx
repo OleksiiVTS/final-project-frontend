@@ -15,7 +15,6 @@ export const ModalContainer = styled.div`
   z-index: 2;
   box-sizing: border-box;
   min-width: 240px;
-  height: 336px;
   padding: 14px;
   top: 50%;
   left: 50%;
@@ -31,7 +30,6 @@ export const ModalContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 396px;
-    height: 360px;
   }
 `;
 
@@ -39,7 +37,13 @@ export const CloseBtnContainer = styled.div`
   text-align: right;
 `;
 
-export const CloseBtn = styled.img`
+export const CloseBtn = styled.button`
+  padding: 0;
+  border: 0;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+  background-color: white;
   &:hover {
     box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
   }
