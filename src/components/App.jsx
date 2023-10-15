@@ -5,7 +5,7 @@ import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
-import Day from './Day/Day';
+import ChoosedDay from './ChoosedDay/ChoosedDay';
 
 // import PrivateRoute from './PrivateRoute';
 // import PublicRoute from './PublicRoute';
@@ -42,11 +42,12 @@ export const App = () => {
         element={
           <Suspense fallback={Loading}>
             <MainLayout />
+            <ChoosedDay />
           </Suspense>
         }
       />
       <Route path="*" element={<NotFound />}></Route>
-      <Route path="*" element={<Day />} />
+      {/* <Route path="*" element={<Day />} /> */}
     </Routes>
   );
 };
