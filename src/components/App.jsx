@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 
 import PrivateRoute from './PrivateRoute';
+import TestPage from 'pages/Private/TestPage';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -64,6 +65,14 @@ export const App = () => {
             element={
               <PrivateRoute redirectTo="/login">
                 <StatisticsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/testpage"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <TestPage />
               </PrivateRoute>
             }
           />
