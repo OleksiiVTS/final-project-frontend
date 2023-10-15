@@ -38,16 +38,40 @@ export const App = () => {
   return IsRefreshing ? (
     Loading
   ) : (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Suspense fallback={Loading}>
-            <MainLayout />
-          </Suspense>
-        }
-      />
-      <Route path="*" element={<NotFound />}></Route>
-    </Routes>
+    <main>
+      <Suspense fallback={Loading}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route
+            path="/account"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <AccountPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/calendar"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <CalendarPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/statistics"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <StatisticsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </Suspense>
+    </main>
   );
 };
