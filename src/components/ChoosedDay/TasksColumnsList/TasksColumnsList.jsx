@@ -2,15 +2,20 @@ import React from 'react';
 import { StyledTasksColumnsList } from './TasksColumnsList.styled';
 import TasksColumnItem from '../TasksColumnItem/TasksColumnItem';
 
-const TasksColumnsList = () => {
-  // const titles = [1, 2, 3];
-
+const TasksColumnsList = ({ currentTasks }) => {
+  // console.log(currentTasks);
   const titles = ['To do', 'In progress', 'Done'];
+  const categoryList = ['to-do', 'in-progress', 'done'];
 
   return (
     <StyledTasksColumnsList>
-      {titles.map(title => (
-        <TasksColumnItem key={title} title={title} />
+      {currentTasks.map((set, idx) => (
+        <TasksColumnItem
+          key={titles[idx]}
+          title={titles[idx]}
+          category={categoryList[idx]}
+          tasks={set}
+        />
       ))}
     </StyledTasksColumnsList>
   );

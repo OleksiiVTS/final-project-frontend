@@ -2,13 +2,11 @@ import React from 'react';
 import { StyledColumnTasksList } from './ColumnTasksList.styled';
 import TaskColumnCard from './TaskColumnCard/TaskColumnCard';
 
-const ColumnTasksList = () => {
-  const tasks = [1, 2, 3];
-
+const ColumnTasksList = ({ tasks }) => {
   return (
     <StyledColumnTasksList>
-      {tasks.map(data => (
-        <TaskColumnCard key={data} />
+      {tasks.map(task => (
+        <TaskColumnCard key={task.title} task={task} />
       ))}
     </StyledColumnTasksList>
   );

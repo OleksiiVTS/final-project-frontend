@@ -1,14 +1,20 @@
 import React from 'react';
 import { StyledAddTaskBtn } from './AddTaskBtn.styled';
 
-import sptite from '../../../Pictures/sprite.svg';
+import sprite from '../../../Pictures/sprite.svg';
 
-const AddTaskBtn = () => {
+const AddTaskBtn = ({ category }) => {
+  const handleClick = e => {
+    console.log(`add task to ${category}`);
+    //
+    // onClick={dispatch(addTask)}
+  };
+
   return (
-    <StyledAddTaskBtn>
+    <StyledAddTaskBtn onClick={handleClick}>
       <span>
         <svg>
-          <use href={sptite + '#icon-plus'}></use>
+          <use href={sprite + '#icon-plus'}></use>
         </svg>
       </span>
       Add task

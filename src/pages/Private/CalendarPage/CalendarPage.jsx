@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
+import ChoosedDay from 'components/ChoosedDay/ChoosedDay.jsx';
+
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const CalendarPage = () => {
   return (
-    <div>
-      <h1> CalendarPage</h1>
-    </div>
+    <MainLayout>
+      <div>
+        <h1> CalendarPage</h1>
+      </div>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/day/:currentDay" element={<ChoosedDay />} />
+        </Routes>
+      </Suspense>
+    </MainLayout>
     // {isLoading && !error && (
     //     <Circles
     //       height="80"

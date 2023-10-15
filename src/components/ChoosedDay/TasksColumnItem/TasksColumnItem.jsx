@@ -4,14 +4,13 @@ import ColumnHeadBar from './ColumnHeadBar/ColumnHeadBar';
 import AddTaskBtn from './AddTaskBtn/AddTaskBtn';
 import ColumnTasksList from './ColumnTasksList/ColumnTasksList';
 
-const TasksColumnItem = ({ title }) => {
-  // const title = 'To do';
-
+const TasksColumnItem = ({ title, tasks, category }) => {
+  // console.log(category);
   return (
     <StyledTasksColumnItem className="tasksColumnItem">
-      <ColumnHeadBar title={title} />
-      <ColumnTasksList />
-      <AddTaskBtn />
+      <ColumnHeadBar title={title} category={category} />
+      <ColumnTasksList tasks={tasks} />
+      <AddTaskBtn category={category} />
     </StyledTasksColumnItem>
   );
 };
