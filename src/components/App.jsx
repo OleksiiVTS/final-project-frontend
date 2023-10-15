@@ -5,6 +5,7 @@ import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
+import TestPage from 'pages/Private/TestPage';
 
 // import PrivateRoute from './PrivateRoute';
 // import PublicRoute from './PublicRoute';
@@ -41,6 +42,14 @@ export const App = () => {
         element={
           <Suspense fallback={Loading}>
             <MainLayout />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/TestPage"
+        element={
+          <Suspense fallback={Loading}>
+            <TestPage />
           </Suspense>
         }
       />
