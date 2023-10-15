@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import closeSVG from '../../images/closeSVG.svg';
 
 import PropTypes from 'prop-types';
 import {
@@ -10,6 +9,7 @@ import {
 } from './Modal.styled';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
+import sprite from '../Pictures/sprite.svg';
 
 const Modal = ({ closeModal, children }) => {
   const dispatch = useDispatch();
@@ -30,12 +30,11 @@ const Modal = ({ closeModal, children }) => {
     <ModalBackdrop onClick={closeModal}>
       <ModalContainer onClick={e => e.stopPropagation()}>
         <CloseBtnContainer onClick={closeModal}>
-          <CloseBtn
-            src={closeSVG}
-            alt="close modal"
-            width="24px"
-            height="24px"
-          />
+          <CloseBtn>
+            <svg width="24" height="24">
+              <use href={sprite + '#close-btn'}></use>
+            </svg>
+          </CloseBtn>
         </CloseBtnContainer>
         {children}
       </ModalContainer>
