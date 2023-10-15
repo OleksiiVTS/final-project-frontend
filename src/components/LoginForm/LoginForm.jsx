@@ -14,7 +14,12 @@ import {
   PageContainer,
   SingUp,
   ImagePosition,
+  CorrectInput,
+  InputIconEmail,
+  InputIconPassword,
 } from './LoginForm.styled';
+import { MdErrorOutline } from 'react-icons/md';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
 
 import * as Yup from 'yup';
@@ -24,14 +29,16 @@ import IMG from '../Pictures/login_goose.jpg';
 const LoginForm = () => {
   let userSchema = Yup.object().shape({
     email: Yup.string()
+      .trim()
       .matches(
         /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
         'Invalid email. Valid email contain xxx@xxx.xxx'
       )
       .required('Email is required'),
     password: Yup.string()
-      .min(6, 'Password is too short - should be 6 chars minimum.')
-      .max(20, 'Password is too long - should be 20 chars maximum')
+      .trim()
+      .min(6, 'Password should be 6 chars minimum.')
+      .max(20, 'Password should be 20 chars maximum')
       .required('Password is required')
       .matches(/[a-zA-Z]/, 'Password must contain Latin letters.'),
   });
@@ -51,28 +58,134 @@ const LoginForm = () => {
             {({ errors, values, touched }) => (
               <FormStyled>
                 <BoxInput>
-                  <FormLabel htmlFor="email">Email</FormLabel>
-                  <FormField
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="nadiia@gmail.com"
-                  />
-                  {errors.email && touched.email ? (
-                    <Error>{errors.email}</Error>
-                  ) : null}{' '}
+                  {errors.email || values.email.trim() ? (
+                    <FormLabel
+                      style={
+                        errors.email
+                          ? { color: '#E74A3B' }
+                          : { color: '#3CBC81' }
+                      }
+                      htmlFor="email"
+                    >
+                      Email
+                    </FormLabel>
+                  ) : (
+                    <FormLabel htmlFor="email">Email</FormLabel>
+                  )}
+
+                  {errors.email || values.email.trim() ? (
+                    <>
+                      <FormField
+                        style={
+                          errors.email
+                            ? {
+                                borderColor: '#E74A3B',
+                                backgroundColor: '#FFFFFF',
+                                position: 'relative',
+                              }
+                            : {
+                                borderColor: '#3CBC81',
+                                backgroundColor: '#FFFFFF',
+                                position: 'relative',
+                              }
+                        }
+                        id="email"
+                        type="text"
+                        name="email"
+                        placeholder="Enter email"
+                      />
+                      {errors.email ? (
+                        <>
+                          <Error>{errors.email}</Error>
+                          <InputIconEmail>
+                            <MdErrorOutline size={24} color="#E74A3B" />
+                          </InputIconEmail>
+                        </>
+                      ) : (
+                        <>
+                          <CorrectInput>This is an CORRECT email</CorrectInput>
+                          <InputIconEmail>
+                            <AiOutlineCheckCircle size={24} color="#3CBC81" />
+                          </InputIconEmail>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <FormField
+                        id="email"
+                        type="text"
+                        name="email"
+                        placeholder="Enter email"
+                      />
+                    </>
+                  )}
                 </BoxInput>
+
                 <BoxInput>
-                  <FormLabel htmlFor="password">Password</FormLabel>
-                  <FormField
-                    id="password"
-                    type="password"
-                    name="password"
-                    placeholder="******"
-                  />
-                  {errors.password && touched.password ? (
-                    <Error>{errors.password}</Error>
-                  ) : null}{' '}
+                  {errors.password || values.password.trim() ? (
+                    <FormLabel
+                      style={
+                        errors.password
+                          ? { color: '#E74A3B' }
+                          : { color: '#3CBC81' }
+                      }
+                      htmlFor="password"
+                    >
+                      Password
+                    </FormLabel>
+                  ) : (
+                    <FormLabel htmlFor="password">Password</FormLabel>
+                  )}
+                  {errors.password || values.password.trim() ? (
+                    <>
+                      <FormField
+                        style={
+                          errors.password
+                            ? {
+                                borderColor: '#E74A3B',
+                                backgroundColor: '#FFFFFF',
+                                position: 'relative',
+                              }
+                            : {
+                                borderColor: '#3CBC81',
+                                backgroundColor: '#FFFFFF',
+                                position: 'relative',
+                              }
+                        }
+                        id="password"
+                        type="text"
+                        name="password"
+                        placeholder="Enter password"
+                      />
+                      {errors.password ? (
+                        <>
+                          <Error>{errors.password}</Error>
+                          <InputIconPassword>
+                            <MdErrorOutline size={24} color="#E74A3B" />
+                          </InputIconPassword>
+                        </>
+                      ) : (
+                        <>
+                          <CorrectInput>
+                            This is an CORRECT password
+                          </CorrectInput>
+                          <InputIconPassword>
+                            <AiOutlineCheckCircle size={24} color="#3CBC81" />
+                          </InputIconPassword>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <FormField
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="Enter password"
+                      />
+                    </>
+                  )}
                 </BoxInput>
                 <LoginButton type="submit">
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
