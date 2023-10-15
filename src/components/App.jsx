@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
+import loadable from '@loadable/component';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from 'pages/NotFound/NotFound.jsx';
 import { Circles } from 'react-loader-spinner';
@@ -6,26 +7,27 @@ import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 
-// import PrivateRoute from './PrivateRoute';
-// import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
+import TestPage from 'pages/Private/TestPage';
 
-const MainLayout = lazy(() =>
-  import('../components/MainLayout/MainLayout.jsx')
+const MainPage = loadable(() =>
+  import('../pages/Public/MainPage/MainPage.jsx')
 );
-// const MainPage = lazy(() => import('../pages/Public/MainPage/MainPage.jsx'));
-// const RegisterPage = lazy(() =>
-//   import('../pages/Public/RegisterPage/RegisterPage.jsx')
-// );
-// const LoginPage = lazy(() => import('../pages/Public/LoginPage/LoginPage.jsx'));
-// const AccountPage = lazy(() =>
-//   import('../pages/Private/AccountPage/AccountPage.jsx')
-// );
-// const CalendarPage = lazy(() =>
-//   import('../pages/Private/CalendarPage/CalendarPage.jsx')
-// );
-// const StatisticsPage = lazy(() =>
-//   import('../pages/Private/StatisticsPage/StatisticsPage.jsx')
-// );
+const RegisterPage = loadable(() =>
+  import('../pages/Public/RegisterPage/RegisterPage.jsx')
+);
+const LoginPage = loadable(() =>
+  import('../pages/Public/LoginPage/LoginPage.jsx')
+);
+const AccountPage = loadable(() =>
+  import('../pages/Private/AccountPage/AccountPage.jsx')
+);
+const CalendarPage = loadable(() =>
+  import('../pages/Private/CalendarPage/CalendarPage.jsx')
+);
+const StatisticsPage = loadable(() =>
+  import('../pages/Private/StatisticsPage/StatisticsPage.jsx')
+);
 
 export const App = () => {
   const IsRefreshing = useSelector(selectIsRefreshing);
@@ -35,16 +37,48 @@ export const App = () => {
   return IsRefreshing ? (
     Loading
   ) : (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Suspense fallback={Loading}>
-            <MainLayout />
-          </Suspense>
-        }
-      />
-      <Route path="*" element={<NotFound />}></Route>
-    </Routes>
+    <main>
+      <Suspense fallback={Loading}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route
+            path="/account"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <AccountPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/calendar"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <CalendarPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/statistics"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <StatisticsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/testpage"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <TestPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </Suspense>
+    </main>
   );
 };

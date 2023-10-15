@@ -1,24 +1,22 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
+import LoginForm from '../../../components/LoginForm/LoginForm.jsx';
+
 const LoginPage = () => {
-  return (
-    <div>
-      <h1> LoginPage</h1>
-    </div>
-    // {isLoading && !error && (
-    //     <Circles
-    //       height="80"
-    //       width="80"
-    //       color="#4d78a9"
-    //!       wrapperClass={css.loader}
-    //     />
-    //   )}
-  );
+  return <LoginForm></LoginForm>;
 };
 
 export default LoginPage;
+
+// {isLoading && !error && (
+//     <Circles
+//       height="80"
+//       width="80"
+//       color="#4d78a9"
+//!       wrapperClass={css.loader}
+//     />
+//   )}
 
 // .loader {
 //     position: fixed;

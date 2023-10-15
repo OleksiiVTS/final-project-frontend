@@ -1,47 +1,16 @@
-import TaskModal from 'components/TaskModal/TaskModal';
-
-import { useState } from 'react';
-
+import React from 'react';
+import SideBar from '../SideBar/SideBar.jsx';
+// import Header from '../Header/Header.jsx';
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
-const MainLayout = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState(null);
-
-  const handleAddNewTask = task => {
-    setShowModal(true);
-    setModalContent(task);
-  };
-
-  const handleDeleteTask = task => {
-    setShowModal(true);
-    setModalContent({ ...task, action: 'delete' });
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-    setModalContent(null);
-  };
-
+const MainLayout = ({ children }) => {
   return (
     <div>
       <h1> MainLayout</h1>
-      <>
-        <button
-          onClick={() =>
-            handleDeleteTask({
-              category: 'to-do',
-              date: '2023-12-31',
-              id: 'jjjkkkk',
-              priority: 'medium',
-            })
-          }
-        >
-          Show modal
-        </button>
-      </>
-      {showModal && <TaskModal task={modalContent} closeModal={closeModal} />}
+      <SideBar />
+      {/* <Header /> */}
+      {children}
     </div>
     // {isLoading && !error && (
     //     <Circles
