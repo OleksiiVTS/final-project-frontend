@@ -2,10 +2,14 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
+import LoginForm from '../../../components/LoginForm/LoginForm.jsx';
+
 const LoginPage = () => {
   return (
     <div>
-      <h1> LoginPage</h1>
+      <LoginForm>
+
+      </LoginForm>
     </div>
     // {isLoading && !error && (
     //     <Circles

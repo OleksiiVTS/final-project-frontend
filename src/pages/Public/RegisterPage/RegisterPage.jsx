@@ -1,12 +1,13 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
+import RegisterForm from '../../../components/RegisterForm/RegisterForm.jsx';
 
 const RegisterPage = () => {
   return (
     <div>
-      <h1> RegisterPage</h1>
-    </div>
+      <RegisterForm></RegisterForm>
+        </div>
     // {isLoading && !error && (
     //     <Circles
     //       height="80"

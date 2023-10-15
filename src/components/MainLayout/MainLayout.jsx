@@ -1,11 +1,16 @@
 import React from 'react';
+import SideBar from '../SideBar/SideBar.jsx';
+// import Header from '../Header/Header.jsx';
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
     <div>
       <h1> MainLayout</h1>
+      <SideBar />
+      {/* <Header /> */}
+      {children}
     </div>
     // {isLoading && !error && (
     //     <Circles
