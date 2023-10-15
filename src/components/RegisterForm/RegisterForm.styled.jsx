@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { Field, Form } from 'formik';
+import { NavLink } from 'react-router-dom';
 
 const styledForm = Form;
 const styledField = Field;
+const navLink = NavLink;
 
 export const PageContainer = styled.div`
   position: relative;
@@ -58,6 +60,7 @@ export const BoxInput = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
+  position: relative;
 `;
 
 export const FormStyled = styled(styledForm)`
@@ -72,7 +75,7 @@ export const FormLabel = styled.label`
   font-weight: 600;
   line-height: 1.29;
   color: #111111;
-
+  
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
@@ -82,17 +85,19 @@ export const FormField = styled(styledField)`
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-family: Inter;
   font-size: 14px;
   font-weight: 400;
   color: #111111;
+  background-color: #FFFFFF;
   border-radius: 8px;
-  border: 1px solid #dce3e599;
+  border: 1px solid #dce3e599;   
+  
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    margin-bottom: 18px;
+    margin-bottom: 8px;
   }
 
   ::placeholder {
@@ -100,15 +105,40 @@ export const FormField = styled(styledField)`
   }
 `;
 
+export const CorrectInput = styled.p`
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  color: #3cbc81;
+`;
+
 export const Error = styled.p`
   font-family: Inter;
   font-size: 12px;
   font-weight: 400;
-  color: red;
+  color: #e74a3b;
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
+`;
+
+export const InputIconName = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 88%;
+`;
+
+export const InputIconEmail = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 88%;
+`;
+
+export const InputIconPassword = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 88%;
 `;
 
 export const RegButton = styled.button`
@@ -116,14 +146,23 @@ export const RegButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 8px;
   padding: 14px 0;
+  border: 1px solid transparent;
   border-radius: 16px;
+  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
   font-size: 14px;
   background-color: #3e85f3;
   color: #ffffff;
-  margin-left: auto;
-  margin-right: auto;
+
+  &:hover {
+    background-color: #2b78ef;
+  }
+  &:focus {
+    background-color: #2b78ef;
+  }
 
   @media screen and (min-width: 768px) {
     margin-top: 30px;
@@ -131,7 +170,8 @@ export const RegButton = styled.button`
   }
 `;
 
-export const LogIn = styled.h3`
+export const LogIn = styled(navLink)`
+  display: block;
   margin-top: 18px;
   text-align: center;
   font-family: Inter;
