@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 const ChoosedDay = () => {
   const { currentDay } = useParams();
+  console.log('currentDay', currentDay);
 
   // const tasks = []; //get from state
   const categoryList = ['to-do', 'in-progress', 'done'];
