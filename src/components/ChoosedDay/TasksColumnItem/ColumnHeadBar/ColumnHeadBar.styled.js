@@ -33,6 +33,7 @@ export const StyledColumnHeadBar = styled.div`
     border: none;
     border-radius: 50%;
     color: #111;
+    background-color: white;
   }
 
   & button:hover {

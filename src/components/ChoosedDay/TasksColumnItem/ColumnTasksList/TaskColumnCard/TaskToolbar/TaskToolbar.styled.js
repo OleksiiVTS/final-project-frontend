@@ -49,6 +49,7 @@ export const StyledTaskToolbar = styled.div`
     border: none;
     border-radius: 50%;
     color: #111;
+    background-color: #f7f6f9;
   }
 
   & button:not(:last-child) {
@@ -63,7 +64,7 @@ export const StyledTaskToolbar = styled.div`
     width: 14px;
     height: 14px;
     stroke: currentColor;
-    fill: white;
+    fill: #f7f6f9;
 
     @media screen and (min-width: 768px) {
       width: 16px;
