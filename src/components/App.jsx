@@ -6,6 +6,8 @@ import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
+import RegisterForm from './RegisterForm/RegisterForm';
+import LoginForm from './LoginForm/LoginForm';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -36,40 +38,16 @@ export const App = () => {
   return IsRefreshing ? (
     Loading
   ) : (
-    <main>
-      <Suspense fallback={Loading}>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-
-          <Route
-            path="/account"
-            element={
-              <PrivateRoute redirectTo="/login">
-                <AccountPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/calendar"
-            element={
-              <PrivateRoute redirectTo="/login">
-                <CalendarPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/statistics"
-            element={
-              <PrivateRoute redirectTo="/login">
-                <StatisticsPage />
-              </PrivateRoute>
-            }
-          />
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </Suspense>
-    </main>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={Loading}>
+            <MainLayout />
+          </Suspense>
+        }
+      />
+      <Route path="*" element={<NotFound />}></Route>
+    </Routes>
   );
 };
