@@ -7,7 +7,7 @@ import SideBar from '../SideBar/SideBar.jsx';
 const MainLayout = ({ children }) => {
   return (
     <div>
-      <h1> MainLayout</h1>
+      {/* <h1> MainLayout</h1> */}
       <SideBar />
       {/* <Header /> */}
       {children}

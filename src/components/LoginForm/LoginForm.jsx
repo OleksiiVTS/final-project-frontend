@@ -25,8 +25,13 @@ import { FiLogIn } from 'react-icons/fi';
 import * as Yup from 'yup';
 
 import IMG from '../Pictures/login_goose.jpg';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/auth/authOperations';
 
 const LoginForm = () => {
+  const dispacth = useDispatch();
+
+
   let userSchema = Yup.object().shape({
     email: Yup.string()
       .trim()
@@ -37,10 +42,9 @@ const LoginForm = () => {
       .required('Email is required'),
     password: Yup.string()
       .trim()
-      .min(6, 'Password should be 6 chars minimum.')
+      .min(8, 'Password should be 6 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
       .required('Password is required')
-      .matches(/[a-zA-Z]/, 'Password must contain Latin letters.'),
   });
 
   return (
@@ -52,7 +56,11 @@ const LoginForm = () => {
             initialValues={{ email: '', password: '' }}
             validationSchema={userSchema}
             onSubmit={async values => {
-              console.log(values);
+              try {
+                dispacth(login(values));
+              } catch (error) {
+                alert(error.message);
+              }
             }}
           >
             {({ errors, values, touched }) => (
@@ -154,7 +162,7 @@ const LoginForm = () => {
                               }
                         }
                         id="password"
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="Enter password"
                       />
@@ -195,7 +203,7 @@ const LoginForm = () => {
           </Formik>
         </LoginContainer>
         <ImagePosition>
-          <SingUp>Sing up</SingUp>
+          <SingUp to="/register">Sing up</SingUp>
           <Image src={IMG} alt="Goose" />
         </ImagePosition>
       </FormPosition>

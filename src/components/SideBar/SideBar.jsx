@@ -1,13 +1,13 @@
 import React from 'react';
-import UserNav from '../UserNav/UserNav.jsx'; // Імпортуйте компонент UserNav
-import LogoutBtn from '../LogoutBtn/LogoutBtn'; // Імпортуйте компонент LogoutBtn
+import UserNav from '../UserNav/UserNav.jsx';
+import LogoutBtn from '../LogoutBtn/LogoutBtn';
+import { SideBarBox } from './SideBar.styled.jsx';
 
 const SideBar = () => (
-  <div>
-    <h2>GooseTrack</h2>
+  <SideBarBox>
     <UserNav />
     <LogoutBtn />
-  </div>
+  </SideBarBox>
 );
 
 export default SideBar;
