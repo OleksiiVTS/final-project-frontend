@@ -5,7 +5,10 @@ import NotFound from 'pages/NotFound/NotFound.jsx';
 import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useSelector } from 'react-redux';
-import { selectIsRefreshing, selectLoggedIn } from 'redux/auth/authSelectors.js';
+import {
+  selectIsRefreshing,
+  selectLoggedIn,
+} from 'redux/auth/authSelectors.js';
 
 import TestPage from 'pages/Private/TestPage';
 
@@ -33,7 +36,6 @@ export const App = () => {
   // const isAuthenticated = useSelector(selectLoggedIn);
   const isAuthenticated = true;
 
-
   const Loading = (
     <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
   );
@@ -46,14 +48,47 @@ export const App = () => {
     <main>
       <Suspense fallback={Loading}>
         <Routes>
-          <Route path="/account" element={isAuthenticated ? <AccountPage /> : <Navigate to="/login" />} />
-          <Route path="/calendar" element={isAuthenticated ? <CalendarPage /> : <Navigate  to="/login" />} />
-          <Route path="/statistics" element={isAuthenticated ? <StatisticsPage /> : <Navigate  to="/login" />} />
-          <Route path="/testpage" element={isAuthenticated ? <TestPage /> : <Navigate  to="/login" />} />
+          <Route
+            path="/account"
+            element={
+              isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
+            }
+          />
+          <Route
+            path="/calendar/*"
+            element={
+              isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
+            }
+          />
+          <Route
+            path="/statistics"
+            element={
+              isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
+            }
+          />
+          <Route
+            path="/testpage"
+            element={isAuthenticated ? <TestPage /> : <Navigate to="/login" />}
+          />
 
-          <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate  to="/account" />} />
-          <Route path="/register" element={!isAuthenticated ? <RegisterPage /> : <Navigate  to="/account" />} />
-          <Route path="/" element={!isAuthenticated ? <MainPage /> : <Navigate  to="/account" />} />
+          <Route
+            path="/login"
+            element={
+              !isAuthenticated ? <LoginPage /> : <Navigate to="/account" />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              !isAuthenticated ? <RegisterPage /> : <Navigate to="/account" />
+            }
+          />
+          <Route
+            path="/"
+            element={
+              !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
+            }
+          />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
