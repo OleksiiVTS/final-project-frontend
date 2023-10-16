@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfinal_project_frontend=self.webpackChunkfinal_project_frontend||[]).push([[888],{8888:function(n,e,r){r.r(e);r(2791);var t=r(3329);e.default=function(){return(0,t.jsx)("div",{children:(0,t.jsx)("h1",{children:" CalendarPage"})})}}}]);
-//# sourceMappingURL=888.ac239700.chunk.js.map
