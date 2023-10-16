@@ -36,7 +36,6 @@ export const authSlice = createSlice({
       .addCase(logoutUser.fulfilled, state => {
         state.dataUser = null;
         state.token = null;
-        state.dataContacts = [];
         state.isLoggedIn = false;
       })
       .addCase(getUser.pending, state => {

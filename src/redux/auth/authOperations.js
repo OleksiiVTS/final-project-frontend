@@ -12,11 +12,13 @@ const token = {
   },
 };
 
-export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
+export const getUser = createAsyncThunk(
+  'auth/getUser',
+  async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistToken = state.auth.token.token;
   if (!persistToken) {
-    return thunkAPI.rejectWithValue(null);
+    return thunkAPI.rejectWithValue("Error, no valid token");
   }
   try {
     token.set(persistToken);
@@ -39,9 +41,12 @@ export const register = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
+export const login = createAsyncThunk(
+  'auth/login',
+  async (user, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', user);
+    token.set(data);
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
