@@ -70,7 +70,7 @@ const CalendarPage = () => {
 						today={currentDate}
 					/>
 					<Routes>
-						<Route path="month/:currentDate" element={<ChoosedMonth />} />
+						<Route path="/month/:currentDate" element={<ChoosedMonth />} />
 						<Route path="/day/:currentDay" element={<ChoosedDay />} />
 					</Routes>
 				</Container>
