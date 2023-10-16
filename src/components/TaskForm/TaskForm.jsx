@@ -33,8 +33,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsError } from 'redux/task/taskSelectors';
 
 const TaskForm = ({ closeModal, task }) => {
-  console.log(`task in taskModal: ${task.category}`);
-  console.log(`task in taskModal: ${task._id}`);
   const dispatch = useDispatch();
   const error = useSelector(selectIsError);
   const { title, start, end, priority } = task;
@@ -63,7 +61,6 @@ const TaskForm = ({ closeModal, task }) => {
   const onTaskSubmit = values => {
     const newTask = { ...task, ...values };
     task._id ? dispatch(editTask(newTask)) : dispatch(addTask(newTask));
-    console.log(error);
     if (!error) {
       closeModal();
     }
