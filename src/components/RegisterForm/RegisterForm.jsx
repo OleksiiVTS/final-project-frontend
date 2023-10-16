@@ -25,14 +25,10 @@ import * as Yup from 'yup';
 
 import IMG from '../Pictures/singup_goose.jpg';
 import { register } from 'redux/auth/authOperations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/authSelectors';
+import { useDispatch } from 'react-redux';
 
 const RegisterForm = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-
-  console.log(user);
+  const dispatch = useDispatch();  
 
   let userSchema = Yup.object().shape({
     username: Yup.string()
