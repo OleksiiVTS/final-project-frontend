@@ -54,17 +54,21 @@ const TaskToolbar = ({ priority, id }) => {
         <span>{priority}</span>
       </div>
       <div className="controlsWrapper">
-        <button onClick={onCategoryChange} type="button">
+        <button
+          onClick={onCategoryChange}
+          aria-label="change task category"
+          type="button"
+        >
           <svg>
             <use href={sprite + '#arrow-circle-broken-right'}></use>
           </svg>
         </button>
-        <button onClick={onEditClick} type="button">
+        <button onClick={onEditClick} aria-label="edit task" type="button">
           <svg>
             <use href={sprite + '#icon-pencil'}></use>
           </svg>
         </button>
-        <button onClick={onDeleteClick} type="button">
+        <button onClick={onDeleteClick} aria-label="delete task" type="button">
           <svg>
             <use href={sprite + '#icon-trash'}></use>
           </svg>

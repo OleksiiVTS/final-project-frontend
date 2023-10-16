@@ -11,7 +11,7 @@ const AddTaskBtn = ({ category }) => {
   };
 
   return (
-    <StyledAddTaskBtn onClick={handleClick}>
+    <StyledAddTaskBtn aria-label="add task" onClick={handleClick}>
       <span>
         <svg>
           <use href={sprite + '#icon-plus'}></use>

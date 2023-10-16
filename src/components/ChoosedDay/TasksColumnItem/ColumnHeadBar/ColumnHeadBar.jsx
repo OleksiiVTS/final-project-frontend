@@ -18,7 +18,7 @@ const ColumnHeadBar = ({ title, category }) => {
   return (
     <StyledColumnHeadBar className="columnHeadBar">
       <h3>{title}</h3>
-      <button onClick={handleClick} type="button">
+      <button onClick={handleClick} aria-label="add task" type="button">
         <svg>
           <use href={sprite + '#icon-plus-circle'}></use>
         </svg>
