@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 
 import { ToolbarWrapper } from '.';
 
-const CalendarToolbar = () => {
+const CalendarToolbar = ({ onClickPrev, onClickNext, today }) => {
 	const [type, setType] = useState('month');
-	const pathname = useLocation().pathname;
+	const { pathname } = useLocation();
 
 	useEffect(() => {
 		if (pathname.includes('day')) {
@@ -18,7 +18,7 @@ const CalendarToolbar = () => {
 
 	console.log(type);
 
-	return <p>CalendarToolbar</p>;
+	return <ToolbarWrapper></ToolbarWrapper>;
 };
 
 export default CalendarToolbar;

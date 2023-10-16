@@ -1,33 +1,71 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import {
+	Route,
+	Routes,
+	useLocation,
+	useNavigate,
+	useParams,
+} from 'react-router-dom';
+
+import { addDays, addMonths, format, subDays, subMonths } from 'date-fns';
+
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 import { CalendarToolbar } from 'components/Calendar/common';
 
-import { getCurrentDate } from 'utils/calendar';
+// import { getCurrentDate } from 'utils/calendar';
 import { Container } from 'components/Calendar/common';
 import ChoosedMonth from 'components/Calendar/month/ChoosedMonth';
 
 const CalendarPage = () => {
+	const { pathname } = useLocation();
 	const navigate = useNavigate();
-	const [currentDate, setCurrentDate] = useState(null);
+	const { currentDate } = useParams();
 
-	useEffect(() => {
-		const { year, month, date, day } = getCurrentDate();
-		const currentDateText =
-			year.toString() + (month + 1).toString() + date.toString();
+	const handlePrev = () => {
+		if (pathname.includes('day')) {
+			const newDate = subDays(new Date(currentDate), 1);
+			navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
+			return;
+		}
 
-		setCurrentDate(currentDateText);
+		const newDate = subMonths(new Date(currentDate, 1));
+		navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
+	};
 
-		navigate(`month/${currentDate}`, { replace: true });
-	}, [navigate, currentDate]);
+	const handleNext = () => {
+		if (pathname.includes('day')) {
+			const newDate = addDays(new Date(currentDate), 1);
+			navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
+			return;
+		}
+
+		const newDate = addMonths(new Date(currentDate, 1));
+		navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
+	};
+
+	// const [currentDate, setCurrentDate] = useState(null);
+
+	// useEffect(() => {
+	// 	const { year, month, date, day } = getCurrentDate();
+	// 	const currentDateText =
+	// 		year.toString() + (month + 1).toString() + date.toString();
+
+	// 	setCurrentDate(currentDateText);
+
+	// 	navigate(`month/${currentDate}`, { replace: true });
+	// }, [navigate, currentDate]);
 
 	return (
 		<section>
 			<h1> CalendarPage</h1>
 			<Container>
-				<CalendarToolbar />
+				<CalendarToolbar
+					onClickPrev={handlePrev}
+					onClickNext={handleNext}
+					today={currentDate}
+				/>
 				<Routes>
 					<Route path="month/:currentDate" element={<ChoosedMonth />} />
 					{/* <Route path="day/:currentDate" element={<ChoosedDay />} /> */}
