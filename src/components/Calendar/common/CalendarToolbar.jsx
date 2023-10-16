@@ -19,7 +19,7 @@ const CalendarToolbar = () =>
       }
 
       setType('month');
-    }, [pathname]);
+    }, [pathname, setType]);
 
     return <ToolbarWrapper></ToolbarWrapper>;
   };
