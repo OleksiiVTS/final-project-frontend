@@ -25,13 +25,13 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, { payload }) => {
         state.dataUser = payload;
         state.isLoggedIn = true;
-      })      
+      })
       .addCase(login.fulfilled, (state, { payload }) => {
         return {
-        ...state,
-        token: payload,
-        isLoggedIn: true,
-        }        
+          ...state,
+          token: payload,
+          isLoggedIn: true,
+        };
       })
       .addCase(logoutUser.fulfilled, state => {
         state.dataUser = null;
@@ -75,7 +75,7 @@ export const authSlice = createSlice({
 
 export const authReducer = persistReducer(
   {
-    key: 'ist_contacts',
+    key: 'auth',
     storage,
     whitelist: ['token'],
   },

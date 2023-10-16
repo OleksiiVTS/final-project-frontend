@@ -1,16 +1,18 @@
-import React, { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import loadable from '@loadable/component';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from 'pages/NotFound/NotFound.jsx';
 import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsRefreshing,
-  // selectLoggedIn,
+  selectLoggedIn,
+  selectToken,
 } from 'redux/auth/authSelectors.js';
 
 import TestPage from 'pages/Private/TestPage';
+import { getUser } from 'redux/auth/authOperations';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -32,9 +34,16 @@ const StatisticsPage = loadable(() =>
 );
 
 export const App = () => {
+  const dispatch = useDispatch();
+
   const isRefreshing = useSelector(selectIsRefreshing);
-  // const isAuthenticated = useSelector(selectLoggedIn);
-  const isAuthenticated = true;
+  const isAuthenticated = useSelector(selectLoggedIn);
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    if (!token || isAuthenticated) return;
+    dispatch(getUser());
+  }, [dispatch, token, isAuthenticated]);
 
   const Loading = (
     <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
