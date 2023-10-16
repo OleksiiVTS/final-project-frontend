@@ -94,8 +94,8 @@ export const RadioBtn = styled(styledRadio)`
 
 export const CustomRadioBtn = styled.span`
   position: absolute;
-  width: 9.3px;
-  height: 9.3px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: white;
   cursor: pointer;
@@ -224,7 +224,7 @@ export const AddTaskButton = styled.button`
   color: #fff;
   font-size: 14px;
   font-weight: 600;
-  line-height: 1.28;
+  line-height: 1.17;
   border: 0;
 
   &:hover {
@@ -267,4 +267,32 @@ export const Error = styled.p`
 
 export const BoxInput = styled.div`
   position: relative;
+`;
+
+export const StyledSVG = styled.svg`
+  display: inline-block;
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+
+  @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+export const StyledEditBtn = styled.svg`
+  text-align: center;
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+
+  @media screen and (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const BtnTxt = styled.span`
+  display: inline-block;
 `;
