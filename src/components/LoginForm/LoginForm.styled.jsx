@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { Field, Form } from 'formik';
+import { NavLink } from 'react-router-dom';
 
 const styledForm = Form;
 const styledField = Field;
+const navLink = NavLink;
 
 export const PageContainer = styled.div`
   position: relative;
@@ -149,6 +151,7 @@ export const LoginButton = styled.button`
   color: #ffffff;
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
 
   &:hover {
     background-color: #2b78ef;
@@ -170,7 +173,8 @@ export const ImagePosition = styled.div`
   margin-right: auto;
 `;
 
-export const SingUp = styled.h3`
+export const SingUp = styled(navLink)`
+  display: block;
   margin-top: 18px;
   text-align: center;
   font-family: Inter;

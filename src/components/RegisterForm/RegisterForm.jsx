@@ -24,12 +24,20 @@ import {
 import * as Yup from 'yup';
 
 import IMG from '../Pictures/singup_goose.jpg';
+import { register } from 'redux/auth/authOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/authSelectors';
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
+  console.log(user);
+
   let userSchema = Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
       .trim()
-      .min(2, 'Name is too short - should be 2 chars minimum.')
+      .min(4, 'Name is too short - should be 4 chars minimum.')
       .max(20, 'Name is too long - should be 20 chars maximum.')
       .required('Name is required'),
     email: Yup.string()
@@ -41,10 +49,9 @@ const RegisterForm = () => {
       .required('Email is required'),
     password: Yup.string()
       .trim()
-      .min(6, 'Password should be 6 chars minimum.')
+      .min(8, 'Password should be 8 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
       .required('Password is required')
-      .matches(/[a-zA-Z]/, 'Password mast contain Latin letters.'),
   });
 
   return (
@@ -53,46 +60,51 @@ const RegisterForm = () => {
         <RegisterContainer>
           <FormTitle>Sign Up</FormTitle>
           <Formik
-            initialValues={{ name: '', email: '', password: '' }}
+            initialValues={{ username: '', email: '', password: '' }}
             validationSchema={userSchema}
             onSubmit={async values => {
-              console.log(values);
+              try {
+                dispatch(register(values));
+              } catch (error) {
+                alert(error.message);
+              }
             }}
           >
             {({ values, errors, touched }) => (
               <FormStyled>
+
                 <BoxInput>
-                  {errors.name || values.name.trim() ? (
+                  {errors.username || values.username.trim() ? (
                     <FormLabel
                       style={
-                        errors.name
+                        errors.username
                           ? { color: '#E74A3B' }
                           : { color: '#3CBC81' }
                       }
-                      htmlFor="name"
+                      htmlFor="username"
                     >
                       Name
                     </FormLabel>
                   ) : (
-                    <FormLabel htmlFor="name">Name</FormLabel>
+                    <FormLabel htmlFor="username">Name</FormLabel>
                   )}
 
-                  {errors.name || values.name.trim() ? (
+                  {errors.username || values.username.trim() ? (
                     <>
                       <FormField
                         style={
-                          errors.name
+                          errors.username
                             ? { borderColor: '#E74A3B', position: 'relative' }
                             : { borderColor: '#3CBC81', position: 'relative' }
                         }
-                        id="name"
+                        id="username"
                         type="text"
-                        name="name"
+                        name="username"
                         placeholder="Enter your name"
                       />
-                      {errors.name ? (
+                      {errors.username ? (
                         <>
-                          <Error>{errors.name}</Error>
+                          <Error>{errors.username}</Error>
                           <InputIconName>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconName>
@@ -109,9 +121,9 @@ const RegisterForm = () => {
                   ) : (
                     <>
                       <FormField
-                        id="name"
+                        id="username"
                         type="text"
-                        name="name"
+                        name="username"
                         placeholder="Enter your name"
                       />
                     </>
@@ -216,7 +228,7 @@ const RegisterForm = () => {
                               }
                         }
                         id="password"
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="Enter password"
                       />
