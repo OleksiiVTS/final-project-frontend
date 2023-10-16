@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import {
 	Route,
 	Routes,
@@ -21,7 +21,10 @@ import ChoosedMonth from 'components/Calendar/month/ChoosedMonth';
 const CalendarPage = () => {
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
-	const { currentDate } = useParams();
+	const currentDate = Object.values(useParams())[0].slice(-10);
+	// const { currentDate } = useParams();
+
+	console.log(currentDate);
 
 	const handlePrev = () => {
 		if (pathname.includes('day')) {
@@ -45,16 +48,12 @@ const CalendarPage = () => {
 		navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
 	};
 
-	// const [currentDate, setCurrentDate] = useState(null);
+	// const [currentDate, setCurrentDate] = useState(getCurrentDate());
 
 	// useEffect(() => {
-	// 	const { year, month, date, day } = getCurrentDate();
-	// 	const currentDateText =
-	// 		year.toString() + (month + 1).toString() + date.toString();
+	// 	if (!currentDate) setCurrentDate(getCurrentDate());
 
-	// 	setCurrentDate(currentDateText);
-
-	// 	navigate(`month/${currentDate}`, { replace: true });
+	// 	navigate(`calendar/month/${currentDate}`, { replace: true });
 	// }, [navigate, currentDate]);
 
 	return (

@@ -1,11 +1,8 @@
+import { format } from 'date-fns';
+
 const getCurrentDate = () => {
 	const date = new Date();
-	return {
-		day: date.getDay(),
-		date: date.getDate(),
-		month: date.getMonth(),
-		year: date.getFullYear(),
-	};
+	return format(date, 'yyyy-MM-dd');
 };
 
 export default getCurrentDate;

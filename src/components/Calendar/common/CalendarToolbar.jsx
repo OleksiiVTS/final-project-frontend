@@ -16,8 +16,6 @@ const CalendarToolbar = ({ onClickPrev, onClickNext, today }) => {
 		setType('month');
 	}, [pathname]);
 
-	console.log(type);
-
 	return <ToolbarWrapper></ToolbarWrapper>;
 };
 
