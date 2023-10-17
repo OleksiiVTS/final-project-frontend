@@ -2,6 +2,7 @@ import { Suspense, useEffect } from 'react';
 import loadable from '@loadable/component';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from 'pages/NotFound/NotFound.jsx';
+
 import { Circles } from 'react-loader-spinner';
 import css from '../components/Loader/Loader.module.css';
 import { useDispatch, useSelector } from 'react-redux';
