@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectTasks } from 'redux/task/taskSelectors';
+// import { useSelector } from 'react-redux';
+// import { selectTasks } from 'redux/task/taskSelectors';
 
 import { StyledChoosedDay } from './ChoosedDay.styled';
 import TasksColumnsList from './TasksColumnsList/TasksColumnsList';
@@ -14,7 +14,7 @@ const ChoosedDay = () => {
   // const day = format(currentDate, 'dd');
   console.log(day);
 
-  const emptymonthTasks = useSelector(selectTasks);
+  // const emptymonthTasks = useSelector(selectTasks);
 
   const monthTasks = [
     {
