@@ -19,8 +19,8 @@ export const addTask = createAsyncThunk(
     try {
       const tasks = await taskAPI.addTask(newTask);
       return tasks;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(null);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -31,8 +31,8 @@ export const deleteTask = createAsyncThunk(
     try {
       const tasks = await taskAPI.deleteTask(taskID);
       return tasks;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(null);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -43,8 +43,8 @@ export const editTask = createAsyncThunk(
     try {
       const tasks = await taskAPI.editTask(task);
       return tasks;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(null);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

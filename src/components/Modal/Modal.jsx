@@ -7,9 +7,8 @@ import {
   CloseBtnContainer,
   CloseBtn,
 } from './Modal.styled';
-import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
 import sprite from '../Pictures/sprite.svg';
+import { useDispatch } from 'react-redux';
 
 const Modal = ({ closeModal, children }) => {
   const dispatch = useDispatch();
@@ -19,15 +18,19 @@ const Modal = ({ closeModal, children }) => {
         closeModal();
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [dispatch, closeModal]);
 
-  return createPortal(
-    <ModalBackdrop onClick={closeModal}>
+  return (
+    <ModalBackdrop
+      onClick={() => {
+        console.log('click');
+        closeModal();
+      }}
+    >
       <ModalContainer onClick={e => e.stopPropagation()}>
         <CloseBtnContainer onClick={closeModal}>
           <CloseBtn>
@@ -38,8 +41,7 @@ const Modal = ({ closeModal, children }) => {
         </CloseBtnContainer>
         {children}
       </ModalContainer>
-    </ModalBackdrop>,
-    document.body
+    </ModalBackdrop>
   );
 };
 
