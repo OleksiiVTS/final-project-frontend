@@ -64,6 +64,9 @@ const CalendarPage = () => {
         <div>
           <h1>CalendarPage</h1>
         </div>
+        {/* <Link to={`day/${currentDate}`}>Link day</Link> */}
+        {/* <Link to={`month/${currentDate}`}>Link month</Link> */}
+
         <Suspense fallback={null}>
           <CalendarToolbar
             onClickPrev={handlePrev}
@@ -72,7 +75,7 @@ const CalendarPage = () => {
           />
           <Routes>
             <Route path="/month/:currentDate" element={<ChoosedMonth />} />
-            <Route path="/day/:currentDay" element={<ChoosedDay />} />
+            <Route path="/day/:currentDate" element={<ChoosedDay />} />
           </Routes>
         </Suspense>
       </CalendarContainer>
