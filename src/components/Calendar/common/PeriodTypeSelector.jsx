@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { List, ListItem, StyledNavLink } from './PeriodTypeSelector.styled';
+import { List, StyledNavLink } from './PeriodTypeSelector.styled';
 
 const PeriodTypeSelector = ({ today, onChangeType }) => {
 	const formattedToday = format(new Date(today), 'yyyy-MM-dd');
 
 	return (
 		<List>
-			<ListItem>
+			<li>
 				<StyledNavLink
 					className="month"
 					to={`/calendar/month/${formattedToday}`}
@@ -16,8 +16,8 @@ const PeriodTypeSelector = ({ today, onChangeType }) => {
 				>
 					Month
 				</StyledNavLink>
-			</ListItem>
-			<ListItem>
+			</li>
+			<li>
 				<StyledNavLink
 					className="day"
 					to={`/calendar/day/${formattedToday}`}
@@ -25,7 +25,7 @@ const PeriodTypeSelector = ({ today, onChangeType }) => {
 				>
 					Day
 				</StyledNavLink>
-			</ListItem>
+			</li>
 		</List>
 	);
 };
