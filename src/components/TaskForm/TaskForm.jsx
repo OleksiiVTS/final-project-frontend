@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import {
   AddTaskButton,
   BoxInput,
+  BtnTxt,
   BtnWrapper,
   CancelButton,
   CheckedRadioBtnBlue,
@@ -20,15 +21,24 @@ import {
   PriorityWrapper,
   RadioBtn,
   RadioLabelStyled,
+  StyledEditBtn,
+  StyledSVG,
   TimeFieldWrap,
   TimeInput,
   TimeWrapper,
 } from './TaskForm.styled';
 import sprite from '../Pictures/sprite.svg';
-import { addNewTask, updateTask } from 'api-services/tasks-api';
+import { editTask, addTask } from '../../redux/task/taskOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsError } from 'redux/task/taskSelectors';
+import { useEffect } from 'react';
 
 const TaskForm = ({ closeModal, task }) => {
+  const dispatch = useDispatch();
+  const error = useSelector(selectIsError);
   const { title, start, end, priority } = task;
+
+  useEffect(() => {}, [error]);
 
   let taskSchema = Yup.object().shape({
     title: Yup.string()
@@ -51,16 +61,17 @@ const TaskForm = ({ closeModal, task }) => {
       .required('Priority is required'),
   });
 
-  const onTaskSubmit = values => {
+  const onTaskSubmit = async values => {
     const newTask = { ...task, ...values };
-    task.id ? updateTask(newTask) : addNewTask(newTask);
+    task._id ? dispatch(editTask(newTask)) : dispatch(addTask(newTask));
+    closeModal();
   };
 
   return (
     <FormContainer>
       <Formik
         initialValues={
-          task.id
+          task._id
             ? { title, start, end, priority }
             : { title: '', start: '09:00', end: '10:00', priority: 'low' }
         }
@@ -133,16 +144,16 @@ const TaskForm = ({ closeModal, task }) => {
               </PriorityWrapper>
               <BtnWrapper>
                 <AddTaskButton type="submit">
-                  {task.id ? (
-                    <svg width="18" height="18" style={{ marginRight: 8 }}>
+                  {task._id ? (
+                    <StyledEditBtn style={{ marginRight: 8 }}>
                       <use href={sprite + '#edit-btn'}></use>
-                    </svg>
+                    </StyledEditBtn>
                   ) : (
-                    <svg width="18" height="18" style={{ marginRight: 8 }}>
-                      <use href={sprite + '#icon-plus'}></use>
-                    </svg>
+                    <StyledSVG>
+                      <use href={sprite + '#plus-btn'}></use>
+                    </StyledSVG>
                   )}
-                  {task.id ? 'Edit' : 'Add'}
+                  {task._id ? 'Edit' : <BtnTxt>Add</BtnTxt>}
                 </AddTaskButton>
                 <CancelButton onClick={closeModal}>Cancel</CancelButton>
               </BtnWrapper>

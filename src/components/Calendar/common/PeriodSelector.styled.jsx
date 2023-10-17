@@ -1,15 +1,13 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-	/* position: relative; */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* width: 100%; */
+	margin-bottom: 18px;
 
 	@media screen and (min-width: 768px) {
-		justify-content: left;
-		/* align-items: center; */
+		margin-bottom: 0;
 	}
 `;
 
@@ -43,46 +41,28 @@ export const ButtonLeft = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 7px 10px;
-	border: 1px solid red;
+	padding: 5px 8px;
+	border: 1px solid #dce3e5;
 	border-radius: 8px;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
-	background-color: red;
+	background-color: #ffffff;
 	color: rgba(220, 227, 229, 0.8);
 	font-size: 20px;
 	cursor: pointer;
 	transition: color 250ms;
 
 	&:hover {
-		color: #565759;
+		color: #343434;
 	}
 
 	@media screen and (min-width: 768px) {
-		padding: 8px 10px;
+		padding: 7px 9px;
 	}
 `;
 
-export const ButtonRight = styled.button`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 7px 10px;
-	border: 1px solid red;
+export const ButtonRight = styled(ButtonLeft)`
 	border-radius: 8px;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
-	background-color: red;
-	color: rgba(220, 227, 229, 0.8);
-	font-size: 20px;
-	cursor: pointer;
-	transition: color 250ms;
-
-	&:hover {
-		color: #565759;
-	}
-
-	@media screen and (min-width: 768px) {
-		padding: 8px 10px;
-	}
 `;

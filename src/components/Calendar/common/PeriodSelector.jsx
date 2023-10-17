@@ -1,13 +1,16 @@
-import { forwardRef } from 'react';
+// import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import { format, parse } from 'date-fns';
+import {
+	// format,
+	parse,
+} from 'date-fns';
 
 import { CalendarDatePicker } from '.';
 
 import { ChevronLeft, ChevronRight } from '../icons';
 import {
 	Wrapper,
-	TitleWrapper,
+	// TitleWrapper,
 	ButtonsWrapper,
 	ButtonLeft,
 	ButtonRight,
@@ -20,26 +23,29 @@ const PeriodSelector = ({
 	date,
 	setCurrentDate,
 }) => {
-	const getFormattedDate = () => {
-		return format(
-			new Date(date),
-			type === 'day' ? 'dd MMMM yyyy' : 'MMMM yyyy'
-		);
-	};
+	// const getFormattedDate = () => {
+	// 	return format(
+	// 		new Date(date),
+	// 		type === 'day' ? 'dd MMMM yyyy' : 'MMMM yyyy'
+	// 	);
+	// };
 
-	const CustomInput = forwardRef(({ value, onClick }, ref) => {
-		const formattedDate = getFormattedDate();
-		const monthYear = formattedDate.split(' ')[0];
-		const preparedMonth = `months.${monthYear.toLowerCase()}`;
+	// console.log(setCurrentDate);
 
-		return (
-			<TitleWrapper onClick={onClick} ref={ref}>
-				{type === 'day'
-					? value
-					: `${preparedMonth} ${formattedDate.split(' ')[1]}`}
-			</TitleWrapper>
-		);
-	});
+	// const CustomInput = forwardRef(({ value, onClick }, ref) => {
+	// 	const formattedDate = getFormattedDate();
+
+	// 	const monthYear = formattedDate.split(' ')[0];
+	// 	const preparedMonth = `months.${monthYear.toLowerCase()}`;
+
+	// 	return (
+	// 		<TitleWrapper onClick={onClick} ref={ref}>
+	// 			{type === 'day'
+	// 				? value
+	// 				: `${preparedMonth} ${formattedDate.split(' ')[1]}`}
+	// 		</TitleWrapper>
+	// 	);
+	// });
 
 	const currentDate = parse(date, 'yyyy-MM-dd', new Date());
 
@@ -47,9 +53,9 @@ const PeriodSelector = ({
 		<Wrapper>
 			<CalendarDatePicker
 				type={type}
-				customInput={CustomInput}
+				// customInput={CustomInput}
 				onSelectDay={currentDate}
-				setCurrentDate={setCurrentDate}
+				// setCurrentDate={setCurrentDate}
 			/>
 			<ButtonsWrapper>
 				<ButtonLeft
@@ -57,14 +63,14 @@ const PeriodSelector = ({
 						onClickPrev(type);
 					}}
 				>
-					<ChevronLeft width="18px" height="18px" />
+					<ChevronRight width="18px" height="18px" />
 				</ButtonLeft>
 				<ButtonRight
 					onClick={() => {
 						onClickNext(type);
 					}}
 				>
-					<ChevronRight width="18px" height="18px" />
+					<ChevronLeft width="18px" height="18px" />
 				</ButtonRight>
 			</ButtonsWrapper>
 		</Wrapper>
@@ -78,7 +84,7 @@ PeriodSelector.propTypes = {
 	onClickNext: PropTypes.func.isRequired,
 	type: PropTypes.string,
 	date: PropTypes.string,
-	value: PropTypes.any,
-	onClick: PropTypes.func,
-	setCurrentDate: PropTypes.func,
+	// value: PropTypes.any,
+	// onClick: PropTypes.func,
+	// setCurrentDate: PropTypes.func,
 };

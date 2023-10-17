@@ -39,12 +39,12 @@ const LoginForm = () => {
         /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
         'Invalid email. Valid email contain xxx@xxx.xxx'
       )
-      .required('Email is required'),
+      .required('Email is required field'),
     password: Yup.string()
       .trim()
       .min(8, 'Password should be 6 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
-      .required('Password is required')
+      .required('Password is required field')
   });
 
   return (
@@ -111,7 +111,7 @@ const LoginForm = () => {
                         </>
                       ) : (
                         <>
-                          <CorrectInput>This is an CORRECT email</CorrectInput>
+                          <CorrectInput>This is a CORRECT email</CorrectInput>
                           <InputIconEmail>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />
                           </InputIconEmail>
@@ -176,7 +176,7 @@ const LoginForm = () => {
                       ) : (
                         <>
                           <CorrectInput>
-                            This is an CORRECT password
+                            This is a CORRECT password
                           </CorrectInput>
                           <InputIconPassword>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />

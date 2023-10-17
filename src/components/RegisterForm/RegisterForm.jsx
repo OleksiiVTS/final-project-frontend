@@ -35,19 +35,19 @@ const RegisterForm = () => {
       .trim()
       .min(4, 'Name is too short - should be 4 chars minimum.')
       .max(20, 'Name is too long - should be 20 chars maximum.')
-      .required('Name is required'),
+      .required('Name is required field'),
     email: Yup.string()
       .trim()
       .matches(
         /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
         'Invalid email. Valid email contain xxx@xxx.xxx'
       )
-      .required('Email is required'),
+      .required('Email is required field'),
     password: Yup.string()
       .trim()
       .min(8, 'Password should be 8 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
-      .required('Password is required')
+      .required('Password is required field')
   });
 
   return (
@@ -107,7 +107,7 @@ const RegisterForm = () => {
                         </>
                       ) : (
                         <>
-                          <CorrectInput>This is an CORRECT name</CorrectInput>
+                          <CorrectInput>This is a CORRECT name</CorrectInput>
                           <InputIconName>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />
                           </InputIconName>
@@ -172,7 +172,7 @@ const RegisterForm = () => {
                         </>
                       ) : (
                         <>
-                          <CorrectInput>This is an CORRECT email</CorrectInput>
+                          <CorrectInput>This is a CORRECT email</CorrectInput>
                           <InputIconEmail>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />
                           </InputIconEmail>
@@ -238,7 +238,7 @@ const RegisterForm = () => {
                       ) : (
                         <>
                           <CorrectInput>
-                            This is an CORRECT password
+                            This is a CORRECT password
                           </CorrectInput>
                           <InputIconPassword>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />

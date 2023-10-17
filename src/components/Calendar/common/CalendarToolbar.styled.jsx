@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ToolbarWrapper = styled.div`
+export const ToolbarWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 24px;
@@ -16,5 +16,3 @@ const ToolbarWrapper = styled.div`
 		margin-bottom: 40px;
 	}
 `;
-
-export default ToolbarWrapper;
