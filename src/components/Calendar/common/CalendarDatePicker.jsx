@@ -9,53 +9,54 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import { CalendarGlobalStyles } from './CalendarDatePicker.styled';
 
 const CalendarDatePicker = ({
-	type,
-	CustomInput,
-	onSelectDay,
-	setCurrentDate,
+  type,
+  CustomInput,
+  onSelectDay,
+  setCurrentDate,
 }) => {
-	const params = useParams();
-	const isParams = Boolean(Object.keys(params).length);
+  const params = useParams();
+  const isParams = Boolean(Object.keys(params).length);
 
-	const [startDate, setStartDate] = useState(onSelectDay);
-	const navigate = useNavigate();
+  const [startDate, setStartDate] = useState(onSelectDay);
+  const navigate = useNavigate();
 
-	const locale = enUS;
+  const locale = enUS;
+  console.log(enUS);
 
-	useEffect(() => {
-		setStartDate(onSelectDay);
-	}, [onSelectDay]);
+  useEffect(() => {
+    setStartDate(onSelectDay);
+  }, [onSelectDay]);
 
-	return (
-		<>
-			<DatePicker
-				selected={startDate}
-				onChange={date => {
-					setStartDate(date);
-					const formattedDate = format(date, 'yyyy-MM-dd');
-					if (setCurrentDate) {
-						setCurrentDate(formattedDate);
-					}
-					navigate(
-						isParams ? `/calendar/${type}/${formattedDate}` : '/statistics'
-					);
-				}}
-				customInput={<CustomInput />}
-				dateFormat={type === 'day' ? 'dd MMMM yyyy' : 'MMMM yyyy'}
-				calendarStartDay={1}
-				formatWeekDay={day => day.substring(0, 1)}
-				locale={locale}
-			/>
-			<CalendarGlobalStyles />
-		</>
-	);
+  return (
+    <>
+      <DatePicker
+        selected={startDate}
+        onChange={date => {
+          setStartDate(date);
+          const formattedDate = format(date, 'yyyy-MM-dd');
+          if (setCurrentDate) {
+            setCurrentDate(formattedDate);
+          }
+          navigate(
+            isParams ? `/calendar/${type}/${formattedDate}` : '/statistics'
+          );
+        }}
+        customInput={<CustomInput />}
+        dateFormat={type === 'day' ? 'dd MMMM yyyy' : 'MMMM yyyy'}
+        calendarStartDay={1}
+        formatWeekDay={day => day.substring(0, 1)}
+        locale={locale}
+      />
+      <CalendarGlobalStyles />
+    </>
+  );
 };
 
 export default CalendarDatePicker;
 
 CalendarDatePicker.propTypes = {
-	type: PropTypes.string.isRequired,
-	CustomInput: PropTypes.element.isRequired,
-	onSelectDay: PropTypes.object.isRequired,
-	setCurrentDate: PropTypes.func,
+  type: PropTypes.string.isRequired,
+  CustomInput: PropTypes.element.isRequired,
+  onSelectDay: PropTypes.object.isRequired,
+  setCurrentDate: PropTypes.func,
 };
