@@ -16,11 +16,14 @@ export const StyledTaskToolbar = styled.div`
 
     width: 32px;
     height: 32px;
+
     border-radius: 50%;
     border: 1.8px solid #3e85f3;
     /* background: url(<path-to-image>), lightgray 50% / cover no-repeat; */
 
     & img {
+      margin-left: -1px;
+      margin-top: -1px;
       width: 32px;
       height: 32px;
     }

@@ -6,11 +6,17 @@ import { StyledTaskToolbar } from './TaskToolbar.styled';
 
 import { selectUser } from 'redux/auth/authSelectors';
 
-import sprite from '../../../../../Pictures/sprite.svg';
+import sprite from 'components/Pictures/sprite.svg';
+import CategoryModal from './CategoryModal/CategoryModal';
 
 const TaskToolbar = ({ task }) => {
   const [showModal, setShowModal] = useState(false);
   const [deleteTask, setDeleteTask] = useState(false);
+
+  const [categoryModal, setCategoryModal] = useState({
+    isOpen: false,
+    coords: null,
+  });
 
   const user = useSelector(selectUser);
   const { avatarURL, name } = user;
@@ -22,8 +28,18 @@ const TaskToolbar = ({ task }) => {
     high: '#EA3D65',
   };
 
-  const onCategoryChange = () => {
-    console.log(`change category for id ${task._id}`);
+  const onCategoryChange = ({ clientX, clientY }) => {
+    setCategoryModal({
+      isOpen: true,
+      coords: { clientX, clientY },
+    });
+  };
+
+  const closeCategoryModal = () => {
+    setCategoryModal({
+      isOpen: false,
+      coords: null,
+    });
   };
 
   const onEditClick = () => {
@@ -76,6 +92,14 @@ const TaskToolbar = ({ task }) => {
           task={task}
           closeModal={closeModal}
           deleteTask={deleteTask}
+        />
+      )}
+
+      {categoryModal.isOpen && (
+        <CategoryModal
+          task={task}
+          coords={categoryModal.coords}
+          onClose={closeCategoryModal}
         />
       )}
     </StyledTaskToolbar>

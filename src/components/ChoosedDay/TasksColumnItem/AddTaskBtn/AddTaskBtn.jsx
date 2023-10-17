@@ -1,9 +1,9 @@
-import { useParams } from 'react-router';
-import { StyledAddTaskBtn } from './AddTaskBtn.styled';
-
-import sprite from '../../../Pictures/sprite.svg';
 import { useState } from 'react';
+import { useParams } from 'react-router';
+
+import { StyledAddTaskBtn } from './AddTaskBtn.styled';
 import TaskModal from 'components/TaskModal/TaskModal';
+import sprite from 'components/Pictures/sprite.svg';
 
 const AddTaskBtn = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
