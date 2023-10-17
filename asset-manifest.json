@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/final-project-frontend/static/css/main.a25aed66.css",
-    "main.js": "/final-project-frontend/static/js/main.69cacf69.js",
-    "static/js/515.3411c414.chunk.js": "/final-project-frontend/static/js/515.3411c414.chunk.js",
+    "main.js": "/final-project-frontend/static/js/main.6df50fb2.js",
+    "static/js/908.ed7ff787.chunk.js": "/final-project-frontend/static/js/908.ed7ff787.chunk.js",
     "static/js/389.31a042bb.chunk.js": "/final-project-frontend/static/js/389.31a042bb.chunk.js",
     "static/js/967.25358f61.chunk.js": "/final-project-frontend/static/js/967.25358f61.chunk.js",
     "static/js/923.4a30efc5.chunk.js": "/final-project-frontend/static/js/923.4a30efc5.chunk.js",
@@ -41,8 +41,8 @@
     "static/media/login-icon.svg": "/final-project-frontend/static/media/login-icon.e77e85dd4703c7ecf995b84341f1f543.svg",
     "static/media/burger-menu-button.svg": "/final-project-frontend/static/media/burger-menu-button.a2932cf1122a1ed5d973db85d14ddc34.svg",
     "main.a25aed66.css.map": "/final-project-frontend/static/css/main.a25aed66.css.map",
-    "main.69cacf69.js.map": "/final-project-frontend/static/js/main.69cacf69.js.map",
-    "515.3411c414.chunk.js.map": "/final-project-frontend/static/js/515.3411c414.chunk.js.map",
+    "main.6df50fb2.js.map": "/final-project-frontend/static/js/main.6df50fb2.js.map",
+    "908.ed7ff787.chunk.js.map": "/final-project-frontend/static/js/908.ed7ff787.chunk.js.map",
     "389.31a042bb.chunk.js.map": "/final-project-frontend/static/js/389.31a042bb.chunk.js.map",
     "967.25358f61.chunk.js.map": "/final-project-frontend/static/js/967.25358f61.chunk.js.map",
     "923.4a30efc5.chunk.js.map": "/final-project-frontend/static/js/923.4a30efc5.chunk.js.map",
@@ -56,6 +56,6 @@
   },
   "entrypoints": [
     "static/css/main.a25aed66.css",
-    "static/js/main.69cacf69.js"
+    "static/js/main.6df50fb2.js"
   ]
 }
