@@ -1,4 +1,6 @@
-import image from '../../assets/images/main-page-goose.png'
+
+
+import image from '../../images/images/main-page-goose.png'
 import { AuthSectionStyled, ItalicLeters, LinksList, LoginIcon, LoginLink, MainGoose, MainHeader, SignupLink } from './AuthSection.styled';
 
 
