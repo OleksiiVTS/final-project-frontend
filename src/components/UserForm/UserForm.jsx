@@ -7,7 +7,7 @@ import { object, string, date } from 'yup';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
 
-import Icon from '../Pictures/sprite.svg';
+import sprite from '../Pictures/sprite.svg';
 
 import {
   ContainerImg,
@@ -95,13 +95,13 @@ const UserForm = () => {
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
-                  <use href={Icon + '#icon-ph-user'}></use>
+                  <use href={sprite + '#icon-ph-user'}></use>
                 </SvgAvatar>
               )}
 
               <LabelImg htmlFor="avatar">
                 <ImgBtn>
-                  <use href={Icon + 'icon-plus'}></use>
+                  <use href={sprite + 'icon-plus'}></use>
                 </ImgBtn>
 
                 <InputFile
@@ -161,7 +161,7 @@ const UserForm = () => {
                 />
 
                 <VectorPng>
-                  <use href={Icon + 'icon-plus'}></use>
+                  <use href={sprite + 'icon-plus'}></use>
                 </VectorPng>
 
                 <ErrorMessage name="birthday" />
