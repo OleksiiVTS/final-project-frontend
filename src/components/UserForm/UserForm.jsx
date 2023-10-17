@@ -7,7 +7,7 @@ import { object, string, date } from 'yup';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
 
-import Icon from '';
+import Icon from '../Pictures/sprite.svg';
 
 import {
   ContainerImg,
