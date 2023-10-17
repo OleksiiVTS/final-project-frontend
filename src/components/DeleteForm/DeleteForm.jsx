@@ -1,5 +1,5 @@
 import { DeleteBtn, CancelBtn, BtnWrapper, TextDiv } from './DeleteForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import sprite from '../Pictures/sprite.svg';
 import { deleteTask } from 'redux/task/taskOperations';
 

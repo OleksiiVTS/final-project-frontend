@@ -44,11 +44,11 @@ export const ButtonLeft = styled.button`
 	justify-content: center;
 	align-items: center;
 	padding: 7px 10px;
-	border: 1px solid red;
+	border: 1px solid #dce3e5;
 	border-radius: 8px;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
-	background-color: red;
+	background-color: #ffffff;
 	color: rgba(220, 227, 229, 0.8);
 	font-size: 20px;
 	cursor: pointer;
@@ -68,18 +68,19 @@ export const ButtonRight = styled.button`
 	justify-content: center;
 	align-items: center;
 	padding: 7px 10px;
-	border: 1px solid red;
+	border: 1px solid #dce3e5;
 	border-radius: 8px;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
-	background-color: red;
+	background-color: #ffffff;
 	color: rgba(220, 227, 229, 0.8);
 	font-size: 20px;
 	cursor: pointer;
 	transition: color 250ms;
 
 	&:hover {
-		color: #565759;
+		color: #343434;
+		/* color: #565759; */
 	}
 
 	@media screen and (min-width: 768px) {
