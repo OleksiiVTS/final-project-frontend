@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://final-project-backend-6uyr.onrender.com/api';
+
+export const $instance = axios.create({
+  baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
+});
+
 
 const token = {
   set(token) {
@@ -41,12 +45,14 @@ export const register = createAsyncThunk(
   }
 );
 
+
 export const login = createAsyncThunk(
   'auth/login',
   async (user, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', user);
     token.set(data);
+
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
