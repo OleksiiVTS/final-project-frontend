@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react';
 import {
-	Route,
-	Routes,
-	useLocation,
-	useNavigate,
-	useParams,
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
 } from 'react-router-dom';
 
 import { addDays, addMonths, format, subDays, subMonths } from 'date-fns';

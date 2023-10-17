@@ -1,9 +1,14 @@
 import { StyledTaskToolbar } from './TaskToolbar.styled';
 
 import sprite from '../../../../../Pictures/sprite.svg';
+import { useState } from 'react';
+import TaskModal from 'components/TaskModal/TaskModal';
 // import { useSelector } from 'react-redux';
 
 const TaskToolbar = ({ priority, id }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [deleteTask, setDeleteTask] = useState(false);
+
   // const user = useSelector('user')
   const user = {
     _id: { $oid: '6529476a97b7633982504c1e' },
@@ -22,6 +27,14 @@ const TaskToolbar = ({ priority, id }) => {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Mjk0NzZhOTdiNzYzMzk4MjUwNGMxZSIsImlhdCI6MTY5NzMxNTE3NSwiZXhwIjoxNjk3Mzk3OTc1fQ.c3V0oMP1jeWgx4RiyHPD5pJot0DdtNl2Eus3B-juXOw',
   };
 
+  const taskFromTheProps = {
+    _id: '2222222',
+    title: 'my task',
+    start: '09:00',
+    end: '13:00',
+    priority: 'medium',
+    category: 'to-do',
+  };
   const { avatarURL, name } = user;
 
   const priorityColors = {
@@ -35,13 +48,18 @@ const TaskToolbar = ({ priority, id }) => {
   };
 
   const onEditClick = e => {
-    console.log(`edit ${id}`);
+    setShowModal(true);
   };
 
   const onDeleteClick = e => {
-    console.log(`delete ${id}`);
+    setShowModal(true);
+    setDeleteTask(true);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    setDeleteTask(false);
+  };
   return (
     <StyledTaskToolbar
       className="taskToolbar"
@@ -74,6 +92,13 @@ const TaskToolbar = ({ priority, id }) => {
           </svg>
         </button>
       </div>
+      {showModal && (
+        <TaskModal
+          task={taskFromTheProps}
+          closeModal={closeModal}
+          deleteTask={deleteTask}
+        />
+      )}
     </StyledTaskToolbar>
     //
   );

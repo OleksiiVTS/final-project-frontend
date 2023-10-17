@@ -11,11 +11,12 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { taskReducer } from './task/taskSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    // task: tasksReducer,
+    tasks: taskReducer,
     // review: reviewsReducer,
   },
   middleware: getDefaultMiddleware =>
