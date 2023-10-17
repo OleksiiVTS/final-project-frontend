@@ -7,8 +7,7 @@ import { object, string, date } from 'yup';
 import { selectUser } from 'redux/auth/auth-selectors';
 import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
 
-import plus from '../../images/plus.png';
-import Icon from '../../images/icons.svg';
+import Icon from '';
 
 import {
   ContainerImg,
@@ -101,7 +100,9 @@ const UserForm = () => {
               )}
 
               <LabelImg htmlFor="avatar">
-                <ImgBtn src={plus} alt="user" />
+                <ImgBtn>
+                  <use href={Icon + ''}></use>
+                </ImgBtn>
 
                 <InputFile
                   id="avatar"
@@ -124,7 +125,7 @@ const UserForm = () => {
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="Name"
+                  placeholder="Nadiia Doe"
                 ></Input>
                 <ErrorMessage name="name" />
               </LabelBtn>
@@ -138,7 +139,7 @@ const UserForm = () => {
                   value={values.phone ? values.phone : ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="+380"
+                  placeholder="38 (097) 256 34 77"
                 ></Input>
                 <ErrorMessage name="phone" />
               </LabelBtn>
@@ -155,12 +156,12 @@ const UserForm = () => {
                   onChange={data => {
                     setNewBirthday(data);
                   }}
-                  placeholder="Birthday"
+                  placeholder="25/08/1995"
                   dateFormat="dd/MM/yyyy"
                 />
 
                 <VectorPng>
-                  <use href={Icon + '#icon-chevron-right-new'}></use>
+                  <use href={Icon + ''}></use>
                 </VectorPng>
 
                 <ErrorMessage name="birthday" />
@@ -172,7 +173,7 @@ const UserForm = () => {
                   type="text"
                   name="skype"
                   id="skype"
-                  placeholder="Skype"
+                  placeholder="Add a skype number"
                   value={values.skype ? values.skype : ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -186,7 +187,7 @@ const UserForm = () => {
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="Email"
+                  placeholder="nadiia@gmail.com"
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
