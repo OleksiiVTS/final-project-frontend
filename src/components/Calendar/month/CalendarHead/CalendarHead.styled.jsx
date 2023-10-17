@@ -48,6 +48,7 @@ export const WorkDay = styled.li`
 	font-size: 16px;
 	font-weight: 600;
 	line-height: calc(18 / 16);
+	text-align: center;
 	text-transform: uppercase;
 `;
 
