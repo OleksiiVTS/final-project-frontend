@@ -35,7 +35,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 		height: 354px;
 		padding: 9px 18px;
 		border-radius: 16px;
-		background-color: red;
+		background-color: #3E85F3;
 		font-family: Inter;
 	}
 	
@@ -46,7 +46,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 
 	.react-datepicker__header {
 		position: relative;
-		background-color: red;
+		background-color: #3E85F3;
 	}
 
 	.react-datepicker__day-names {
@@ -145,7 +145,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
 
 	.react-datepicker__day--selected {
 		background-color: #ffffff;
-		color: red;
+		color: #3e85f3;
 		font-size: 14px;
 	}
 
@@ -157,13 +157,13 @@ export const CalendarGlobalStyles = createGlobalStyle`
 	.react-datepicker__day:hover {
 		border-radius: 50%;
 		background-color: #ffffff;
-		color: red;
+		color: #3e85f3;
 	}
 
 	.react-datepicker__day--keyboard-selected {
 		border-radius: 50%;
 		background-color: #ffffff;
-		color: red;
+		color: #3e85f3;
 	}
 
 	.react-datepicker__day--weekend {

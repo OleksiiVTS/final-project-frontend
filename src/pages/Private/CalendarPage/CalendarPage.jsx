@@ -11,7 +11,7 @@ import {
 import { addDays, addMonths, format, subDays, subMonths } from 'date-fns';
 
 import { CalendarToolbar } from 'components/Calendar/common';
-import { Container } from 'components/Calendar/common';
+import { CalendarContainer } from 'components/Calendar/common';
 import ChoosedMonth from 'components/Calendar/month/ChoosedMonth';
 
 import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
@@ -35,7 +35,7 @@ const CalendarPage = () => {
       return;
     }
 
-    const newDate = subMonths(new Date(currentDate, 1));
+    const newDate = subMonths(new Date(currentDate), 1);
     navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
   };
 
@@ -46,7 +46,7 @@ const CalendarPage = () => {
       return;
     }
 
-    const newDate = addMonths(new Date(currentDate, 1));
+    const newDate = addMonths(new Date(currentDate), 1);
     navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
   };
 
@@ -60,25 +60,25 @@ const CalendarPage = () => {
 
   return (
     <MainLayout>
-      <div>
-        <h1>CalendarPage</h1>
-      </div>
-      <Link to={`day/${currentDate}`}>Link day</Link>
-      <Link to={`month/${currentDate}`}>Link month</Link>
+      <CalendarContainer>
+        <div>
+          <h1>CalendarPage</h1>
+        </div>
+        {/* <Link to={`day/${currentDate}`}>Link day</Link> */}
+        {/* <Link to={`month/${currentDate}`}>Link month</Link> */}
 
-      <Suspense fallback={null}>
-        <Container>
-          {/* <CalendarToolbar
+        <Suspense fallback={null}>
+          <CalendarToolbar
             onClickPrev={handlePrev}
             onClickNext={handleNext}
             today={currentDate}
-          /> */}
+          />
           <Routes>
             <Route path="/month/:currentDate" element={<ChoosedMonth />} />
             <Route path="/day/:currentDate" element={<ChoosedDay />} />
           </Routes>
-        </Container>
-      </Suspense>
+        </Suspense>
+      </CalendarContainer>
     </MainLayout>
     // {isLoading && !error && (
     //     <Circles
