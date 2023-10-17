@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as Icon} from "../../assets/icons/login-icon.svg"
+import { ReactComponent as Icon } from "../../images/login-icon.svg"
 
 
 export const AuthSectionStyled = styled.section`
