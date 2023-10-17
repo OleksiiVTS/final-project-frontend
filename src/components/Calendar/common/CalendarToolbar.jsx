@@ -1,27 +1,41 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { ToolbarWrapper } from '.';
+import { PeriodSelector, PeriodTypeSelector } from '.';
 
-const CalendarToolbar = () =>
-  // { onClickPrev, onClickNext, today }
-  {
-    const [
-      // type,
-      setType,
-    ] = useState('month');
-    const { pathname } = useLocation();
+import { ToolbarWrapper } from './CalendarToolbar.styled';
 
-    useEffect(() => {
-      if (pathname.includes('day')) {
-        setType('day');
-        return;
-      }
+const CalendarToolbar = ({ today, onClickPrev, onClickNext }) => {
+	const [type, setType] = useState('month');
+	const { pathname } = useLocation();
 
-      setType('month');
-    }, [pathname, setType]);
+	useEffect(() => {
+		if (pathname.includes('day')) {
+			setType('day');
+			return;
+		}
 
-    return <ToolbarWrapper></ToolbarWrapper>;
-  };
+		setType('month');
+	}, [pathname]);
+
+	return (
+		<ToolbarWrapper>
+			<PeriodSelector
+				onClickPrev={onClickPrev}
+				onClickNext={onClickNext}
+				type={type}
+				date={today}
+			/>
+			<PeriodTypeSelector today={today} onChangeType={setType} />
+		</ToolbarWrapper>
+	);
+};
 
 export default CalendarToolbar;
+
+CalendarToolbar.propTypes = {
+	onClickPrev: PropTypes.func.isRequired,
+	onClickNext: PropTypes.func.isRequired,
+	today: PropTypes.string.isRequired,
+};
