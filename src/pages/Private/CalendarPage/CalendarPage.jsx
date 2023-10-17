@@ -68,11 +68,11 @@ const CalendarPage = () => {
 
       <Suspense fallback={null}>
         <Container>
-          <CalendarToolbar
+          {/* <CalendarToolbar
             onClickPrev={handlePrev}
             onClickNext={handleNext}
             today={currentDate}
-          />
+          /> */}
           <Routes>
             <Route path="/month/:currentDate" element={<ChoosedMonth />} />
             <Route path="/day/:currentDay" element={<ChoosedDay />} />

@@ -8,10 +8,10 @@ export const $instance = axios.create({
 
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    $instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    $instance.defaults.headers.common.Authorization = '';
   },
 };
 
