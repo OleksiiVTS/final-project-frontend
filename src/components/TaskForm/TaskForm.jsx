@@ -31,11 +31,14 @@ import sprite from '../Pictures/sprite.svg';
 import { editTask, addTask } from '../../redux/task/taskOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsError } from 'redux/task/taskSelectors';
+import { useEffect } from 'react';
 
 const TaskForm = ({ closeModal, task }) => {
   const dispatch = useDispatch();
   const error = useSelector(selectIsError);
   const { title, start, end, priority } = task;
+
+  useEffect(() => {}, [error]);
 
   let taskSchema = Yup.object().shape({
     title: Yup.string()
@@ -58,12 +61,10 @@ const TaskForm = ({ closeModal, task }) => {
       .required('Priority is required'),
   });
 
-  const onTaskSubmit = values => {
+  const onTaskSubmit = async values => {
     const newTask = { ...task, ...values };
     task._id ? dispatch(editTask(newTask)) : dispatch(addTask(newTask));
-    if (!error) {
-      closeModal();
-    }
+    closeModal();
   };
 
   return (
