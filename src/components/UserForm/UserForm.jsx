@@ -101,7 +101,7 @@ const UserForm = () => {
 
               <LabelImg htmlFor="avatar">
                 <ImgBtn>
-                  <use href={Icon + ''}></use>
+                  <use href={Icon + 'icon-plus'}></use>
                 </ImgBtn>
 
                 <InputFile
@@ -161,7 +161,7 @@ const UserForm = () => {
                 />
 
                 <VectorPng>
-                  <use href={Icon + ''}></use>
+                  <use href={Icon + 'icon-plus'}></use>
                 </VectorPng>
 
                 <ErrorMessage name="birthday" />

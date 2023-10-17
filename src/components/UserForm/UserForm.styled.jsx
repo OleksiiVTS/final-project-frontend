@@ -334,4 +334,3 @@ export const Btn = styled.button`
     filter: blur(0.1rem);
   }
 `;
-export default styled;
