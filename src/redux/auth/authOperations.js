@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://final-project-backend-6uyr.onrender.com';
+
+export const $instance = axios.create({
+  baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
+});
+
 
 const token = {
   set(token) {
@@ -13,29 +17,27 @@ const token = {
 };
 
 export const getUser = createAsyncThunk(
-  'contacts/getUser',
+  'auth/getUser',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistToken = state.contacts.token;
-    if (!persistToken) {
-      return thunkAPI.rejectWithValue(null);
-    }
-    try {
-      token.set(persistToken);
-      const { data } = await axios.get('/users/current');
-      return data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(null);
-    }
+  const state = thunkAPI.getState();
+  const persistToken = state.auth.token.token;
+  if (!persistToken) {
+    return thunkAPI.rejectWithValue("Error, no valid token");
   }
-);
+  try {
+    token.set(persistToken);
+    const { data } = await axios.get('/users/current');
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
 
-export const createUser = createAsyncThunk(
-  'contacts/createUser',
-  async (usersData, thunkAPI) => {
+export const register = createAsyncThunk(
+  'auth/register',
+  async (user, thunkAPI) => {
     try {
-      const { data } = await axios.post('/users/signup', usersData);
-      token.set(data.token);
+      const { data } = await axios.post('/users/register', user);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -43,21 +45,22 @@ export const createUser = createAsyncThunk(
   }
 );
 
-export const loginUser = createAsyncThunk(
-  'contacts/login',
-  async (loginData, thunkAPI) => {
-    try {
-      const { data } = await axios.post('/users/login', loginData);
-      token.set(data.token);
-      return data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
+
+export const login = createAsyncThunk(
+  'auth/login',
+  async (user, thunkAPI) => {
+  try {
+    const { data } = await axios.post('/users/login', user);
+    token.set(data);
+
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
   }
-);
+});
 
 export const logoutUser = createAsyncThunk(
-  'contacts/logout',
+  'auth/logout',
   async (_, thunkAPI) => {
     try {
       await axios.post('/users/logout');
