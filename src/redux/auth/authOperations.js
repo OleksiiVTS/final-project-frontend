@@ -6,7 +6,7 @@ export const $instance = axios.create({
   // baseURL: 'http://localhost:4000/api',
 });
 
-const token = {
+const authToken = {
   set(token) {
     $instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -21,7 +21,7 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue('Error, no valid token');
   }
   try {
-    token.set(token);
+    authToken.set(token);
     const { data } = await $instance.get('/users/current');
     return data;
   } catch (e) {
@@ -44,7 +44,7 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     const { data } = await $instance.post('/users/login', user);    
-    token.set(data.token);
+    authToken.set(data.token);
     return data.token;
   } catch (e) {
     console.log(e);
@@ -57,7 +57,7 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await $instance.post('/users/logout');
-      token.unset();
+      authToken.unset();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
