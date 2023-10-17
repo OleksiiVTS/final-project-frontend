@@ -36,8 +36,8 @@ const UserNav = () => {
         </NavItem>
 
         <NavItem>
-          {/* <StyledNavLink to={`/calendar/month/${currentDate}`}> */}
-          <StyledNavLink to={`/calendar/month/2023-12-31`}>
+          <StyledNavLink to={`/calendar/month/${currentDate}`}>
+            {/* <StyledNavLink to={`/calendar/month/2023-12-31`}> */}
             <span>
               <svg width="24" height="24">
                 <use href={sprite + '#icon-calendar'}></use>
