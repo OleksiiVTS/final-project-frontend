@@ -6,23 +6,22 @@ export const $instance = axios.create({
   // baseURL: 'http://localhost:4000/api',
 });
 
-const token = {
+const authToken = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    $instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    $instance.defaults.headers.common.Authorization = '';
   },
 };
 
 export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistToken = state.auth.token.token;
-  if (!persistToken) {
+  const {token} = thunkAPI.getState().auth;
+  if (!token) {
     return thunkAPI.rejectWithValue('Error, no valid token');
   }
   try {
-    token.set(persistToken);
+    authToken.set(token);
     const { data } = await $instance.get('/users/current');
     return data;
   } catch (e) {
@@ -44,11 +43,9 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
-    console.log(user);
-    const { data } = await $instance.post('/users/login', user);
-    token.set(data);
-
-    return data;
+    const { data } = await $instance.post('/users/login', user);    
+    authToken.set(data.token);
+    return data.token;
   } catch (e) {
     console.log(e);
     return thunkAPI.rejectWithValue(e.message);
@@ -60,7 +57,7 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await $instance.post('/users/logout');
-      token.unset();
+      authToken.unset();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

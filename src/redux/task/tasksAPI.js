@@ -16,8 +16,14 @@ export async function deleteTask(taskID) {
 }
 
 export async function editTask(task) {
+  const { title, start, end, priority, date, category } = task;
   const response = await $instance.patch(`/tasks/${task._id}`, {
-    ...task,
+    title,
+    start,
+    end,
+    priority,
+    date,
+    category,
   });
   return response.data;
 }
