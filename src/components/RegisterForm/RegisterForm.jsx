@@ -25,10 +25,12 @@ import * as Yup from 'yup';
 
 import IMG from '../Pictures/singup_goose.jpg';
 import { register } from 'redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from 'redux/auth/authSelectors';
 
 const RegisterForm = () => {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   let userSchema = Yup.object().shape({
     username: Yup.string()
@@ -258,7 +260,7 @@ const RegisterForm = () => {
                   )}
                 </BoxInput>
 
-                <RegButton type="submit">
+                <RegButton type="submit" disabled={isLoading}>
                   Sign Up <FiLogIn size={18} style={{ marginLeft: 11 }} />
                 </RegButton>
               </FormStyled>
