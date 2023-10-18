@@ -1,4 +1,3 @@
-
 import {
   AccentWord,
   DescriptionList,
@@ -8,7 +7,6 @@ import {
   FeatureTitle,
   ItemNumber,
 } from './Description.styled';
-
 
 import image1 from '../../images/images/mainpage-img1-375.png';
 
