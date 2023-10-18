@@ -16,7 +16,7 @@ export const authSlice = createSlice({
     dataUser: null,
     token: null,
     isRefreshing: false,
-    isLoggedIn: true,
+    isLoggedIn: false,
     isLoading: false,
     error: null,
   },
