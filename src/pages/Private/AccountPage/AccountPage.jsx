@@ -13,7 +13,7 @@ const AccountPage = () => {
   console.log(isUser);
   const formik = useFormik({
     initialValues: {
-      usrName: isUser.name ?? '',
+      usrName: isUser.username ?? '',
       phone: isUser.phone ?? '',
       birthday: isUser.birthday ?? '',
       skype: isUser.skype ?? '',
@@ -42,7 +42,7 @@ const AccountPage = () => {
             <img src="" alt="User avatar" />
             <input type="file" name="avatar" accept="image/*" />
             <br></br>
-            {isUser.name ?? 'User Name'}
+            {isUser.username ?? 'User Name'}
             <br></br>
             User
           </label>
