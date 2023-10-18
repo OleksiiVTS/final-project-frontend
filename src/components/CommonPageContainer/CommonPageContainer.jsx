@@ -6,7 +6,8 @@ export const CommonPageContainer = styled.div`
     margin: 0 auto;
     padding: 24px 20px 20px 20px;
     /* border: 2px solid black; */
-    background-color: #F7F6F9;
+    background-color: ${({ bg }) => bg || '#F7F6F9'};
+    color: ${({ color }) => color || '#000'};
 
     @media (min-width: 375px) {
     width: 335px;
