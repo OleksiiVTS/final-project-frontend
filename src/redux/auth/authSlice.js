@@ -9,6 +9,8 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
 import { getUser, register, login, logoutUser } from './authOperations';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -24,12 +26,14 @@ export const authSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
         state.dataUser = payload;
+        state.token = payload.token;
         state.isLoggedIn = true;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         return {
           ...state,
-          token: payload,
+          dataUser: payload,
+          token: payload.token,
           isLoggedIn: true,
         };
       })
@@ -60,6 +64,7 @@ export const authSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
+          toast.error(state.error);
         }
       )
       .addMatcher(

@@ -16,7 +16,7 @@ const authToken = {
 };
 
 export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
-  const {token} = thunkAPI.getState().auth;
+  const { token } = thunkAPI.getState().auth;
   if (!token) {
     return thunkAPI.rejectWithValue('Error, no valid token');
   }
@@ -34,6 +34,7 @@ export const register = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const { data } = await $instance.post('/users/register', user);
+      authToken.set(data.token);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -43,9 +44,9 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
-    const { data } = await $instance.post('/users/login', user);    
+    const { data } = await $instance.post('/users/login', user);
     authToken.set(data.token);
-    return data.token;
+    return data;
   } catch (e) {
     console.log(e);
     return thunkAPI.rejectWithValue(e.message);

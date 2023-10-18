@@ -21,15 +21,16 @@ import {
 import { MdErrorOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
-
 import * as Yup from 'yup';
 
 import IMG from '../Pictures/login_goose.jpg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
+import { selectIsLoading } from 'redux/auth/authSelectors';
 
 const LoginForm = () => {
   const dispacth = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
 
   let userSchema = Yup.object().shape({
@@ -195,9 +196,10 @@ const LoginForm = () => {
                     </>
                   )}
                 </BoxInput>
-                <LoginButton type="submit">
+
+                <LoginButton type="submit" disabled={isLoading}>
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
-                </LoginButton>
+                </LoginButton>                
               </FormStyled>
             )}
           </Formik>
