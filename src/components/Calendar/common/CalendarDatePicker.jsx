@@ -16,6 +16,7 @@ const CalendarDatePicker = ({
 }) => {
 	const params = useParams();
 	const isParams = Boolean(Object.keys(params).length);
+	console.log(isParams);
 
 	const [startDate, setStartDate] = useState(onSelectDay);
 	const navigate = useNavigate();

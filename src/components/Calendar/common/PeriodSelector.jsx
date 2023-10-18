@@ -5,7 +5,8 @@ import {
 	parse,
 } from 'date-fns';
 
-import { CalendarDatePicker } from '.';
+import { NewCalendarDatePicker } from '.';
+// import { CalendarDatePicker } from '.';
 
 import { ChevronLeft, ChevronRight } from '../icons';
 import {
@@ -15,6 +16,7 @@ import {
 	ButtonLeft,
 	ButtonRight,
 } from './PeriodSelector.styled';
+// import { useState } from 'react';
 
 const PeriodSelector = ({
 	onClickPrev,
@@ -51,12 +53,13 @@ const PeriodSelector = ({
 
 	return (
 		<Wrapper>
-			<CalendarDatePicker
+			<NewCalendarDatePicker type={type} date={currentDate} />
+			{/* <CalendarDatePicker
 				type={type}
-				// customInput={CustomInput}
+				customInput={CustomInput} ===
 				onSelectDay={currentDate}
-				// setCurrentDate={setCurrentDate}
-			/>
+				setCurrentDate={setCurrentDate} ===
+			/> */}
 			<ButtonsWrapper>
 				<ButtonLeft
 					onClick={() => {
