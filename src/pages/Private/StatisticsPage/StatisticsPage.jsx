@@ -1,12 +1,16 @@
+import MainLayout from 'components/MainLayout/MainLayout';
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
   return (
-    <div>
-      <h1> StatisticsPage</h1>
-    </div>
+    <MainLayout>
+      <div>
+        <h1> StatisticsPage</h1>
+      </div>
+    </MainLayout>
+
     // {isLoading && !error && (
     //     <Circles
     //       height="80"
