@@ -2,7 +2,8 @@
 
 import AuthSection from "components/AuthSection/AuthSection";
 import Description from "components/Description/Description";
-// import Slider from "components/Slider/Slider";
+import Slider from "components/Slider/Slider";
+import RaitingStars from "components/RaitingStars/RaitingStars";
 import { MainPageContainer, MainPageWrapper } from "./MainPage.styled";
 
 const MainPage = () => {
@@ -12,7 +13,8 @@ const MainPage = () => {
         <MainPageWrapper>
             <MainPageContainer>
                 <Description />
-                {/* <Slider/> */}
+                    <Slider />
+                    <RaitingStars />
             </MainPageContainer>
         </MainPageWrapper>
         
