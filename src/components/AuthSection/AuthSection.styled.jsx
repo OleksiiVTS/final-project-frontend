@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { ReactComponent as Icon } from "../../images/login-icon.svg"
-
+import { ReactComponent as Icon } from '../../images/login-icon.svg';
 
 export const AuthSectionStyled = styled.section`
   display: flex;
@@ -9,7 +8,7 @@ export const AuthSectionStyled = styled.section`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #3E85F3;
+  background-color: #3e85f3;
 `;
 export const MainGoose = styled.img`
   width: 142px;
@@ -20,7 +19,7 @@ export const MainGoose = styled.img`
 `;
 
 export const MainHeader = styled.h1`
-  color: #FFFFFF';
+  color: #ffffff;
   font-size: 25px;
   line-height: 1.09;
   margin-bottom: 32px;
@@ -71,32 +70,35 @@ export const LoginLink = styled(NavLink)`
   justify-content: center;
   gap: 6px;
   font-size: 14px;
-  background-color: #DCEBF7;
-  color: #3E85F3;
-  box-shadow: 4px 2px 16px 0px #88A5BF7A;
+  background-color: #dcebf7;
+  color: #3e85f3;
+  box-shadow: 4px 2px 16px 0px #88a5bf7a;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover{
+  &:hover {
     box-shadow: 4px 2px 20px 0px #29394679;
   }
 `;
 
-export const LoginIcon = styled(Icon)`
-`
+export const LoginIcon = styled(Icon)``;
 
 export const SignupLink = styled(NavLink)`
   display: block;
   font-weight: 600;
   font-size: 12px;
-  background-image: linear-gradient(to right, currentColor 100%, currentColor 100%);
+  background-image: linear-gradient(
+    to right,
+    currentColor 100%,
+    currentColor 100%
+  );
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 100% 1px;
-  color: #FFFFFF;
+  color: #ffffff;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
-  &:hover{
-      box-shadow: 4px 2px 16px 0px #88A5BF7A;
+  &:hover {
+    box-shadow: 4px 2px 16px 0px #88a5bf7a;
   }
 `;
