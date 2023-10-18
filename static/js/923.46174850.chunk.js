@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfinal_project_frontend=self.webpackChunkfinal_project_frontend||[]).push([[923],{9923:function(n,e,c){c.r(e);c(2791);var r=c(3435),t=c(3329);e.default=function(){return(0,t.jsx)(r.Z,{children:(0,t.jsx)("div",{children:(0,t.jsx)("h1",{children:" AccountPage"})})})}}}]);
-//# sourceMappingURL=923.46174850.chunk.js.map
