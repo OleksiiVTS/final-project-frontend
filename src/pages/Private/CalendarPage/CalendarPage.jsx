@@ -1,4 +1,5 @@
-import React, { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   // Link,
   Route,
@@ -19,6 +20,8 @@ import ChoosedMonth from 'components/Calendar/month/ChoosedMonth';
 import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
 import ChoosedDay from 'components/ChoosedDay/ChoosedDay.jsx';
 
+import { getTasks as getTasksThunk } from 'redux/task/taskOperations';
+
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
@@ -30,10 +33,27 @@ const CalendarPage = () => {
 
   // console.log(currentDate);
 
+  const dispatch = useDispatch(); // add vlad
+  const [todaysDate, setTodaysDate] = useState(''); // add vlad
+
+  useEffect(() => {
+    setTodaysDate(currentDate);
+  }, [currentDate]);
+
+  useEffect(() => {
+    if (currentDate === todaysDate) return;
+    if (todaysDate === '') {
+      dispatch(getTasksThunk(currentDate.slice(0, 7)));
+      return;
+    }
+    dispatch(getTasksThunk(todaysDate.slice(0, 7)));
+  }, [dispatch, todaysDate, currentDate]);
+
   const handlePrev = () => {
     if (pathname.includes('day')) {
       const newDate = subDays(new Date(currentDate), 1);
       navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
+      setTodaysDate(format(newDate, 'yyyy-MM-dd')); // add vlad
       return;
     }
 
@@ -45,6 +65,7 @@ const CalendarPage = () => {
     if (pathname.includes('day')) {
       const newDate = addDays(new Date(currentDate), 1);
       navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
+      setTodaysDate(format(newDate, 'yyyy-MM-dd')); // add vlad
       return;
     }
 
