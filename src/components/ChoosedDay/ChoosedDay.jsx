@@ -12,7 +12,7 @@ const ChoosedDay = () => {
   const day = currentDate.slice(-2);
   // const day = new Date(currentDate).getDate();
   // const day = format(currentDate, 'dd');
-  console.log(day);
+  console.log('day', day);
 
   // const emptymonthTasks = useSelector(selectTasks);
 
@@ -91,17 +91,30 @@ const ChoosedDay = () => {
     },
   ];
 
-  const dayTasks = monthTasks.filter(task => task.date.slice(-2) === day);
+  const filterDayTasks = (monthTasks, day) => {
+    return monthTasks.filter(task => task.date.slice(-2) === day);
+  };
+
+  const dayTasks = filterDayTasks(monthTasks, day);
   const categoryList = ['to-do', 'in-progress', 'done'];
   // const priorityList = ['low', 'medium', 'high'];
 
-  const currentTasks = [[], [], []];
+  const CreateSortedTasks = (categories, tasks) => {
+    const obj = {};
+    categories.forEach(cat => (obj[cat] = []));
+    tasks.forEach(task => obj[task.category].push(task));
+    return obj;
+  };
+  const sortedTasks = CreateSortedTasks(categoryList, dayTasks);
+  // console.log(data);
 
-  dayTasks.forEach(task => {
-    if (task.category === categoryList[0]) currentTasks[0].push(task);
-    if (task.category === categoryList[1]) currentTasks[1].push(task);
-    if (task.category === categoryList[2]) currentTasks[2].push(task);
-  });
+  // const currentTasks = [[], [], []];
+
+  // dayTasks.forEach(task => {
+  //   if (task.category === categoryList[0]) currentTasks[0].push(task);
+  //   if (task.category === categoryList[1]) currentTasks[1].push(task);
+  //   if (task.category === categoryList[2]) currentTasks[2].push(task);
+  // });
 
   // const currentTasks = tasksForCurrentDay.reduce((acc, task) => {
   //   console.log(task.category);
@@ -113,7 +126,11 @@ const ChoosedDay = () => {
   return (
     <StyledChoosedDay>
       {/* <DayCalendarHead /> */}
-      <TasksColumnsList currentTasks={currentTasks} />
+      <TasksColumnsList
+        // currentTasks={currentTasks}
+        sortedTasks={sortedTasks}
+        categoryList={categoryList}
+      />
     </StyledChoosedDay>
     //
   );
