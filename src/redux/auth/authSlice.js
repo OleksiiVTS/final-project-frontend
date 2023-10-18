@@ -9,6 +9,8 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
 import { getUser, register, login, logoutUser } from './authOperations';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -60,6 +62,7 @@ export const authSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
+          toast.error(state.error);
         }
       )
       .addMatcher(

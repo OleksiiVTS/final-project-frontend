@@ -21,7 +21,6 @@ import {
 import { MdErrorOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
-
 import * as Yup from 'yup';
 
 import IMG from '../Pictures/login_goose.jpg';
