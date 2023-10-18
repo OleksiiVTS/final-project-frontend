@@ -27,7 +27,7 @@ export const DescriptionList = styled.ul`
 
   & li > div {
     @media screen and (min-width: 375px) and (max-width: 767px) {
-      max-width: 275px;
+      max-width: 335px;
     }
     @media screen and (min-width: 768px) {
       max-width: 275px;
