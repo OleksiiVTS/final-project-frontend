@@ -10,7 +10,7 @@ import {
 const reviewSlice = createSlice({
   name: 'reviews',
   initialState: {
-    ownReview: null,
+    ownReview: {},
     isLoading: false,
     error: null,
   },
@@ -31,7 +31,7 @@ const reviewSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(getOwnReview, (state, { payload }) => {
+      .addCase(getOwnReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.ownReview = payload;
@@ -51,7 +51,7 @@ const reviewSlice = createSlice({
       .addCase(deleteReview.fulfilled, state => {
         state.isLoading = false;
         state.error = null;
-        state.ownReview = null;
+        state.ownReview = {};
       }),
 });
 
