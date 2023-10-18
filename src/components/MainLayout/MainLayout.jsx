@@ -7,22 +7,22 @@ import SideBar from '../SideBar/SideBar.jsx';
 import { Section } from './MainLayout.styled.jsx';
 
 const MainLayout = ({ children }) => {
-	return (
-		<Section>
-			{/* <h1> MainLayout</h1> */}
-			<SideBar />
-			{/* <Header /> */}
-			{children}
-		</Section>
-		// {isLoading && !error && (
-		//     <Circles
-		//       height="80"
-		//       width="80"
-		//       color="#4d78a9"
-		//!       wrapperClass={css.loader}
-		//     />
-		//   )}
-	);
+  return (
+    <Section>
+      {/* <h1> MainLayout</h1> */}
+      <SideBar />
+      {/* <Header /> */}
+      {children}
+    </Section>
+    // {isLoading && !error && (
+    //     <Circles
+    //       height="80"
+    //       width="80"
+    //       color="#4d78a9"
+    //!       wrapperClass={css.loader}
+    //     />
+    //   )}
+  );
 };
 
 export default MainLayout;
