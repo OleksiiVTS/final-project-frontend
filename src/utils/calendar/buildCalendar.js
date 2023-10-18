@@ -32,8 +32,10 @@ const buildCalendar = currentDate => {
 
   while (start < 8) {
     calendar.push(null);
-    start++;
+    ++start;
   }
+
+  return calendar;
 };
 
 export default buildCalendar;
