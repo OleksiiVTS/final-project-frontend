@@ -33,3 +33,15 @@ p {
   margin: 0;
   padding: 0;
 }
+
+body[data-theme='light']
+{
+  background: var(--color-theme-light);
+  color: var(--color-theme-dark);
+}
+
+body[data-theme='dark']
+{
+  background: var(--color-theme-dark);
+  color: var(--color-theme-light);
+}
