@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/final-project-frontend/static/css/main.4edff0ce.css",
-    "main.js": "/final-project-frontend/static/js/main.1d5e638a.js",
+    "main.js": "/final-project-frontend/static/js/main.82b07720.js",
     "static/js/908.ed7ff787.chunk.js": "/final-project-frontend/static/js/908.ed7ff787.chunk.js",
     "static/js/389.ad1d6ca2.chunk.js": "/final-project-frontend/static/js/389.ad1d6ca2.chunk.js",
     "static/js/967.3ad22bd4.chunk.js": "/final-project-frontend/static/js/967.3ad22bd4.chunk.js",
@@ -37,11 +37,12 @@
     "static/media/main-page-goose.png": "/final-project-frontend/static/media/main-page-goose.d73dbd28bcd3a3c78851.png",
     "static/media/sprite.svg": "/final-project-frontend/static/media/sprite.651855ea93d8f33e26e9ddb43b5f4697.svg",
     "static/media/mainpage-img3-375.png": "/final-project-frontend/static/media/mainpage-img3-375.e2b839dacd75a7ce92a1.png",
+    "static/media/goose_404.png": "/final-project-frontend/static/media/goose_404.d5a300c3757c46c2002b.png",
     "index.html": "/final-project-frontend/index.html",
     "static/media/login-icon.svg": "/final-project-frontend/static/media/login-icon.e77e85dd4703c7ecf995b84341f1f543.svg",
     "static/media/burger-menu-button.svg": "/final-project-frontend/static/media/burger-menu-button.a2932cf1122a1ed5d973db85d14ddc34.svg",
     "main.4edff0ce.css.map": "/final-project-frontend/static/css/main.4edff0ce.css.map",
-    "main.1d5e638a.js.map": "/final-project-frontend/static/js/main.1d5e638a.js.map",
+    "main.82b07720.js.map": "/final-project-frontend/static/js/main.82b07720.js.map",
     "908.ed7ff787.chunk.js.map": "/final-project-frontend/static/js/908.ed7ff787.chunk.js.map",
     "389.ad1d6ca2.chunk.js.map": "/final-project-frontend/static/js/389.ad1d6ca2.chunk.js.map",
     "967.3ad22bd4.chunk.js.map": "/final-project-frontend/static/js/967.3ad22bd4.chunk.js.map",
@@ -56,6 +57,6 @@
   },
   "entrypoints": [
     "static/css/main.4edff0ce.css",
-    "static/js/main.1d5e638a.js"
+    "static/js/main.82b07720.js"
   ]
 }
