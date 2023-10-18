@@ -38,7 +38,16 @@ const AccountPage = () => {
       <div>
         <h1> AccountForm</h1>
         <form onSubmit={formik.handleSubmit}>
-          <label htmlFor="User Name">First Name</label>
+          <label htmlFor="avatar">
+            <img src="" alt="User avatar" />
+            <input type="file" name="avatar" accept="image/*" />
+            <br></br>
+            {isUser.name ?? 'User Name'}
+            <br></br>
+            User
+          </label>
+          <br></br>
+          <label htmlFor="usrName">User Name</label>
           <input
             id="usrName"
             name="usrName"
