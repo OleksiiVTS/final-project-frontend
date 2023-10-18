@@ -1,19 +1,22 @@
-import React from 'react';
-// import { useDispatch } from 'react-redux';
-
-import TasksColumnsList from './TasksColumnsList/TasksColumnsList';
-import { StyledChoosedDay } from './ChoosedDay.styled';
 import { useParams } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { selectTasks } from 'redux/task/taskSelectors';
+
+import { StyledChoosedDay } from './ChoosedDay.styled';
+import TasksColumnsList from './TasksColumnsList/TasksColumnsList';
+// import { format } from 'date-fns';
 
 const ChoosedDay = () => {
-  const { currentDay } = useParams();
-  console.log('currentDay', currentDay);
+  const { currentDate } = useParams();
+  console.log('currentDate', currentDate);
+  const day = currentDate.slice(-2);
+  // const day = new Date(currentDate).getDate();
+  // const day = format(currentDate, 'dd');
+  console.log(day);
 
-  // const tasks = []; //get from state
-  const categoryList = ['to-do', 'in-progress', 'done'];
-  // const priorityList = ['low', 'medium', 'high'];
+  // const emptymonthTasks = useSelector(selectTasks);
 
-  const tasksForCurrentDay = [
+  const monthTasks = [
     {
       _id: '65294bc4924f405b17970a7e',
       title: 'first',
@@ -88,9 +91,13 @@ const ChoosedDay = () => {
     },
   ];
 
+  const dayTasks = monthTasks.filter(task => task.date.slice(-2) === day);
+  const categoryList = ['to-do', 'in-progress', 'done'];
+  // const priorityList = ['low', 'medium', 'high'];
+
   const currentTasks = [[], [], []];
 
-  tasksForCurrentDay.forEach(task => {
+  dayTasks.forEach(task => {
     if (task.category === categoryList[0]) currentTasks[0].push(task);
     if (task.category === categoryList[1]) currentTasks[1].push(task);
     if (task.category === categoryList[2]) currentTasks[2].push(task);

@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout from '../../../components/MainLayout/MainLayout.jsx'; 
+import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
@@ -7,9 +7,9 @@ import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
 const AccountPage = () => {
   return (
     <MainLayout>
-    <div>
-      {/* <h1> AccountPage</h1> */}
-    </div>
+      <div>
+        <h1> AccountPage</h1>
+      </div>
     </MainLayout>
     // {isLoading && !error && (
     //     <Circles

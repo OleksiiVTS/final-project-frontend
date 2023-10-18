@@ -22,10 +22,10 @@ const CalendarHead = () => {
 			</DesktopDayList>
 			<MobileDaysList>
 				{workDayNames.map(day => (
-					<WorkDay key={day}>{day}</WorkDay>
+					<WorkDay key={day}>{day.slice(0, 1)}</WorkDay>
 				))}
 				{weekendDayNames.map(day => (
-					<WeekendDay key={day}>{day}</WeekendDay>
+					<WeekendDay key={day}>{day.slice(0, 1)}</WeekendDay>
 				))}
 			</MobileDaysList>
 		</MonthCalendarHeadStyles>

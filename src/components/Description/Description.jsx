@@ -9,24 +9,26 @@ import {
   ItemNumber,
 } from './Description.styled';
 
-import image1 from '../../assets/images/mainpage-img1-375.png';
-import image1Tablet from '../../assets/images/mainpage-img1-768.png';
-import image1Desktop from '../../assets/images/mainpage-img1-1440.png';
-import image1x2 from '../../assets/images/mainpage-img1-375@2x.png';
-import image1Tabletx2 from '../../assets/images/mainpage-img1-768@2x.png';
-import image1Desktopx2 from '../../assets/images/mainpage-img1-1440@2x.png';
-import image2 from '../../assets/images/mainpage-img2-375.png';
-import image2Tablet from '../../assets/images/mainpage-img2-768.png';
-import image2Desktop from '../../assets/images/mainpage-img2-1440.png';
-import image2x2 from '../../assets/images/mainpage-img2-375@2x.png';
-import image2Tabletx2 from '../../assets/images/mainpage-img2-768@2x.png';
-import image2Desktopx2 from '../../assets/images/mainpage-img2-1440@2x.png';
-import image3 from '../../assets/images/mainpage-img3-375.png';
-import image3Tablet from '../../assets/images/mainpage-img3-768.png';
-import image3Desktop from '../../assets/images/mainpage-img3-1440.png';
-import image3x2 from '../../assets/images/mainpage-img3-375@2x.png';
-import image3Tabletx2 from '../../assets/images/mainpage-img3-768@2x.png';
-import image3Desktopx2 from '../../assets/images/mainpage-img3-1440@2x.png';
+
+import image1 from '../../images/images/mainpage-img1-375.png';
+
+import image1Tablet from '../../images/images/mainpage-img1-768.png';
+import image1Desktop from '../../images/images/mainpage-img1-1440.png';
+import image1x2 from '../../images/images/mainpage-img1-375@2x.png';
+import image1Tabletx2 from '../../images/images/mainpage-img1-768@2x.png';
+import image1Desktopx2 from '../../images/images/mainpage-img1-1440@2x.png';
+import image2 from '../../images/images/mainpage-img2-375.png';
+import image2Tablet from '../../images/images/mainpage-img2-768.png';
+import image2Desktop from '../../images/images/mainpage-img2-1440.png';
+import image2x2 from '../../images/images/mainpage-img2-375@2x.png';
+import image2Tabletx2 from '../../images/images/mainpage-img2-768@2x.png';
+import image2Desktopx2 from '../../images/images/mainpage-img2-1440@2x.png';
+import image3 from '../../images/images/mainpage-img3-375.png';
+import image3Tablet from '../../images/images/mainpage-img3-768.png';
+import image3Desktop from '../../images/images/mainpage-img3-1440.png';
+import image3x2 from '../../images/images/mainpage-img3-375@2x.png';
+import image3Tabletx2 from '../../images/images/mainpage-img3-768@2x.png';
+import image3Desktopx2 from '../../images/images/mainpage-img3-1440@2x.png';
 
 const Description = () => {
   return (

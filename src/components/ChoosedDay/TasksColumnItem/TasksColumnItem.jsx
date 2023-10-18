@@ -5,7 +5,6 @@ import AddTaskBtn from './AddTaskBtn/AddTaskBtn';
 import ColumnTasksList from './ColumnTasksList/ColumnTasksList';
 
 const TasksColumnItem = ({ title, tasks, category }) => {
-  // console.log(category);
   return (
     <StyledTasksColumnItem className="tasksColumnItem">
       <ColumnHeadBar title={title} category={category} />

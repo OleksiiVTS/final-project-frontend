@@ -1,4 +1,4 @@
-import React from 'react';
+import { useParams } from 'react-router';
 import { StyledAddTaskBtn } from './AddTaskBtn.styled';
 
 import sprite from '../../../Pictures/sprite.svg';
@@ -7,8 +7,9 @@ import TaskModal from 'components/TaskModal/TaskModal';
 
 const AddTaskBtn = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
+  const { currentDate } = useParams();
 
-  const handleClick = e => {
+  const handleClick = () => {
     setShowModal(true);
   };
 
@@ -17,20 +18,22 @@ const AddTaskBtn = ({ category }) => {
   };
 
   return (
-    <StyledAddTaskBtn aria-label="add task" onClick={handleClick}>
-      <span>
-        <svg>
-          <use href={sprite + '#icon-plus'}></use>
-        </svg>
-      </span>
-      Add task
+    <>
+      <StyledAddTaskBtn aria-label="add task" onClick={handleClick}>
+        <span>
+          <svg>
+            <use href={sprite + '#icon-plus'}></use>
+          </svg>
+        </span>
+        Add task
+      </StyledAddTaskBtn>
       {showModal && (
         <TaskModal
-          task={{ category, date: '12-12-2023' }}
+          task={{ category, date: currentDate }}
           closeModal={closeModal}
         />
       )}
-    </StyledAddTaskBtn>
+    </>
   );
 };
 
