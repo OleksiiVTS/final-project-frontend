@@ -18,6 +18,7 @@ export const getOwnReview = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const review = await reviewAPI.getOwnReview();
+      console.log('review: ', review);
       return review;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
