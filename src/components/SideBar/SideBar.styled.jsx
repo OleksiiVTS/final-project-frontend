@@ -4,7 +4,7 @@ export const SideBarBox = styled.section`
   background-color: #fff;
   border-right: 1px solid rgba(220, 227, 229, 0.5);
 
-  height: 95vh;
+  height: 100vh;
   width: 290px;
   padding: 32px 24px 24px 24px;
 
