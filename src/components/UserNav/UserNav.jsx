@@ -20,7 +20,9 @@ const UserNav = () => {
         <span>
           <img src={menuGoose} alt="menu goose" />
         </span>
-        GooseTrack
+        <p>
+          G<em>oo</em>seTrack
+        </p>
       </LogoBox>
       <NavTitle>User Panel</NavTitle>
       <ul>
