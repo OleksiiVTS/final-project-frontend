@@ -12,7 +12,7 @@ export const AuthSectionStyled = styled.section`
 `;
 export const MainGoose = styled.img`
   width: 142px;
-  margin: auto;
+
   @media screen and (min-width: 768px) {
     width: 150px;
   }
@@ -23,6 +23,7 @@ export const MainHeader = styled.h1`
   font-size: 25px;
   line-height: 1.09;
   margin-bottom: 32px;
+  margin-top: 2px;
 
   @media screen and (min-width: 375px) {
     font-weight: 7000;
@@ -31,7 +32,8 @@ export const MainHeader = styled.h1`
   @media screen and (min-width: 768px) {
     font-size: 100px;
     line-height: 1.3;
-    margin-bottom: 40px;
+    margin-bottom: 55.5px;
+    margin-top: 0;
   }
   @media screen and (min-width: 1440px) {
     font-size: 120px;
@@ -70,7 +72,7 @@ export const LoginLink = styled(NavLink)`
   justify-content: center;
   gap: 6px;
   font-size: 14px;
-  background-color: #dcebf7;
+  background-color: #fff;
   color: #3e85f3;
   box-shadow: 4px 2px 16px 0px #88a5bf7a;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
