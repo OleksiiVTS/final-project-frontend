@@ -199,7 +199,7 @@ const LoginForm = () => {
 
                 <LoginButton type="submit" disabled={isLoading}>
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
-                </LoginButton>
+                </LoginButton>                
               </FormStyled>
             )}
           </Formik>
