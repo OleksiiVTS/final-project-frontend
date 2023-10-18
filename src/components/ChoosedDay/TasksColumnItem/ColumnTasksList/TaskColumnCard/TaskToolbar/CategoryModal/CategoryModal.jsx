@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { StyledCategoryModal } from './CategoryModal.styled';
 
+import { editTask } from 'redux/task/taskOperations';
 import { selectIsError } from 'redux/task/taskSelectors';
 import sprite from 'components/Pictures/sprite.svg';
 
@@ -20,9 +21,10 @@ const CategoryModal = ({ task, coords, onClose }) => {
     }
   };
 
-  const changeCategory = () => {
-    // dispatch();
+  const changeCategory = category => {
+    dispatch(editTask({ ...task, category }));
     console.log('dispatch');
+    !error && onClose();
   };
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const CategoryModal = ({ task, coords, onClose }) => {
     <StyledCategoryModal coords={coords} onClick={handleOverlayClick}>
       <div className="modal">
         <button
-          onClick={changeCategory}
+          onClick={() => changeCategory(categoryList[1])}
           aria-label="change task category"
           type="button"
         >
@@ -50,7 +52,7 @@ const CategoryModal = ({ task, coords, onClose }) => {
           </span>
         </button>
         <button
-          onClick={changeCategory}
+          onClick={() => changeCategory(categoryList[2])}
           aria-label="change task category"
           type="button"
         >
