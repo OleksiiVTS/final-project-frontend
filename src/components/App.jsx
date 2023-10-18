@@ -14,6 +14,9 @@ import {
 
 import TestPage from 'pages/Private/TestPage';
 import { getUser } from 'redux/auth/authOperations';
+import { getCurrentDate } from 'utils/calendar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -36,10 +39,10 @@ const StatisticsPage = loadable(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
-
   const isRefreshing = useSelector(selectIsRefreshing);
   const isAuthenticated = useSelector(selectLoggedIn);
   const token = useSelector(selectToken);
+  const currentDate = getCurrentDate();
 
   useEffect(() => {
     if (!token || isAuthenticated) return;
@@ -84,13 +87,27 @@ export const App = () => {
           <Route
             path="/login"
             element={
-              !isAuthenticated ? <LoginPage /> : <Navigate to="/account" />
+              !isAuthenticated ? (
+                <LoginPage />
+              ) : (
+                <Navigate
+                  replace={true}
+                  to={`/calendar/month/ ${currentDate}`}
+                />
+              )
             }
           />
           <Route
             path="/register"
             element={
-              !isAuthenticated ? <RegisterPage /> : <Navigate to="/account" />
+              !isAuthenticated ? (
+                <RegisterPage />
+              ) : (
+                <Navigate
+                  replace={true}
+                  to={`/calendar/month/ ${currentDate}`}
+                />
+              )
             }
           />
           <Route
@@ -102,6 +119,7 @@ export const App = () => {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer />
       </Suspense>
     </main>
   );
