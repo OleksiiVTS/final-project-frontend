@@ -94,7 +94,7 @@ export const App = () => {
                 ) : (
                   <Navigate
                     replace={true}
-                    to={`/calendar/month/ ${currentDate}`}
+                    to={`/calendar/month/${currentDate}`}
                   />
                 )
               }
@@ -107,7 +107,7 @@ export const App = () => {
                 ) : (
                   <Navigate
                     replace={true}
-                    to={`/calendar/month/ ${currentDate}`}
+                    to={`/calendar/month/${currentDate}`}
                   />
                 )
               }

@@ -20,6 +20,7 @@ import {
   InputIconName,
   InputIconEmail,
   InputIconPassword,
+  GoogleBtn,
 } from './RegisterForm.styled';
 import * as Yup from 'yup';
 
@@ -27,8 +28,11 @@ import IMG from '../Pictures/singup_goose.jpg';
 import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import { getAuth, signInWithPopup } from 'firebase/auth';
+import { app, googleAuthProvider } from '../../redux/auth/firebase';
+import { toast } from 'react-toastify';
 
-const RegisterForm = () => {
+const RegisterForm = () => {  
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
 
@@ -52,6 +56,26 @@ const RegisterForm = () => {
       .required('Password is required field')
   });
 
+  const GoogleAuth = () => {
+    const auth = getAuth(app);  
+    signInWithPopup(auth, googleAuthProvider)
+      .then(result => {
+        const googleUser = {
+          username: result.user.displayName,
+          email: result.user.email,
+          password: result.user.providerData[0].uid,
+        }              
+        dispatch(register(googleUser)); 
+        
+      })
+      .catch(e => {
+        toast.error(e.message);
+      });
+    
+  };
+
+
+
   return (
     <PageContainer>
       <FormPosition>
@@ -70,7 +94,6 @@ const RegisterForm = () => {
           >
             {({ values, errors, touched }) => (
               <FormStyled>
-
                 <BoxInput>
                   {errors.username || values.username.trim() ? (
                     <FormLabel
@@ -263,6 +286,9 @@ const RegisterForm = () => {
                 <RegButton type="submit" disabled={isLoading}>
                   Sign Up <FiLogIn size={18} style={{ marginLeft: 11 }} />
                 </RegButton>
+                <GoogleBtn type="button" onClick={GoogleAuth}>
+                  Sign Up with Google 🚀{' '}
+                </GoogleBtn>
               </FormStyled>
             )}
           </Formik>

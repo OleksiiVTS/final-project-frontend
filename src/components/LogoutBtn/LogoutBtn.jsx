@@ -3,6 +3,7 @@ import { logoutUser } from '../../redux//auth/authOperations';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import sprite from '../Pictures/sprite.svg';
+import { getAuth, signOut } from 'firebase/auth';
 
 const LogoutButton = styled.section`
   display: flex;
@@ -38,9 +39,11 @@ const LogoutButton = styled.section`
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
-
+  const auth = getAuth();
+  
   const handleLogout = () => {
     dispatch(logoutUser());
+    signOut(auth);
   };
 
   return (

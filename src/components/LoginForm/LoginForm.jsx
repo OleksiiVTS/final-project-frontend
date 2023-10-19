@@ -17,6 +17,7 @@ import {
   CorrectInput,
   InputIconEmail,
   InputIconPassword,
+  GoogleBtn,
 } from './LoginForm.styled';
 import { MdErrorOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
@@ -27,11 +28,13 @@ import IMG from '../Pictures/login_goose.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from "../../redux/auth/firebase";
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const dispacth = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-
 
   let userSchema = Yup.object().shape({
     email: Yup.string()
@@ -47,6 +50,24 @@ const LoginForm = () => {
       .max(20, 'Password should be 20 chars maximum')
       .required('Password is required field')
   });
+
+  const GoogleAuth = async (e) => {
+    const auth = getAuth(app);
+    const googleAuthProvider = new GoogleAuthProvider();
+    googleAuthProvider.setCustomParameters({ prompt: "select_account" });
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      const googleUser = {
+        email: result.user.email,
+        password: result.user.providerData[0].uid,
+      };
+      dispacth(login(googleUser));
+    } catch (error) {
+      toast.error(error.message);
+    }     
+  };
+  
+  
 
   return (
     <PageContainer>
@@ -199,7 +220,10 @@ const LoginForm = () => {
 
                 <LoginButton type="submit" disabled={isLoading}>
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
-                </LoginButton>                
+                </LoginButton>
+                <GoogleBtn type="button" onClick={GoogleAuth}>
+                  Sign in with Google 🚀{' '}
+                </GoogleBtn>
               </FormStyled>
             )}
           </Formik>
