@@ -5,6 +5,7 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
+  Rectangle,
   Tooltip,
   XAxis,
   YAxis,
@@ -14,78 +15,71 @@ import { selectTasks } from 'redux/task/taskSelectors';
 
 const StatisticsChart = () => {
   const isTasks = useSelector(selectTasks);
-  console.log('isTasks: ', isTasks);
-  const categoryTask = isTasks.map(task => {
-    return task.category;
-  });
-  console.log('categoryTask: ', categoryTask);
 
-  // const getTasksResp = async interval => {
-  //   const tasksMonth = await getTasks(interval);
-  //   console.log('tasksMonth: ', tasksMonth);
+  const dataCurrentDay = {
+    categoryTask: isTasks.map(task => task.category),
+  };
+  const todoByDay = dataCurrentDay.categoryTask.filter(el =>
+    el.includes('to-do')
+  ).length;
+  const inprogressByDay = dataCurrentDay.categoryTask.filter(el =>
+    el.includes('in-progress')
+  ).length;
+  const doneByDay = dataCurrentDay.categoryTask.filter(el =>
+    el.includes('done')
+  ).length;
+  const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
+  const todoByDayPercentages = (todoByDay / allTasksByDay) * 100;
+  const inprogressByDayPercentages = (inprogressByDay / allTasksByDay) * 100;
+  const doneByDayPercentages = (doneByDay / allTasksByDay) * 100;
 
-  //   console.log('lengts: ', tasksMonth.length);
-  //   tasksMonth.map(task => console.log(task.category));
-  // };
-  // getTasksResp(2023);
-  // // const mapTask = () => {
-  //   getTasksResp(2023-10).map(task => console.log(task.category));
-
-  // }
-  // mapTask()
   const data = [
     {
-      name: 'Page A',
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      name: 'To-Do',
+      uv: 50,
+      pv: todoByDayPercentages,
+      amt: 100,
     },
     {
-      name: 'Page B',
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+      name: 'In-Progress',
+      uv: 50,
+      pv: inprogressByDayPercentages,
+      amt: 100,
     },
     {
-      name: 'Page C',
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: 'Page D',
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: 'Page E',
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: 'Page F',
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: 'Page G',
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      name: 'Done',
+      uv: 50,
+      pv: doneByDayPercentages,
+      amt: 100,
     },
   ];
   return (
-    <BarChart width={900} height={600} data={data}>
+    <BarChart
+      width={1400}
+      height={860}
+      data={data}
+      margin={{
+        top: 5,
+        right: 30,
+        left: 20,
+        bottom: 5,
+      }}
+    >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
-      <YAxis />
+      <YAxis dataKey="amt" />
       <Tooltip />
       <Legend />
-      <Bar dataKey="pv" fill="#82ca9d" />
-      <Bar dataKey="uv" fill="#82ca9d" />
+      <Bar
+        dataKey="pv"
+        fill="#82ca9d"
+        activeBar={<Rectangle fill="pink" stroke="blue" />}
+      />
+      <Bar
+        dataKey="uv"
+        fill="#8884d8"
+        activeBar={<Rectangle fill="gold" stroke="purple" />}
+      />
     </BarChart>
   );
 };
