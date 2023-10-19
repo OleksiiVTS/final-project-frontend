@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectUser } from '../../redux/auth/authSelectors';
-//redux/auth/auth-selectors
+
 import { Name, Avatar, AvatarLetter, AvatarImg, Link } from './UserInfo.styled';
 import { routes } from 'Routes/Routes';
 
