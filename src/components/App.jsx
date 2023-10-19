@@ -58,71 +58,69 @@ export const App = () => {
   }
 
   return (
-      <main>
-        <Suspense fallback={Loading}>
-          <Routes>
-            <Route
-              path="/account"
-              element={
-                isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/calendar/*"
-              element={
-                isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/statistics"
-              element={
-                isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/testpage"
-              element={
-                isAuthenticated ? <TestPage /> : <Navigate to="/login" />
-              }
-            />
+    <main>
+      <Suspense fallback={Loading}>
+        <Routes>
+          <Route
+            path="/account"
+            element={
+              isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
+            }
+          />
+          <Route
+            path="/calendar/*"
+            element={
+              isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
+            }
+          />
+          <Route
+            path="/statistics"
+            element={
+              isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
+            }
+          />
+          <Route
+            path="/testpage"
+            element={isAuthenticated ? <TestPage /> : <Navigate to="/login" />}
+          />
 
-            <Route
-              path="/login"
-              element={
-                !isAuthenticated ? (
-                  <LoginPage />
-                ) : (
-                  <Navigate
-                    replace={true}
-                    to={`/calendar/month/ ${currentDate}`}
-                  />
-                )
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                !isAuthenticated ? (
-                  <RegisterPage />
-                ) : (
-                  <Navigate
-                    replace={true}
-                    to={`/calendar/month/ ${currentDate}`}
-                  />
-                )
-              }
-            />
-            <Route
-              path="/"
-              element={
-                !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
-              }
-            />
+          <Route
+            path="/login"
+            element={
+              !isAuthenticated ? (
+                <LoginPage />
+              ) : (
+                <Navigate
+                  replace={true}
+                  to={`/calendar/month/ ${currentDate}`}
+                />
+              )
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              !isAuthenticated ? (
+                <RegisterPage />
+              ) : (
+                <Navigate
+                  replace={true}
+                  to={`/calendar/month/ ${currentDate}`}
+                />
+              )
+            }
+          />
+          <Route
+            path="/"
+            element={
+              !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
+            }
+          />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <ToastContainer />
-        </Suspense>
-      </main>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ToastContainer />
+      </Suspense>
+    </main>
   );
 };
