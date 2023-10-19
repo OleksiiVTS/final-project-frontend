@@ -3,7 +3,7 @@ import sprite from '../../Pictures/sprite.svg';
 import StarApp from '../StarRating/StarApp';
 // import TodoFeed from './FeedBackModal';
 import {Feedbackcontainer, Ratingwrapper, Ratingtitle, FormFeedback, StyledFeedbackToolbar} from './FeedbackModal.styled'
-
+// import Rating from '../Rating/Rating';
 import { useState } from 'react';
 
 
