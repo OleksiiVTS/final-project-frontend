@@ -6,14 +6,24 @@ import { StyledCategoryModal } from './CategoryModal.styled';
 
 import { editTask } from 'redux/task/taskOperations';
 import { selectIsError } from 'redux/task/taskSelectors';
-import sprite from 'components/Pictures/sprite.svg';
+import CategoryButton from './CategoryButton/CategoryButton';
 
 const CategoryModal = ({ task, coords, onClose }) => {
   const dispatch = useDispatch();
   const error = useSelector(selectIsError);
 
-  const titles = ['To do', 'In progress', 'Done'];
+  // const titles = ['To do', 'In progress', 'Done'];
   const categoryList = ['to-do', 'in-progress', 'done'];
+
+  const variants = categoryList.filter(cat => cat !== task.category);
+
+  const parseCategoryTitles = categoryList => {
+    const capitalize = string =>
+      string.charAt(0).toUpperCase() + string.slice(1);
+    return categoryList.map(title => capitalize(title).replace('-', ' '));
+  };
+
+  const parsedTitles = parseCategoryTitles(variants);
 
   const handleOverlayClick = event => {
     if (event.currentTarget === event.target) {
@@ -23,7 +33,6 @@ const CategoryModal = ({ task, coords, onClose }) => {
 
   const changeCategory = category => {
     dispatch(editTask({ ...task, category }));
-    console.log('dispatch');
     !error && onClose();
   };
 
@@ -39,30 +48,13 @@ const CategoryModal = ({ task, coords, onClose }) => {
   return createPortal(
     <StyledCategoryModal coords={coords} onClick={handleOverlayClick}>
       <div className="modal">
-        <button
-          onClick={() => changeCategory(categoryList[1])}
-          aria-label="change task category"
-          type="button"
-        >
-          {titles[1]}
-          <span>
-            <svg>
-              <use href={sprite + '#arrow-circle-broken-right'}></use>
-            </svg>
-          </span>
-        </button>
-        <button
-          onClick={() => changeCategory(categoryList[2])}
-          aria-label="change task category"
-          type="button"
-        >
-          {titles[2]}
-          <span>
-            <svg>
-              <use href={sprite + '#arrow-circle-broken-right'}></use>
-            </svg>
-          </span>
-        </button>
+        {variants.map((variant, idx) => (
+          <CategoryButton
+            category={variant}
+            title={parsedTitles[idx]}
+            changeCategory={changeCategory}
+          />
+        ))}
       </div>
     </StyledCategoryModal>,
     document.body
