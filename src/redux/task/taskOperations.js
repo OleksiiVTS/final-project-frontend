@@ -3,9 +3,9 @@ import * as taskAPI from '../task/tasksAPI';
 
 export const getTasks = createAsyncThunk(
   'tasks/getTasks',
-  async (_, thunkAPI) => {
+  async (interval, thunkAPI) => {
     try {
-      const tasks = await taskAPI.getTasks();
+      const tasks = await taskAPI.getTasks(interval);
       return tasks;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
