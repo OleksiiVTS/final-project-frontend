@@ -1,9 +1,52 @@
 import styled from 'styled-components';
-import { Field, Form } from 'formik';
+// import { Field, Form } from 'formik';
 
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+export const Wrapper = styled.div`
+  width: 1087px;
+  height: 752px;
+`;
+export const Input = styled.input`
+  width: 354px;
+  height: 46px;
+  border-radius: 8px;
+  border: 1px solid rgba(17, 17, 17, 0.15);
+`;
+export const Img = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+`;
+export const Label = styled.label`
+  display: flex;
+  margin-bottom: 8px;
+  margin-top: 24px;
+  color: #111;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+`;
+export const Button = styled.button`
+  /* width: 262px; */
+  padding: 15px 83px;
+  color: #fff;
+  border: none;
+  margin-top: 88px;
+  margin-left: auto;
+  margin-right: auto;
 
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  border-radius: 16px;
+  background: #3e85f3;
+`;
 // export const Wrapper = styled.div`
 //   display: flex;
 //   flex-direction: column;

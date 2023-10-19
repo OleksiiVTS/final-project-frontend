@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { selectIsLoading, selectUser } from '../../redux/auth/authSelectors';
 
-import { Name, Avatar, AvatarLetter, AvatarImg, Link } from './UserInfo.styled';
+import { Avatar, AvatarLetter, AvatarImg, Link } from './UserInfo.styled';
 import { AccountPage } from '../../pages/AccountPage/AccountPage';
 
 export const UserInfo = () => {
@@ -14,7 +14,7 @@ export const UserInfo = () => {
 
   return (
     <Link to={AccountPage}>
-      <Name>{name}</Name>
+      {/* <Name>{name}</Name> */}
       <Avatar>
         {isLoading ? (
           <AvatarLetter>{firstLetter}</AvatarLetter>

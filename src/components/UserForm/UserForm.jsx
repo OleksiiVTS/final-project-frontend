@@ -18,21 +18,26 @@ import {
 import sprite from '../Pictures/sprite.svg';
 
 import {
-  ContainerImg,
-  Wrapper,
+  Label,
+  Img,
   Input,
-  DatePick,
-  Btn,
-  BlockInput,
-  Forms,
-  InputFile,
-  ImgBtn,
-  ImgAvatar,
-  LabelBtn,
-  LabelImg,
-  User,
-  SvgAvatar,
-  VectorPng,
+  Button,
+  Wrapper,
+  // ContainerImg,
+  // Wrapper,
+  // Input,
+  // DatePick,
+  // Btn,
+  // BlockInput,
+  // Forms,
+  // InputFile,
+  // ImgBtn,
+  // ImgAvatar,
+  // LabelBtn,
+  // LabelImg,
+  // User,
+  // SvgAvatar,
+  // VectorPng,
 } from './UserForm.styled';
 
 // const validationFormikSchema = object({
@@ -77,76 +82,82 @@ const UserForm = () => {
     />
   ) : (
     <div>
-      <h1> AccountForm</h1>
-      <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="avatar">
-          <img src="" alt="User avatar" />
-          <input type="file" name="avatar" accept="image/*" />
+      <h1> User Profile</h1>
+      <Wrapper>
+        <form onSubmit={formik.handleSubmit}>
+          <Label htmlFor="avatar">
+            <Img src="" alt="User avatar" />
+            <Input type="file" name="avatar" accept="image/*" />
+            <br></br>
+            {isUser.username ?? 'User Name'}
+            <br></br>
+            User
+          </Label>
           <br></br>
-          {isUser.username ?? 'User Name'}
+          <Label htmlFor="usrName">User Name</Label>
+          <Input
+            id="usrName"
+            name="userName"
+            placeholder="User Name"
+            type="text"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.usrName}
+          />
+          {formik.touched.usrName && formik.errors.usrName ? (
+            <div>{formik.errors.usrName}</div>
+          ) : null}
           <br></br>
-          User
-        </label>
-        <br></br>
-        <label htmlFor="usrName">User Name</label>
-        <input
-          id="usrName"
-          name="usrName"
-          placeholder="User Name"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.usrName}
-        />
-        {formik.touched.usrName && formik.errors.usrName ? (
-          <div>{formik.errors.usrName}</div>
-        ) : null}
-        <br></br>
-        <label htmlFor="phone">Phone</label>
-        <input
-          id="phone"
-          name="phone"
-          type="phone"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.phone}
-        ></input>
-        <br></br>
-        <label htmlFor="birthday">Birthday</label>
-        <input
-          id="birthday"
-          name="birthday"
-          type="birthday"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.birthday}
-        ></input>
-        <br></br>
-        <label htmlFor="skype">Skype</label>
-        <input
-          id="skype"
-          name="skype"
-          type="skype"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.skype}
-        ></input>
-        <br></br>
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
-        ) : null}
-        <br></br>
-        <button type="submit">Save changes</button>
-      </form>
+          <Label htmlFor="phone">Phone</Label>
+          <Input
+            id="phone"
+            name="phone"
+            type="phone"
+            placeholder="38 (097) 256 34 77"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.phone}
+          ></Input>
+          <br></br>
+          <Label htmlFor="birthday">Birthday</Label>
+          <Input
+            id="birthday"
+            name="birthday"
+            type="birthday"
+            placeholder="25/08/1995"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.birthday}
+          ></Input>
+          <br></br>
+          <Label htmlFor="skype">Skype</Label>
+          <Input
+            id="skype"
+            name="skype"
+            type="skype"
+            placeholder="Add a skype number"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.skype}
+          ></Input>
+          <br></br>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="nadiia@gmail.com"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <div>{formik.errors.email}</div>
+          ) : null}
+          <br></br>
+          <Button type="submit">Save changes</Button>
+        </form>
+      </Wrapper>
     </div>
   );
 };
