@@ -1,30 +1,37 @@
-import React from 'react';
-import sprite from '../../../Pictures/sprite.svg';
-// import { ReactComponent as PlusCircleLogo } from '../../../Pictures/plus-circle.svg';
-import { StyledColumnHeadBar } from './ColumnHeadBar.styled';
+import { useState } from 'react';
+import { useParams } from 'react-router';
 
-// import { useDispatch } from 'react-redux';
-// import { addTask } from 'redux/tasks/operations';
+import { StyledColumnHeadBar } from './ColumnHeadBar.styled';
+import TaskModal from 'components/TaskModal/TaskModal';
+// import { ReactComponent as PlusCircleLogo } from '../../../Pictures/plus-circle.svg';
+import sprite from '../../../Pictures/sprite.svg';
 
 const ColumnHeadBar = ({ title, category }) => {
-  // const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const { currentDate } = useParams();
 
-  const handleClick = e => {
-    console.log(`add task to ${category}`);
-    //
-    // onClick={dispatch(addTask)}
-  };
+  const handleClick = () => setShowModal(true);
+
+  const closeModal = () => setShowModal(false);
 
   return (
-    <StyledColumnHeadBar className="columnHeadBar">
-      <h3>{title}</h3>
-      <button onClick={handleClick} aria-label="add task" type="button">
-        <svg>
-          <use href={sprite + '#icon-plus-circle'}></use>
-        </svg>
-        {/* <PlusCircleLogo /> */}
-      </button>
-    </StyledColumnHeadBar>
+    <>
+      <StyledColumnHeadBar className="columnHeadBar">
+        <h3>{title}</h3>
+        <button onClick={handleClick} aria-label="add task" type="button">
+          <svg>
+            <use href={sprite + '#icon-plus-circle'}></use>
+          </svg>
+          {/* <PlusCircleLogo /> */}
+        </button>
+      </StyledColumnHeadBar>
+      {showModal && (
+        <TaskModal
+          task={{ category, date: currentDate }}
+          closeModal={closeModal}
+        />
+      )}
+    </>
   );
 };
 

@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://final-project-backend-6uyr.onrender.com/api';
+export const $instance = axios.create({
+  baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
+  // baseURL: 'http://localhost:4000/api',
+});
 
-const token = {
+const authToken = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    $instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    $instance.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -19,8 +22,8 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue('Error, no valid token');
   }
   try {
-    token.set(persistToken);
-    const { data } = await axios.get('/users/current');
+    authToken.set(token);
+    const { data } = await $instance.get('/users/current');
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
@@ -47,6 +50,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
     token.set(data);
     return data;
   } catch (e) {
+    console.log(e);
     return thunkAPI.rejectWithValue(e.message);
   }
 });
@@ -55,8 +59,8 @@ export const logoutUser = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      await axios.post('/users/logout');
-      token.unset();
+      await $instance.post('/users/logout');
+      authToken.unset();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

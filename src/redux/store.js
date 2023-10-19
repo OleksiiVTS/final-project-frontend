@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
 // import { tasksReducer } from "";
-// import { reviewsReducer } from "";
+import { reviewsReducer } from './review/reviewSlice';
 import {
   persistStore,
   FLUSH,
@@ -11,12 +11,13 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { taskReducer } from './task/taskSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    // task: tasksReducer,
-    // review: reviewsReducer,
+    tasks: taskReducer,
+    review: reviewsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

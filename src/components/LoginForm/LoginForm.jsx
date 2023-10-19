@@ -21,15 +21,16 @@ import {
 import { MdErrorOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
-
 import * as Yup from 'yup';
 
 import IMG from '../Pictures/login_goose.jpg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
+import { selectIsLoading } from 'redux/auth/authSelectors';
 
 const LoginForm = () => {
   const dispacth = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
 
   let userSchema = Yup.object().shape({
@@ -39,12 +40,12 @@ const LoginForm = () => {
         /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
         'Invalid email. Valid email contain xxx@xxx.xxx'
       )
-      .required('Email is required'),
+      .required('Email is required field'),
     password: Yup.string()
       .trim()
       .min(8, 'Password should be 6 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
-      .required('Password is required')
+      .required('Password is required field')
   });
 
   return (
@@ -111,7 +112,7 @@ const LoginForm = () => {
                         </>
                       ) : (
                         <>
-                          <CorrectInput>This is an CORRECT email</CorrectInput>
+                          <CorrectInput>This is a CORRECT email</CorrectInput>
                           <InputIconEmail>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />
                           </InputIconEmail>
@@ -176,7 +177,7 @@ const LoginForm = () => {
                       ) : (
                         <>
                           <CorrectInput>
-                            This is an CORRECT password
+                            This is a CORRECT password
                           </CorrectInput>
                           <InputIconPassword>
                             <AiOutlineCheckCircle size={24} color="#3CBC81" />
@@ -195,9 +196,10 @@ const LoginForm = () => {
                     </>
                   )}
                 </BoxInput>
-                <LoginButton type="submit">
+
+                <LoginButton type="submit" disabled={isLoading}>
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
-                </LoginButton>
+                </LoginButton>                
               </FormStyled>
             )}
           </Formik>
