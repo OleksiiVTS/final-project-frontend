@@ -12,12 +12,14 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { taskReducer } from './task/taskSlice';
+import { headerReducer } from './header/headerSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     tasks: taskReducer,
     review: reviewsReducer,
+    header: headerReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
