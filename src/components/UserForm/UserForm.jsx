@@ -98,13 +98,17 @@ const UserForm = () => {
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
-                  <use href={sprite + '#icon-ph-user'}></use>
+                  <svg>
+                    <use href={sprite + '#icon-ph-user'}></use>
+                  </svg>
                 </SvgAvatar>
               )}
 
               <LabelImg htmlFor="avatar">
                 <ImgBtn>
-                  <use href={sprite + '#icon-plus'}></use>
+                  <svg>
+                    <use href={sprite + '#icon-plus'}></use>
+                  </svg>
                 </ImgBtn>
 
                 <InputFile
