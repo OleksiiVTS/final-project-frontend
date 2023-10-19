@@ -113,7 +113,8 @@ export const CurrentDay = styled.div`
 export const ShowDayWrapper = styled.div``;
 
 export const TaskListWrapper = styled.ul`
-  padding-inline: 8px;
+  /* padding-inline: 8px; */
+  padding: 8px;
 `;
 
 export const TaskItem = styled.li`
@@ -131,7 +132,7 @@ export const TaskItem = styled.li`
   white-space: nowrap;
 
   @media screen and (min-width: 768px) {
-    min-width: 92px;
+    /* min-width: 92px; */
     height: 26px;
     padding: 4px 8px 4px 12px;
     font-size: 14px;
@@ -139,7 +140,7 @@ export const TaskItem = styled.li`
   }
 
   @media screen and (min-width: 1440px) {
-    min-width: 114px;
+    /* min-width: 114px; */
   }
 `;
 
