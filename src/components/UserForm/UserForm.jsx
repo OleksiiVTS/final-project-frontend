@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -14,7 +14,7 @@ import {
 } from './UserForm.styled.jsx';
 
 const UserForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const isUser = useSelector(selectUser);
   console.log(isUser.avatarURL);
   const phoneRegExp =
