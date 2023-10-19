@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import icon from '../Pictures/burger-menu-button.svg';
 import moon from '../Pictures/moon.png'
 import avatar from '../Pictures/avatar.jpg'
+import { useState } from 'react';
+import FeedModal from '../Feedbackform/FeedbackModal/FeedbackModal';
+import Modal from 'components/Modal/Modal';
 
 const Wrapper = styled.div`
 display: flex;
@@ -69,12 +72,22 @@ const Userphoto = styled.div`
 `;
 
 const Header = () => {
+    const [showModal, setShowModal] = useState(false);
+    const toggleModal = () => setShowModal(!showModal);
     return (
         // <PageContainer>
             <Wrapper>
                 <BurgerIcon></BurgerIcon>
                 <SectionWrapper>
-                <FeedbackBtn>Feedback</FeedbackBtn>
+                    <>
+                 
+                <FeedbackBtn   onClick={() =>
+            toggleModal()
+          }>Feedback</FeedbackBtn>   </> {showModal && (
+            <Modal closeModal={toggleModal}>
+            <FeedModal/>
+            </Modal>
+          )}
                 <UserWrapper>
                 <MoonIcon></MoonIcon>
                 <Username>Nadiia</Username>
