@@ -8,6 +8,7 @@ import {
   CloseBtn,
 } from './Modal.styled';
 import sprite from '../Pictures/sprite.svg';
+
 import { useDispatch } from 'react-redux';
 
 const Modal = ({ closeModal, children }) => {
@@ -27,7 +28,6 @@ const Modal = ({ closeModal, children }) => {
   return (
     <ModalBackdrop
       onClick={() => {
-        console.log('click');
         closeModal();
       }}
     >
