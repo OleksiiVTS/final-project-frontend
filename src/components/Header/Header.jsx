@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import avatar from '../Pictures/avatar.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme, selectTheme } from 'redux/header/headerSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import { PageContainer } from 'components/LoginForm/LoginForm.styled';
 import sprite from '../Pictures/sprite.svg';
+import FeedbackModal from '../Feedbackform/FeedbackModal/FeedbackModal';
+import Modal from 'components/Modal/Modal';
 
 
 const Wrapper = styled.div`
@@ -76,6 +78,10 @@ const Userphoto = styled.div`
 `;
 
 const Header = () => {
+
+  const [showModal, setShowModal] = useState(false);
+    const toggleModal = () => setShowModal(!showModal);
+
   const theme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
@@ -105,9 +111,17 @@ const Header = () => {
 
       </BurgerIcon>
       <SectionWrapper>
-        <FeedbackBtn color={theme !== 'dark' ? '#fff' : '#000'}>
+        <>
+        <FeedbackBtn color={theme !== 'dark' ? '#fff' : '#000'} onClick={() =>
+            toggleModal()
+          }>
           Feedback
-        </FeedbackBtn>
+        </FeedbackBtn></>
+        {showModal && (
+            <Modal closeModal={toggleModal}>
+            <FeedbackModal/>
+            </Modal>
+          )}
         <UserWrapper>
           <ThemeToggler onClick={handleChange}>
             <span>
