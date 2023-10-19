@@ -33,7 +33,7 @@ const CalendarPage = () => {
   const tasks = useSelector(selectTasks);
 
   const currentDate = Object.values(useParams())[0].slice(-10);
-  // const { currentDate } = useParams();
+  const requestDate = currentDate.slice(0, 7);
 
   // console.log(currentDate);
 
