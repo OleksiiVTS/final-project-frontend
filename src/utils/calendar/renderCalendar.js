@@ -43,7 +43,7 @@ const renderCalendar = ({ isLoading, currentDate, tasksList }) => {
             <TaskListWrapper>
               {calendarWithTask &&
                 calendarWithTask
-                  // .slice(0, 2)
+                  .slice(0, 2)
                   .map(({ _id: id, priority, title }) => (
                     <TaskItem key={id} priority={priority}>
                       {title}
