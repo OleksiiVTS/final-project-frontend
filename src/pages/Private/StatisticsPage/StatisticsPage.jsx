@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 
 import MainLayout from 'components/MainLayout/MainLayout';
 import StatisticsChart from 'components/Statistics/StatisticsChart';
-import Header from 'components/Header/Header';
+// import Header from 'components/Header/Header';
 import { getCurrentDate } from 'utils/calendar';
 import { useDispatch } from 'react-redux';
-import { getTasks } from 'redux/task/tasksAPI';
+import { getTasks } from 'redux/task/taskOperations';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
@@ -15,9 +15,8 @@ const StatisticsPage = () => {
   console.log('currentDate: ', currentDate);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(currentDate);
     dispatch(getTasks(currentDate));
-  }, [currentDate, dispatch]);
+  }, [dispatch, currentDate]);
 
   return (
     <MainLayout>
@@ -25,7 +24,7 @@ const StatisticsPage = () => {
         <div>
           <h1>Statistics</h1>
         </div>
-        <Header />
+        {/* <Header /> */}
         <StatisticsChart />
         {/* <Suspense fallback={null}>
           <CalendarToolbar

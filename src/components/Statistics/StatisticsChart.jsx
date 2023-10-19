@@ -75,10 +75,7 @@ const StatisticsChart = () => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar
-        dataKey="pv"
-        fill="linear-gradient(0deg, #3E85F3 0%, rgba(62, 133, 243, 0.00) 100%)"
-      />
+      <Bar dataKey="pv" fill="#82ca9d" />
       <Bar dataKey="uv" fill="#82ca9d" />
     </BarChart>
   );
