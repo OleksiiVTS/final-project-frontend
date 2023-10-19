@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Bar,
   BarChart,
@@ -8,9 +9,17 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { selectTasks } from 'redux/task/taskSelectors';
 // import { getTasks } from 'redux/task/tasksAPI';
 
 const StatisticsChart = () => {
+  const isTasks = useSelector(selectTasks);
+  console.log('isTasks: ', isTasks);
+  const categoryTask = isTasks.map(task => {
+    return task.category;
+  });
+  console.log('categoryTask: ', categoryTask);
+
   // const getTasksResp = async interval => {
   //   const tasksMonth = await getTasks(interval);
   //   console.log('tasksMonth: ', tasksMonth);
