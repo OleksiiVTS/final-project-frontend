@@ -1,11 +1,15 @@
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import moment from 'moment';
+import { AiFillPlusCircle } from 'react-icons/ai';
 
 import { selectUser } from '../../redux/auth/authSelectors.js';
 import {
   Avatar,
   BtnUserForm,
+  IconDiv,
+  InputHide,
   InputUserForm,
   LabelUserForm,
   User,
@@ -40,22 +44,23 @@ const UserForm = () => {
         .required('Email is required'),
     }),
   });
+  const nowDate = new Date();
+  const dateMoment = moment(nowDate).format('YYYY-MM-DD');
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <UserFormBox>
         <label htmlFor="avatar">
-          <Avatar
-            src={isUser.avatarURL}
-            alt="User avatar"
-            width={125}
-            height={125}
-          />
-          <input type="file" name="avatar" accept="image/*" />
+          <Avatar src={isUser.avatarURL} alt="User avatar" />
+          <IconDiv>
+            <AiFillPlusCircle size={14} stroke="#ffffff" fill="#3E85F3" />
+          </IconDiv>
 
-          <UserName>{isUser.username ?? 'User Name'}</UserName>
-
-          <User>User</User>
+          <InputHide type="file" name="avatar" accept="image/*" />
         </label>
+        <UserName>{isUser.username ?? 'User Name'}</UserName>
+
+        <User>User</User>
 
         <LabelUserForm htmlFor="usrName">User Name</LabelUserForm>
         <InputUserForm
@@ -75,6 +80,7 @@ const UserForm = () => {
           id="phone"
           name="phone"
           type="phone"
+          placeholder="Add a phone number"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.phone}
@@ -85,6 +91,7 @@ const UserForm = () => {
           id="birthday"
           name="birthday"
           type="birthday"
+          placeholder={dateMoment}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.birthday}
@@ -95,6 +102,7 @@ const UserForm = () => {
           id="skype"
           name="skype"
           type="skype"
+          placeholder="Add a skype number"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.skype}
@@ -105,6 +113,7 @@ const UserForm = () => {
           id="email"
           name="email"
           type="email"
+          placeholder="Add your email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}

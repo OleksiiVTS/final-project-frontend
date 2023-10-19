@@ -16,13 +16,33 @@ export const Avatar = styled.img`
   position: absolute;
   left: 50%;
   top: 0;
+  width: 72px;
+  height: 72px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   display: block;
   margin-right: auto;
   margin-left: auto;
+  border: 2px solid #3e85f3;
 `;
-
+export const LabelAvatar = styled.label`
+  position: relative;
+  outline: 1px solid black;
+`;
+export const InputHide = styled.input`
+  opacity: 0;
+  outline: 1px solid green;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  left: 52%;
+`;
+export const IconDiv = styled.div`
+  position: absolute;
+  top: 25px;
+  left: 52%;
+`;
 export const UserName = styled.h1`
   color: #343434;
 
