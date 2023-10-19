@@ -30,10 +30,18 @@ const buildCalendar = currentDate => {
 
   let start = getDay(firstDayNextMonth);
 
-  while (start < 8) {
-    calendar.push(null);
-    start++;
+  if (start !== 1) {
+    while (start <= 7) {
+      calendar.push(null);
+      if (start === 0) {
+        break;
+      } else {
+        ++start;
+      }
+    }
   }
+
+  return calendar;
 };
 
 export default buildCalendar;

@@ -5,8 +5,8 @@ export async function addTask(newTask) {
   return response.data;
 }
 
-export async function getTasks() {
-  const response = await $instance.get(`/tasks`);
+export async function getTasks(interval) {
+  const response = await $instance.get(`/tasks/?date=${interval}`);
   return response.data;
 }
 

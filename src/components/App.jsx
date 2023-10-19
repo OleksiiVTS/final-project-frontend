@@ -14,6 +14,9 @@ import {
 
 import TestPage from 'pages/Private/TestPage';
 import { getUser } from 'redux/auth/authOperations';
+import { getCurrentDate } from 'utils/calendar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -36,10 +39,10 @@ const StatisticsPage = loadable(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
-
   const isRefreshing = useSelector(selectIsRefreshing);
   const isAuthenticated = useSelector(selectLoggedIn);
   const token = useSelector(selectToken);
+  const currentDate = getCurrentDate();
 
   useEffect(() => {
     if (!token || isAuthenticated) return;
@@ -55,54 +58,71 @@ export const App = () => {
   }
 
   return (
-    <main>
-      <Suspense fallback={Loading}>
-        <Routes>
-          <Route
-            path="/account"
-            element={
-              isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/calendar/*"
-            element={
-              isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/statistics"
-            element={
-              isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/testpage"
-            element={isAuthenticated ? <TestPage /> : <Navigate to="/login" />}
-          />
+      <main>
+        <Suspense fallback={Loading}>
+          <Routes>
+            <Route
+              path="/account"
+              element={
+                isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/calendar/*"
+              element={
+                isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/statistics"
+              element={
+                isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/testpage"
+              element={
+                isAuthenticated ? <TestPage /> : <Navigate to="/login" />
+              }
+            />
 
-          <Route
-            path="/login"
-            element={
-              !isAuthenticated ? <LoginPage /> : <Navigate to="/account" />
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              !isAuthenticated ? <RegisterPage /> : <Navigate to="/account" />
-            }
-          />
-          <Route
-            path="/"
-            element={
-              !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
-            }
-          />
+            <Route
+              path="/login"
+              element={
+                !isAuthenticated ? (
+                  <LoginPage />
+                ) : (
+                  <Navigate
+                    replace={true}
+                    to={`/calendar/month/ ${currentDate}`}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                !isAuthenticated ? (
+                  <RegisterPage />
+                ) : (
+                  <Navigate
+                    replace={true}
+                    to={`/calendar/month/ ${currentDate}`}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/"
+              element={
+                !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
+              }
+            />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </main>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <ToastContainer />
+        </Suspense>
+      </main>
   );
 };
