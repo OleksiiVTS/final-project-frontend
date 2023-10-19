@@ -114,6 +114,7 @@ export const ShowDayWrapper = styled.div``;
 
 export const TaskListWrapper = styled.ul`
   padding-inline: 8px;
+  background-color: lightgrey;
 `;
 
 export const TaskItem = styled.li`
@@ -126,13 +127,14 @@ export const TaskItem = styled.li`
   font-size: 10px;
   font-weight: 700;
   line-height: calc(14 / 10);
+  text-align: left;
   text-overflow: ellipsis;
 
   @media screen and (min-width: 768px) {
     min-width: 92px;
     height: 26px;
     padding: 4px 8px 4px 12px;
-    font-size: 10px;
+    font-size: 14px;
     line-height: calc(13 / 10);
   }
 
