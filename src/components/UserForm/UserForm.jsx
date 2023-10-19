@@ -104,7 +104,7 @@ const UserForm = () => {
 
               <LabelImg htmlFor="avatar">
                 <ImgBtn>
-                  <use href={sprite + 'icon-plus'}></use>
+                  <use href={sprite + '#icon-plus'}></use>
                 </ImgBtn>
 
                 <InputFile

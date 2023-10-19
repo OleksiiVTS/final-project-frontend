@@ -1,8 +1,8 @@
 import React from 'react';
 import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { selectIsRefreshing, selectUser } from 'redux/auth/authSelectors.js';
+// import { useFormik } from 'formik';
+// import * as Yup from 'yup';
+import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 import { useSelector } from 'react-redux';
 
 // import { Link } from 'react-router-dom';

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { selectIsLoading, selectUser } from '../../redux/auth/authSelectors';
 
 import { Name, Avatar, AvatarLetter, AvatarImg, Link } from './UserInfo.styled';
-import { routes } from 'Routes/Routes';
+import { AccountPage } from '../../pages/AccountPage/AccountPage';
 
 export const UserInfo = () => {
   const selector = useSelector(selectUser);
@@ -13,7 +13,7 @@ export const UserInfo = () => {
   const firstLetter = name.trim().slice(0, 1).toUpperCase();
 
   return (
-    <Link to={routes.account}>
+    <Link to={AccountPage}>
       <Name>{name}</Name>
       <Avatar>
         {isLoading ? (
