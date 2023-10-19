@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import TaskModal from 'components/TaskModal/TaskModal';
 import { StyledTaskToolbar } from './TaskToolbar.styled';
+import TaskModal from 'components/TaskModal/TaskModal';
+import CategoryModal from './CategoryModal/CategoryModal';
 
 import { selectUser } from 'redux/auth/authSelectors';
-
 import sprite from 'components/Pictures/sprite.svg';
-import CategoryModal from './CategoryModal/CategoryModal';
 
 const TaskToolbar = ({ task }) => {
   const [showModal, setShowModal] = useState(false);
   const [deleteTask, setDeleteTask] = useState(false);
-
   const [categoryModal, setCategoryModal] = useState({
     isOpen: false,
     coords: null,
@@ -28,7 +26,7 @@ const TaskToolbar = ({ task }) => {
     high: '#EA3D65',
   };
 
-  const onCategoryChange = ({ clientX, clientY }) => {
+  const handleClick = ({ clientX, clientY }) => {
     setCategoryModal({
       isOpen: true,
       coords: { clientX, clientY },
@@ -56,37 +54,44 @@ const TaskToolbar = ({ task }) => {
     setDeleteTask(false);
   };
   return (
-    <StyledTaskToolbar
-      className="taskToolbar"
-      priority={priorityColors[priority]}
-    >
-      <div className="infoWrapper">
-        <div className="imgWrapper">
-          <img src={avatarURL} alt={name} />
+    <>
+      <StyledTaskToolbar
+        className="taskToolbar"
+        priority={priorityColors[priority]}
+      >
+        <div className="infoWrapper">
+          <div className="imgWrapper">
+            <img src={avatarURL} alt={name} />
+          </div>
+          <span>{priority}</span>
         </div>
-        <span>{priority}</span>
-      </div>
-      <div className="controlsWrapper">
-        <button
-          onClick={onCategoryChange}
-          aria-label="change task category"
-          type="button"
-        >
-          <svg>
-            <use href={sprite + '#arrow-circle-broken-right'}></use>
-          </svg>
-        </button>
-        <button onClick={onEditClick} aria-label="edit task" type="button">
-          <svg>
-            <use href={sprite + '#icon-pencil'}></use>
-          </svg>
-        </button>
-        <button onClick={onDeleteClick} aria-label="delete task" type="button">
-          <svg>
-            <use href={sprite + '#icon-trash'}></use>
-          </svg>
-        </button>
-      </div>
+        <div className="controlsWrapper">
+          <button
+            onClick={handleClick}
+            aria-label="change task category"
+            type="button"
+          >
+            <svg>
+              <use href={sprite + '#arrow-circle-broken-right'}></use>
+            </svg>
+          </button>
+          <button onClick={onEditClick} aria-label="edit task" type="button">
+            <svg>
+              <use href={sprite + '#icon-pencil'}></use>
+            </svg>
+          </button>
+          <button
+            onClick={onDeleteClick}
+            aria-label="delete task"
+            type="button"
+          >
+            <svg>
+              <use href={sprite + '#icon-trash'}></use>
+            </svg>
+          </button>
+        </div>
+      </StyledTaskToolbar>
+
       {showModal && (
         <TaskModal
           task={task}
@@ -99,11 +104,10 @@ const TaskToolbar = ({ task }) => {
         <CategoryModal
           task={task}
           coords={categoryModal.coords}
-          onClose={closeCategoryModal}
+          closeModal={closeCategoryModal}
         />
       )}
-    </StyledTaskToolbar>
-    //
+    </>
   );
 };
 

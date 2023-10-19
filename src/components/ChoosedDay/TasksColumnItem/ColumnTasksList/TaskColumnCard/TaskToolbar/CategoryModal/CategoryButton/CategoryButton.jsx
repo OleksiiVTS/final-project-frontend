@@ -1,4 +1,3 @@
-import React from 'react';
 import sprite from 'components/Pictures/sprite.svg';
 
 const CategoryButton = ({ category, title, changeCategory }) => {

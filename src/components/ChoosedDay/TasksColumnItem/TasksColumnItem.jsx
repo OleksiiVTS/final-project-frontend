@@ -1,8 +1,7 @@
-import React from 'react';
 import { StyledTasksColumnItem } from './TasksColumnItem.styled';
 import ColumnHeadBar from './ColumnHeadBar/ColumnHeadBar';
-import AddTaskBtn from './AddTaskBtn/AddTaskBtn';
 import ColumnTasksList from './ColumnTasksList/ColumnTasksList';
+import AddTaskBtn from './AddTaskBtn/AddTaskBtn';
 
 const TasksColumnItem = ({ title, tasks, category }) => {
   return (

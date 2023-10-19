@@ -15,8 +15,8 @@ export const StyledCategoryModal = styled.div`
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px 24px;
+    justify-content: space-around;
+    padding: 0 12px;
 
     width: 148px;
     height: 90px;
@@ -30,14 +30,14 @@ export const StyledCategoryModal = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #343434;
+    padding: 12px 12px;
 
     font-family: Inter;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.2857; /* 128.571% */
 
-    padding: 0;
+    color: #343434;
     border: none;
     background-color: #fff;
   }

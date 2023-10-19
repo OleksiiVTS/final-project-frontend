@@ -3,55 +3,45 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { StyledCategoryModal } from './CategoryModal.styled';
+import CategoryButton from './CategoryButton/CategoryButton';
 
 import { editTask } from 'redux/task/taskOperations';
 import { selectIsError } from 'redux/task/taskSelectors';
-import CategoryButton from './CategoryButton/CategoryButton';
+import { CATEGORY_LIST } from 'constants/categoryList';
+import { parseCategoryTitle } from 'helpers/helpers';
 
-const CategoryModal = ({ task, coords, onClose }) => {
+const CategoryModal = ({ task, coords, closeModal }) => {
   const dispatch = useDispatch();
   const error = useSelector(selectIsError);
 
-  // const titles = ['To do', 'In progress', 'Done'];
-  const categoryList = ['to-do', 'in-progress', 'done'];
+  const variants = CATEGORY_LIST.filter(cat => cat !== task.category);
 
-  const variants = categoryList.filter(cat => cat !== task.category);
-
-  const parseCategoryTitles = categoryList => {
-    const capitalize = string =>
-      string.charAt(0).toUpperCase() + string.slice(1);
-    return categoryList.map(title => capitalize(title).replace('-', ' '));
-  };
-
-  const parsedTitles = parseCategoryTitles(variants);
-
-  const handleOverlayClick = event => {
-    if (event.currentTarget === event.target) {
-      onClose();
-    }
+  const handleOverlayClick = e => {
+    if (e.currentTarget === e.target) closeModal();
   };
 
   const changeCategory = category => {
     dispatch(editTask({ ...task, category }));
-    !error && onClose();
+    !error && closeModal();
   };
 
   useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.code === 'Escape') onClose();
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') closeModal();
     };
     window.addEventListener('keydown', handleKeyDown);
 
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [closeModal]);
 
   return createPortal(
     <StyledCategoryModal coords={coords} onClick={handleOverlayClick}>
       <div className="modal">
-        {variants.map((variant, idx) => (
+        {variants.map(variant => (
           <CategoryButton
+            key={variant}
             category={variant}
-            title={parsedTitles[idx]}
+            title={parseCategoryTitle(variant)}
             changeCategory={changeCategory}
           />
         ))}

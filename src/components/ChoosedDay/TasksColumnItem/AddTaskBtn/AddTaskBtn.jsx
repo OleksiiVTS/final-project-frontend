@@ -9,13 +9,8 @@ const AddTaskBtn = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
   const { currentDate } = useParams();
 
-  const handleClick = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  const handleClick = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   return (
     <>
@@ -27,6 +22,7 @@ const AddTaskBtn = ({ category }) => {
         </span>
         Add task
       </StyledAddTaskBtn>
+
       {showModal && (
         <TaskModal
           task={{ category, date: currentDate }}

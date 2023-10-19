@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyledTaskColumnCard } from './TaskColumnCard.styled';
 import TaskToolbar from './TaskToolbar/TaskToolbar';
 
