@@ -28,11 +28,11 @@ export const GridWrapper = styled.ul`
 
   @media screen and (min-width: 768px) {
     /* height: 860px; */
-    height: 720px;
+    /* height: 720px; */
   }
   @media screen and (min-width: 1440px) {
     /* height: 750px; */
-    height: 625px;
+    /* height: 625px; */
   }
 `;
 
