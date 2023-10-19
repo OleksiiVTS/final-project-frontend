@@ -29,6 +29,8 @@ const CalendarPage = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const currentDate = Object.values(useParams())[0].slice(-10);
+
+  const pageName = 'Calendar';
   // const { currentDate } = useParams();
 
   // console.log(currentDate);
@@ -85,7 +87,7 @@ const CalendarPage = () => {
     <MainLayout>
       <CalendarContainer>
         <HeaderContainer>
-          <Header />
+          <Header pageName={pageName}/>
           {/* <h1>CalendarPage</h1> */}
         </HeaderContainer>
         {/* <Link to={`day/${currentDate}`}>Link day</Link> */}

@@ -2,11 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import avatar from '../Pictures/avatar.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeTheme, selectTheme } from 'redux/header/headerSlice';
+import {
+  changeFeedbackModalOpen,
+  changeSidebarModalOpen,
+  changeTheme,
+  selectFeedbackModalOpen,
+  selectSidebarModalOpen,
+  selectTheme,
+} from 'redux/header/headerSlice';
 import { useEffect } from 'react';
-// import { PageContainer } from 'components/LoginForm/LoginForm.styled';
 import sprite from '../Pictures/sprite.svg';
-
+import { selectUser } from 'redux/auth/authSelectors';
 
 const Wrapper = styled.div`
   background-color: ${({ bg }) => bg || '#F7F6F9'};
@@ -19,12 +25,13 @@ const Wrapper = styled.div`
 `;
 
 const BurgerIcon = styled.div`
+    /* stroke:${({ stroke }) => stroke || '#000'}; */
   width: 24px;
   height: 24px;
   cursor: pointer;
   display: block;
   border: none;
-  background-color: red;
+  /* background-color: #ce13af; */
 `;
 
 const SectionWrapper = styled.div`
@@ -67,49 +74,69 @@ const Username = styled.p`
 `;
 
 const Userphoto = styled.div`
-  border: 3px solid #3e85f3;
-  background-image: url(${avatar});
+  border: 3px solid var(--color-button-blue);
+  /* background-image: url(${avatar}); */
   background-size: cover;
   width: 32px;
   height: 32px;
   border-radius: 50%;
 `;
 
-const Header = () => {
+const Header = ({ pageName }) => {
   const theme = useSelector(selectTheme);
+  const feedbackModalStatus = useSelector(selectFeedbackModalOpen);
+  const sidebarModalStatus = useSelector(selectSidebarModalOpen);
+
+  const { username, avatarURL } = useSelector(selectUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const handleChange = () => {
+  const handleThemeChange = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     dispatch(changeTheme(nextTheme));
   };
 
+  const handleFeedbackChange = () => {
+    const nextFeedbackModalStatus = feedbackModalStatus === true ? false : true;
+    dispatch(changeFeedbackModalOpen(nextFeedbackModalStatus));
+  };
+
+  const handleSidebarChange = () => {
+    const nextSidebarModalStatus = sidebarModalStatus === true ? false : true;
+    dispatch(changeSidebarModalOpen(nextSidebarModalStatus));
+  };
+  let width = window.innerWidth;
 
   return (
-    // <PageContainer>
     <Wrapper
       bg={theme !== 'dark' ? '#F7F6F9' : '#000000'}
       color={theme === 'dark' ? '#fff' : '#000'}
     >
-      <BurgerIcon>
+      {width < 1440 ? (
+        <BurgerIcon onClick={handleSidebarChange}>
+          <span>
+            <svg stroke={theme === 'dark' ? '#fff' : '#000'}  width="24" height="24">
+              <use href={sprite + '#icon-burger-menu-button'} />
+            </svg>
+          </span>
+        </BurgerIcon>
+      ) : (
+        <h2>{pageName}</h2>
+      )}
 
-              <span>
-							<svg fill='#000' width="24" height="24">
-								<use href={sprite + '#icon-burger-menu-button'} />
-							</svg>
-            </span>
-
-      </BurgerIcon>
       <SectionWrapper>
-        <FeedbackBtn color={theme !== 'dark' ? '#fff' : '#000'}>
+        <FeedbackBtn
+          onClick={handleFeedbackChange}
+          color={theme !== 'dark' ? '#fff' : '#000'}
+        >
           Feedback
         </FeedbackBtn>
         <UserWrapper>
-          <ThemeToggler onClick={handleChange}>
+          <ThemeToggler onClick={handleThemeChange}>
             <span>
               <svg fill="#3e85f3" width="24" height="24">
                 {theme === 'light' ? (
@@ -120,12 +147,13 @@ const Header = () => {
               </svg>
             </span>
           </ThemeToggler>
-          <Username>Nadiia</Username>
-          <Userphoto></Userphoto>
+          <Username>{username}</Username>
+          <Userphoto
+            style={{ backgroundImage: `url(${avatarURL})` }}
+          ></Userphoto>
         </UserWrapper>
       </SectionWrapper>
     </Wrapper>
-    // </PageContainer>
   );
 };
 
