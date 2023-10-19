@@ -1,21 +1,16 @@
-import { useParams } from 'react-router';
-import { StyledAddTaskBtn } from './AddTaskBtn.styled';
-
-import sprite from '../../../Pictures/sprite.svg';
 import { useState } from 'react';
+import { useParams } from 'react-router';
+
+import { StyledAddTaskBtn } from './AddTaskBtn.styled';
 import TaskModal from 'components/TaskModal/TaskModal';
+import sprite from 'components/Pictures/sprite.svg';
 
 const AddTaskBtn = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
   const { currentDate } = useParams();
 
-  const handleClick = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  const handleClick = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
   return (
     <>
@@ -27,6 +22,7 @@ const AddTaskBtn = ({ category }) => {
         </span>
         Add task
       </StyledAddTaskBtn>
+
       {showModal && (
         <TaskModal
           task={{ category, date: currentDate }}

@@ -27,10 +27,10 @@ export const addTask = createAsyncThunk(
 
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
-  async (taskID, thunkAPI) => {
+  async (_id, thunkAPI) => {
     try {
-      const tasks = await taskAPI.deleteTask(taskID);
-      return tasks;
+      const task = await taskAPI.deleteTask(_id);
+      return { task, _id };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

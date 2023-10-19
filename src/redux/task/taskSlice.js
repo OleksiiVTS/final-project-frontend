@@ -32,7 +32,7 @@ const taskSlice = createSlice({
       .addCase(addTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.tasks.push(action.payload);
+        state.tasks.push(action.payload.task);
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
         state.isLoading = false;
