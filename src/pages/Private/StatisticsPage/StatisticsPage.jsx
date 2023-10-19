@@ -1,13 +1,38 @@
+import React, { useEffect } from 'react';
+
 import MainLayout from 'components/MainLayout/MainLayout';
-import React from 'react';
+import StatisticsChart from 'components/Statistics/StatisticsChart';
+// import Header from 'components/Header/Header';
+import { getCurrentDate } from 'utils/calendar';
+import { useDispatch } from 'react-redux';
+import { getTasks } from 'redux/task/taskOperations';
+
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
+  const currentDate = getCurrentDate().slice(0, 7);
+  console.log('currentDate: ', currentDate);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTasks(currentDate));
+  }, [dispatch, currentDate]);
+
   return (
     <MainLayout>
       <div>
-        <h1> StatisticsPage</h1>
+        <div>
+          <h1>Statistics</h1>
+        </div>
+        {/* <Header /> */}
+        <StatisticsChart />
+        {/* <Suspense fallback={null}>
+          <CalendarToolbar
+            onClickPrev={handlePrev}
+            onClickNext={handleNext}
+            today={currentDate}
+          />
+        </Suspense> */}
       </div>
     </MainLayout>
 

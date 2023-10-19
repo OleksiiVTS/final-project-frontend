@@ -13,7 +13,7 @@ import {
   TasksMoreLabel,
 } from 'components/Calendar/month/CalendarTable/CalendarTable.styled';
 
-const renderCalendar = ({ isLoading, currentDate, response }) => {
+const renderCalendar = ({ isLoading, currentDate, tasksList }) => {
   const calendar = buildCalendar(currentDate);
 
   if (!isLoading) {
@@ -22,7 +22,7 @@ const renderCalendar = ({ isLoading, currentDate, response }) => {
         return <CellWrapper key={idx} />;
       }
 
-      const calendarWithTask = getDayTasks(dayItem, response?.tasks);
+      const calendarWithTask = getDayTasks(dayItem, tasksList);
 
       return (
         <CellWrapper
@@ -42,11 +42,13 @@ const renderCalendar = ({ isLoading, currentDate, response }) => {
 
             <TaskListWrapper>
               {calendarWithTask &&
-                calendarWithTask.slice(0, 2).map(({ id, priority, title }) => (
-                  <TaskItem key={id} priority={priority}>
-                    {title}
-                  </TaskItem>
-                ))}
+                calendarWithTask
+                  .slice(0, 2)
+                  .map(({ _id: id, priority, title }) => (
+                    <TaskItem key={id} priority={priority}>
+                      {title}
+                    </TaskItem>
+                  ))}
             </TaskListWrapper>
 
             {calendarWithTask && calendarWithTask.length > 2 && (

@@ -28,11 +28,11 @@ export const GridWrapper = styled.ul`
 
   @media screen and (min-width: 768px) {
     /* height: 860px; */
-    height: 720px;
+    /* height: 720px; */
   }
   @media screen and (min-width: 1440px) {
     /* height: 750px; */
-    height: 625px;
+    /* height: 625px; */
   }
 `;
 
@@ -113,7 +113,8 @@ export const CurrentDay = styled.div`
 export const ShowDayWrapper = styled.div``;
 
 export const TaskListWrapper = styled.ul`
-  padding-inline: 8px;
+  /* padding-inline: 8px; */
+  padding: 8px;
 `;
 
 export const TaskItem = styled.li`
@@ -126,18 +127,20 @@ export const TaskItem = styled.li`
   font-size: 10px;
   font-weight: 700;
   line-height: calc(14 / 10);
+  text-align: left;
   text-overflow: ellipsis;
+  white-space: nowrap;
 
   @media screen and (min-width: 768px) {
-    min-width: 92px;
+    /* min-width: 92px; */
     height: 26px;
     padding: 4px 8px 4px 12px;
-    font-size: 10px;
+    font-size: 14px;
     line-height: calc(13 / 10);
   }
 
   @media screen and (min-width: 1440px) {
-    min-width: 114px;
+    /* min-width: 114px; */
   }
 `;
 
