@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { StyledColumnHeadBar } from './ColumnHeadBar.styled';
 import TaskModal from 'components/TaskModal/TaskModal';
 // import { ReactComponent as PlusCircleLogo } from '../../../Pictures/plus-circle.svg';
-import sprite from '../../../Pictures/sprite.svg';
+import sprite from 'components/Pictures/sprite.svg';
 
 const ColumnHeadBar = ({ title, category }) => {
   const [showModal, setShowModal] = useState(false);
@@ -25,6 +25,7 @@ const ColumnHeadBar = ({ title, category }) => {
           {/* <PlusCircleLogo /> */}
         </button>
       </StyledColumnHeadBar>
+
       {showModal && (
         <TaskModal
           task={{ category, date: currentDate }}

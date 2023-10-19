@@ -1,20 +1,18 @@
-import React from 'react';
 import { StyledTasksColumnsList } from './TasksColumnsList.styled';
 import TasksColumnItem from '../TasksColumnItem/TasksColumnItem';
 
-const TasksColumnsList = ({ currentTasks }) => {
-  // console.log(currentTasks);
-  const titles = ['To do', 'In progress', 'Done'];
-  const categoryList = ['to-do', 'in-progress', 'done'];
+import { parseCategoryTitle } from 'helpers/helpers';
+import { CATEGORY_LIST } from 'constants/categoryList';
 
+const TasksColumnsList = ({ sortedTasks }) => {
   return (
     <StyledTasksColumnsList>
-      {currentTasks.map((set, idx) => (
+      {CATEGORY_LIST.map(category => (
         <TasksColumnItem
-          key={titles[idx]}
-          title={titles[idx]}
-          category={categoryList[idx]}
-          tasks={set}
+          key={category}
+          title={parseCategoryTitle(category)}
+          category={category}
+          tasks={sortedTasks[category]}
         />
       ))}
     </StyledTasksColumnsList>
