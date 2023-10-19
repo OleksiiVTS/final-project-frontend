@@ -8,7 +8,14 @@ import {
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
-import { getUser, register, login, logoutUser } from './authOperations';
+import {
+  getUser,
+  register,
+  login,
+  logoutUser,
+  fetchingCurrentUser,
+  updateUser,
+} from './authOperations';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -48,6 +55,36 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(fetchingCurrentUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+        state.isFetchingCurrentUser = true;
+      })
+      .addCase(fetchingCurrentUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+        state.isFetchingCurrentUser = false;
+      })
+      .addCase(fetchingCurrentUser.rejected, (state, { payload }) => {
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.error = payload;
+        state.isFetchingCurrentUser = false;
+      })
+      .addCase(updateUser.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        // return { ...state, ...payload };
+        state.user = payload.user;
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
       })
       .addMatcher(
         isAnyOf(isPending(register, login, logoutUser, getUser)),
