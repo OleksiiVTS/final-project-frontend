@@ -115,4 +115,10 @@
 </symbol>
 
 <symbol id="plus-btn"  fill="none" viewBox="0 0 19 19"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4.167v11.666M4.167 10h11.666"/></symbol>
+
+<symbol id="icon-burger-menu-button" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3529" d="M4 16h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3529" d="M4 8h24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.3529" d="M4 24h24"></path>
+</symbol>
 </defs></svg>
