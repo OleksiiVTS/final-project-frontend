@@ -25,6 +25,7 @@ const ColumnHeadBar = ({ title, category }) => {
           {/* <PlusCircleLogo /> */}
         </button>
       </StyledColumnHeadBar>
+
       {showModal && (
         <TaskModal
           task={{ category, date: currentDate }}

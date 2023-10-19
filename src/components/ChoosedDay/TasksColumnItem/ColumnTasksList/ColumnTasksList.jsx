@@ -6,7 +6,7 @@ const ColumnTasksList = ({ tasks }) => {
   return (
     <StyledColumnTasksList>
       {tasks.map(task => (
-        <TaskColumnCard key={task.title} task={task} />
+        <TaskColumnCard key={task._id} task={task} />
       ))}
     </StyledColumnTasksList>
   );
