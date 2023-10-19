@@ -17,11 +17,14 @@ import {
   CorrectInput,
   InputIconEmail,
   InputIconPassword,
+  GoogleBtn,
 } from './LoginForm.styled';
 import { MdErrorOutline } from 'react-icons/md';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FiLogIn } from 'react-icons/fi';
 import * as Yup from 'yup';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from '../../redux/auth/firebase';
 
 import IMG from '../Pictures/login_goose.jpg';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,6 +50,20 @@ const LoginForm = () => {
       .max(20, 'Password should be 20 chars maximum')
       .required('Password is required field')
   });
+
+  const GoogleAuth = async () => {
+    const auth = getAuth(app);
+    const googleAuthProvider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      const googleUser = {
+        email: result.user.email,
+        password: result.user.providerData[0].uid,
+      };
+      dispacth(login(googleUser));
+    } catch (error) {}
+  };  
+  
 
   return (
     <PageContainer>
@@ -199,7 +216,10 @@ const LoginForm = () => {
 
                 <LoginButton type="submit" disabled={isLoading}>
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
-                </LoginButton>                
+                </LoginButton>
+                <GoogleBtn type="button" onClick={GoogleAuth}>
+                  Sign in with Google 🚀{' '}
+                </GoogleBtn>
               </FormStyled>
             )}
           </Formik>

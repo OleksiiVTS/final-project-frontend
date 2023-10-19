@@ -171,6 +171,36 @@ export const RegButton = styled.button`
   }
 `;
 
+export const GoogleBtn = styled.button`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
+  padding: 14px 0;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+  font-size: 14px;
+  background-color: #3e85f3;
+  color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2b78ef;
+  }
+  &:focus {
+    background-color: #2b78ef;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 15px;
+    font-size: 18px;
+  }
+`;
+
 export const LogIn = styled(navLink)`
   display: block;
   margin-top: 18px;
