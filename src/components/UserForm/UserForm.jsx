@@ -4,8 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string, date } from 'yup';
 
-import { selectUser } from 'redux/auth/auth-selectors';
-import { fetchingCurrentUser, updateUser } from 'redux/auth/auth-operations';
+import { selectUser } from '../../redux/auth/authSelectors';
+import {
+  fetchingCurrentUser,
+  updateUser,
+} from '..//../redux/auth/authOperations';
 
 import sprite from '../Pictures/sprite.svg';
 
