@@ -12,4 +12,8 @@ export const SideBarBox = styled.section`
   flex-direction: column;
   justify-content: space-between;
   color: rgba(52, 52, 52, 0.5);
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
