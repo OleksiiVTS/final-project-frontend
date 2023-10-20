@@ -30,6 +30,7 @@ import IMG from '../Pictures/login_goose.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import Loader from 'components/Loader';
 
 const LoginForm = () => {
   const dispacth = useDispatch();
@@ -53,11 +54,11 @@ const LoginForm = () => {
 
   const GoogleAuth = async () => {
     const auth = getAuth(app);
-    const googleAuthProvider = new GoogleAuthProvider();
+    const googleAuthProvider = new GoogleAuthProvider().addScope("email");
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider);
+      const result = await signInWithPopup(auth, googleAuthProvider);      
       const googleUser = {
-        email: result.user.email,
+        email: result.user.providerData[0].email,
         password: result.user.providerData[0].uid,
       };
       dispacth(login(googleUser));
@@ -213,13 +214,31 @@ const LoginForm = () => {
                     </>
                   )}
                 </BoxInput>
-                
-                <LoginButton type="submit" disabled={isLoading}>
-                  Log in <FiLogIn style={{ marginLeft: 11 }} />
-                </LoginButton>
-                <GoogleBtn type="button" onClick={GoogleAuth}>
-                  Sign in with Google 🚀{' '}
-                </GoogleBtn>                                
+
+                {isLoading ? (
+                  <>
+                    <LoginButton type="submit" disabled={isLoading}>
+                      Log in <FiLogIn style={{ marginLeft: 11 }} />
+                      <Loader />
+                    </LoginButton>
+                    <GoogleBtn type="button" onClick={GoogleAuth}>
+                      Sign in with Google 🚀{' '}
+                    </GoogleBtn>
+                  </>
+                ) : (
+                  <>
+                    <LoginButton type="submit" disabled={isLoading}>
+                      Log in <FiLogIn style={{ marginLeft: 11 }} />
+                    </LoginButton>
+                    <GoogleBtn
+                      type="button"
+                      onClick={GoogleAuth}
+                      disabled={isLoading}
+                    >
+                      Sign in with Google 🚀{' '}
+                    </GoogleBtn>
+                  </>
+                )}
               </FormStyled>
             )}
           </Formik>
