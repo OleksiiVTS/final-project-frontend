@@ -213,13 +213,13 @@ const LoginForm = () => {
                     </>
                   )}
                 </BoxInput>
-
+                
                 <LoginButton type="submit" disabled={isLoading}>
                   Log in <FiLogIn style={{ marginLeft: 11 }} />
                 </LoginButton>
                 <GoogleBtn type="button" onClick={GoogleAuth}>
                   Sign in with Google 🚀{' '}
-                </GoogleBtn>
+                </GoogleBtn>                                
               </FormStyled>
             )}
           </Formik>
