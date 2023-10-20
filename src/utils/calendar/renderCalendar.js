@@ -10,7 +10,7 @@ import {
   ShowDayWrapper,
   TaskListWrapper,
   TaskItem,
-  TasksMoreLabel,
+  ShowMoreTasks,
 } from 'components/Calendar/month/CalendarTable/CalendarTable.styled';
 
 const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
@@ -65,13 +65,19 @@ const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
                       {title}
                     </TaskItem>
                   ))}
+
+              {calendarWithTask && calendarWithTask.length > 2 && (
+                <ShowMoreTasks color={theme === 'dark' ? '#ffffff' : '#3e85f3'}>
+                  ...
+                </ShowMoreTasks>
+              )}
             </TaskListWrapper>
 
-            {calendarWithTask && calendarWithTask.length > 2 && (
+            {/* {calendarWithTask && calendarWithTask.length > 2 && (
               <TasksMoreLabel color={theme === 'dark' ? '#ffffff' : '#3e85f3'}>
                 ...
               </TasksMoreLabel>
-            )}
+            )} */}
           </RowInCell>
         </CellWrapper>
       );
