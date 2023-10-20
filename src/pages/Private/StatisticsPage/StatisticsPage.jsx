@@ -18,13 +18,13 @@ import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginat
 
 const StatisticsPage = () => {
   const theme = useSelector(selectTheme);
-  const currentMonth = getCurrentDate().slice(0, 7);
+  const currentDay = getCurrentDate();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTasks(currentMonth));
-  }, [dispatch, currentMonth]);
+    dispatch(getTasks(currentDay));
+  }, [dispatch, currentDay]);
 
   // const handlePrev = () => {
   //   if (pathname.includes('day')) {
@@ -56,13 +56,13 @@ const StatisticsPage = () => {
         <HeaderContainer>
           <Header />
         </HeaderContainer>
-        <PeriodPaginator />
+        <PeriodPaginator date={currentDay} />
         <div>
           <div>
             <h1>Statistics</h1>
           </div>
           {/* <Header /> */}
-          <StatisticsChart />
+          <StatisticsChart today={currentDay} />
           {/* <Suspense fallback={null}>
           <CalendarToolbar
             onClickPrev={handlePrev}

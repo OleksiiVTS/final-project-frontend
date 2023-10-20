@@ -13,8 +13,13 @@ import {
 import { selectTasks } from 'redux/task/taskSelectors';
 // import { getTasks } from 'redux/task/tasksAPI';
 
-const StatisticsChart = () => {
+const StatisticsChart = ({ today }) => {
   const isTasks = useSelector(selectTasks);
+
+  const dateTask = isTasks.map(el => {
+    return el.date;
+  });
+  console.log('dateTask: ', dateTask);
 
   const dataCurrentMonth = {
     categoryTask: isTasks.map(task => task.category),
