@@ -25,13 +25,15 @@ import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
 import ChoosedDay from 'components/ChoosedDay/ChoosedDay.jsx';
 
 import { getTasks as getTasksThunk } from 'redux/task/taskOperations';
-import { selectTasks } from 'redux/task/taskSelectors';
+import { selectTheme } from 'redux/header/headerSlice.js';
+// import { selectTasks } from 'redux/task/taskSelectors';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const tasks = useSelector(selectTasks);
+  const theme = useSelector(selectTheme);
+  // const tasks = useSelector(selectTasks);
 
   const currentDate = Object.values(useParams())[0].slice(-10);
   const requestDate = currentDate.slice(0, 7);
@@ -46,12 +48,12 @@ const CalendarPage = () => {
   // console.log('currentDate: ', currentDate);
   // console.log('requestDate: ', requestDate);
   // console.log('tasks: ', tasks);
+  // console.log(theme);
 
   useEffect(() => {
     if (period !== currentPeriod) {
       setPeriod(currentPeriod);
     }
-
     dispatch(getTasksThunk(requestDate));
   }, [currentPeriod, period, requestDate, dispatch]);
 
@@ -97,7 +99,7 @@ const CalendarPage = () => {
 
   return (
     <MainLayout>
-      <CalendarContainer>
+      <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
           <Header />
         </HeaderContainer>
@@ -107,9 +109,13 @@ const CalendarPage = () => {
             onClickPrev={handlePrev}
             onClickNext={handleNext}
             today={currentDate}
+            theme={theme}
           />
           <Routes>
-            <Route path="/month/:currentDate" element={<ChoosedMonth />} />
+            <Route
+              path="/month/:currentDate"
+              element={<ChoosedMonth theme={theme} />}
+            />
             <Route path="/day/:currentDate" element={<ChoosedDay />} />
           </Routes>
         </Suspense>

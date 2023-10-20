@@ -20,7 +20,9 @@ export const GridWrapper = styled.ul`
   gap: 0px;
   align-content: flex-start;
   width: 100%;
+  border: 1px solid ${({ bordercolor }) => bordercolor};
   border-radius: 8px;
+  background-color: ${({ bgcolor }) => bgcolor};
   overflow: hidden;
 
   /* height: 564px; */
@@ -42,8 +44,7 @@ export const CellWrapper = styled(NavLink)`
   height: 93px;
   padding-top: 31px;
   padding-bottom: 1px;
-  border: 1px solid rgba(220, 227, 229, 0.5);
-  background-color: #ffffff;
+  border: 1px solid ${({ bordercolor }) => bordercolor};
   text-align: right;
   cursor: pointer;
 
@@ -70,7 +71,7 @@ export const DayWrapper = styled.div`
   right: 4px;
   padding: 4px 6px;
   border-radius: 6px;
-  color: #343434;
+  color: ${({ color }) => color};
   font-size: 12px;
   font-weight: 700;
   line-height: calc(14 / 12);
@@ -148,7 +149,7 @@ export const TasksMoreLabel = styled.div`
   /* margin-top: auto; */
   margin: auto;
   overflow: hidden;
-  color: #3e85f3;
+  color: ${({ color }) => color};
   font-size: 14px;
   text-align: center;
 `;

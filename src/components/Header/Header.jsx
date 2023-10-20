@@ -9,7 +9,6 @@ import sprite from '../Pictures/sprite.svg';
 import FeedbackModal from '../Feedbackform/FeedbackModal/FeedbackModal';
 import Modal from 'components/Modal/Modal';
 
-
 const Wrapper = styled.div`
   background-color: ${({ bg }) => bg || '#F7F6F9'};
   color: ${({ color }) => color || '#000'};
@@ -78,9 +77,8 @@ const Userphoto = styled.div`
 `;
 
 const Header = () => {
-
   const [showModal, setShowModal] = useState(false);
-    const toggleModal = () => setShowModal(!showModal);
+  const toggleModal = () => setShowModal(!showModal);
 
   const theme = useSelector(selectTheme);
   const dispatch = useDispatch();
@@ -94,7 +92,6 @@ const Header = () => {
     dispatch(changeTheme(nextTheme));
   };
 
-
   return (
     // <PageContainer>
     <Wrapper
@@ -102,26 +99,26 @@ const Header = () => {
       color={theme === 'dark' ? '#fff' : '#000'}
     >
       <BurgerIcon>
-
-              <span>
-							<svg fill='#000' width="24" height="24">
-								<use href={sprite + '#icon-burger-menu-button'} />
-							</svg>
-            </span>
-
+        <span>
+          <svg fill="#000" width="24" height="24">
+            <use href={sprite + '#icon-burger-menu-button'} />
+          </svg>
+        </span>
       </BurgerIcon>
       <SectionWrapper>
         <>
-        <FeedbackBtn color={theme !== 'dark' ? '#fff' : '#000'} onClick={() =>
-            toggleModal()
-          }>
-          Feedback
-        </FeedbackBtn></>
+          <FeedbackBtn
+            color={theme !== 'dark' ? '#fff' : '#000'}
+            onClick={() => toggleModal()}
+          >
+            Feedback
+          </FeedbackBtn>
+        </>
         {showModal && (
-            <Modal closeModal={toggleModal}>
-            <FeedbackModal/>
-            </Modal>
-          )}
+          <Modal closeModal={toggleModal}>
+            <FeedbackModal />
+          </Modal>
+        )}
         <UserWrapper>
           <ThemeToggler onClick={handleChange}>
             <span>
