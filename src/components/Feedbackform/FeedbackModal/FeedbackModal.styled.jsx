@@ -1,19 +1,19 @@
 import styled from '@emotion/styled/macro';
 
-export const Feedbackcontainer = styled.div`
+export const FeedbackContainer = styled.div`
 display: flex;
 flex-direction: column;
 margin-left: 18px;
 margin-right: 18px;
 `;
-export const Ratingwrapper = styled.div`
+export const RatingWrapper = styled.div`
 display: flex;
 flex-direction: column;
 // margin-left: 18px;
 // margin-right: 18px;
 `;
 
-export const Ratingtitle = styled.div`
+export const RatingTitle = styled.div`
 margin: 0
 overflow: hidden;
 text-overflow: ellipsis;
