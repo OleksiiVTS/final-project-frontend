@@ -57,8 +57,8 @@ const StatisticsChart = () => {
   ];
   return (
     <BarChart
-      width={1400}
-      height={860}
+      width={1100}
+      height={800}
       data={data}
       margin={{
         top: 5,
