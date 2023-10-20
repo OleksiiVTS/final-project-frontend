@@ -38,24 +38,22 @@ const CalendarPage = () => {
 
   // const prevMonthRef = useRef(pathname.slice(-5).slice(0, 2));
 
-  const [period, setPeriod] = useState();
+  const [period, setPeriod] = useState('month');
 
   const currentPeriod = pathname.includes('month') ? 'month' : 'day';
 
-  console.log('period: ', period);
-  console.log('currentDate: ', currentDate);
-  console.log('requestDate: ', requestDate);
-  console.log('tasks: ', tasks);
+  // console.log('period: ', period);
+  // console.log('currentDate: ', currentDate);
+  // console.log('requestDate: ', requestDate);
+  // console.log('tasks: ', tasks);
 
-  useEffect(
-    prevPeriod => {
-      if (prevPeriod !== currentPeriod) {
-        setPeriod(currentPeriod);
-      }
-      dispatch(getTasksThunk(requestDate));
-    },
-    [currentPeriod, requestDate, dispatch]
-  );
+  useEffect(() => {
+    if (period !== currentPeriod) {
+      setPeriod(currentPeriod);
+    }
+
+    dispatch(getTasksThunk(requestDate));
+  }, [currentPeriod, period, requestDate, dispatch]);
 
   // useEffect(() => {
   //   if (tasks.length > 0) return;
