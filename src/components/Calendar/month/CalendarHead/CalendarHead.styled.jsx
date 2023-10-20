@@ -9,9 +9,9 @@ export const MobileDaysList = styled.ul`
   height: 50px;
   margin-bottom: 14px;
   padding: 16px 16px;
-  border: 1px solid rgba(220, 227, 229, 0.314);
+  border: 1px solid ${({ bordercolor }) => bordercolor};
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: ${({ bgcolor }) => bgcolor};
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -29,9 +29,9 @@ export const DesktopDayList = styled.ul`
     height: 46px;
     margin-bottom: 18px;
     padding: 14px 40px;
-    border: 1px solid rgba(220, 227, 229, 0.314);
+    border: 1px solid ${({ bordercolor }) => bordercolor};
     border-radius: 8px;
-    background-color: #ffffff;
+    background-color: ${({ bgcolor }) => bgcolor};
 
     @media screen and (min-width: 1440px) {
       /* gap: 122px; */
@@ -44,7 +44,7 @@ export const DesktopDayList = styled.ul`
 
 export const WorkDay = styled.li`
   /* width: calc(100% / 7); */
-  color: #343434;
+  color: ${({ color }) => color};
   font-family: Inter;
   font-size: 16px;
   font-weight: 600;

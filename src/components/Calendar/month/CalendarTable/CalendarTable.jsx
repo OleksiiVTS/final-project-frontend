@@ -8,7 +8,7 @@ import { renderCalendar } from 'utils/calendar';
 
 import { GridWrapper } from './CalendarTable.styled';
 
-const CalendarTable = () => {
+const CalendarTable = ({ theme }) => {
   const { currentDate } = useParams();
   const isLoading = useSelector(selectIsLoading);
   const tasksList = useSelector(selectTasks);
@@ -16,8 +16,15 @@ const CalendarTable = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <GridWrapper>
-      {renderCalendar({ isLoading, currentDate, tasksList })}
+    <GridWrapper
+      bordercolor={
+        theme === 'dark'
+          ? 'rgba(255, 255, 255, 0.15)'
+          : 'rgba(220, 227, 229, 0.80)'
+      }
+      bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
+    >
+      {renderCalendar({ isLoading, currentDate, tasksList, theme })}
     </GridWrapper>
   );
 };

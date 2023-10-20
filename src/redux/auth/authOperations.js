@@ -64,7 +64,7 @@ export const update = createAsyncThunk(
     formData.append('birthday', birthday);
     formData.append('skype', skype);
     formData.append('email', email);
-    formData.append('avatar', avatarURL);
+    formData.append('avatar', avatarURL.files[0]);
     try {
       const { data } = await $instance.patch(`/users/edit`, formData, {
         headers: {

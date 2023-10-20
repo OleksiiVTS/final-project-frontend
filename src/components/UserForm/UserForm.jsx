@@ -20,7 +20,6 @@ const UserForm = () => {
     dispatch(update(updateUser));
   };
   const isUser = useSelector(selectUser);
-  console.log(isUser);
 
   const formik = useFormik({
     initialValues: {
@@ -29,10 +28,12 @@ const UserForm = () => {
       birthday: isUser.birthday ?? '',
       skype: isUser.skype ?? '',
       email: isUser.email ?? '',
+      avatar: isUser.avatar ?? '',
     },
     onSubmit: values => {
-      // console.log(values.skype);
-      updateUser(values);
+      var imagefile = document.getElementById('avatar');
+      // console.log(imagefile);
+      updateUser({ ...values, avatarURL: imagefile });
     },
   });
 
@@ -47,7 +48,15 @@ const UserForm = () => {
               width={125}
               height={125}
             />
-            <input type="file" name="avatar" accept="image/*" />
+            <input
+              id="avatar"
+              name="avatar"
+              type="file"
+              accept="image/*"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.avatar}
+            />
 
             <UserName>{isUser.username ?? 'User Name'}</UserName>
 
