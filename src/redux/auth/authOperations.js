@@ -2,8 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const $instance = axios.create({
-  baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
-  // baseURL: 'http://localhost:4000/api',
+  // baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
+  baseURL: 'http://localhost:4000/api',
 });
 
 const authToken = {
@@ -23,7 +23,7 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   try {
     authToken.set(token);
     const { data } = await $instance.get('/users/current');
-    return data;
+    return { data };
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
   }
@@ -59,6 +59,19 @@ export const logoutUser = createAsyncThunk(
     try {
       await $instance.post('/users/logout');
       authToken.unset();
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getVerifiedUser = createAsyncThunk(
+  'auth/getUser',
+  async (token, thunkAPI) => {
+    try {
+      authToken.set(token);
+      const { data } = await $instance.get('/users/current');
+      return { data, token };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

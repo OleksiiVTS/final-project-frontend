@@ -13,6 +13,7 @@ import {
 } from 'redux/auth/authSelectors.js';
 
 import TestPage from 'pages/Private/TestPage';
+import VerifiedPage from 'pages/Public/VerifiedPage';
 import { getUser } from 'redux/auth/authOperations';
 import { getCurrentDate } from 'utils/calendar';
 import { ToastContainer } from 'react-toastify';
@@ -114,6 +115,20 @@ export const App = () => {
             path="/"
             element={
               !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
+            }
+          />
+
+          <Route
+            path="/verified/:token"
+            element={
+              !isAuthenticated ? (
+                <VerifiedPage />
+              ) : (
+                <Navigate
+                  replace={true}
+                  to={`/calendar/month/${currentDate}`}
+                />
+              )
             }
           />
 
