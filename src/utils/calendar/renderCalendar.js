@@ -13,13 +13,22 @@ import {
   TasksMoreLabel,
 } from 'components/Calendar/month/CalendarTable/CalendarTable.styled';
 
-const renderCalendar = ({ isLoading, currentDate, tasksList }) => {
+const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
   const calendar = buildCalendar(currentDate);
 
   if (!isLoading) {
     const calendarMarkup = calendar.map((dayItem, idx) => {
       if (!dayItem) {
-        return <CellWrapper key={idx} />;
+        return (
+          <CellWrapper
+            key={idx}
+            bordercolor={
+              theme === 'dark'
+                ? 'rgba(255, 255, 255, 0.15)'
+                : 'rgba(220, 227, 229, 0.80)'
+            }
+          />
+        );
       }
 
       const calendarWithTask = getDayTasks(dayItem, tasksList);
@@ -30,13 +39,20 @@ const renderCalendar = ({ isLoading, currentDate, tasksList }) => {
           to={`/calendar/day/${format(dayItem, 'yyyy-MM-dd')}`}
           iscurrentmonth={isCurrentMonth(parseISO(format(dayItem, 'y-MM-dd')))}
           istoday={isToday(parseISO(format(dayItem, 'y-MM-dd'))).toString()}
+          bordercolor={
+            theme === 'dark'
+              ? 'rgba(255, 255, 255, 0.15)'
+              : 'rgba(220, 227, 229, 0.80)'
+          }
         >
           <RowInCell>
             <ShowDayWrapper>
               {isToday(parseISO(format(dayItem, 'y-MM-dd'))) ? (
                 <CurrentDay>{format(dayItem, 'd')}</CurrentDay>
               ) : (
-                <DayWrapper>{format(dayItem, 'd')}</DayWrapper>
+                <DayWrapper color={theme === 'dark' ? '#ffffff' : '#343434'}>
+                  {format(dayItem, 'd')}
+                </DayWrapper>
               )}
             </ShowDayWrapper>
 
@@ -52,7 +68,9 @@ const renderCalendar = ({ isLoading, currentDate, tasksList }) => {
             </TaskListWrapper>
 
             {calendarWithTask && calendarWithTask.length > 2 && (
-              <TasksMoreLabel>...</TasksMoreLabel>
+              <TasksMoreLabel color={theme === 'dark' ? '#ffffff' : '#3e85f3'}>
+                ...
+              </TasksMoreLabel>
             )}
           </RowInCell>
         </CellWrapper>

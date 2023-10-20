@@ -20,11 +20,14 @@ import {
   InputIconName,
   InputIconEmail,
   InputIconPassword,
+  GoogleBtn,
 } from './RegisterForm.styled';
 import * as Yup from 'yup';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from '../../redux/auth/firebase';
 
 import IMG from '../Pictures/singup_goose.jpg';
-import { register } from 'redux/auth/authOperations';
+import { login, register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
 
@@ -51,6 +54,20 @@ const RegisterForm = () => {
       .max(20, 'Password should be 20 chars maximum')
       .required('Password is required field')
   });
+
+  const GoogleAuth = async () => {
+    const auth = getAuth(app);
+    const googleAuthProvider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      const googleUser = {
+        email: result.user.email,
+        password: result.user.providerData[0].uid,
+      };
+      dispatch(login(googleUser));
+    } catch (error) {}
+  };
+  
 
   return (
     <PageContainer>
@@ -263,6 +280,7 @@ const RegisterForm = () => {
                 <RegButton type="submit" disabled={isLoading}>
                   Sign Up <FiLogIn size={18} style={{ marginLeft: 11 }} />
                 </RegButton>
+                <GoogleBtn type='button' onClick={GoogleAuth}>Sign up with Google 🚀{' '}</GoogleBtn>
               </FormStyled>
             )}
           </Formik>
