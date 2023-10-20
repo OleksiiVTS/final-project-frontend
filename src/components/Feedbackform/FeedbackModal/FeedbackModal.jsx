@@ -3,8 +3,6 @@ import StarApp from '../StarRating/StarApp';
 import {Feedbackcontainer, Ratingwrapper, Ratingtitle, FormFeedback, StyledFeedbackToolbar} from './FeedbackModal.styled'
 
 
-
-
 const FeedbackModal = () => {
 
     const isActiv = true;
