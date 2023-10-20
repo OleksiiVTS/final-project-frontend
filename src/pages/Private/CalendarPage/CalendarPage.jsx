@@ -1,4 +1,9 @@
-import { Suspense, useEffect, useRef } from 'react';
+import {
+  Suspense,
+  useEffect,
+  // useRef,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Route,
@@ -31,23 +36,42 @@ const CalendarPage = () => {
   const currentDate = Object.values(useParams())[0].slice(-10);
   const requestDate = currentDate.slice(0, 7);
 
-  const prevMonthRef = useRef(pathname.slice(-5).slice(0, 2));
+  // const prevMonthRef = useRef(pathname.slice(-5).slice(0, 2));
 
-  useEffect(() => {
-    if (tasks.length > 0) return;
+  const [period, setPeriod] = useState();
 
-    dispatch(getTasksThunk(requestDate));
-  }, [dispatch, requestDate, tasks.length]);
+  const currentPeriod = pathname.includes('month') ? 'month' : 'day';
 
-  useEffect(() => {
-    if (tasks.length === 0) return;
+  console.log('period: ', period);
+  console.log('currentDate: ', currentDate);
+  console.log('requestDate: ', requestDate);
+  console.log('tasks: ', tasks);
 
-    const currentMonth = pathname.slice(-5).slice(0, 2);
-    if (prevMonthRef.current === currentMonth) return;
+  useEffect(
+    prevPeriod => {
+      if (prevPeriod !== currentPeriod) {
+        setPeriod(currentPeriod);
+      }
+      dispatch(getTasksThunk(requestDate));
+    },
+    [currentPeriod, requestDate, dispatch]
+  );
 
-    prevMonthRef.current = currentMonth;
-    dispatch(getTasksThunk(requestDate));
-  }, [dispatch, requestDate, tasks.length, pathname]);
+  // useEffect(() => {
+  //   if (tasks.length > 0) return;
+
+  //   dispatch(getTasksThunk(requestDate));
+  // }, [dispatch, requestDate, tasks.length]);
+
+  // useEffect(() => {
+  //   if (tasks.length === 0) return;
+
+  //   const currentMonth = pathname.slice(-5).slice(0, 2);
+  //   if (prevMonthRef.current === currentMonth) return;
+
+  //   prevMonthRef.current = currentMonth;
+  //   dispatch(getTasksThunk(requestDate));
+  // }, [dispatch, requestDate, tasks.length, pathname]);
 
   const handlePrev = () => {
     if (pathname.includes('day')) {
