@@ -16,40 +16,42 @@ import { selectTasks } from 'redux/task/taskSelectors';
 const StatisticsChart = () => {
   const isTasks = useSelector(selectTasks);
 
-  const dataCurrentDay = {
+  const dataCurrentMonth = {
     categoryTask: isTasks.map(task => task.category),
   };
-  const todoByDay = dataCurrentDay.categoryTask.filter(el =>
+  const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
     el.includes('to-do')
   ).length;
-  const inprogressByDay = dataCurrentDay.categoryTask.filter(el =>
+  const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
     el.includes('in-progress')
   ).length;
-  const doneByDay = dataCurrentDay.categoryTask.filter(el =>
+  const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
     el.includes('done')
   ).length;
-  const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
-  const todoByDayPercentages = (todoByDay / allTasksByDay) * 100;
-  const inprogressByDayPercentages = (inprogressByDay / allTasksByDay) * 100;
-  const doneByDayPercentages = (doneByDay / allTasksByDay) * 100;
+
+  const allTasksByMonth = todoByMonth + inprogressByMonth + doneByMonth;
+  const todoByMonthPercentages = (todoByMonth / allTasksByMonth) * 100;
+  const inprogressByMonthPercentages =
+    (inprogressByMonth / allTasksByMonth) * 100;
+  const doneByMonthPercentages = (doneByMonth / allTasksByMonth) * 100;
 
   const data = [
     {
       name: 'To-Do',
       uv: 50,
-      pv: todoByDayPercentages,
+      pv: todoByMonthPercentages,
       amt: 100,
     },
     {
       name: 'In-Progress',
       uv: 50,
-      pv: inprogressByDayPercentages,
+      pv: inprogressByMonthPercentages,
       amt: 100,
     },
     {
       name: 'Done',
       uv: 50,
-      pv: doneByDayPercentages,
+      pv: doneByMonthPercentages,
       amt: 100,
     },
   ];

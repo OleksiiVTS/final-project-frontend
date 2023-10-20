@@ -11,12 +11,13 @@ import { getTasks } from 'redux/task/taskOperations';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
-  const currentDate = getCurrentDate().slice(0, 7);
-  console.log('currentDate: ', currentDate);
+  const currentMonth = getCurrentDate().slice(0, 7);
+  console.log('currentMonth: ', currentMonth);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getTasks(currentDate));
-  }, [dispatch, currentDate]);
+    dispatch(getTasks(currentMonth));
+  }, [dispatch, currentMonth]);
 
   return (
     <MainLayout>
