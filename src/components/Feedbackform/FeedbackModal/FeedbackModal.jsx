@@ -3,11 +3,10 @@ import StarApp from '../StarRating/StarApp';
 import {Feedbackcontainer, Ratingwrapper, Ratingtitle, FormFeedback, StyledFeedbackToolbar} from './FeedbackModal.styled'
 
 
-
-
 const FeedbackModal = () => {
 
-    const isActiv = true;
+const isActiv = true;
+const isEdit = true;
 
   return (
 
@@ -23,9 +22,9 @@ const FeedbackModal = () => {
      < FormFeedback>
      <div className="toolbar">
         <div>
-     <p className='head'>
+     <span className='head'>
     Review
-    </p>
+    </span>
     </div>
     { isActiv &&
     <StyledFeedbackToolbar>
@@ -37,7 +36,7 @@ const FeedbackModal = () => {
         </button>
         <button className='btnDel' aria-label="delete feedback" type="button">
           <svg>
-            <use href={sprite + '#icon-trash'}></use>
+            <use href={sprite + '#icon-trash-review'}></use>
           </svg>
         </button>
       </div>
@@ -47,18 +46,17 @@ const FeedbackModal = () => {
     </textarea>
     { isActiv &&
     <div className='buttonfoot'>
-<button type="submit" className='btn-sumbit save'>
-Save
+<button type="submit" className='btn-foot'>
+{ isEdit ? 'Save': 'Edit'}
 </button>
-<button type="button" className='btn-sumbit cencel'>
+<button type="cencel" className='btn-foot'>
 Cancel
 </button>
 </div> }
 </FormFeedback>
-    </Feedbackcontainer>
+</Feedbackcontainer>
 
   
-    
 
   
     
