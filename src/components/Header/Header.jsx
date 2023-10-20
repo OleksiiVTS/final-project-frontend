@@ -3,18 +3,19 @@ import styled from 'styled-components';
 import avatar from '../Pictures/avatar.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    // changeFeedbackModalOpen,
-    changeSidebarModalOpen,
-    changeTheme,
-    // selectFeedbackModalOpen,
-    selectSidebarModalOpen,
-    selectTheme,
-  } from 'redux/header/headerSlice';
+  // changeFeedbackModalOpen,
+  changeSidebarModalOpen,
+  changeTheme,
+  // selectFeedbackModalOpen,
+  selectSidebarModalOpen,
+  selectTheme,
+} from 'redux/header/headerSlice';
 import { useEffect, useState } from 'react';
 // import { PageContainer } from 'components/LoginForm/LoginForm.styled';
 import sprite from '../Pictures/sprite.svg';
 import FeedbackModal from '../Feedbackform/FeedbackModal/FeedbackModal';
 import Modal from 'components/Modal/Modal';
+import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 
 const Wrapper = styled.div`
@@ -33,6 +34,10 @@ const BurgerIcon = styled.div`
   cursor: pointer;
   display: block;
   border: none;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 const SectionWrapper = styled.div`
@@ -102,9 +107,9 @@ const Header = () => {
   };
 
   let width = window.innerWidth;
+  
   const handleSidebarChange = () => {
-    const nextSidebarModalStatus = sidebarModalStatus === true ? false : true;
-    dispatch(changeSidebarModalOpen(nextSidebarModalStatus));
+    dispatch(changeSidebarModalOpen(!sidebarModalStatus));
   };
 
   return (
@@ -113,10 +118,14 @@ const Header = () => {
       bg={theme !== 'dark' ? '#F7F6F9' : '#000000'}
       color={theme === 'dark' ? '#fff' : '#000'}
     >
-             {width < 1440 ? (
+      {width < 769 ? (
         <BurgerIcon onClick={handleSidebarChange}>
           <span>
-            <svg stroke={theme === 'dark' ? '#fff' : '#000'}  width="24" height="24">
+            <svg
+              stroke={theme === 'dark' ? '#fff' : '#000'}
+              width="24"
+              height="24"
+            >
               <use href={sprite + '#icon-burger-menu-button'} />
             </svg>
           </span>
@@ -124,15 +133,13 @@ const Header = () => {
       ) : (
         <h2>PageName</h2>
       )}
-      {/* <BurgerIcon>
-
-              <span>
-							<svg fill='#000' width="24" height="24">
-								<use href={sprite + '#icon-burger-menu-button'} />
-							</svg>
-            </span>
-
-      </BurgerIcon> */}
+      <BurgerIcon>
+        <span>
+          <svg fill="#000" width="24" height="24">
+            <use href={sprite + '#icon-burger-menu-button'} />
+          </svg>
+        </span>
+      </BurgerIcon>
 
       <SectionWrapper>
         <>
@@ -161,9 +168,12 @@ const Header = () => {
             </span>
           </ThemeToggler>
           <Username>{username}</Username>
-          <Userphoto style={{ backgroundImage: `url(${avatarURL})` }}></Userphoto>
+          <Userphoto
+            style={{ backgroundImage: `url(${avatarURL})` }}
+          ></Userphoto>
         </UserWrapper>
       </SectionWrapper>
+      <BurgerMenu />
     </Wrapper>
     // </PageContainer>
   );
