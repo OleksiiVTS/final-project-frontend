@@ -27,9 +27,10 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../../redux/auth/firebase';
 
 import IMG from '../Pictures/singup_goose.jpg';
-import { login, register } from 'redux/auth/authOperations';
+import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import Loader from 'components/Loader';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -57,14 +58,15 @@ const RegisterForm = () => {
 
   const GoogleAuth = async () => {
     const auth = getAuth(app);
-    const googleAuthProvider = new GoogleAuthProvider();
+    const googleAuthProvider = new GoogleAuthProvider().addScope("email");
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       const googleUser = {
-        email: result.user.email,
+        username: result.user.providerData[0].displayName,
+        email: result.user.providerData[0].email,
         password: result.user.providerData[0].uid,
       };
-      dispatch(login(googleUser));
+      dispatch(register(googleUser));
     } catch (error) {}
   };
   
@@ -87,7 +89,6 @@ const RegisterForm = () => {
           >
             {({ values, errors, touched }) => (
               <FormStyled>
-
                 <BoxInput>
                   {errors.username || values.username.trim() ? (
                     <FormLabel
@@ -277,10 +278,30 @@ const RegisterForm = () => {
                   )}
                 </BoxInput>
 
-                <RegButton type="submit" disabled={isLoading}>
-                  Sign Up <FiLogIn size={18} style={{ marginLeft: 11 }} />
-                </RegButton>
-                <GoogleBtn type='button' onClick={GoogleAuth}>Sign up with Google 🚀{' '}</GoogleBtn>
+                {isLoading ? (
+                  <>
+                    <RegButton type="submit" disabled={isLoading}>
+                      Log in <FiLogIn style={{ marginLeft: 11 }} />
+                      <Loader />
+                    </RegButton>
+                    <GoogleBtn type="button" onClick={GoogleAuth}>
+                      Sign in with Google 🚀{' '}
+                    </GoogleBtn>
+                  </>
+                ) : (
+                  <>
+                    <RegButton type="submit" disabled={isLoading}>
+                      Log in <FiLogIn style={{ marginLeft: 11 }} />
+                    </RegButton>
+                    <GoogleBtn
+                      type="button"
+                      onClick={GoogleAuth}
+                      disabled={isLoading}
+                    >
+                      Sign in with Google 🚀{' '}
+                    </GoogleBtn>
+                  </>
+                )}
               </FormStyled>
             )}
           </Formik>
