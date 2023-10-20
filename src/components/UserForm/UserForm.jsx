@@ -49,7 +49,7 @@ const UserForm = () => {
   return (
     <Formik validationSchema={ValidSchema}>
       <FormaBox onSubmit={formik.handleSubmit}>
-        <UserFormBox>
+        <UserFormBox validationSchema={ValidSchema}>
           <div>
             <label htmlFor="avatar">
               <Avatar src={isUser.avatarURL} alt="User avatar" />
@@ -57,7 +57,15 @@ const UserForm = () => {
                 <AiFillPlusCircle size={24} fill="#3E85F3" />
               </IconDiv>
               <WhiteBox></WhiteBox>
-              <InputHide type="file" name="avatar" accept="image/*" />
+              <InputHide
+                id="avatar"
+                type="file"
+                name="avatar"
+                accept="image/*"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.avatar}
+              />
             </label>
             <UserName>{isUser.username ?? 'User Name'}</UserName>
 
