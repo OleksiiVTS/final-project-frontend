@@ -58,9 +58,7 @@ const StatisticsPage = () => {
         </HeaderContainer>
         <PeriodPaginator date={currentDay} />
         <div>
-          <div>
-            <h1>Statistics</h1>
-          </div>
+          <div>{/* <h1>Statistics</h1> */}</div>
           {/* <Header /> */}
           <StatisticsChart today={currentDay} />
           {/* <Suspense fallback={null}>
