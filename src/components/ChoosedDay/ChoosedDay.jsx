@@ -7,6 +7,7 @@ import TasksColumnsList from './TasksColumnsList/TasksColumnsList';
 import { selectTasks } from 'redux/task/taskSelectors';
 import { CreateSortedTasks, filterDayTasks } from 'helpers/helpers';
 import { CATEGORY_LIST } from 'constants/categoryList';
+import DayCalendarHead from './ColumnHeadBar/DayCalendarHead';
 
 const ChoosedDay = () => {
   const { pathname } = useLocation();
@@ -18,7 +19,7 @@ const ChoosedDay = () => {
 
   return (
     <StyledChoosedDay className="ChoosedDay">
-      {/* <DayCalendarHead /> */}
+      <DayCalendarHead />
       <TasksColumnsList sortedTasks={sortedTasks} />
     </StyledChoosedDay>
     //
