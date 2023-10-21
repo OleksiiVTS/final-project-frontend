@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import './Star/Star.css';
 import StarRating from './StartRange';
 import { Stars } from './Stars.styled';
