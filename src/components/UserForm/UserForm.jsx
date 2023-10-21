@@ -1,4 +1,5 @@
-import moment from 'moment';
+//import moment from 'moment';
+import { format } from 'date-fns';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, useFormik } from 'formik';
@@ -46,8 +47,8 @@ const UserForm = () => {
       updateUser({ ...values, avatarURL: imagefile });
     },
   });
-  const nowDate = new Date();
-  const dateMoment = moment(nowDate).format('YYYY-MM-DD');
+  //const nowDate = new Date();
+  const dateMoment = format(new Date(), 'MM/dd/yyyy');
 
   return (
     <Formik validationSchema={ValidSchema}>
