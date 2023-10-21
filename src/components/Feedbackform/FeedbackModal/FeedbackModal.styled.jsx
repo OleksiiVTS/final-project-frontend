@@ -1,8 +1,10 @@
+
 import styled from '@emotion/styled/macro';
 
 export const FeedbackContainer = styled.div`
 box-sizing: border-box;
 padding: 0 18px 18px 18px;
+margin-top: -20px;
 
 `;
 export const RatingWrapper = styled.div`
@@ -11,9 +13,7 @@ flex-direction: column;
 `;
 
 export const RatingTitle = styled.div`
-margin: 0
-white-space: nowrap;
-color: #111;
+color: #343434CC;
 font-family: Inter;
 font-size: 12px;
 font-weight: 500;
@@ -32,12 +32,12 @@ export const FormFeedback = styled.form`
 }
 
 .head {
-  align-items: center
-  color: #343434;
-  font-family: Inter;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.16;
+align-items: center;
+color: #343434CC;
+font-family: Inter;
+font-size: 12px;
+font-weight: 500;
+ line-height: 1.16;
 }
 
 .text_content {
@@ -45,8 +45,7 @@ export const FormFeedback = styled.form`
   width: 100%;
   height: 130px;
   padding: 14px 18px;
-  border-radius: 3px;
-  box-sizing: border-box;
+   // box-sizing: border-box;
   resize: none;
   background: #efefef;
   color: #343434;
@@ -54,13 +53,23 @@ export const FormFeedback = styled.form`
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
+  
+  ::placeholder{
+    color: #343434;
+    opacity: 1;
+  
+  }
+  :active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
 
   @media screen and (min-width: 768px) {
     height: 127px;
   }
   }
   
-  .buttonfoot{
+  .buttonwrapper{
     display: flex;
     gap: 10px;
     margin-top: 18px;
