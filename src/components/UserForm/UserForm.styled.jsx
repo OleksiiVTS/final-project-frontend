@@ -67,19 +67,6 @@ export const Avatar = styled.img`
   }
 `;
 
-export const InputHide = styled.input`
-  opacity: 0;
-  outline: 1px solid green;
-  width: 30px;
-  height: 20px;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  z-index: 3;
-  @media screen and (min-width: 768px) {
-    top: 100px;
-  }
-`;
 export const IconDiv = styled.div`
   position: absolute;
   top: 25px;
