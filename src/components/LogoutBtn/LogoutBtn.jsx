@@ -11,6 +11,8 @@ const LogoutButton = styled.section`
   gap: 11px;
   position: fixed;
   bottom: 24px;
+  overflow-y: hidden;
+
 
   padding: 16px;
   border-radius: 16px;
