@@ -12,10 +12,10 @@ import {
 } from '../../Calendar/common/PeriodSelector.styled';
 
 const PeriodPaginator = ({
-  onClickPrev,
-  onClickNext,
+  // onClickPrev,
+  // onClickNext,
   type,
-  onChangeType,
+  // onChangeType,
   date,
 }) => {
   const theme = useSelector(selectTheme);
@@ -32,9 +32,9 @@ const PeriodPaginator = ({
     /> */}
       <ButtonsWrapper>
         <ButtonLeft
-          onClick={() => {
-            onClickPrev(type);
-          }}
+          // onClick={() => {
+          //   onClickPrev(type);
+          // }}
           bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
           bordercolor={
             theme === 'dark'
@@ -52,9 +52,9 @@ const PeriodPaginator = ({
         </ButtonLeft>
 
         <ButtonRight
-          onClick={() => {
-            onClickNext(type);
-          }}
+          // onClick={() => {
+          //   onClickNext(type);
+          // }}
           bgcolor={theme === 'dark' ? '#21222C' : '#ffffff'}
           bordercolor={
             theme === 'dark'
@@ -78,8 +78,8 @@ const PeriodPaginator = ({
 export default PeriodPaginator;
 
 PeriodPaginator.propTypes = {
-  onClickPrev: PropTypes.func.isRequired,
-  onClickNext: PropTypes.func.isRequired,
+  // onClickPrev: PropTypes.func.isRequired,
+  // onClickNext: PropTypes.func.isRequired,
   type: PropTypes.string,
   date: PropTypes.string,
 };

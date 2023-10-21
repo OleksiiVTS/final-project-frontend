@@ -6,7 +6,7 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
-const CalendarDate = ({ type, date }) => {
+const CalendarDate = ({ date }) => {
   const navigate = useNavigate();
   // const params = useParams();
   // const isParams = Boolean(Object.keys(params).length);
