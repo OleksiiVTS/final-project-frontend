@@ -5,8 +5,9 @@ export const StyledTasksColumnItem = styled.div`
   flex-direction: column;
 
   padding: 18px 18px 20px;
-  /* min-width: 335px;
-  min-height: 155px; */
+  width: 335px;
+  min-height: 155px;
+  height: 100%;
 
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.5);
@@ -14,6 +15,7 @@ export const StyledTasksColumnItem = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 20px 20px 20px;
+    min-width: 344px;
   }
 
   @media screen and (min-width: 1440px) {

@@ -17,7 +17,7 @@ const ChoosedDay = () => {
   const sortedTasks = CreateSortedTasks(CATEGORY_LIST, dayTasks); // maybe useSelector ?
 
   return (
-    <StyledChoosedDay>
+    <StyledChoosedDay className="ChoosedDay">
       {/* <DayCalendarHead /> */}
       <TasksColumnsList sortedTasks={sortedTasks} />
     </StyledChoosedDay>
