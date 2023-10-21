@@ -128,7 +128,7 @@ const Header = () => {
   return (
     // <PageContainer>
     <Wrapper
-      bg={theme !== 'dark' ? '#F7F6F9' : '#000000'}
+      bg={theme !== 'dark' ? 'var(--color-bg-main-light)' : 'var(--color-bg-main-dark)'}
       color={theme === 'dark' ? '#fff' : '#000'}
     >
       {windowWidth < 769 ? (

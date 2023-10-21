@@ -19,7 +19,7 @@ export const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: ${({ bg }) => bg || '#fff'};
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.8);
   box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
@@ -43,7 +43,9 @@ export const CloseBtn = styled.button`
   margin: 0;
   width: 24px;
   height: 24px;
-  background-color: white;
+  /* background-color: white; */
+  background-color: ${({ bg }) => bg || '#fff'};
+  cursor: pointer;
   &:hover {
     box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
   }
