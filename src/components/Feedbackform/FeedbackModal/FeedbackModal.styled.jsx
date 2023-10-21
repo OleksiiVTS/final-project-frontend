@@ -4,7 +4,7 @@ export const FeedbackContainer = styled.div`
   box-sizing: border-box;
   padding: 0 18px 18px 18px;
   margin-top: -20px;
-  position: relative;
+  /* position: relative; */
   min-height: 246px;
 `;
 export const RatingWrapper = styled.div`
@@ -13,12 +13,11 @@ export const RatingWrapper = styled.div`
 `;
 
 export const RatingTitle = styled.div`
-color: #343434CC;
-font-family: Inter;
-font-size: 12px;
-font-weight: 500;
-line-height: 1.16;
-}
+  color: #343434cc;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.16;
 `;
 export const FormFeedback = styled.form`
   .toolbar {

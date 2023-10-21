@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const FormaBox = styled.form`
-  width: 100vh;
+  /* width: 100vh; */
   height: 100vh;
 
-  padding: 95px 20px 40px 20px;
+  /* padding: 95px 20px 40px 20px; */
   background-color: #f7f6f9;
   @media screen and (min-width: 768px) {
-    padding: 64px 32px 38px 32px;
+    /* padding: 64px 32px 38px 32px; */
   }
   @media screen and (min-width: 1440px) {
-    padding: 33px 32px 32px 32px;
+    /* padding: 33px 32px 32px 32px; */
   }
 `;
 export const UserFormBox = styled.div`
