@@ -5,24 +5,29 @@ import {
   LogoBox,
   StyledNavLink,
   NavItem,
+  MenuIcon,
+  CloseBurgerBtn,
 } from './UserNav.styled';
 import sprite from '../Pictures/sprite.svg';
 import menuGoose from '../Pictures/menu-goose.svg';
 
 import { getCurrentDate } from 'utils/calendar';
 
-const UserNav = () => {
+const UserNav = ({ onCloseMenu }) => {
   const currentDate = getCurrentDate();
 
   return (
     <UserNavBox>
       <LogoBox>
-        <span>
-          <img src={menuGoose} alt="menu goose" />
-        </span>
+        <MenuIcon src={menuGoose} alt="menu goose"></MenuIcon>
         <p>
           G<em>oo</em>seTrack
         </p>
+        <CloseBurgerBtn onClick={onCloseMenu}>
+          <svg width="34" height="34">
+            <use href={sprite + '#icon-close'}></use>
+          </svg>
+        </CloseBurgerBtn>
       </LogoBox>
       <NavTitle>User Panel</NavTitle>
       <ul>

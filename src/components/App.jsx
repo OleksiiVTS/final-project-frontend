@@ -53,7 +53,7 @@ export const App = () => {
     <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
   );
 
-  if (isRefreshing) {
+  if (isRefreshing && !isAuthenticated) {
     return Loading;
   }
 

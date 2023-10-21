@@ -21,7 +21,39 @@ export const LogoBox = styled.section`
 
   display: flex;
   align-items: center;
-  gap: 10px;
+
+  @media screen and (max-width: 1440px) {
+    font-size: 16px;
+  }
+`;
+
+export const MenuIcon = styled.img`
+  width: 35px;
+
+  @media screen and (min-width: 768px) {
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 71px;
+  }
+`;
+
+export const CloseBurgerBtn = styled.button`
+  background-color: inherit;
+  border: none;
+  color: #343434;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  stroke: currentColor;
+  margin-left: 31px;
+
+  @media screen and (min-width: 769px) {
+    font-size: 16px;
+    display: none;
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
