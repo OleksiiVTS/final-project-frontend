@@ -34,12 +34,14 @@ import { selectIsError } from 'redux/task/taskSelectors';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Checkmark from './Checkmark/Checkmark';
+import { selectTheme } from 'redux/header/headerSlice';
 
 const TaskForm = ({ closeModal, task }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const dispatch = useDispatch();
   const error = useSelector(selectIsError);
   const { title, start, end, priority } = task;
+  const theme = useSelector(selectTheme);
 
   useEffect(() => {}, [error]);
 
@@ -72,7 +74,7 @@ const TaskForm = ({ closeModal, task }) => {
   };
 
   return (
-    <FormContainer>
+    <FormContainer bg={theme !== 'dark' ? '#fff' : 'var(--color-theme-dark)'}>
       {!isSubmitted && (
         <Formik
           initialValues={
@@ -91,6 +93,8 @@ const TaskForm = ({ closeModal, task }) => {
                 <FormLabel htmlFor="title">Title</FormLabel>
                 <BoxInput>
                   <FormField
+                  bg={theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'}
+                  color={theme === 'dark' ? '#fff' : '#343434'}
                     id="title"
                     type="text"
                     name="title"
@@ -104,6 +108,8 @@ const TaskForm = ({ closeModal, task }) => {
                   <TimeFieldWrap>
                     <FormLabel htmlFor="start">Start</FormLabel>
                     <TimeInput
+                                      bg={theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'}
+                                      color={theme === 'dark' ? '#fff' : '#343434'}
                       id="start"
                       type="time"
                       step="60"
@@ -118,7 +124,8 @@ const TaskForm = ({ closeModal, task }) => {
                   </TimeFieldWrap>
                   <TimeFieldWrap>
                     <FormLabel htmlFor="end">End</FormLabel>
-                    <TimeInput id="end" type="time" name="end"></TimeInput>
+                    <TimeInput                   bg={theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'}
+                  color={theme === 'dark' ? '#fff' : '#343434'} id="end" type="time" name="end"></TimeInput>
                   </TimeFieldWrap>
                 </TimeWrapper>
                 <PriorityWrapper role="group" id="priority-group">

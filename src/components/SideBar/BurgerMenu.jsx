@@ -16,7 +16,6 @@ const BurgerMenuWrapper = styled.div`
   width: 300px;
   height: 100%;
   background: #fff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;
   z-index: 999;
@@ -29,7 +28,7 @@ const BackgroundOverlay = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
+  z-index: 999;
   display: ${({ open }) => (open ? 'block' : 'none')};
   overflow: hidden;
 `;
@@ -39,7 +38,7 @@ const BurgerContainer = styled.section`
   border-right: 1px solid rgba(220, 227, 229, 0.5);
 
   height: 100vh;
-  width: 290px;
+  min-width: 290px;
   padding: 32px 24px 24px 24px;
 
   display: flex;
