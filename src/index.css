@@ -21,6 +21,8 @@ body {
 	--color-choice-light-no-active: #e3f3ff;
 	--color-choice-dark-active: #3e85f3;
 	--color-choice-dark-no-active: #21222c;
+	--color-bg-main-dark: #171820;
+	--color-bg-main-light: #F7F6F9;
 }
 
 code {

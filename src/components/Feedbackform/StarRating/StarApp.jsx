@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import './Star/Star.css';
 import StarRating from './StartRange';
-import {Stars} from './Stars.styled';
+import { Stars } from './Stars.styled';
 
-class StarApp extends Component {
-
-    state = {
-    starsSelected: 5,
-  }
-
-change=(starsSelected) => 
-       this.setState({starsSelected});
-
-  render() {
-  	const starsSelected = this.state.starsSelected 
-    return (
-      <Stars>
-      <StarRating starsSelected={starsSelected} totalStars={5} onRate={this.change} />
-      </Stars>
-    );
-  }
-}
+const StarApp = ({ rating, getRating }) => {
+  const onChangeRate = stars => {
+    getRating(stars);
+  };
+  return (
+    <Stars>
+      <StarRating starsSelected={rating} totalStars={5} onRate={onChangeRate} />
+    </Stars>
+  );
+};
 
 export default StarApp;

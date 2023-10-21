@@ -9,6 +9,10 @@ const LogoutButton = styled.section`
   justify-content: center;
   align-items: center;
   gap: 11px;
+  position: fixed;
+  bottom: 24px;
+  overflow-y: hidden;
+
 
   padding: 16px;
   border-radius: 16px;
@@ -46,11 +50,9 @@ const LogoutBtn = () => {
   return (
     <LogoutButton type="submit" onClick={handleLogout}>
       Log out
-   
-        <svg width="20" height="20">
-          <use href={sprite + '#icon-logout'}></use>
-        </svg>
-    
+      <svg width="20" height="20">
+        <use href={sprite + '#icon-logout'}></use>
+      </svg>
     </LogoutButton>
   );
 };
