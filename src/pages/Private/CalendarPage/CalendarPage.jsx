@@ -1,16 +1,11 @@
-import {
-  Suspense,
-  useEffect,
-  // useRef,
-  useState,
-} from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Route,
   Routes,
   useLocation,
   useNavigate,
-  useParams,
+  // useParams,
 } from 'react-router-dom';
 
 import { addDays, addMonths, format, subDays, subMonths } from 'date-fns';
@@ -35,15 +30,13 @@ const CalendarPage = () => {
   const theme = useSelector(selectTheme);
   // const tasks = useSelector(selectTasks);
 
-  const currentDate = Object.values(useParams())[0].slice(-10);
+  // const currentDate = Object.values(useParams())[0].slice(-10);
+  const currentDate = pathname.slice(-10);
   console.log('currentDate: ', currentDate);
-  const requestDate = currentDate.slice(0, 7);
+  // const requestDate = currentDate.slice(0, 7);
 
-  // const prevMonthRef = useRef(pathname.slice(-5).slice(0, 2));
-
-  const [period, setPeriod] = useState('month');
-
-  const currentPeriod = pathname.includes('month') ? 'month' : 'day';
+  // const [period, setPeriod] = useState('month');
+  // const currentPeriod = pathname.includes('month') ? 'month' : 'day';
 
   // console.log('period: ', period);
   // console.log('currentDate: ', currentDate);
@@ -51,28 +44,29 @@ const CalendarPage = () => {
   // console.log('tasks: ', tasks);
   // console.log(theme);
 
-  useEffect(() => {
-    if (period !== currentPeriod) {
-      setPeriod(currentPeriod);
-    }
-    dispatch(getTasksThunk(requestDate));
-  }, [currentPeriod, period, requestDate, dispatch]);
+  // useEffect(() => {
+  //   if (period !== currentPeriod) {
+  //     setPeriod(currentPeriod);
+  //   }
+  //   dispatch(getTasksThunk(requestDate));
+  // }, [currentPeriod, period, requestDate, dispatch]);
 
   // useEffect(() => {
   //   if (tasks.length > 0) return;
 
   //   dispatch(getTasksThunk(requestDate));
   // }, [dispatch, requestDate, tasks.length]);
+  const prevMonthRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (tasks.length === 0) return;
+  useEffect(() => {
+    const currentMonth = pathname.slice(-5).slice(0, 2);
+    if (prevMonthRef.current === currentMonth) return;
 
-  //   const currentMonth = pathname.slice(-5).slice(0, 2);
-  //   if (prevMonthRef.current === currentMonth) return;
+    prevMonthRef.current = currentMonth;
+    const requestDate = currentDate.slice(0, 7);
 
-  //   prevMonthRef.current = currentMonth;
-  //   dispatch(getTasksThunk(requestDate));
-  // }, [dispatch, requestDate, tasks.length, pathname]);
+    dispatch(getTasksThunk(requestDate));
+  }, [dispatch, currentDate, pathname]);
 
   const handlePrev = () => {
     if (pathname.includes('day')) {
