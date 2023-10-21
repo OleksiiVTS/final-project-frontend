@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ModalBackdrop = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: 4;
   top: 0;
   left: 0;
   width: 100%;
@@ -12,7 +12,7 @@ export const ModalBackdrop = styled.div`
 
 export const ModalContainer = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 5;
   box-sizing: border-box;
   min-width: 240px;
   padding: 14px;
