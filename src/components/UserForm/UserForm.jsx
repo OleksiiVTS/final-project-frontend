@@ -12,7 +12,6 @@ import {
   BtnUserForm,
   FormaBox,
   IconDiv,
-  InputHide,
   InputUserForm,
   LabelUserForm,
   User,
@@ -57,9 +56,10 @@ const UserForm = () => {
                 <AiFillPlusCircle size={24} fill="#3E85F3" />
               </IconDiv>
               <WhiteBox></WhiteBox>
-              <InputHide
+              <input
                 id="avatar"
                 type="file"
+                hidden
                 name="avatar"
                 accept="image/*"
                 onChange={formik.handleChange}
