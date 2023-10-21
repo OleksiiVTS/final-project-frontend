@@ -165,7 +165,7 @@ const Header = () => {
         </>
         {showModal && (
           <Modal closeModal={toggleModal}>
-            <FeedbackModal />
+            <FeedbackModal isActive={showModal} />
           </Modal>
         )}
         <UserWrapper>

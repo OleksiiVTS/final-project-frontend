@@ -1,16 +1,16 @@
 import styled from '@emotion/styled/macro';
 
-export const Feedbackcontainer = styled.div`
+export const FeedbackContainer = styled.div`
 box-sizing: border-box;
 padding: 0 18px 18px 18px;
 
 `;
-export const Ratingwrapper = styled.div`
+export const RatingWrapper = styled.div`
 display: flex;
 flex-direction: column;
 `;
 
-export const Ratingtitle = styled.div`
+export const RatingTitle = styled.div`
 margin: 0
 white-space: nowrap;
 color: #111;

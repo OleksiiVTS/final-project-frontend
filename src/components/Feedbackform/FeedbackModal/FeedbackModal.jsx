@@ -1,68 +1,152 @@
+import { useState, useEffect } from 'react';
 import sprite from '../../Pictures/sprite.svg';
 import StarApp from '../StarRating/StarApp';
-import {Feedbackcontainer, Ratingwrapper, Ratingtitle, FormFeedback, StyledFeedbackToolbar} from './FeedbackModal.styled'
+import {
+  FeedbackContainer,
+  RatingWrapper,
+  RatingTitle,
+  FormFeedback,
+  StyledFeedbackToolbar,
+} from './FeedbackModal.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addReview,
+  deleteReview,
+  getOwnReview,
+  updateReview,
+} from 'redux/review/reviewOperations';
+import { selectOwnReview } from 'redux/review/reviewSelectors';
 
+const FeedbackModal = ({ isActive }) => {
+  const [feedbackRating, setFeedbackRating] = useState(5);
+  const [feedbackComment, setFeedbackComment] = useState('');
+  const [isReview, setIsReview] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-const FeedbackModal = () => {
+  const ownReview = useSelector(selectOwnReview);
 
-const isActiv = true;
-const isEdit = true;
+  const dispatch = useDispatch();
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+    const comment = event.currentTarget.elements.user_message.value;
+    const userReview = { comment, rating: feedbackRating };
+
+    if (!isEditing) {
+      dispatch(addReview(userReview));
+      setIsReview(true);
+      return;
+    }
+    dispatch(updateReview(userReview));
+    setIsReview(true);
+    setIsEditing(false);
+  };
+
+  const onCommentChange = event => {
+    const comment = event.target.value;
+    setFeedbackComment(comment);
+  };
+
+  const handleDelete = () => {
+    setIsReview(false);
+    setFeedbackRating(5);
+    setFeedbackComment('');
+    dispatch(deleteReview());
+  };
+
+  const getFeedbackRating = rating => {
+    setFeedbackRating(rating);
+  };
+
+  useEffect(() => {
+    if (Object.keys(ownReview).length !== 0) {
+      setIsReview(true);
+      setFeedbackComment(ownReview.comment);
+      setFeedbackRating(ownReview.rating);
+      return;
+    }
+    if (Object.keys(dispatch(getOwnReview())) === 0) {
+      setIsReview(false);
+      setFeedbackComment('');
+      setFeedbackRating(5);
+      return;
+    }
+    dispatch(getOwnReview);
+  }, [dispatch, ownReview]);
 
   return (
-
-    <Feedbackcontainer>
-       <Ratingwrapper>
-        <Ratingtitle>
-        Rating
-        </Ratingtitle>
-        <div className='stars'>
-       <StarApp/>
+    <FeedbackContainer>
+      <RatingWrapper>
+        <RatingTitle>Rating</RatingTitle>
+        <div className="stars">
+          <StarApp rating={feedbackRating} getRating={getFeedbackRating} />
         </div>
-     </Ratingwrapper> 
-     < FormFeedback>
-     <div className="toolbar">
-        <div>
-     <span className='head'>
-    Review
-    </span>
-    </div>
-    { isActiv &&
-    <StyledFeedbackToolbar>
-       <div className="controlsWrapper">
-          <button className='btnEdit'aria-label="edit feedback" type="button">
-          <svg>
-            <use href={sprite + '#icon-pencil'}></use>
-          </svg>
-        </button>
-        <button className='btnDel' aria-label="delete feedback" type="button">
-          <svg>
-            <use href={sprite + '#icon-trash-review'}></use>
-          </svg>
-        </button>
-      </div>
-       </StyledFeedbackToolbar>}
-</div>
-  <textarea name='user_message' placeholder='Enter text' className='text_content'>
-    </textarea>
-    { isActiv &&
-    <div className='buttonfoot'>
-<button type="submit" className='btn-foot'>
-{ isEdit ? 'Save': 'Edit'}
-</button>
-<button type="cencel" className='btn-foot'>
-Cancel
-</button>
-</div> }
-</FormFeedback>
-</Feedbackcontainer>
-
-  
-
-  
-    
-)
-
-  }
-
+      </RatingWrapper>
+      {isActive && (
+        <FormFeedback onSubmit={handleSubmit}>
+          <div className="toolbar">
+            <div>
+              <p className="head">Review</p>
+            </div>
+            {isReview && (
+              <StyledFeedbackToolbar>
+                <div className="controlsWrapper">
+                  <button
+                    className="btnEdit"
+                    aria-label="edit feedback"
+                    type="button"
+                    onClick={() => setIsEditing(!isEditing)}
+                  >
+                    <svg>
+                      <use href={sprite + '#icon-pencil'}></use>
+                    </svg>
+                  </button>
+                  <button
+                    className="btnDel"
+                    aria-label="delete feedback"
+                    type="button"
+                    onClick={handleDelete}
+                  >
+                    <svg>
+                      <use href={sprite + '#icon-trash'}></use>
+                    </svg>
+                  </button>
+                </div>
+              </StyledFeedbackToolbar>
+            )}
+          </div>
+          {(!isReview || isEditing) && (
+            <textarea
+              name="user_message"
+              placeholder="Enter text"
+              className="text_content"
+              value={feedbackComment}
+              onChange={onCommentChange}
+            ></textarea>
+          )}
+          {isReview && !isEditing && (
+            <textarea
+              name="user_message"
+              placeholder="Enter text"
+              className="text_content"
+              value={feedbackComment}
+              readOnly
+            ></textarea>
+          )}
+          {isActive && (!isReview || isEditing) && (
+            <div className="buttonfoot">
+              <button type="submit" className="btn-sumbit save">
+                Save
+              </button>
+              <button type="button" className="btn-sumbit cencel">
+                Cancel
+              </button>
+            </div>
+          )}
+        </FormFeedback>
+      )}
+    </FeedbackContainer>
+  );
+};
 
 export default FeedbackModal;
