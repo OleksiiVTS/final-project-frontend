@@ -19,6 +19,8 @@ import {
   UserName,
   WhiteBox,
 } from './UserForm.styled.jsx';
+import { useRef } from 'react';
+import PreviewAvatar from './PreviewAvatar.js';
 
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -27,6 +29,8 @@ const UserForm = () => {
   };
   const isUser = useSelector(selectUser);
 
+  const fileRef = useRef(null);
+
   const formik = useFormik({
     initialValues: {
       usrName: isUser.username ?? '',
@@ -34,11 +38,11 @@ const UserForm = () => {
       birthday: isUser.birthday ?? '',
       skype: isUser.skype ?? '',
       email: isUser.email ?? '',
-      avatar: isUser.avatar ?? '',
+      file: null,
     },
     onSubmit: values => {
       var imagefile = document.getElementById('avatar');
-      // console.log(imagefile);
+      //console.log(imagefile);
       updateUser({ ...values, avatarURL: imagefile });
     },
   });
@@ -51,18 +55,30 @@ const UserForm = () => {
         <UserFormBox validationSchema={ValidSchema}>
           <div>
             <label htmlFor="avatar">
-              <Avatar src={isUser.avatarURL} alt="User avatar" />
-              <IconDiv>
+              {formik.values.file ? (
+                <PreviewAvatar file={formik.values.file} />
+              ) : (
+                <Avatar src={isUser.avatarURL} alt="User avatar" />
+              )}
+
+              <IconDiv
+                type="button"
+                onClick={() => {
+                  fileRef.current.click();
+                }}
+              >
                 <AiFillPlusCircle size={24} fill="#3E85F3" />
               </IconDiv>
               <WhiteBox></WhiteBox>
               <input
+                ref={fileRef}
                 id="avatar"
                 type="file"
                 hidden
-                name="avatar"
                 accept="image/*"
-                onChange={formik.handleChange}
+                onChange={event => {
+                  formik.setFieldValue('file', event.target.files[0]);
+                }}
                 onBlur={formik.handleBlur}
                 value={formik.values.avatar}
               />
