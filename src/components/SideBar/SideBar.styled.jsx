@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const SideBarBox = styled.section`
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: ${({ bg }) => bg || '#fff'};
   border-right: 1px solid rgba(220, 227, 229, 0.5);
 
   height: 100vh;
