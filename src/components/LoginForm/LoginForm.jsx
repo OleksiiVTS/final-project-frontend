@@ -120,10 +120,13 @@ const LoginForm = () => {
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby="emailError"
                       />
                       {errors.email ? (
                         <>
-                          <Error>{errors.email}</Error>
+                          <Error id="emailError">{errors.email}</Error>
                           <InputIconEmail>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconEmail>
@@ -144,6 +147,9 @@ const LoginForm = () => {
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby="emailError"
                       />
                     </>
                   )}
@@ -184,10 +190,13 @@ const LoginForm = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password"
+                        aria-required="true"
+                        aria-invalid={!!errors.password}
+                        aria-describedby="passwordError"
                       />
                       {errors.password ? (
                         <>
-                          <Error>{errors.password}</Error>
+                          <Error id="passwordError">{errors.password}</Error>
                           <InputIconPassword>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconPassword>
@@ -210,6 +219,9 @@ const LoginForm = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password"
+                        aria-required="true"
+                        aria-invalid={!!errors.password}
+                        aria-describedby="passwordError"
                       />
                     </>
                   )}
@@ -245,7 +257,14 @@ const LoginForm = () => {
         </LoginContainer>
         <ImagePosition>
           <SingUp to="/register">Sing up</SingUp>
-          <Image src={IMG} alt="Goose" />
+          <Image
+            srcSet={`
+            ${require('../Pictures/login_goose.jpg')} 1x,
+            ${require('../Pictures/login_goose@2x.jpg')} 2x
+            `}
+            src={IMG}
+            alt="Goose"
+          />
         </ImagePosition>
       </FormPosition>
     </PageContainer>

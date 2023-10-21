@@ -27,6 +27,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../../redux/auth/firebase';
 
 import IMG from '../Pictures/singup_goose.jpg';
+
 import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
@@ -117,10 +118,13 @@ const RegisterForm = () => {
                         type="text"
                         name="username"
                         placeholder="Enter your name"
+                        aria-required="true"
+                        aria-invalid={!!errors.username}
+                        aria-describedby="usernameError"
                       />
                       {errors.username ? (
                         <>
-                          <Error>{errors.username}</Error>
+                          <Error id="usernameError">{errors.username}</Error>
                           <InputIconName>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconName>
@@ -141,6 +145,9 @@ const RegisterForm = () => {
                         type="text"
                         name="username"
                         placeholder="Enter your name"
+                        aria-required="true"
+                        aria-invalid={!!errors.username}
+                        aria-describedby="usernameError"
                       />
                     </>
                   )}
@@ -182,10 +189,13 @@ const RegisterForm = () => {
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby="emailError"
                       />
                       {errors.email ? (
                         <>
-                          <Error>{errors.email}</Error>
+                          <Error id="emailError">{errors.email}</Error>
                           <InputIconEmail>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconEmail>
@@ -206,6 +216,9 @@ const RegisterForm = () => {
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby="emailError"
                       />
                     </>
                   )}
@@ -247,10 +260,13 @@ const RegisterForm = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password"
+                        aria-required="true"
+                        aria-invalid={!!errors.password}
+                        aria-describedby="passwordError"
                       />
                       {errors.password ? (
                         <>
-                          <Error>{errors.password}</Error>
+                          <Error id="passwordError">{errors.password}</Error>
                           <InputIconPassword>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconPassword>
@@ -273,6 +289,9 @@ const RegisterForm = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password"
+                        aria-required="true"
+                        aria-invalid={!!errors.password}
+                        aria-describedby="passwordError"
                       />
                     </>
                   )}
@@ -308,7 +327,14 @@ const RegisterForm = () => {
         </RegisterContainer>
         <ImagePosition>
           <LogIn to="/login">Log In</LogIn>
-          <Image src={IMG} alt="Goose" />
+          <Image
+            srcSet={`
+            ${require('../Pictures/singup_goose.jpg')} 1x,
+            ${require('../Pictures/singup_goose2x.jpg')} 2x
+          `}
+            src={IMG}
+            alt="Goose"
+          />
         </ImagePosition>
       </FormPosition>
     </PageContainer>
