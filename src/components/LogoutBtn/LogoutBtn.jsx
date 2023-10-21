@@ -4,19 +4,17 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import sprite from '../Pictures/sprite.svg';
 
-const LogoutButton = styled.section`
+const LogoutButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 11px;
-  position: fixed;
-  bottom: 24px;
-  overflow-y: hidden;
-
 
   padding: 16px;
   border-radius: 16px;
   width: 140px;
+  position: sticky;
+  bottom: 24px;
 
   border: 1px solid transparent;
   box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
