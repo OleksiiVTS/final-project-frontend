@@ -6,7 +6,7 @@ import { CATEGORY_LIST } from 'constants/categoryList';
 
 const TasksColumnsList = ({ sortedTasks }) => {
   return (
-    <StyledTasksColumnsList>
+    <StyledTasksColumnsList className="TasksColumnsList">
       {CATEGORY_LIST.map(category => (
         <TasksColumnItem
           key={category}

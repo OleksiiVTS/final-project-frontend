@@ -7,7 +7,7 @@ const TasksColumnItem = ({ title, tasks, category }) => {
   return (
     <StyledTasksColumnItem className="tasksColumnItem">
       <ColumnHeadBar title={title} category={category} />
-      <ColumnTasksList tasks={tasks} />
+      {tasks.length > 0 && <ColumnTasksList tasks={tasks} />}
       <AddTaskBtn category={category} />
     </StyledTasksColumnItem>
   );
