@@ -17,7 +17,7 @@ import {
 } from 'redux/review/reviewOperations';
 import { selectOwnReview } from 'redux/review/reviewSelectors';
 
-const FeedbackModal = ({ isActive }) => {
+const FeedbackModal = ({ isActive, closeModal}) => {
   const [feedbackRating, setFeedbackRating] = useState(5);
   const [feedbackComment, setFeedbackComment] = useState('');
   const [isReview, setIsReview] = useState(false);
@@ -108,7 +108,7 @@ const FeedbackModal = ({ isActive }) => {
                     onClick={handleDelete}
                   >
                     <svg>
-                      <use href={sprite + '#icon-trash'}></use>
+                      <use href={sprite + '#icon-trash-review'}></use>
                     </svg>
                   </button>
                 </div>
@@ -134,11 +134,11 @@ const FeedbackModal = ({ isActive }) => {
             ></textarea>
           )}
           {isActive && (!isReview || isEditing) && (
-            <div className="buttonfoot">
-              <button type="submit" className="btn-sumbit save">
-                Save
+            <div className="buttonwrapper">
+              <button type="submit" className="btn-foot">
+              { !isEditing ? 'Save': 'Edit'}
               </button>
-              <button type="button" className="btn-sumbit cencel">
+              <button type="button" className="btn-foot" onClick={closeModal}>
                 Cancel
               </button>
             </div>

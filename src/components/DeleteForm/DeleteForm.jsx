@@ -10,9 +10,10 @@ const DeleteForm = ({ task, closeModal }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const removeTask = () => {
-    dispatch(deleteTask(task._id));
     setIsSubmitted(true);
+
     setTimeout(() => closeModal(), 1500);
+    setTimeout(() => dispatch(deleteTask(task._id)), 1500);
   };
   return (
     <>
@@ -31,7 +32,7 @@ const DeleteForm = ({ task, closeModal }) => {
             <CancelBtn onClick={closeModal}>Cancel</CancelBtn>
           </BtnWrapper>
         </>
-      )}{' '}
+      )}
     </>
   );
 };
