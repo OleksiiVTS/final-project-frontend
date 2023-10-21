@@ -11,12 +11,15 @@ import Header from 'components/Header/Header';
 import { selectTheme } from 'redux/header/headerSlice';
 import { CalendarContainer } from 'components/Calendar/common';
 import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
-// import { addDays, addMonths, format, subDays, subMonths } from 'date-fns';
+// import { useLocation, useNavigate } from 'react-router-dom';
+import { addDays } from 'date-fns';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
+  // const { pathname } = useLocation();
+  // const navigate = useNavigate();
   const theme = useSelector(selectTheme);
   const currentDay = getCurrentDate();
 
@@ -26,17 +29,13 @@ const StatisticsPage = () => {
     dispatch(getTasks(currentDay));
   }, [dispatch, currentDay]);
 
-  // const handlePrev = () => {
-  //   if (pathname.includes('day')) {
-  //     const newDate = subDays(new Date(currentDate), 1);
-  //     navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
-
-  //     return;
-  //   }
+  const handlePrev = () => {
+    const newDate = addDays(new Date(currentDay), 1);
+    console.log('newDate: ', newDate);
+  };
 
   //   const newDate = subMonths(new Date(currentDate), 1);
   //   navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
-  // };
 
   // const handleNext = () => {
   //   if (pathname.includes('day')) {
@@ -56,14 +55,14 @@ const StatisticsPage = () => {
         <HeaderContainer>
           <Header />
         </HeaderContainer>
-        <PeriodPaginator date={currentDay} />
+        <PeriodPaginator date={currentDay} onClickPrev={handlePrev} />
         <div>
           <div>{/* <h1>Statistics</h1> */}</div>
           {/* <Header /> */}
           <StatisticsChart today={currentDay} />
           {/* <Suspense fallback={null}>
           <CalendarToolbar
-            onClickPrev={handlePrev}
+            // onClickPrev={handlePrev}
             onClickNext={handleNext}
             today={currentDate}
           />

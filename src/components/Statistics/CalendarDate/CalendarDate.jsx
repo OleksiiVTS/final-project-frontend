@@ -12,6 +12,7 @@ const CalendarDate = ({ date }) => {
   // const isParams = Boolean(Object.keys(params).length);
 
   const [dateValue, setDateValue] = useState(date);
+  console.log('dateValue: ', dateValue);
 
   useEffect(() => {
     setDateValue(date);

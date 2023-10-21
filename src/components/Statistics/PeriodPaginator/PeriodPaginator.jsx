@@ -12,9 +12,8 @@ import {
 } from '../../Calendar/common/PeriodSelector.styled';
 
 const PeriodPaginator = ({
-  // onClickPrev,
+  onClickPrev,
   // onClickNext,
-  type,
   // onChangeType,
   date,
 }) => {
@@ -23,7 +22,7 @@ const PeriodPaginator = ({
 
   return (
     <Wrapper>
-      <CalendarDate type={type} date={currentDate} />
+      <CalendarDate date={currentDate} />
       {/* <CalendarDatePicker
       type={type}
       customInput={CustomInput} ===
@@ -32,9 +31,9 @@ const PeriodPaginator = ({
     /> */}
       <ButtonsWrapper>
         <ButtonLeft
-          // onClick={() => {
-          //   onClickPrev(type);
-          // }}
+          onClick={() => {
+            onClickPrev(currentDate);
+          }}
           bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
           bordercolor={
             theme === 'dark'
