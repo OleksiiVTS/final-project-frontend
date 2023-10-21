@@ -16,7 +16,7 @@ export const FormaBox = styled.form`
 export const UserFormBox = styled.div`
   width: 335px;
   position: relative;
-  outline: 1px solid red;
+
   display: flex;
   padding: 59px 18px 40px 18px;
   flex-direction: column;
@@ -67,12 +67,14 @@ export const Avatar = styled.img`
   }
 `;
 
-export const IconDiv = styled.div`
+export const IconDiv = styled.button`
   position: absolute;
   top: 25px;
   left: 52%;
   z-index: 2;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
   @media screen and (min-width: 768px) {
     top: 150px;
     left: 51%;
