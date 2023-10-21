@@ -9,7 +9,7 @@ import { CreateSortedTasks, filterDayTasks } from 'helpers/helpers';
 import { CATEGORY_LIST } from 'constants/categoryList';
 import DayCalendarHead from './ColumnHeadBar/DayCalendarHead';
 
-const ChoosedDay = () => {
+const ChoosedDay = ({ theme }) => {
   const { pathname } = useLocation();
   const monthTasks = useSelector(selectTasks);
 
@@ -19,8 +19,8 @@ const ChoosedDay = () => {
 
   return (
     <StyledChoosedDay className="ChoosedDay">
-      <DayCalendarHead />
-      <TasksColumnsList sortedTasks={sortedTasks} />
+      <DayCalendarHead theme={theme} />
+      <TasksColumnsList sortedTasks={sortedTasks} theme={theme} />
     </StyledChoosedDay>
     //
   );

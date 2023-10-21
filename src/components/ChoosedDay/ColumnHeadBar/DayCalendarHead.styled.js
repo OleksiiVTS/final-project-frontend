@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MonthCalendarHeadStyles = styled.div``;
+export const StyledDayCalendarHead = styled.div``;
 
 export const MobileDaysList = styled.ul`
   display: flex;
@@ -9,9 +9,9 @@ export const MobileDaysList = styled.ul`
   height: 50px;
   margin-bottom: 14px;
   padding: 16px 16px;
-  border: 1px solid ${({ bordercolor }) => bordercolor};
+  border: 1px solid ${({ borderColor }) => borderColor};
   border-radius: 8px;
-  background-color: ${({ bgcolor }) => bgcolor};
+  background-color: ${({ bgColor }) => bgColor};
 
   @media screen and (min-width: 768px) {
     display: none;
@@ -24,33 +24,57 @@ export const DesktopDayList = styled.ul`
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
-    /* gap: 62px; */
-    /* width: 100%; */
-    height: 46px;
-    margin-bottom: 18px;
-    padding: 14px 40px;
-    border: 1px solid ${({ bordercolor }) => bordercolor};
-    border-radius: 8px;
-    background-color: ${({ bgcolor }) => bgcolor};
+    padding: 10px 32px;
 
-    @media screen and (min-width: 1440px) {
-      /* gap: 122px; */
-      height: 46px;
-      margin-bottom: 15px;
-      padding: 14px 60px;
-    }
+    border-radius: 8px;
+    border: 1px solid ${({ borderColor }) => borderColor};
+    background-color: ${({ bgColor }) => bgColor};
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 10px 46px;
   }
 `;
 
 export const WorkDay = styled.li`
-  /* width: calc(100% / 7); */
-  color: ${({ color }) => color};
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: calc(18 / 16);
-  text-align: center;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+
+  & span {
+    margin-bottom: 4px;
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: calc(18 / 14);
+    text-align: center;
+    text-transform: uppercase;
+
+    color: ${({ color }) => (color === '#ffffff' ? '#FAFAFA4D' : color)};
+  }
+
+  & button {
+    padding: 4px 8px;
+
+    color: ${({ color }) => color};
+    background-color: transparent;
+
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: calc(18 / 16);
+
+    border-radius: 8px;
+    border: none;
+
+    cursor: pointer;
+  }
+
+  & button:hover,
+  .current {
+    color: #ffffff;
+    background-color: #3e85f3;
+  }
 `;
 
 export const WeekendDay = styled(WorkDay)`

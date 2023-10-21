@@ -17,4 +17,8 @@ export const StyledChoosedDay = styled.div`
   @media screen and (min-width: 1440px) {
     /* padding: 32px 32px 18px; */
   }
+
+  .DayCalendarHead {
+    margin-bottom: 16px;
+  }
 `;
