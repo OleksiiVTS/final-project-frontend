@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import avatar from '../Pictures/avatar.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    // changeFeedbackModalOpen,
-    changeSidebarModalOpen,
-    changeTheme,
-    // selectFeedbackModalOpen,
-    selectSidebarModalOpen,
-    selectTheme,
-  } from 'redux/header/headerSlice';
+  // changeFeedbackModalOpen,
+  changeSidebarModalOpen,
+  changeTheme,
+  // selectFeedbackModalOpen,
+  selectSidebarModalOpen,
+  selectTheme,
+} from 'redux/header/headerSlice';
 import { useEffect, useState } from 'react';
 // import { PageContainer } from 'components/LoginForm/LoginForm.styled';
 import sprite from '../Pictures/sprite.svg';
@@ -113,10 +113,14 @@ const Header = () => {
       bg={theme !== 'dark' ? '#F7F6F9' : '#000000'}
       color={theme === 'dark' ? '#fff' : '#000'}
     >
-             {width < 1440 ? (
+      {width < 1440 ? (
         <BurgerIcon onClick={handleSidebarChange}>
           <span>
-            <svg stroke={theme === 'dark' ? '#fff' : '#000'}  width="24" height="24">
+            <svg
+              stroke={theme === 'dark' ? '#fff' : '#000'}
+              width="24"
+              height="24"
+            >
               <use href={sprite + '#icon-burger-menu-button'} />
             </svg>
           </span>
@@ -145,7 +149,7 @@ const Header = () => {
         </>
         {showModal && (
           <Modal closeModal={toggleModal}>
-            <FeedbackModal />
+            <FeedbackModal isActive={showModal} />
           </Modal>
         )}
         <UserWrapper>
@@ -161,7 +165,9 @@ const Header = () => {
             </span>
           </ThemeToggler>
           <Username>{username}</Username>
-          <Userphoto style={{ backgroundImage: `url(${avatarURL})` }}></Userphoto>
+          <Userphoto
+            style={{ backgroundImage: `url(${avatarURL})` }}
+          ></Userphoto>
         </UserWrapper>
       </SectionWrapper>
     </Wrapper>

@@ -1,7 +1,10 @@
+import styled from '@emotion/styled/macro';
+
+export const Stars = styled.div`
 .star {
     cursor: pointer;
-    height: 25px;
-    width: 25px;
+    height: 24px;
+    width: 24px;
     margin: 2px;
     float: left;
     background-color: #CEC9C1;
@@ -21,6 +24,5 @@
     
     .raiting {
     width: 90px;
-    /* margin: 0px; */
     float: none;
-    }
+    }`

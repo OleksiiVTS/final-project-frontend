@@ -1,22 +1,17 @@
 import styled from '@emotion/styled/macro';
 
 export const FeedbackContainer = styled.div`
-display: flex;
-flex-direction: column;
-margin-left: 18px;
-margin-right: 18px;
+box-sizing: border-box;
+padding: 0 18px 18px 18px;
+
 `;
 export const RatingWrapper = styled.div`
 display: flex;
 flex-direction: column;
-// margin-left: 18px;
-// margin-right: 18px;
 `;
 
 export const RatingTitle = styled.div`
 margin: 0
-overflow: hidden;
-text-overflow: ellipsis;
 white-space: nowrap;
 color: #111;
 font-family: Inter;
@@ -32,7 +27,6 @@ export const FormFeedback = styled.form`
   justify-content: space-between;
   margin-top: 18px;
   padding-bottom: 8px;
-  // justify-content: center;
   align-items: center;
   
 }
@@ -47,8 +41,9 @@ export const FormFeedback = styled.form`
 }
 
 .text_content {
+  box-sizing: border-box;
   width: 100%;
-  height: 127px;
+  height: 130px;
   padding: 14px 18px;
   border-radius: 3px;
   box-sizing: border-box;
@@ -59,6 +54,10 @@ export const FormFeedback = styled.form`
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
+
+  @media screen and (min-width: 768px) {
+    height: 127px;
+  }
   }
   
   .buttonfoot{
@@ -66,31 +65,15 @@ export const FormFeedback = styled.form`
     gap: 10px;
     margin-top: 18px;
 
-    .btn-sumbit{
-      width: 100%;
-      height: 48px;
-      /* position: relative;
-      min-width: 200px;
-      height: 50px;
-      align-self: center;
-      background: var(--accent-color);
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15); */
-      border-radius: 8px;
-      /* font-weight: 700;
-      font-size: 16px;
-      line-height: 30px;
-      align-items: center;
-      letter-spacing: 0.06em; */
-  }
-  .save {
+   .btn-foot {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #3e85f3;
+    background: #E5EDFA;
     border-radius: 8px;
     padding: 10px;
-    color: #fff;
+    color:#343434;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.17;
@@ -98,30 +81,12 @@ export const FormFeedback = styled.form`
   
     &:hover {
       background: #2b78ef;
+      color: #fff;
       box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-      transition: background-color box-shadow 0.2s;
+      transition: background-color color box-shadow 0.2s;
     }
 
-    .cencel {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #efefef;
-      border-radius: 8px;
-      padding: 10px;
-      color: #111;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.28;
-      border: 0;
-    
-      &:hover {
-        box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
-        transition: box-shadow 0.2s;
-      }
     }
-  }
  }
 `;
 export const StyledFeedbackToolbar = styled.div`
@@ -153,8 +118,9 @@ export const StyledFeedbackToolbar = styled.div`
      }
 
     .btnDel {
+     
+      background-color: #EA3D6533; 
       color: #EA3D65;
-      background-color: #EA3D6533;
     }
 
     .btnDel:hover {
