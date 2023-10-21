@@ -17,6 +17,7 @@ import FeedbackModal from '../Feedbackform/FeedbackModal/FeedbackModal';
 import Modal from 'components/Modal/Modal';
 import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
+import debounce from 'lodash/debounce';
 
 const Wrapper = styled.div`
   background-color: ${({ bg }) => bg || '#F7F6F9'};
@@ -91,6 +92,7 @@ const Userphoto = styled.div`
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const theme = useSelector(selectTheme);
   const { username, avatarURL } = useSelector(selectUser);
@@ -106,11 +108,22 @@ const Header = () => {
     dispatch(changeTheme(nextTheme));
   };
 
-  let width = window.innerWidth;
-  
   const handleSidebarChange = () => {
     dispatch(changeSidebarModalOpen(!sidebarModalStatus));
   };
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      const newWindowWidth = window.innerWidth;
+      setWindowWidth(newWindowWidth);
+    }, 100);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     // <PageContainer>
@@ -118,7 +131,7 @@ const Header = () => {
       bg={theme !== 'dark' ? 'var(--color-bg-main-light)' : 'var(--color-bg-main-dark)'}
       color={theme === 'dark' ? '#fff' : '#000'}
     >
-      {width < 769 ? (
+      {windowWidth < 769 ? (
         <BurgerIcon onClick={handleSidebarChange}>
           <span>
             <svg
