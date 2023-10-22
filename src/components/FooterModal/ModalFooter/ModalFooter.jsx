@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { ModalStyled, CloseIcon, Overlay } from './ModalFooter.styled';
 
-import sprite from 'images/sprite.svg';
+import sprite from 'images/team_icon.svg';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -35,7 +35,7 @@ const ModalFooter = ({ children, onCloseModal, isOpened }) => {
     <Overlay onClick={handleOverlayClick}>
       <ModalStyled>
         <CloseIcon onClick={() => onCloseModal()}>
-          <use href={`${sprite} + #icon-close`}></use>
+          <use href={`${sprite}#icon-close`}></use>
         </CloseIcon>
         {children}
       </ModalStyled>

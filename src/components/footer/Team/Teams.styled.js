@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterModalContainer = styled.div`
-  background-color: greenyellow;
+  background-color: #dcebf7;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,10 +12,9 @@ export const FooterModalTeam = styled.h3`
   position: absolute;
   top: 20px;
   align-items: center;
-  // left: 30px;u7jyj
   font-size: 30px;
   font-weight: 700;
-  color: grey;
+  color: #343434;
 `;
 
 export const SwiperContainer = styled.div`

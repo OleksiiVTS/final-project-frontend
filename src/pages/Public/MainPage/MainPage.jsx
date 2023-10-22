@@ -1,7 +1,7 @@
 import AuthSection from 'components/AuthSection/AuthSection';
 import Description from 'components/Description/Description';
 import Slider from 'components/Slider/Slider';
-import Footer from 'components/footer/TeamFooter/TeamFooter';
+import Footer from 'components/footer/CurrentTeam/CurrentTeam';
 import { MainPageContainer, MainPageWrapper } from './MainPage.styled';
 
 const MainPage = () => {

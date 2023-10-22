@@ -1,18 +1,28 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Зміна тут
-import { EffectCoverflow, Pagination, Navigation, FreeMode } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  FreeMode,
+} from 'swiper/modules';
 
 import { teams } from './teamDB';
-import ModalFooter from 'components/Modal/ModalFooter/ModalFooter';
-import CurrentTeam from '../TeamFooter/TeamFooter';
-import { FooterModalContainer, FooterModalTeam } from './Team.styled';
+import ModalFooter from 'components/FooterModal/ModalFooter/ModalFooter';
+import CurrentTeam from '../CurrentTeam/CurrentTeam';
+import { FooterModalContainer, FooterModalTeam } from './Teams.styled';
+
+import 'swiper/css';
+import 'swiper/css/effect-flip';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const Team = ({ onCloseModal }) => {
   return (
     <ModalFooter onCloseModal={onCloseModal}>
       <FooterModalContainer>
-        <FooterModalTeam>S&amp;M Coders</FooterModalTeam>
-        <Swiper // Зміна тут
+        <FooterModalTeam>BackToFront</FooterModalTeam>
+        <Swiper
           effect={'coverflow'}
           breakpoints={{
             375: { slidesPerView: 1 },

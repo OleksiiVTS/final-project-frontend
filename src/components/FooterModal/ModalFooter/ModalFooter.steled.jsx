@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #debe82;
+  background-color: #3e85f3;
   z-index: 1200;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 `;
@@ -24,7 +24,7 @@ export const ModalStyled = styled.div`
     margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
-    width: 80vw;
+    width: 100vw;
     margin: 0 auto;
   }
 `;
@@ -35,10 +35,11 @@ export const CloseIcon = styled.svg`
   height: 14px;
   top: 14px;
   right: 14px;
-  fill: yellow;
+  transition: fill #3e85f3;
+  fill: #2b78ef;
 
   &:hover,
   &:focus {
-    fill: burlywood;
+    fill: #3e85f3;
   }
 `;

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const CurrentTeamContainer = styled.div`
-  width: 450px;
+  // width: 450px;
   height: 600px;
   padding-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
+  // margin-right: 20px;
 
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     height: 583px;
   }
 `;
@@ -19,7 +19,7 @@ export const CurrentTeamItem = styled.div`
   height: 70%;
   width: 250px;
   padding: 10px;
-  background-color: yellow;
+  background-color: #fff111;
   border-radius: 20px;
   margin-top: 10px;
 
@@ -28,7 +28,7 @@ export const CurrentTeamItem = styled.div`
     /* padding-left: 7px; */
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
     width: 260px;
   }
 `;
@@ -62,7 +62,7 @@ export const TeamName = styled.p`
   font-weight: 700;
   font-size: 24px;
   line-height: 1.3em;
-  max-width: 165px;
+  max-width: 150px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -74,7 +74,7 @@ export const TeamSubtitle = styled.h3`
   font-size: 22px;
   line-height: 1em;
   text-align: center;
-  color: black;
+  color: #f3b249;
 `;
 
 export const SocList = styled.ul`
@@ -91,11 +91,12 @@ export const SocItem = styled.li`
   height: 44px;
   width: 44px;
   border-radius: 50%;
-  background: yellowgreen;
+  background: #f0f0f0;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    background-color: yellowgreen;
+    background-color: #ffffff;
   }
 `;
 
@@ -106,11 +107,13 @@ export const SocLink = styled.a`
 `;
 
 export const SocIcon = styled.svg`
-  fill: black;
+  fill: var(--log-text-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    fill: black;
+    fill: #ffd2dd;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 
@@ -126,5 +129,5 @@ export const TeamText = styled.ul`
   font-size: 18px;
   line-height: 1em;
   text-align: center;
-  color: #ffffff;
+  color: #171820;
 `;

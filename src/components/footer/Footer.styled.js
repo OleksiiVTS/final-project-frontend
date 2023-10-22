@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const FooterWrapper = styled.footer`
   display: flex;
   justify-content: center;
-  background: #555aaa;
+  background: #ffffff;
   padding-top: 29px;
   padding-bottom: 29px;
-  border-top: 2px solid lime;
+  border-top: #000fff;
 `;
 
 export const FooterContainer = styled.div`
@@ -25,7 +25,7 @@ export const FooterText = styled.p`
   text-align: center;
   font-size: 14px;
   line-height: 2em;
-  color: greenyellow;
+  color: #000;
 `;
 
 export const HeartIcon = styled.svg`
@@ -35,8 +35,9 @@ export const HeartIcon = styled.svg`
 export const StudentsText = styled.span`
   text-decoration: underline;
   cursor: pointer;
+  transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: blueviolet;
+    color: #000a00;
   }
 `;

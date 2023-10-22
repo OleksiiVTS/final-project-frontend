@@ -15,7 +15,7 @@ import {
   SocLink,
   TextContainer,
   TeamText,
-} from './TeamFooter.styled';
+} from './CurrentTeam.styled';
 
 const CurrentTeam = ({
   name,
@@ -51,7 +51,7 @@ const CurrentTeam = ({
               className="swiper__link"
             >
               <SocIcon className="swiper__icon" width={30} height={30}>
-                <use href={sprite + '#icon-plus'} />
+                <use href={sprite + '#icon-github'} />
               </SocIcon>
             </SocLink>
           </SocItem>
@@ -63,7 +63,7 @@ const CurrentTeam = ({
               className="swiper__link"
             >
               <SocIcon className="swiper__icon" width={30} height={30}>
-                <use href={sprite + '#icon-plus'} />
+                <use href={sprite + '#icon-linkedin'} />
               </SocIcon>
             </SocLink>
           </SocItem>
@@ -71,11 +71,18 @@ const CurrentTeam = ({
 
         <TextContainer>
           <TeamText>
-            {description &&
-              description.map((element, index) => (
-                <li key={keyId + index}>{element}</li>
-              ))}
+            {Array.isArray(description)
+              ? description.map((element, index) => (
+                  <li key={keyId + index}>{element}</li>
+                ))
+              : null}
           </TeamText>
+
+          {/* <TeamText>
+            {description.map((element, index) => (
+              <li key={keyId + index}>{element}</li>
+            ))}
+          </TeamText> */}
         </TextContainer>
       </CurrentTeamItem>
     </CurrentTeamContainer>

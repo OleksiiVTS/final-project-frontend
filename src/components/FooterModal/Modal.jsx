@@ -1,67 +1,58 @@
+// Import
+import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useCallback, useEffect, useState } from 'react';
-import { ModalStyled, CloseIcon, Overlay } from './Modal.styled';
+import {
+  Backdrop,
+  CloseButton,
+  ModalContainer,
+  MyCloseIcon,
+} from './Modal.styled';
 
-import Icons from '../Pictures/sprite.svg';
-
-const modalRoot = document.getElementById('modal-root');
-
-const Modal = ({
-  children,
-  onCloseModal,
-  isOpened,
-  animationModalOnSubmit,
-}) => {
-  const [animationModal, setAnimationModal] = useState(isOpened);
-
-  const closeModal = useCallback(() => {
-    setAnimationModal(false);
-
-    setTimeout(() => {
-      onCloseModal();
-    }, 300);
-  }, [onCloseModal]);
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-
-    const onKeyDown = e => {
-      if (e.code === 'Escape') {
-        closeModal();
+// Export modal
+export const Modal = ({ children, handlerCloseModal }) => {
+  const handleKeyDown = useCallback(
+    evt => {
+      if (evt.code === 'Escape') {
+        handlerCloseModal();
       }
-    };
+    },
+    [handlerCloseModal]
+  );
 
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = 'auto';
-    };
-  }, [closeModal]);
-
-  const handleOverlayClick = ({ currentTarget, target }) => {
-    if (currentTarget !== target) {
-      return;
+  const handleBackdropClick = evt => {
+    if (evt.currentTarget === evt.target) {
+      handlerCloseModal();
     }
-
-    closeModal();
   };
 
+  // useEffect
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown]);
+
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
+
   return createPortal(
-    <Overlay
-      onClick={handleOverlayClick}
-      animationModal={animationModal}
-      animationModalOnSubmit={animationModalOnSubmit}
-    >
-      <ModalStyled>
-        <CloseIcon onClick={closeModal}>
-          <use href={`${Icons}#icon-close`}></use>
-        </CloseIcon>
-        {children}
-      </ModalStyled>
-    </Overlay>,
-    modalRoot
+    <>
+      <Backdrop onMouseDown={handleBackdropClick}>
+        <ModalContainer data-tour="7">
+          <CloseButton onClick={handlerCloseModal}>
+            <MyCloseIcon width="24" height="24"></MyCloseIcon>
+          </CloseButton>
+          {children}
+        </ModalContainer>
+      </Backdrop>
+    </>,
+    document.getElementById('modal-root')
   );
 };
-
-export default Modal;
