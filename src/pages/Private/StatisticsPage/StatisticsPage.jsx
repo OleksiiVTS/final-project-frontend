@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MainLayout from 'components/MainLayout/MainLayout';
 import StatisticsChart from 'components/Statistics/StatisticsChart/StatisticsChart';
@@ -11,43 +11,34 @@ import Header from 'components/Header/Header';
 import { selectTheme } from 'redux/header/headerSlice';
 import { CalendarContainer } from 'components/Calendar/common';
 import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
-// import { useLocation, useNavigate } from 'react-router-dom';
-import { addDays } from 'date-fns';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { addDays, format, subDays } from 'date-fns';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
-  // const { pathname } = useLocation();
   // const navigate = useNavigate();
-  const theme = useSelector(selectTheme);
-  const currentDay = getCurrentDate();
 
   const dispatch = useDispatch();
 
+  const theme = useSelector(selectTheme);
+  const currentDay = getCurrentDate();
+  console.log('currentDay: ', currentDay);
+
+  const requestDate = currentDay.slice(0, 7);
+
   useEffect(() => {
-    dispatch(getTasks(currentDay));
-  }, [dispatch, currentDay]);
+    dispatch(getTasks(requestDate));
+  }, [dispatch, requestDate]);
 
   const handlePrev = () => {
-    const newDate = addDays(new Date(currentDay), 1);
-    console.log('newDate: ', newDate);
+    subDays(new Date(currentDay), 1);
   };
 
-  //   const newDate = subMonths(new Date(currentDate), 1);
-  //   navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
-
-  // const handleNext = () => {
-  //   if (pathname.includes('day')) {
-  //     const newDate = addDays(new Date(currentDate), 1);
-  //     navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
-
-  //     return;
-  //   }
-
-  //   const newDate = addMonths(new Date(currentDate), 1);
-  //   navigate(`/calendar/month/${format(newDate, 'yyyy-MM-dd')}`);
-  // };
+  const handleNext = () => {
+    addDays(new Date(currentDay), 1);
+  };
 
   return (
     <MainLayout>
@@ -55,18 +46,14 @@ const StatisticsPage = () => {
         <HeaderContainer>
           <Header />
         </HeaderContainer>
-        <PeriodPaginator date={currentDay} onClickPrev={handlePrev} />
+        <PeriodPaginator
+          today={currentDay}
+          onClickPrev={handlePrev}
+          onClickNext={handleNext}
+        />
         <div>
           <div>{/* <h1>Statistics</h1> */}</div>
-          {/* <Header /> */}
-          <StatisticsChart today={currentDay} />
-          {/* <Suspense fallback={null}>
-          <CalendarToolbar
-            // onClickPrev={handlePrev}
-            onClickNext={handleNext}
-            today={currentDate}
-          />
-        </Suspense> */}
+          <StatisticsChart today={requestDate} />
         </div>
       </CalendarContainer>
     </MainLayout>

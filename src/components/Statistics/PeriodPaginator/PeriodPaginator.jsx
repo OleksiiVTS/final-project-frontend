@@ -10,15 +10,28 @@ import {
   ButtonLeft,
   ButtonRight,
 } from '../../Calendar/common/PeriodSelector.styled';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const PeriodPaginator = ({
   onClickPrev,
-  // onClickNext,
+  onClickNext,
   // onChangeType,
-  date,
+  today,
 }) => {
+  // const { pathname } = useLocation();
+  // const [type, setType] = useState('day');
   const theme = useSelector(selectTheme);
-  const currentDate = parse(date, 'yyyy-MM-dd', new Date());
+
+  // useEffect(() => {
+  //   if (pathname.includes('day')) {
+  //     setType('day');
+  //     return;
+  //   }
+  // }, [pathname]);
+
+  const currentDate = parse(today, 'yyyy-MM-dd', new Date());
+  console.log('currentDate: ', currentDate);
 
   return (
     <Wrapper>
@@ -32,7 +45,7 @@ const PeriodPaginator = ({
       <ButtonsWrapper>
         <ButtonLeft
           onClick={() => {
-            onClickPrev(currentDate);
+            onClickPrev();
           }}
           bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
           bordercolor={
@@ -51,9 +64,9 @@ const PeriodPaginator = ({
         </ButtonLeft>
 
         <ButtonRight
-          // onClick={() => {
-          //   onClickNext(type);
-          // }}
+          onClick={() => {
+            onClickNext();
+          }}
           bgcolor={theme === 'dark' ? '#21222C' : '#ffffff'}
           bordercolor={
             theme === 'dark'
@@ -79,6 +92,6 @@ export default PeriodPaginator;
 PeriodPaginator.propTypes = {
   // onClickPrev: PropTypes.func.isRequired,
   // onClickNext: PropTypes.func.isRequired,
-  type: PropTypes.string,
+  // type: PropTypes.string,
   date: PropTypes.string,
 };
