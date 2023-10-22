@@ -10,30 +10,37 @@ import {
   ButtonLeft,
   ButtonRight,
 } from '../../Calendar/common/PeriodSelector.styled';
+import { useState } from 'react';
 
 const PeriodPaginator = ({
+  currentDateData,
   onClickPrev,
   onClickNext,
-  type,
-  onChangeType,
-  date,
+  today,
 }) => {
-  const theme = useSelector(selectTheme);
-  const currentDate = parse(date, 'yyyy-MM-dd', new Date());
+  const [data, setData] = useState('');
 
+  const theme = useSelector(selectTheme);
+
+  const currentData = childData => {
+    setData(childData);
+  };
+  console.log('data:', data);
+
+  const currentDate = parse(today, 'yyyy-MM-dd', new Date());
+  console.log('currentDate: ', currentDate);
   return (
     <Wrapper>
-      <CalendarDate type={type} date={currentDate} />
-      {/* <CalendarDatePicker
-      type={type}
-      customInput={CustomInput} ===
-      onSelectDay={currentDate}
-      setCurrentDate={setCurrentDate} ===
-    /> */}
+      <CalendarDate
+        currentData={currentData}
+        date={currentDate}
+        currentDateData={currentDateData(data)}
+      />
+
       <ButtonsWrapper>
         <ButtonLeft
           onClick={() => {
-            onClickPrev(type);
+            onClickPrev();
           }}
           bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
           bordercolor={
@@ -53,7 +60,7 @@ const PeriodPaginator = ({
 
         <ButtonRight
           onClick={() => {
-            onClickNext(type);
+            onClickNext();
           }}
           bgcolor={theme === 'dark' ? '#21222C' : '#ffffff'}
           bordercolor={
@@ -78,8 +85,8 @@ const PeriodPaginator = ({
 export default PeriodPaginator;
 
 PeriodPaginator.propTypes = {
-  onClickPrev: PropTypes.func.isRequired,
-  onClickNext: PropTypes.func.isRequired,
-  type: PropTypes.string,
+  // onClickPrev: PropTypes.func.isRequired,
+  // onClickNext: PropTypes.func.isRequired,
+  // type: PropTypes.string,
   date: PropTypes.string,
 };
