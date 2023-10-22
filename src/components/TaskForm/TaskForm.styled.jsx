@@ -10,7 +10,7 @@ export const FormContainer = styled.div`
   box-sizing: border-box;
   padding: 0 10px 26px 10px;
   background-color: ${({ bg }) => bg || '#fff'};
-  `;
+`;
 
 export const FormElement = styled(styledForm)``;
 
@@ -45,7 +45,7 @@ export const FormField = styled(styledField)`
   }
 
   &::placeholder {
-    color: #343434;
+    color: ${({ color }) => color || '#FFFFFF'};
   }
 `;
 
@@ -58,9 +58,9 @@ export const TimeInput = styled(styledField)`
   /* background: #f6f6f6;
   color: #343434; */
 
-  background-color: ${({ bg }) => bg || '#f6f6f6'};
+  background-color: ${({ bg }) => bg || '#F6F6F6'};
   color: ${({ color }) => color || '#343434'};
-
+  border: ${({ color }) => color || 'white'};
   font-family: Inter;
   font-size: 14px;
   font-weight: 600;
@@ -235,6 +235,7 @@ export const AddTaskButton = styled.button`
   font-weight: 600;
   line-height: 1.17;
   border: 0;
+  cursor: pointer;
 
   &:hover {
     background: #2b78ef;
@@ -256,6 +257,7 @@ export const CancelButton = styled.button`
   font-weight: 600;
   line-height: 1.28;
   border: 0;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);

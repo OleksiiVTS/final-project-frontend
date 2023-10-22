@@ -145,11 +145,12 @@ export const TaskItem = styled.li`
   }
 `;
 
-export const TasksMoreLabel = styled.div`
+export const ShowMoreTasks = styled.div`
   /* margin-top: auto; */
   margin: auto;
   overflow: hidden;
   color: ${({ color }) => color};
   font-size: 14px;
+  line-height: 0.6;
   text-align: center;
 `;

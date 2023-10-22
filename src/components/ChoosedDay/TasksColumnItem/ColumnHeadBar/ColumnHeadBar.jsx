@@ -5,18 +5,19 @@ import { StyledColumnHeadBar } from './ColumnHeadBar.styled';
 import TaskModal from 'components/TaskModal/TaskModal';
 // import { ReactComponent as PlusCircleLogo } from '../../../Pictures/plus-circle.svg';
 import sprite from 'components/Pictures/sprite.svg';
+import { useTheme } from 'styled-components';
 
 const ColumnHeadBar = ({ title, category }) => {
   const [showModal, setShowModal] = useState(false);
   const { currentDate } = useParams();
 
   const handleClick = () => setShowModal(true);
-
   const closeModal = () => setShowModal(false);
 
+  const { theme } = useTheme();
   return (
     <>
-      <StyledColumnHeadBar className="columnHeadBar">
+      <StyledColumnHeadBar className="columnHeadBar" theme={theme}>
         <h3>{title}</h3>
         <button onClick={handleClick} aria-label="add task" type="button">
           <svg>

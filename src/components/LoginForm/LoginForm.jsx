@@ -31,6 +31,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 import { selectIsLoading } from 'redux/auth/authSelectors';
 import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const dispacth = useDispatch();
@@ -74,18 +75,20 @@ const LoginForm = () => {
           <Formik
             initialValues={{ email: '', password: '' }}
             validationSchema={userSchema}
+            validateOnChange={false}
+            validateOnBlur={false}            
             onSubmit={async values => {
               try {
                 dispacth(login(values));
               } catch (error) {
-                alert(error.message);
+                toast.error(error.message);
               }
             }}
           >
-            {({ errors, values, touched }) => (
+            {({ errors, isValid }) => (
               <FormStyled>
                 <BoxInput>
-                  {errors.email || values.email.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.email
@@ -100,7 +103,7 @@ const LoginForm = () => {
                     <FormLabel htmlFor="email">Email</FormLabel>
                   )}
 
-                  {errors.email || values.email.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -156,7 +159,7 @@ const LoginForm = () => {
                 </BoxInput>
 
                 <BoxInput>
-                  {errors.password || values.password.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.password
@@ -170,7 +173,7 @@ const LoginForm = () => {
                   ) : (
                     <FormLabel htmlFor="password">Password</FormLabel>
                   )}
-                  {errors.password || values.password.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
