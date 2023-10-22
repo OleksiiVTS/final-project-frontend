@@ -21,8 +21,8 @@ export const UserFormBox = styled.div`
   padding: 59px 18px 40px 18px;
   flex-direction: column;
   border-radius: 16px;
-  background: ${({bg}) => bg || 'var(--color-choice-dark-no-active)'};
-  color: ${({color})=> color || '#000'};
+  background: ${({ bg }) => bg || 'var(--color-choice-dark-no-active)'};
+  color: ${({ color }) => color || '#000'};
 
   justify-content: center;
   margin-left: auto;
@@ -39,9 +39,12 @@ export const UserFormBox = styled.div`
 export const BoxForm = styled.div`
   display: flex;
   flex-direction: column;
-
+  column-gap: 50px;
+  row-gap: 24px;
+  box-sizing: border-box;
   @media screen and (min-width: 1440px) {
     height: 270px;
+    width: 758px;
     flex-wrap: wrap;
   }
 `;
@@ -106,7 +109,7 @@ export const WhiteBox = styled.div`
   }
 `;
 export const UserName = styled.h1`
-  color: ${({color}) => color || '#343434'} ;
+  color: ${({ color }) => color || '#343434'};
 
   font-family: Inter;
   font-size: 18px;
@@ -127,7 +130,7 @@ export const UserName = styled.h1`
 `;
 
 export const User = styled.h2`
-  color: ${({color}) => color || '#343434'};
+  color: ${({ color }) => color || '#343434'};
 
   font-family: Inter;
   font-size: 14px;
@@ -150,7 +153,7 @@ export const LabelUserForm = styled.label`
   font-style: normal;
   font-weight: 400;
   line-height: 1.17; /* 116.667% */
-
+  display: block;
   margin-bottom: 8px;
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -159,33 +162,28 @@ export const LabelUserForm = styled.label`
 `;
 
 export const InputUserForm = styled.input`
+  box-sizing: border-box;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 1.29; /* 128.571% */
-  color: ${({color}) => color || '#000'};
-  background: ${({bg}) => bg || '#fff'};
-
-  margin-bottom: 18px;
+  color: ${({ color }) => color || '#000'};
+  background: ${({ bg }) => bg || '#fff'};
   padding: 12px 14px;
   border-radius: 8px;
-  border: 1px solid ${({bordercolor})=> bordercolor || 'rgba(17, 17, 17, 0.1)'};
+  width: 100%;
+  border: 1px solid
+    ${({ bordercolor }) => bordercolor || 'rgba(17, 17, 17, 0.1)'};
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
-    padding: 14px 18px;
+    padding: 13px 18px;
+    width: 354px;
     font-size: 16px;
     line-height: 1.12; /* 112.5% */
   }
   @media screen and (min-width: 1440px) {
     width: 354px;
-    &:nth-child(6) {
-      margin-bottom: 0;
-    }
-    &:nth-child(-n + 3) {
-      margin-right: 50px;
-    }
   }
 `;
 
@@ -223,4 +221,19 @@ export const BtnUserForm = styled.button`
   @media screen and (min-width: 768px) {
     margin-top: 88px;
   }
+`;
+
+export const Error = styled.p`
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: 400;
+  color: red;
+  position: absolute;
+  width: 400px;
+  bottom: -12px;
+  left: 10px;
+`;
+
+export const FieldWrap = styled.div`
+  position: relative;
 `;

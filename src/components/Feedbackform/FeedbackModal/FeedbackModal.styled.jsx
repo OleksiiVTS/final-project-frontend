@@ -13,7 +13,7 @@ export const RatingWrapper = styled.div`
 `;
 
 export const RatingTitle = styled.div`
-  color: #343434cc;
+  color: ${({color})=> color || '#343434cc'};
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
@@ -30,7 +30,8 @@ export const FormFeedback = styled.form`
 
   .head {
     align-items: center;
-    color: #343434cc;
+    /* color: #343434cc; */
+    color: ${({reviewtextcolor})=> reviewtextcolor || '#343434cc'};
     font-family: Inter;
     font-size: 12px;
     font-weight: 500;
@@ -44,15 +45,17 @@ export const FormFeedback = styled.form`
     padding: 14px 18px;
     // box-sizing: border-box;
     resize: none;
-    background: #efefef;
-    color: #343434;
+    /* background: #efefef;
+    color: #343434; */
+    color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
+    background-color: ${({textfieldbg}) => textfieldbg || '#efefef'};
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.28;
 
     ::placeholder {
-      color: #343434;
+      color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
       opacity: 1;
     }
     :active,
@@ -72,15 +75,38 @@ export const FormFeedback = styled.form`
     gap: 10px;
     margin-top: 18px;
 
-    .btn-foot {
+    .btn-foot-first {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #e5edfa;
+      background: var(--color-button-blue);
       border-radius: 8px;
       padding: 10px;
-      color: #343434;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.17;
+      border: 0;
+
+      &:hover {
+        background: #2b78ef;
+        color: #fff;
+        box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+        transition: background-color color box-shadow 0.2s;
+      }
+    }
+
+    .btn-foot-second {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: ${({bgbtn}) => bgbtn || 'var(--color-choice-light-no-active)'};
+      border-radius: 8px;
+      padding: 10px;
+      /* color: #343434; */
+      color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
       font-size: 14px;
       font-weight: 600;
       line-height: 1.17;
@@ -115,7 +141,8 @@ export const StyledFeedbackToolbar = styled.div`
 
   .btnEdit {
     color: #3e85f3;
-    background-color: #e3f3ff;
+    /* background-color: #e3f3ff; */
+    background-color: ${({editbtnbg})=> editbtnbg || 'var(--color-choice-light-no-active)'};
   }
 
   .btnEdit:hover {
