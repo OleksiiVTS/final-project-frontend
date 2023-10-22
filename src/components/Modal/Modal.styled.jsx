@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 
 export const ModalBackdrop = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 4;
-  top: 0;
   left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f7f6f960;
 `;
 

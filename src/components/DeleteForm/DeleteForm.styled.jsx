@@ -13,6 +13,7 @@ export const DeleteBtn = styled.button`
   font-weight: 600;
   line-height: 1.28;
   border: 0;
+  cursor: pointer;
 
   &:hover {
     background: #2b78ef;
@@ -34,6 +35,7 @@ export const CancelBtn = styled.button`
   font-weight: 600;
   line-height: 1.28;
   border: 0;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
