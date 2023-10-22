@@ -74,7 +74,6 @@ const defaultReviews = [
       avatarURL: 'https://i.pravatar.cc/150?img=23',
     },
   },
-
 ];
 
 export default defaultReviews;

@@ -8,6 +8,7 @@ export const NavTitle = styled.h4`
   margin-bottom: 32px;
   font-weight: 600;
   line-height: normal;
+  color: ${({color})=> color || 'rgba(52, 52, 52, 0.5)'};
 `;
 
 export const LogoBox = styled.div`

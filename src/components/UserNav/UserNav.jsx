@@ -41,7 +41,7 @@ const UserNav = ({ onCloseMenu }) => {
           </svg>
         </CloseBurgerBtn>
         </NavHeader>
-      <NavTitle>User Panel</NavTitle>
+      <NavTitle color={theme === 'dark' ? 'var(--color-field-names-dark)' : 'rgba(52, 52, 52, 0.5)'}>User Panel</NavTitle>
       <ul>
         <NavItem onClick={onCloseMenu}>
           <StyledNavLink
