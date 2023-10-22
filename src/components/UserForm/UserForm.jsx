@@ -1,8 +1,10 @@
 //import moment from 'moment';
-import { format } from 'date-fns';
+//import { format } from 'date-fns';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, useFormik } from 'formik';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import ValidSchema from 'helpers/schemaYap.js';
 import { update } from 'redux/auth/authOperations.js';
 
@@ -29,6 +31,7 @@ const UserForm = () => {
     dispatch(update(updateUser));
   };
   const isUser = useSelector(selectUser);
+  //const dateMoment = format(new Date(), 'MM/dd/yyyy');
 
   const fileRef = useRef(null);
 
@@ -36,10 +39,10 @@ const UserForm = () => {
     initialValues: {
       usrName: isUser.username ?? '',
       phone: isUser.phone ?? '',
-      birthday: isUser.birthday ?? '',
+      birthday: new Date(isUser.birthday),
       skype: isUser.skype ?? '',
       email: isUser.email ?? '',
-      file: null,
+      file: isUser.file,
     },
     onSubmit: values => {
       var imagefile = document.getElementById('avatar');
@@ -47,9 +50,7 @@ const UserForm = () => {
       updateUser({ ...values, avatarURL: imagefile });
     },
   });
-  //const nowDate = new Date();
-  const dateMoment = format(new Date(), 'MM/dd/yyyy');
-
+  console.log(formik.values.birthday);
   return (
     <Formik validationSchema={ValidSchema}>
       <FormaBox onSubmit={formik.handleSubmit}>
@@ -103,7 +104,7 @@ const UserForm = () => {
             ) : null}
 
             <LabelUserForm htmlFor="birthday">Birthday</LabelUserForm>
-            <InputUserForm
+            {/* <InputUserForm
               id="birthday"
               name="birthday"
               type="birthday"
@@ -111,8 +112,13 @@ const UserForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.birthday}
-            ></InputUserForm>
-
+            ></InputUserForm> */}
+            <DatePicker
+              id="birthday"
+              selected={formik.values.birthday}
+              name="birthday"
+              onChange={date => formik.setFieldValue('birthday', date)}
+            />
             <LabelUserForm htmlFor="email">Email</LabelUserForm>
             <InputUserForm
               id="email"
