@@ -106,6 +106,14 @@ const TaskForm = ({ closeModal, task }) => {
                       theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'
                     }
                     color={theme === 'dark' ? '#fff' : '#343434'}
+                    style={{
+                      border:
+                        errors.title && touched.title
+                          ? '1px solid red'
+                          : theme === 'dark'
+                          ? '1px solid rgba(52, 52, 52, 0.8)'
+                          : '1px solid #FFF',
+                    }}
                     id="title"
                     type="text"
                     name="title"
@@ -132,7 +140,14 @@ const TaskForm = ({ closeModal, task }) => {
                         theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'
                       }
                       color={theme === 'dark' ? '#fff' : '#343434'}
-                      border={theme === 'dark' ? '#FAFAFA4D' : '#fff'}
+                      style={{
+                        border:
+                          errors.start && touched.start
+                            ? '1px solid red'
+                            : theme === 'dark'
+                            ? '1px solid rgba(52, 52, 52, 0.8)'
+                            : '1px solid #FFF',
+                      }}
                       id="start"
                       type="time"
                       step="60"
@@ -164,6 +179,14 @@ const TaskForm = ({ closeModal, task }) => {
                       id="end"
                       type="time"
                       name="end"
+                      style={{
+                        border:
+                          errors.end && touched.end
+                            ? '1px solid red'
+                            : theme === 'dark'
+                            ? '1px solid rgba(52, 52, 52, 0.8)'
+                            : '1px solid #FFF',
+                      }}
                     ></TimeInput>
                   </TimeFieldWrap>
                 </TimeWrapper>
