@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectSidebarModalOpen,
   changeSidebarModalOpen,
+  selectTheme,
 } from 'redux/header/headerSlice';
 
 import UserNav from '../UserNav/UserNav.jsx';
@@ -47,6 +48,7 @@ const BurgerContainer = styled.div`
 
 const BurgerMenu = () => {
   const sidebarModalStatus = useSelector(selectSidebarModalOpen);
+  const theme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
   const closeBurgerMenu = () => {
@@ -75,7 +77,7 @@ const BurgerMenu = () => {
   return (
     <>
       <BackgroundOverlay open={sidebarModalStatus} onClick={closeBurgerMenu} />
-      <BurgerMenuWrapper open={sidebarModalStatus}>
+      <BurgerMenuWrapper bg={theme === 'dark' ? '#000' : '#fff'} open={sidebarModalStatus}>
         <BurgerContainer>
           <UserNav onCloseMenu={closeBurgerMenu} />
           <LogoutBtn />

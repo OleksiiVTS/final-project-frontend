@@ -22,6 +22,7 @@ import {
 } from './UserForm.styled.jsx';
 import { useRef } from 'react';
 import PreviewAvatar from './PreviewAvatar.js';
+import { selectTheme } from 'redux/header/headerSlice.js';
 
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const UserForm = () => {
     dispatch(update(updateUser));
   };
   const isUser = useSelector(selectUser);
+  const theme = useSelector(selectTheme);
 
   const fileRef = useRef(null);
 
@@ -53,7 +55,11 @@ const UserForm = () => {
   return (
     <Formik validationSchema={ValidSchema}>
       <FormaBox onSubmit={formik.handleSubmit}>
-        <UserFormBox validationSchema={ValidSchema}>
+        <UserFormBox
+          validationSchema={ValidSchema}
+          bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
+          color={theme === 'dark' ? 'var(--color-field-names-dark)' : '#000'}
+        >
           <div>
             <label htmlFor="avatar">
               {formik.values.file ? (
@@ -84,13 +90,30 @@ const UserForm = () => {
                 value={formik.values.avatar}
               />
             </label>
-            <UserName>{isUser.username ?? 'User Name'}</UserName>
+            <UserName color={theme === 'dark' ? '#fff' : '#343434'}>
+              {isUser.username ?? 'User Name'}
+            </UserName>
 
-            <User>User</User>
+            <User
+              color={
+                theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434'
+              }
+            >
+              User
+            </User>
           </div>
           <BoxForm>
             <LabelUserForm htmlFor="usrName">User Name</LabelUserForm>
             <InputUserForm
+              bg={
+                theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
+              }
+              color={theme === 'dark' ? '#fff' : '#000'}
+              bordercolor={
+                theme === 'dark'
+                  ? 'var(--color-field-names-dark)'
+                  : 'rgba(17, 17, 17, 0.1)'
+              }
               id="usrName"
               name="usrName"
               type="text"
@@ -104,6 +127,15 @@ const UserForm = () => {
 
             <LabelUserForm htmlFor="birthday">Birthday</LabelUserForm>
             <InputUserForm
+              bg={
+                theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
+              }
+              color={theme === 'dark' ? '#fff' : '#000'}
+              bordercolor={
+                theme === 'dark'
+                  ? 'var(--color-field-names-dark)'
+                  : 'rgba(17, 17, 17, 0.1)'
+              }
               id="birthday"
               name="birthday"
               type="birthday"
@@ -115,6 +147,15 @@ const UserForm = () => {
 
             <LabelUserForm htmlFor="email">Email</LabelUserForm>
             <InputUserForm
+              bg={
+                theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
+              }
+              color={theme === 'dark' ? '#fff' : '#000'}
+              bordercolor={
+                theme === 'dark'
+                  ? 'var(--color-field-names-dark)'
+                  : 'rgba(17, 17, 17, 0.1)'
+              }
               id="email"
               name="email"
               type="email"
@@ -129,6 +170,15 @@ const UserForm = () => {
 
             <LabelUserForm htmlFor="phone">Phone</LabelUserForm>
             <InputUserForm
+              bg={
+                theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
+              }
+              color={theme === 'dark' ? '#fff' : '#000'}
+              bordercolor={
+                theme === 'dark'
+                  ? 'var(--color-field-names-dark)'
+                  : 'rgba(17, 17, 17, 0.1)'
+              }
               id="phone"
               name="phone"
               type="phone"
@@ -140,6 +190,15 @@ const UserForm = () => {
 
             <LabelUserForm htmlFor="skype">Skype</LabelUserForm>
             <InputUserForm
+              bg={
+                theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
+              }
+              color={theme === 'dark' ? '#fff' : '#000'}
+              bordercolor={
+                theme === 'dark'
+                  ? 'var(--color-field-names-dark)'
+                  : 'rgba(17, 17, 17, 0.1)'
+              }
               id="skype"
               name="skype"
               type="skype"

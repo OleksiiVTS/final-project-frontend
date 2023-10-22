@@ -102,7 +102,7 @@ const CalendarPage = () => {
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header />
+          <Header pageName='Calendar'/>
         </HeaderContainer>
 
         <Suspense fallback={null}>
