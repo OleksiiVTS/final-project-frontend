@@ -8,8 +8,10 @@ import { selectTasks } from 'redux/task/taskSelectors';
 import { CreateSortedTasks, filterDayTasks } from 'helpers/helpers';
 import { CATEGORY_LIST } from 'constants/categoryList';
 import DayCalendarHead from './ColumnHeadBar/DayCalendarHead';
+import { ThemeProvider } from 'styled-components';
+import { selectTheme } from 'redux/header/headerSlice';
 
-const ChoosedDay = ({ theme }) => {
+const ChoosedDay = () => {
   const { pathname } = useLocation();
   const monthTasks = useSelector(selectTasks);
 
@@ -17,12 +19,14 @@ const ChoosedDay = ({ theme }) => {
   const dayTasks = filterDayTasks(monthTasks, day);
   const sortedTasks = CreateSortedTasks(CATEGORY_LIST, dayTasks); // maybe useSelector ?
 
+  const theme = useSelector(selectTheme);
   return (
-    <StyledChoosedDay className="ChoosedDay">
-      <DayCalendarHead theme={theme} />
-      <TasksColumnsList sortedTasks={sortedTasks} theme={theme} />
-    </StyledChoosedDay>
-    //
+    <ThemeProvider theme={{ theme }}>
+      <StyledChoosedDay className="ChoosedDay" theme={{ theme }}>
+        <DayCalendarHead />
+        <TasksColumnsList sortedTasks={sortedTasks} />
+      </StyledChoosedDay>
+    </ThemeProvider>
   );
 };
 

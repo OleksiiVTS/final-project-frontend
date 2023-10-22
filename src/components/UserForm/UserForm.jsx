@@ -18,6 +18,8 @@ import {
   Icon,
   IconDiv,
   InputUserForm,
+  InputUserFormEmail,
+  LabelAvatar,
   LabelUserForm,
   User,
   UserFormBox,
@@ -83,7 +85,7 @@ const UserForm = () => {
           color={theme === 'dark' ? 'var(--color-field-names-dark)' : '#000'}
         >
           <div>
-            <label htmlFor="avatar">
+            <LabelAvatar htmlFor="avatar">
               {formik.values.file ? (
                 <PreviewAvatar file={formik.values.file} />
               ) : (
@@ -111,7 +113,7 @@ const UserForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.avatar}
               />
-            </label>
+            </LabelAvatar>
             <UserName color={theme === 'dark' ? '#fff' : '#343434'}>
               {isUser.username ?? 'User Name'}
             </UserName>
@@ -182,7 +184,7 @@ const UserForm = () => {
               <use href={sprite + '#icon-chevron-down'}></use>
             </Chevron>
             <LabelUserForm htmlFor="email">Email</LabelUserForm>
-            <InputUserForm
+            <InputUserFormEmail
               bg={
                 theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
               }

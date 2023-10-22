@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const elementBorderColor = {
+  dark: 'rgba(255, 255, 255, 0.15)',
+  light: 'rgba(220, 227, 229, 0.50)',
+};
+
+const elementBgColor = {
+  dark: '#21222c',
+  light: '#ffffff',
+};
+
 export const StyledTasksColumnItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,8 +20,8 @@ export const StyledTasksColumnItem = styled.div`
   height: 100%;
 
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.5);
-  background: #fff;
+  border: 1px solid ${({ theme }) => elementBorderColor[theme]};
+  background-color: ${({ theme }) => elementBgColor[theme]};
 
   @media screen and (min-width: 768px) {
     padding: 20px 20px 20px;

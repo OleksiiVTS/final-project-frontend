@@ -30,8 +30,8 @@ import IMG from '../Pictures/login_goose.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 import { selectIsLoading } from 'redux/auth/authSelectors';
-import Loader from 'components/Loader';
 import { toast } from 'react-toastify';
+import { Circles } from 'react-loader-spinner';
 
 const LoginForm = () => {
   const dispacth = useDispatch();
@@ -76,7 +76,7 @@ const LoginForm = () => {
             initialValues={{ email: '', password: '' }}
             validationSchema={userSchema}
             validateOnChange={false}
-            validateOnBlur={false}            
+            validateOnBlur={false}
             onSubmit={async values => {
               try {
                 dispacth(login(values));
@@ -231,15 +231,17 @@ const LoginForm = () => {
                 </BoxInput>
 
                 {isLoading ? (
-                  <>
-                    <LoginButton type="submit" disabled={isLoading}>
-                      Log in <FiLogIn style={{ marginLeft: 11 }} />
-                      <Loader />
-                    </LoginButton>
-                    <GoogleBtn type="button" onClick={GoogleAuth}>
-                      Sign in with Google 🚀{' '}
-                    </GoogleBtn>
-                  </>
+                  <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                    <Circles
+                      height="80"
+                      width="80"
+                      color="#3E85F3"
+                      ariaLabel="circles-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
                 ) : (
                   <>
                     <LoginButton type="submit" disabled={isLoading}>

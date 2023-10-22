@@ -5,7 +5,6 @@ import { Container } from './ChoosedMonth.styled';
 const ChoosedMonth = ({ theme }) => {
   return (
     <Container>
-      {/* <h2>Month</h2> */}
       <CalendarHead theme={theme} />
       <CalendarTable theme={theme} />
     </Container>
