@@ -90,11 +90,22 @@ const TaskForm = ({ closeModal, task }) => {
           {({ values, errors, touched }) => {
             return (
               <FormElement>
-                <FormLabel htmlFor="title">Title</FormLabel>
+                <FormLabel
+                  htmlFor="title"
+                  style={
+                    theme === 'dark'
+                      ? { color: 'rgba(250, 250, 250, 0.30)' }
+                      : { color: 'rgba(52, 52, 52, 0.8)' }
+                  }
+                >
+                  Title
+                </FormLabel>
                 <BoxInput>
                   <FormField
-                  bg={theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'}
-                  color={theme === 'dark' ? '#fff' : '#343434'}
+                    bg={
+                      theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'
+                    }
+                    color={theme === 'dark' ? '#fff' : '#343434'}
                     id="title"
                     type="text"
                     name="title"
@@ -106,10 +117,22 @@ const TaskForm = ({ closeModal, task }) => {
                 </BoxInput>
                 <TimeWrapper>
                   <TimeFieldWrap>
-                    <FormLabel htmlFor="start">Start</FormLabel>
+                    <FormLabel
+                      htmlFor="start"
+                      style={
+                        theme === 'dark'
+                          ? { color: 'rgba(250, 250, 250, 0.30)' }
+                          : { color: 'rgba(52, 52, 52, 0.8)' }
+                      }
+                    >
+                      Start
+                    </FormLabel>
                     <TimeInput
-                                      bg={theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'}
-                                      color={theme === 'dark' ? '#fff' : '#343434'}
+                      bg={
+                        theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'
+                      }
+                      color={theme === 'dark' ? '#fff' : '#343434'}
+                      border={theme === 'dark' ? '#FAFAFA4D' : '#fff'}
                       id="start"
                       type="time"
                       step="60"
@@ -123,35 +146,89 @@ const TaskForm = ({ closeModal, task }) => {
                     ) : null}
                   </TimeFieldWrap>
                   <TimeFieldWrap>
-                    <FormLabel htmlFor="end">End</FormLabel>
-                    <TimeInput                   bg={theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'}
-                  color={theme === 'dark' ? '#fff' : '#343434'} id="end" type="time" name="end"></TimeInput>
+                    <FormLabel
+                      htmlFor="end"
+                      style={
+                        theme === 'dark'
+                          ? { color: 'rgba(250, 250, 250, 0.30)' }
+                          : { color: 'rgba(52, 52, 52, 0.8)' }
+                      }
+                    >
+                      End
+                    </FormLabel>
+                    <TimeInput
+                      bg={
+                        theme !== 'dark' ? '#f6f6f6' : 'var(--color-theme-dark)'
+                      }
+                      color={theme === 'dark' ? '#fff' : '#343434'}
+                      id="end"
+                      type="time"
+                      name="end"
+                    ></TimeInput>
                   </TimeFieldWrap>
                 </TimeWrapper>
                 <PriorityWrapper role="group" id="priority-group">
-                  <RadioLabelStyled>
+                  <RadioLabelStyled
+                    style={
+                      theme === 'dark'
+                        ? { color: '#FFF' }
+                        : { color: 'rgba(52, 52, 52, 0.8)' }
+                    }
+                  >
                     <RadioBtn type="radio" name="priority" value="low" />
                     <CheckedRadioBtnBlue />
-                    <LowPrioBtn />
+                    <LowPrioBtn
+                      style={
+                        theme === 'dark'
+                          ? { backgroundColor: '#000000' }
+                          : { backgroundColor: '#FFF' }
+                      }
+                    />
                     Low
                   </RadioLabelStyled>
-                  <RadioLabelStyled>
+                  <RadioLabelStyled
+                    style={
+                      theme === 'dark'
+                        ? { color: '#FFF' }
+                        : { color: 'rgba(52, 52, 52, 0.8)' }
+                    }
+                  >
                     <RadioBtn
                       type="radio"
                       name="priority"
                       value="medium"
                     ></RadioBtn>
                     <CheckedRadioBtnYellow />
-                    <MidPrioBtn /> Medium
+                    <MidPrioBtn
+                      style={
+                        theme === 'dark'
+                          ? { backgroundColor: '#000000' }
+                          : { backgroundColor: '#FFF' }
+                      }
+                    />{' '}
+                    Medium
                   </RadioLabelStyled>
-                  <RadioLabelStyled>
+                  <RadioLabelStyled
+                    style={
+                      theme === 'dark'
+                        ? { color: '#FFF' }
+                        : { color: 'rgba(52, 52, 52, 0.8)' }
+                    }
+                  >
                     <RadioBtn
                       type="radio"
                       name="priority"
                       value="high"
                     ></RadioBtn>
                     <CheckedRadioBtnRed />
-                    <HighPrioBtn /> High
+                    <HighPrioBtn
+                      style={
+                        theme === 'dark'
+                          ? { backgroundColor: '#000000' }
+                          : { backgroundColor: '#FFF' }
+                      }
+                    />{' '}
+                    High
                   </RadioLabelStyled>
                 </PriorityWrapper>
                 <BtnWrapper>
