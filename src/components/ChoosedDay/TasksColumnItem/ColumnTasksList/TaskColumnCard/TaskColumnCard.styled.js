@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledTaskColumnCard = styled.div`
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  row-gap: 14px;
-  margin-bottom: 32px; */
+  justify-content: space-between;
   padding: 14px 14px 18px;
+
+  min-height: 108px;
 
   border-radius: 8px;
   border: 1px solid rgba(220, 227, 229, 0.8);
@@ -16,9 +17,6 @@ export const StyledTaskColumnCard = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-
-    /* margin-bottom: 28px; */
-    margin-bottom: 5px;
 
     color: #111;
     font-family: Inter;

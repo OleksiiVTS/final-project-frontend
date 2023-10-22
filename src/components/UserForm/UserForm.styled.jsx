@@ -1,27 +1,28 @@
 import styled from 'styled-components';
 
 export const FormaBox = styled.form`
-  width: 100vh;
+  /* width: 100vh; */
   height: 100vh;
 
-  padding: 95px 20px 40px 20px;
-  background-color: #f7f6f9;
+  /* padding: 95px 20px 40px 20px; */
+  /* background-color: #f7f6f9; */
   @media screen and (min-width: 768px) {
-    padding: 64px 32px 38px 32px;
+    /* padding: 64px 32px 38px 32px; */
   }
   @media screen and (min-width: 1440px) {
-    padding: 33px 32px 32px 32px;
+    /* padding: 33px 32px 32px 32px; */
   }
 `;
 export const UserFormBox = styled.div`
   width: 335px;
   position: relative;
-  outline: 1px solid red;
+
   display: flex;
   padding: 59px 18px 40px 18px;
   flex-direction: column;
   border-radius: 16px;
-  background: #fff;
+  background: ${({bg}) => bg || 'var(--color-choice-dark-no-active)'};
+  color: ${({color})=> color || '#000'};
 
   justify-content: center;
   margin-left: auto;
@@ -67,25 +68,14 @@ export const Avatar = styled.img`
   }
 `;
 
-export const InputHide = styled.input`
-  opacity: 0;
-  outline: 1px solid green;
-  width: 30px;
-  height: 20px;
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  z-index: 3;
-  @media screen and (min-width: 768px) {
-    top: 100px;
-  }
-`;
-export const IconDiv = styled.div`
+export const IconDiv = styled.button`
   position: absolute;
   top: 25px;
   left: 52%;
   z-index: 2;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
   @media screen and (min-width: 768px) {
     top: 150px;
     left: 51%;
@@ -116,7 +106,7 @@ export const WhiteBox = styled.div`
   }
 `;
 export const UserName = styled.h1`
-  color: #343434;
+  color: ${({color}) => color || '#343434'} ;
 
   font-family: Inter;
   font-size: 18px;
@@ -137,7 +127,7 @@ export const UserName = styled.h1`
 `;
 
 export const User = styled.h2`
-  color: #343434;
+  color: ${({color}) => color || '#343434'};
 
   font-family: Inter;
   font-size: 14px;
@@ -174,11 +164,13 @@ export const InputUserForm = styled.input`
   font-style: normal;
   font-weight: 600;
   line-height: 1.29; /* 128.571% */
+  color: ${({color}) => color || '#000'};
+  background: ${({bg}) => bg || '#fff'};
 
   margin-bottom: 18px;
   padding: 12px 14px;
   border-radius: 8px;
-  border: 1px solid rgba(17, 17, 17, 0.1);
+  border: 1px solid ${({bordercolor})=> bordercolor || 'rgba(17, 17, 17, 0.1)'};
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
