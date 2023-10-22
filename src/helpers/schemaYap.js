@@ -7,7 +7,7 @@ const ValidSchema = Yup.object().shape({
     .max(16, 'Must be 16 characters or less')
     .required('Username is required'),
   phone: Yup.string().matches(phoneRegExp, 'Wrong number'),
-  birthday: Yup.string(),
+  birthday: Yup.date(),
   skype: Yup.string().max(16, 'Must be 16 characters or less'),
   email: Yup.string()
     .email('Invalid email address')
