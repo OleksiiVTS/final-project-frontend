@@ -10,38 +10,33 @@ import {
   ButtonLeft,
   ButtonRight,
 } from '../../Calendar/common/PeriodSelector.styled';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 const PeriodPaginator = ({
+  currentDateData,
   onClickPrev,
   onClickNext,
-  // onChangeType,
   today,
 }) => {
-  // const { pathname } = useLocation();
-  // const [type, setType] = useState('day');
+  const [data, setData] = useState('');
+
   const theme = useSelector(selectTheme);
 
-  // useEffect(() => {
-  //   if (pathname.includes('day')) {
-  //     setType('day');
-  //     return;
-  //   }
-  // }, [pathname]);
+  const currentData = childData => {
+    setData(childData);
+  };
+  console.log('data:', data);
 
   const currentDate = parse(today, 'yyyy-MM-dd', new Date());
   console.log('currentDate: ', currentDate);
-
   return (
     <Wrapper>
-      <CalendarDate date={currentDate} />
-      {/* <CalendarDatePicker
-      type={type}
-      customInput={CustomInput} ===
-      onSelectDay={currentDate}
-      setCurrentDate={setCurrentDate} ===
-    /> */}
+      <CalendarDate
+        currentData={currentData}
+        date={currentDate}
+        currentDateData={currentDateData(data)}
+      />
+
       <ButtonsWrapper>
         <ButtonLeft
           onClick={() => {

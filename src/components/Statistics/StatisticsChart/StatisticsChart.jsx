@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -12,19 +12,40 @@ import {
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
-import { getCurrentDate } from 'utils/calendar';
+// import { getCurrentDate } from 'utils/calendar';
 // import { getTasks } from 'redux/task/tasksAPI';
 
-const StatisticsChart = ({ today }) => {
+const StatisticsChart = ({ today, currentDate }) => {
   const isTasks = useSelector(selectTasks);
-  const currentDate = getCurrentDate();
+  console.log('currentDate: ', currentDate);
 
   const dateTask = isTasks
-    .map(task => task.date)
-    .filter(el => {
-      el.includes(currentDate);
-      return el;
-    });
+    .filter(el => el.date === currentDate)
+    .map(task => task.category);
+  console.log('isTasks: ', isTasks);
+  console.log('dateTask: ', dateTask);
+
+  const todoByDay = dateTask.filter(el => el.includes('to-do')).length;
+
+  const inprogressByDay = dateTask.filter(el =>
+    el.includes('in-progress')
+  ).length;
+
+  const doneByDay = dateTask.filter(el => el.includes('done')).length;
+
+  const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
+
+  const todoByDayPercentages = ((todoByDay / allTasksByDay) * 100).toFixed(0);
+  console.log('todoByDayPercentages: ', todoByDayPercentages);
+
+  const inprogressByDayPercentages = (
+    (inprogressByDay / allTasksByDay) *
+    100
+  ).toFixed(0);
+  console.log('inprogressByDayPercentages: ', inprogressByDayPercentages);
+
+  const doneByDayPercentages = ((doneByDay / allTasksByDay) * 100).toFixed(0);
+  console.log('doneByDayPercentages: ', doneByDayPercentages);
 
   const dataCurrentMonth = {
     categoryTask: isTasks.map(task => task.category),
@@ -71,19 +92,19 @@ const StatisticsChart = ({ today }) => {
     {
       name: 'To-Do',
       uv: todoByMonthPercentages,
-      pv: 0,
+      pv: todoByDayPercentages,
       amt: 100,
     },
     {
       name: 'In-Progress',
       uv: inprogressByMonthPercentages,
-      pv: 0,
+      pv: inprogressByDayPercentages,
       amt: 100,
     },
     {
       name: 'Done',
       uv: doneByMonthPercentages,
-      pv: 0,
+      pv: doneByDayPercentages,
       amt: 100,
     },
   ];

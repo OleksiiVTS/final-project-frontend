@@ -11,50 +11,47 @@ import Header from 'components/Header/Header';
 import { selectTheme } from 'redux/header/headerSlice';
 import { CalendarContainer } from 'components/Calendar/common';
 import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { addDays, format, subDays } from 'date-fns';
+import { addDays, subDays } from 'date-fns';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
-  // const navigate = useNavigate();
-
+  const [dateData, setDateData] = useState('');
   const dispatch = useDispatch();
 
   const theme = useSelector(selectTheme);
   const currentDay = getCurrentDate();
-  console.log('currentDay: ', currentDay);
-
-  const requestDate = currentDay.slice(0, 7);
-
   useEffect(() => {
-    dispatch(getTasks(requestDate));
-  }, [dispatch, requestDate]);
+    dispatch(getTasks(dateData.slice(0, 7)));
+  }, [dispatch, dateData]);
+
+  const currentDateData = childData => {
+    setDateData(childData);
+  };
+  console.log('dateData:', dateData);
 
   const handlePrev = () => {
-    subDays(new Date(currentDay), 1);
+    subDays(new Date(dateData), 1);
   };
 
   const handleNext = () => {
-    addDays(new Date(currentDay), 1);
+    addDays(new Date(dateData), 1);
   };
 
   return (
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header pageName='Statistics'/>
+          <Header pageName="Statistics" />
         </HeaderContainer>
         <PeriodPaginator
+          currentDateData={currentDateData}
           today={currentDay}
           onClickPrev={handlePrev}
           onClickNext={handleNext}
         />
-        <div>
-          <div>{/* <h1>Statistics</h1> */}</div>
-          <StatisticsChart today={requestDate} />
-        </div>
+        <StatisticsChart currentDate={dateData} />
       </CalendarContainer>
     </MainLayout>
 
