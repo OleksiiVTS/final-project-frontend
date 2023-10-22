@@ -1,6 +1,6 @@
 //import moment from 'moment';
 //import { format } from 'date-fns';
-import { AiFillPlusCircle } from 'react-icons/ai';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, useFormik } from 'formik';
 import DatePicker from 'react-datepicker';
@@ -13,7 +13,9 @@ import {
   Avatar,
   BoxForm,
   BtnUserForm,
+  Chevron,
   FormaBox,
+  Icon,
   IconDiv,
   InputUserForm,
   LabelUserForm,
@@ -25,6 +27,7 @@ import {
 import { useRef } from 'react';
 import PreviewAvatar from './PreviewAvatar.js';
 import { selectTheme } from 'redux/header/headerSlice.js';
+import sprite from '../Pictures/sprite.svg';
 
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -53,6 +56,24 @@ const UserForm = () => {
     },
   });
   console.log(formik.values.birthday);
+
+  const Input = ({ onChange, placeholder, value, isSecure, id, onClick }) => (
+    <InputUserForm
+      bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
+      color={theme === 'dark' ? '#fff' : '#000'}
+      bordercolor={
+        theme === 'dark'
+          ? 'var(--color-field-names-dark)'
+          : 'rgba(17, 17, 17, 0.1)'
+      }
+      onChange={onChange}
+      placeholder={placeholder}
+      value={value}
+      isSecure={isSecure}
+      id={id}
+      onClick={onClick}
+    />
+  );
   return (
     <Formik validationSchema={ValidSchema}>
       <FormaBox onSubmit={formik.handleSubmit}>
@@ -75,7 +96,7 @@ const UserForm = () => {
                   fileRef.current.click();
                 }}
               >
-                <AiFillPlusCircle size={24} fill="#3E85F3" />
+                <Icon />
               </IconDiv>
               <WhiteBox></WhiteBox>
               <input
@@ -145,12 +166,21 @@ const UserForm = () => {
               onBlur={formik.handleBlur}
               value={formik.values.birthday}
             ></InputUserForm>  */}
+
             <DatePicker
               id="birthday"
               selected={formik.values.birthday}
               name="birthday"
+              customInput={<Input />}
               onChange={date => formik.setFieldValue('birthday', date)}
             />
+            <Chevron
+              width="18"
+              height="18"
+              stroke={theme === 'dark' ? '#fff' : '#000'}
+            >
+              <use href={sprite + '#icon-chevron-down'}></use>
+            </Chevron>
             <LabelUserForm htmlFor="email">Email</LabelUserForm>
             <InputUserForm
               bg={

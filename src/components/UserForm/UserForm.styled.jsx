@@ -1,4 +1,16 @@
 import styled from 'styled-components';
+import { AiFillPlusCircle } from 'react-icons/ai';
+
+export const Icon = styled(AiFillPlusCircle)`
+  fill: #3e85f3;
+  width: 14px;
+  height: 14px;
+
+  @media screen and (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
 
 export const FormaBox = styled.form`
   /* width: 100vh; */
@@ -21,8 +33,8 @@ export const UserFormBox = styled.div`
   padding: 59px 18px 40px 18px;
   flex-direction: column;
   border-radius: 16px;
-  background: ${({bg}) => bg || 'var(--color-choice-dark-no-active)'};
-  color: ${({color})=> color || '#000'};
+  background: ${({ bg }) => bg || 'var(--color-choice-dark-no-active)'};
+  color: ${({ color }) => color || '#000'};
 
   justify-content: center;
   margin-left: auto;
@@ -41,7 +53,7 @@ export const BoxForm = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: 1440px) {
-    height: 270px;
+    height: 289px;
     flex-wrap: wrap;
   }
 `;
@@ -74,11 +86,16 @@ export const IconDiv = styled.button`
   left: 52%;
   z-index: 2;
   cursor: pointer;
+  padding: 0;
   background-color: transparent;
+  border-radius: 50%;
   border: none;
+
   @media screen and (min-width: 768px) {
     top: 150px;
     left: 51%;
+    width: 25px;
+    height: 25px;
   }
   @media screen and (min-width: 1440px) {
     top: 168px;
@@ -95,10 +112,12 @@ export const WhiteBox = styled.div`
   border-radius: 50%;
   z-index: 1;
   @media screen and (min-width: 768px) {
-    top: 156.5px;
+    top: 157px;
     left: 52%;
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
+    width: 12px;
+    height: 12px;
   }
   @media screen and (min-width: 1440px) {
     top: 175px;
@@ -106,7 +125,7 @@ export const WhiteBox = styled.div`
   }
 `;
 export const UserName = styled.h1`
-  color: ${({color}) => color || '#343434'} ;
+  color: ${({ color }) => color || '#343434'};
 
   font-family: Inter;
   font-size: 18px;
@@ -127,7 +146,7 @@ export const UserName = styled.h1`
 `;
 
 export const User = styled.h2`
-  color: ${({color}) => color || '#343434'};
+  color: ${({ color }) => color || '#343434'};
 
   font-family: Inter;
   font-size: 14px;
@@ -154,7 +173,7 @@ export const LabelUserForm = styled.label`
   margin-bottom: 8px;
   @media screen and (min-width: 768px) {
     font-size: 14px;
-    line-height: 1.29; /* 128.571% */
+    line-height: 1.28; /* 128.571% */
   }
 `;
 
@@ -164,13 +183,14 @@ export const InputUserForm = styled.input`
   font-style: normal;
   font-weight: 600;
   line-height: 1.29; /* 128.571% */
-  color: ${({color}) => color || '#000'};
-  background: ${({bg}) => bg || '#fff'};
+  color: ${({ color }) => color || '#000'};
+  background: ${({ bg }) => bg || '#fff'};
 
   margin-bottom: 18px;
   padding: 12px 14px;
   border-radius: 8px;
-  border: 1px solid ${({bordercolor})=> bordercolor || 'rgba(17, 17, 17, 0.1)'};
+  border: 1px solid
+    ${({ bordercolor }) => bordercolor || 'rgba(17, 17, 17, 0.1)'};
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
@@ -180,12 +200,24 @@ export const InputUserForm = styled.input`
   }
   @media screen and (min-width: 1440px) {
     width: 354px;
+
     &:nth-child(6) {
       margin-bottom: 0;
     }
     &:nth-child(-n + 3) {
       margin-right: 50px;
     }
+  }
+`;
+
+export const Chevron = styled.svg`
+  position: absolute;
+  bottom: 57%;
+  right: 30px;
+
+  @media screen and (min-width: 768px) {
+    bottom: 55%;
+    right: 189px;
   }
 `;
 
