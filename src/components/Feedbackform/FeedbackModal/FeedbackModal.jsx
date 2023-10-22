@@ -17,6 +17,7 @@ import {
 } from 'redux/review/reviewOperations';
 import { selectIsLoading, selectOwnReview } from 'redux/review/reviewSelectors';
 import Loader from 'components/Loader';
+import { selectTheme } from 'redux/header/headerSlice';
 
 const FeedbackModal = ({ isActive, closeModal }) => {
   const [feedbackRating, setFeedbackRating] = useState(5);
@@ -24,7 +25,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
   const [isReview, setIsReview] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [hasFetchedReview, setHasFetchedReview] = useState(false);
-
+  const theme = useSelector(selectTheme);
   const ownReview = useSelector(selectOwnReview);
   const isLoading = useSelector(selectIsLoading);
 
@@ -87,19 +88,25 @@ const FeedbackModal = ({ isActive, closeModal }) => {
       {!isLoading && (
         <>
           <RatingWrapper>
-            <RatingTitle>Rating</RatingTitle>
+            <RatingTitle color={theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'}>Rating</RatingTitle>
             <div className="stars">
               <StarApp rating={feedbackRating} getRating={getFeedbackRating} />
             </div>
           </RatingWrapper>
           {isActive && (
-            <FormFeedback onSubmit={handleSubmit}>
+            <FormFeedback onSubmit={handleSubmit} 
+            textfieldbg={theme === 'dark' ? 'var(--color-theme-dark)' : '#efefef'}
+            textfieldcolor={theme === 'dark' ? '#ffffff' : '#343434'}
+            reviewtextcolor={theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'}
+            bgbtn={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}
+            editbtnbg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}
+            >
               <div className="toolbar">
                 <div>
                   <p className="head">Review</p>
                 </div>
                 {isReview && (
-                  <StyledFeedbackToolbar>
+                  <StyledFeedbackToolbar editbtnbg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}>
                     <div className="controlsWrapper">
                       <button
                         className="btnEdit"
@@ -145,12 +152,12 @@ const FeedbackModal = ({ isActive, closeModal }) => {
               )}
               {isActive && (!isReview || isEditing) && (
                 <div className="buttonwrapper">
-                  <button type="submit" className="btn-foot">
+                  <button type="submit" className="btn-foot-first">
                     {!isEditing ? 'Save' : 'Edit'}
                   </button>
                   <button
                     type="button"
-                    className="btn-foot"
+                    className="btn-foot-second"
                     onClick={closeModal}
                   >
                     Cancel
