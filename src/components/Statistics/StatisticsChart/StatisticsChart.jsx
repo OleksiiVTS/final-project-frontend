@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -12,8 +12,6 @@ import {
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
-// import { getCurrentDate } from 'utils/calendar';
-// import { getTasks } from 'redux/task/tasksAPI';
 
 const StatisticsChart = ({ today, currentDate }) => {
   const isTasks = useSelector(selectTasks);
