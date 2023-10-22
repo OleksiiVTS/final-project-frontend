@@ -25,7 +25,7 @@ const scaleAnimation = keyframes`
 
 const fillAnimation = keyframes`
   100% {
-    box-shadow: inset 0px 0px 0px 30px ;
+    box-shadow: inset 0px 0px 0px 30px #ffffff0;
   }
 `;
 
