@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// export const StyledDayCalendarHead = styled.div``;
+
 const elementBorderColor = {
   dark: 'rgba(255, 255, 255, 0.15)',
   light: 'rgba(220, 227, 229, 0.50)',
@@ -10,32 +12,20 @@ const elementBgColor = {
   light: '#ffffff',
 };
 
-export const StyledTasksColumnItem = styled.div`
+export const DayList = styled.ul`
   display: flex;
-  flex-direction: column;
-
-  padding: 18px 18px 20px;
-  width: 335px;
-  min-height: 155px;
-  height: 100%;
+  justify-content: space-between;
+  padding: 14px 18px;
 
   border-radius: 8px;
   border: 1px solid ${({ theme }) => elementBorderColor[theme]};
   background-color: ${({ theme }) => elementBgColor[theme]};
 
   @media screen and (min-width: 768px) {
-    padding: 20px 20px 20px;
-    min-width: 344px;
+    padding: 10px 32px;
   }
 
   @media screen and (min-width: 1440px) {
-  }
-
-  .columnHeadBar {
-    margin-bottom: 24px;
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 28px;
-    }
+    padding: 10px 46px;
   }
 `;

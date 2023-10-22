@@ -3,7 +3,7 @@ import TaskColumnCard from './TaskColumnCard/TaskColumnCard';
 
 const ColumnTasksList = ({ tasks }) => {
   return (
-    <StyledColumnTasksList>
+    <StyledColumnTasksList className="ColumnTasksList">
       {tasks.map(task => (
         <TaskColumnCard key={task._id} task={task} />
       ))}

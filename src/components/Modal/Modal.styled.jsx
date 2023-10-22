@@ -1,18 +1,20 @@
 import styled from '@emotion/styled';
 
 export const ModalBackdrop = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 0;
+  position: fixed;
+  z-index: 4;
   left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f7f6f960;
 `;
 
 export const ModalContainer = styled.div`
   position: fixed;
-  z-index: 2;
+  z-index: 5;
   box-sizing: border-box;
   min-width: 240px;
   padding: 14px;

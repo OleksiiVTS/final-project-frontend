@@ -8,9 +8,10 @@ export const NavTitle = styled.h4`
   margin-bottom: 32px;
   font-weight: 600;
   line-height: normal;
+  color: ${({color})=> color || 'rgba(52, 52, 52, 0.5)'};
 `;
 
-export const LogoBox = styled.section`
+export const LogoBox = styled.div`
   /* color: #3e85f3; */
   color: ${({ color }) => color || '#3e85f3'};
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
@@ -18,7 +19,7 @@ export const LogoBox = styled.section`
   font-size: 24px;
   font-weight: 700;
   line-height: 24px;
-  margin-bottom: 32px;
+  gap: 6px;
 
   display: flex;
   align-items: center;
@@ -49,7 +50,6 @@ export const CloseBurgerBtn = styled.button`
   align-items: center;
   padding: 0;
   stroke: currentColor;
-  margin-left: 31px;
 
   @media screen and (min-width: 769px) {
     font-size: 16px;
@@ -77,8 +77,8 @@ export const StyledNavLink = styled(NavLink)`
     /* color: #3e85f3; */
     border-radius: 8px;
     /* background: #e3f3ff; */
-    color: ${({activecolor}) => activecolor || '#3e85f3'};
-    background: ${({bgactivecolor}) => bgactivecolor || '#e3f3ff'};
+    color: ${({ activecolor }) => activecolor || '#3e85f3'};
+    background: ${({ bgactivecolor }) => bgactivecolor || '#e3f3ff'};
   }
 `;
 
@@ -88,4 +88,10 @@ export const NavItem = styled.li`
   &:last-child {
     margin-bottom: 0;
   }
+`;
+
+export const NavHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
 `;

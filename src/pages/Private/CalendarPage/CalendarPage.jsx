@@ -96,7 +96,7 @@ const CalendarPage = () => {
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header />
+          <Header pageName="Calendar" />
         </HeaderContainer>
 
         <Suspense fallback={null}>
@@ -111,7 +111,10 @@ const CalendarPage = () => {
               path="/month/:currentDate"
               element={<ChoosedMonth theme={theme} />}
             />
-            <Route path="/day/:currentDate" element={<ChoosedDay />} />
+            <Route
+              path="/day/:currentDate"
+              element={<ChoosedDay theme={theme} />}
+            />
           </Routes>
         </Suspense>
       </CalendarContainer>

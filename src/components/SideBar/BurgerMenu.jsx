@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectSidebarModalOpen,
   changeSidebarModalOpen,
+  selectTheme,
 } from 'redux/header/headerSlice';
 
 import UserNav from '../UserNav/UserNav.jsx';
@@ -13,9 +14,9 @@ const BurgerMenuWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 290px;
   height: 100%;
-  background: #fff;
+  background-color: ${({ bg }) => bg || '#fff'};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   transition: transform 0.3s ease-in-out;
   z-index: 999;
@@ -27,14 +28,12 @@ const BackgroundOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   z-index: 999;
   display: ${({ open }) => (open ? 'block' : 'none')};
   overflow: hidden;
 `;
 
-const BurgerContainer = styled.section`
-  background-color: #fff;
+const BurgerContainer = styled.div`
   border-right: 1px solid rgba(220, 227, 229, 0.5);
 
   height: 100vh;
@@ -49,6 +48,7 @@ const BurgerContainer = styled.section`
 
 const BurgerMenu = () => {
   const sidebarModalStatus = useSelector(selectSidebarModalOpen);
+  const theme = useSelector(selectTheme);
   const dispatch = useDispatch();
 
   const closeBurgerMenu = () => {
@@ -77,7 +77,7 @@ const BurgerMenu = () => {
   return (
     <>
       <BackgroundOverlay open={sidebarModalStatus} onClick={closeBurgerMenu} />
-      <BurgerMenuWrapper open={sidebarModalStatus}>
+      <BurgerMenuWrapper bg={theme === 'dark' ? '#000' : '#fff'} open={sidebarModalStatus}>
         <BurgerContainer>
           <UserNav onCloseMenu={closeBurgerMenu} />
           <LogoutBtn />

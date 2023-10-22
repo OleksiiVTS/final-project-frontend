@@ -31,7 +31,8 @@ import IMG from '../Pictures/singup_goose.jpg';
 import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
-import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
+import { Circles } from 'react-loader-spinner';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -80,18 +81,20 @@ const RegisterForm = () => {
           <Formik
             initialValues={{ username: '', email: '', password: '' }}
             validationSchema={userSchema}
+            validateOnBlur={false}
+            validateOnChange={false}
             onSubmit={async values => {
               try {
                 dispatch(register(values));
               } catch (error) {
-                alert(error.message);
+                toast.error(error.message);
               }
             }}
           >
-            {({ values, errors, touched }) => (
+            {({ errors, isValid }) => (
               <FormStyled>
                 <BoxInput>
-                  {errors.username || values.username.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.username
@@ -106,7 +109,7 @@ const RegisterForm = () => {
                     <FormLabel htmlFor="username">Name</FormLabel>
                   )}
 
-                  {errors.username || values.username.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -154,7 +157,7 @@ const RegisterForm = () => {
                 </BoxInput>
 
                 <BoxInput>
-                  {errors.email || values.email.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.email
@@ -169,7 +172,7 @@ const RegisterForm = () => {
                     <FormLabel htmlFor="email">Email</FormLabel>
                   )}
 
-                  {errors.email || values.email.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -225,7 +228,7 @@ const RegisterForm = () => {
                 </BoxInput>
 
                 <BoxInput>
-                  {errors.password || values.password.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.password
@@ -240,7 +243,7 @@ const RegisterForm = () => {
                     <FormLabel htmlFor="password">Password</FormLabel>
                   )}
 
-                  {errors.password || values.password.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -298,19 +301,21 @@ const RegisterForm = () => {
                 </BoxInput>
 
                 {isLoading ? (
-                  <>
-                    <RegButton type="submit" disabled={isLoading}>
-                      Log in <FiLogIn style={{ marginLeft: 11 }} />
-                      <Loader />
-                    </RegButton>
-                    <GoogleBtn type="button" onClick={GoogleAuth}>
-                      Sign in with Google 🚀{' '}
-                    </GoogleBtn>
-                  </>
+                  <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                    <Circles
+                      height="80"
+                      width="80"
+                      color="#3E85F3"
+                      ariaLabel="circles-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
                 ) : (
                   <>
                     <RegButton type="submit" disabled={isLoading}>
-                      Log in <FiLogIn style={{ marginLeft: 11 }} />
+                      Sign up <FiLogIn style={{ marginLeft: 11 }} />
                     </RegButton>
                     <GoogleBtn
                       type="button"

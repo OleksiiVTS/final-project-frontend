@@ -17,7 +17,7 @@ const AccountPage = () => {
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header />
+          <Header pageName='My Account'/>
         </HeaderContainer>
         {IsRefreshing ? (
           <Circles

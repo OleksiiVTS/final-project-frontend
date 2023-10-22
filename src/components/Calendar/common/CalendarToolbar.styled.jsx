@@ -4,6 +4,7 @@ export const ToolbarWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 24px;
+	color: ${({ color }) => color || '#000'};
 
 	@media screen and (min-width: 768px) {
 		flex-direction: row;

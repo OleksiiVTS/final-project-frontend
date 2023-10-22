@@ -39,7 +39,9 @@ const CalendarHead = ({ theme }) => {
         bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
       >
         {workDayNames.map(day => (
-          <WorkDay key={day}>{day.slice(0, 1)}</WorkDay>
+          <WorkDay key={day} color={theme === 'dark' ? '#ffffff' : '#343434'}>
+            {day.slice(0, 1)}
+          </WorkDay>
         ))}
         {weekendDayNames.map(day => (
           <WeekendDay key={day}>{day.slice(0, 1)}</WeekendDay>

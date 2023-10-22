@@ -1,6 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-import avatar from '../Pictures/avatar.jpg';
+import {
+  Wrapper,
+  BurgerIcon,
+  SectionWrapper,
+  UserWrapper,
+  FeedbackBtn,
+  ThemeToggler,
+  Username,
+  Userphoto,
+} from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   // changeFeedbackModalOpen,
@@ -19,77 +27,7 @@ import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
 
-const Wrapper = styled.div`
-  background-color: ${({ bg }) => bg || '#F7F6F9'};
-  color: ${({ color }) => color || '#000'};
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-`;
-
-const BurgerIcon = styled.div`
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  display: block;
-  border: none;
-
-  @media (min-width: 769px) {
-    display: none;
-  }
-`;
-
-const SectionWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 18px;
-`;
-
-const UserWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-`;
-
-const FeedbackBtn = styled.button`
-  background-color: ${({ bg }) => bg || '#3e85f3'};
-  color: ${({ color }) => color || '#fff'};
-  line-height: 16px;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-
-  :hover {
-    background-color: var(--color-button-blue-hover);
-  }
-`;
-
-const ThemeToggler = styled.div`
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  display: block;
-  border: none;
-`;
-const Username = styled.p`
-  font-weight: bold;
-  line-height: 18px;
-`;
-
-const Userphoto = styled.div`
-  border: 3px solid var(--color-button-blue);
-  /* background-image: url(${avatar}); */
-  background-size: cover;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-`;
-
-const Header = () => {
+const Header = ({pageName = 'GooseTrack'}) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -126,9 +64,12 @@ const Header = () => {
   }, []);
 
   return (
-    // <PageContainer>
     <Wrapper
-      bg={theme !== 'dark' ? 'var(--color-bg-main-light)' : 'var(--color-bg-main-dark)'}
+      bg={
+        theme !== 'dark'
+          ? 'var(--color-bg-main-light)'
+          : 'var(--color-bg-main-dark)'
+      }
       color={theme === 'dark' ? '#fff' : '#000'}
     >
       {windowWidth < 769 ? (
@@ -144,7 +85,7 @@ const Header = () => {
           </span>
         </BurgerIcon>
       ) : (
-        <h2>PageName</h2>
+        <h2>{pageName}</h2>
       )}
       <BurgerIcon>
         <span>
@@ -157,7 +98,6 @@ const Header = () => {
       <SectionWrapper>
         <>
           <FeedbackBtn
-            color={theme !== 'dark' ? '#fff' : '#000'}
             onClick={() => toggleModal()}
           >
             Feedback
@@ -165,7 +105,7 @@ const Header = () => {
         </>
         {showModal && (
           <Modal closeModal={toggleModal}>
-            <FeedbackModal isActive={showModal} />
+            <FeedbackModal isActive={showModal} closeModal={toggleModal} />
           </Modal>
         )}
         <UserWrapper>
@@ -188,7 +128,6 @@ const Header = () => {
       </SectionWrapper>
       <BurgerMenu />
     </Wrapper>
-    // </PageContainer>
   );
 };
 

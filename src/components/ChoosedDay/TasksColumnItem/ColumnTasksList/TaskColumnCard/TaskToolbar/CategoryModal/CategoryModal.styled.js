@@ -6,12 +6,13 @@ export const StyledCategoryModal = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  /* overflow: hidden; */
   /* background-color: rgba(0, 0, 0, 0.8); */
 
   & .modal {
     position: absolute;
     top: ${({ coords }) => coords.clientY + 15 + 'px'};
-    left: ${({ coords }) => coords.clientX - 5 + 'px'};
+    left: ${({ coords }) => coords.clientX - 40 + 'px'};
 
     display: flex;
     flex-direction: column;
