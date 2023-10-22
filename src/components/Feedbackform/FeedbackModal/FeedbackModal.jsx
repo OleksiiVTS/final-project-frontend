@@ -79,7 +79,7 @@ const FeedbackModal = ({ isActive, closeModal}) => {
       <RatingWrapper>
         <RatingTitle>Rating</RatingTitle>
         <div className="stars">
-          <StarApp rating={feedbackRating} getRating={getFeedbackRating} />
+          <StarApp isEditing={isEditing} isReview={isReview} rating={feedbackRating} getRating={getFeedbackRating} />
         </div>
       </RatingWrapper>
       {isActive && (
