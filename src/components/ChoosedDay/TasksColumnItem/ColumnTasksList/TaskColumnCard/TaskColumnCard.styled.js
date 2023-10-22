@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+// const sectionBgColor = {
+//   dark: '#171820',
+//   light: '#F7F6F9',
+// };
+
+// const sectionBorderColor = {
+//   dark: 'rgba(255, 255, 255, 0.15)',
+//   light: 'rgba(220, 227, 229, 0.80);',
+// };
+
 export const StyledTaskColumnCard = styled.div`
   display: flex;
   flex-direction: column;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const StyledTasksColumnsList = styled.div`
   display: flex;
   column-gap: 20px;
+  /* flex-wrap: wrap; */
 
   /* width: 335px; */
   overflow-x: auto;
