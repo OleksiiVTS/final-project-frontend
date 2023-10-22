@@ -13,7 +13,13 @@ import {
   ShowMoreTasks,
 } from 'components/Calendar/month/CalendarTable/CalendarTable.styled';
 
-const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
+const renderCalendar = ({
+  isLoading,
+  currentDate,
+  tasksList,
+  theme,
+  handleClick,
+}) => {
   const calendar = buildCalendar(currentDate);
 
   if (!isLoading) {
@@ -32,6 +38,8 @@ const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
       }
 
       const calendarWithTask = getDayTasks(dayItem, tasksList);
+
+      const onClick = task => handleClick(task);
 
       return (
         <CellWrapper
@@ -58,13 +66,15 @@ const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
 
             <TaskListWrapper>
               {calendarWithTask &&
-                calendarWithTask
-                  .slice(0, 2)
-                  .map(({ _id: id, priority, title }) => (
-                    <TaskItem key={id} priority={priority}>
-                      {title}
-                    </TaskItem>
-                  ))}
+                calendarWithTask.slice(0, 2).map(task => (
+                  <TaskItem
+                    key={task._id}
+                    priority={task.priority}
+                    onClick={() => onClick(task)}
+                  >
+                    {task.title}
+                  </TaskItem>
+                ))}
 
               {calendarWithTask && calendarWithTask.length > 2 && (
                 <ShowMoreTasks color={theme === 'dark' ? '#ffffff' : '#3e85f3'}>
@@ -72,12 +82,6 @@ const renderCalendar = ({ isLoading, currentDate, tasksList, theme }) => {
                 </ShowMoreTasks>
               )}
             </TaskListWrapper>
-
-            {/* {calendarWithTask && calendarWithTask.length > 2 && (
-              <TasksMoreLabel color={theme === 'dark' ? '#ffffff' : '#3e85f3'}>
-                ...
-              </TasksMoreLabel>
-            )} */}
           </RowInCell>
         </CellWrapper>
       );
