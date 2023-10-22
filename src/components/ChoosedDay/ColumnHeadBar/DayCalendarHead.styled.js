@@ -2,14 +2,24 @@ import styled from 'styled-components';
 
 // export const StyledDayCalendarHead = styled.div``;
 
+const elementBorderColor = {
+  dark: 'rgba(255, 255, 255, 0.15)',
+  light: 'rgba(220, 227, 229, 0.50)',
+};
+
+const elementBgColor = {
+  dark: '#21222c',
+  light: '#ffffff',
+};
+
 export const DayList = styled.ul`
   display: flex;
   justify-content: space-between;
   padding: 14px 18px;
 
   border-radius: 8px;
-  border: 1px solid ${({ borderColor }) => borderColor};
-  background-color: ${({ bgColor }) => bgColor};
+  border: 1px solid ${({ theme }) => elementBorderColor[theme]};
+  background-color: ${({ theme }) => elementBgColor[theme]};
 
   @media screen and (min-width: 768px) {
     padding: 10px 32px;

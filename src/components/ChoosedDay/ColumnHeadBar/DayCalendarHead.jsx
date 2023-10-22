@@ -3,23 +3,9 @@ import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 
 import { DayList } from './DayCalendarHead.styled.js';
 import DayListItem from './DayListItem/DayListItem.jsx';
+import { useTheme } from 'styled-components';
 
-const borderColor = {
-  dark: 'rgba(255, 255, 255, 0.15)',
-  light: 'rgba(220, 227, 229, 0.50)',
-};
-
-const bgColor = {
-  dark: '#21222c',
-  light: '#ffffff',
-};
-
-const dayOfWeekColor = {
-  dark: '#ffffff',
-  light: '#343434',
-};
-
-const DayCalendarHead = ({ theme }) => {
+const DayCalendarHead = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -37,9 +23,10 @@ const DayCalendarHead = ({ theme }) => {
     navigate(`/calendar/day/${format(date, 'yyyy-MM-dd')}`);
   };
 
+  const { theme } = useTheme();
   return (
     <div className="DayCalendarHead">
-      <DayList borderColor={borderColor[theme]} bgColor={bgColor[theme]}>
+      <DayList theme={theme}>
         {weekDates.map((date, idx) => {
           return (
             <DayListItem
@@ -47,7 +34,7 @@ const DayCalendarHead = ({ theme }) => {
               date={date}
               currentDate={currentDate}
               onClick={handleClick}
-              color={dayOfWeekColor[theme]}
+              theme={theme}
             />
           );
         })}

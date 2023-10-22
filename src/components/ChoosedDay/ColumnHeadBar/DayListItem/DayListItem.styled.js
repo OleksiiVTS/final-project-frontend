@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const weeksDayTitleColor = {
+  dark: '#FAFAFA4D',
+  light: '#343434',
+};
+
+const weeksDayNumberColor = {
+  dark: '#ffffff',
+  light: '#343434',
+};
+
 export const StyledDayListItem = styled.li`
   display: flex;
   flex-direction: column;
@@ -14,13 +24,13 @@ export const StyledDayListItem = styled.li`
     text-align: center;
     text-transform: uppercase;
 
-    color: ${({ color }) => (color === '#ffffff' ? '#FAFAFA4D' : color)};
+    color: ${({ theme }) => weeksDayTitleColor[theme]};
   }
 
   & button {
     padding: 4px 8px;
 
-    color: ${({ color }) => color};
+    color: ${({ theme }) => weeksDayNumberColor[theme]};
     background-color: transparent;
 
     font-family: Inter;
