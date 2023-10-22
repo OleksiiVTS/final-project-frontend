@@ -1,4 +1,3 @@
-//import moment from 'moment';
 import { format } from 'date-fns';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +36,6 @@ const UserForm = () => {
     dispatch(update(updateUser));
   };
   const isUser = useSelector(selectUser);
-  //const dateMoment = format(new Date(), 'MM/dd/yyyy');
   const theme = useSelector(selectTheme);
 
   const fileRef = useRef(null);
