@@ -36,6 +36,7 @@ const CalendarPage = () => {
   // const tasks = useSelector(selectTasks);
 
   const currentDate = Object.values(useParams())[0].slice(-10);
+  // console.log('currentDate: ', currentDate);
   const requestDate = currentDate.slice(0, 7);
 
   // const prevMonthRef = useRef(pathname.slice(-5).slice(0, 2));
@@ -101,7 +102,7 @@ const CalendarPage = () => {
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header />
+          <Header pageName='Calendar'/>
         </HeaderContainer>
 
         <Suspense fallback={null}>
@@ -116,7 +117,10 @@ const CalendarPage = () => {
               path="/month/:currentDate"
               element={<ChoosedMonth theme={theme} />}
             />
-            <Route path="/day/:currentDate" element={<ChoosedDay />} />
+            <Route
+              path="/day/:currentDate"
+              element={<ChoosedDay theme={theme} />}
+            />
           </Routes>
         </Suspense>
       </CalendarContainer>

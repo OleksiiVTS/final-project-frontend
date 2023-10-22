@@ -20,7 +20,7 @@ const CalendarToolbar = ({ today, onClickPrev, onClickNext, theme }) => {
   }, [pathname]);
 
   return (
-    <ToolbarWrapper>
+    <ToolbarWrapper color={theme === 'dark' ? '#fff' : '#000'}>
       <PeriodSelector
         onClickPrev={onClickPrev}
         onClickNext={onClickNext}

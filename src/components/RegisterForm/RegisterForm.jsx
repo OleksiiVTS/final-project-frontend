@@ -27,9 +27,12 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../../redux/auth/firebase';
 
 import IMG from '../Pictures/singup_goose.jpg';
-import { login, register } from 'redux/auth/authOperations';
+
+import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
+import Loader from 'components/Loader';
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -57,14 +60,15 @@ const RegisterForm = () => {
 
   const GoogleAuth = async () => {
     const auth = getAuth(app);
-    const googleAuthProvider = new GoogleAuthProvider();
+    const googleAuthProvider = new GoogleAuthProvider().addScope("email");
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       const googleUser = {
-        email: result.user.email,
+        username: result.user.providerData[0].displayName,
+        email: result.user.providerData[0].email,
         password: result.user.providerData[0].uid,
       };
-      dispatch(login(googleUser));
+      dispatch(register(googleUser));
     } catch (error) {}
   };
   
@@ -77,19 +81,20 @@ const RegisterForm = () => {
           <Formik
             initialValues={{ username: '', email: '', password: '' }}
             validationSchema={userSchema}
+            validateOnBlur={false}
+            validateOnChange={false}
             onSubmit={async values => {
               try {
                 dispatch(register(values));
               } catch (error) {
-                alert(error.message);
+                toast.error(error.message);
               }
             }}
           >
-            {({ values, errors, touched }) => (
+            {({ errors, isValid }) => (
               <FormStyled>
-
                 <BoxInput>
-                  {errors.username || values.username.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.username
@@ -104,7 +109,7 @@ const RegisterForm = () => {
                     <FormLabel htmlFor="username">Name</FormLabel>
                   )}
 
-                  {errors.username || values.username.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -116,10 +121,13 @@ const RegisterForm = () => {
                         type="text"
                         name="username"
                         placeholder="Enter your name"
+                        aria-required="true"
+                        aria-invalid={!!errors.username}
+                        aria-describedby="usernameError"
                       />
                       {errors.username ? (
                         <>
-                          <Error>{errors.username}</Error>
+                          <Error id="usernameError">{errors.username}</Error>
                           <InputIconName>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconName>
@@ -140,13 +148,16 @@ const RegisterForm = () => {
                         type="text"
                         name="username"
                         placeholder="Enter your name"
+                        aria-required="true"
+                        aria-invalid={!!errors.username}
+                        aria-describedby="usernameError"
                       />
                     </>
                   )}
                 </BoxInput>
 
                 <BoxInput>
-                  {errors.email || values.email.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.email
@@ -161,7 +172,7 @@ const RegisterForm = () => {
                     <FormLabel htmlFor="email">Email</FormLabel>
                   )}
 
-                  {errors.email || values.email.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -181,10 +192,13 @@ const RegisterForm = () => {
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby="emailError"
                       />
                       {errors.email ? (
                         <>
-                          <Error>{errors.email}</Error>
+                          <Error id="emailError">{errors.email}</Error>
                           <InputIconEmail>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconEmail>
@@ -205,13 +219,16 @@ const RegisterForm = () => {
                         type="text"
                         name="email"
                         placeholder="Enter email"
+                        aria-required="true"
+                        aria-invalid={!!errors.email}
+                        aria-describedby="emailError"
                       />
                     </>
                   )}
                 </BoxInput>
 
                 <BoxInput>
-                  {errors.password || values.password.trim() ? (
+                  {!isValid ? (
                     <FormLabel
                       style={
                         errors.password
@@ -226,7 +243,7 @@ const RegisterForm = () => {
                     <FormLabel htmlFor="password">Password</FormLabel>
                   )}
 
-                  {errors.password || values.password.trim() ? (
+                  {!isValid ? (
                     <>
                       <FormField
                         style={
@@ -246,10 +263,13 @@ const RegisterForm = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password"
+                        aria-required="true"
+                        aria-invalid={!!errors.password}
+                        aria-describedby="passwordError"
                       />
                       {errors.password ? (
                         <>
-                          <Error>{errors.password}</Error>
+                          <Error id="passwordError">{errors.password}</Error>
                           <InputIconPassword>
                             <MdErrorOutline size={24} color="#E74A3B" />
                           </InputIconPassword>
@@ -272,22 +292,52 @@ const RegisterForm = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password"
+                        aria-required="true"
+                        aria-invalid={!!errors.password}
+                        aria-describedby="passwordError"
                       />
                     </>
                   )}
                 </BoxInput>
 
-                <RegButton type="submit" disabled={isLoading}>
-                  Sign Up <FiLogIn size={18} style={{ marginLeft: 11 }} />
-                </RegButton>
-                <GoogleBtn type='button' onClick={GoogleAuth}>Sign up with Google 🚀{' '}</GoogleBtn>
+                {isLoading ? (
+                  <>
+                    <RegButton type="submit" disabled={isLoading}>
+                      Sign up <FiLogIn style={{ marginLeft: 11 }} />
+                      <Loader />
+                    </RegButton>
+                    <GoogleBtn type="button" onClick={GoogleAuth}>
+                      Sign in with Google 🚀{' '}
+                    </GoogleBtn>
+                  </>
+                ) : (
+                  <>
+                    <RegButton type="submit" disabled={isLoading}>
+                      Sign up <FiLogIn style={{ marginLeft: 11 }} />
+                    </RegButton>
+                    <GoogleBtn
+                      type="button"
+                      onClick={GoogleAuth}
+                      disabled={isLoading}
+                    >
+                      Sign in with Google 🚀{' '}
+                    </GoogleBtn>
+                  </>
+                )}
               </FormStyled>
             )}
           </Formik>
         </RegisterContainer>
         <ImagePosition>
           <LogIn to="/login">Log In</LogIn>
-          <Image src={IMG} alt="Goose" />
+          <Image
+            srcSet={`
+            ${require('../Pictures/singup_goose.jpg')} 1x,
+            ${require('../Pictures/singup_goose2x.jpg')} 2x
+          `}
+            src={IMG}
+            alt="Goose"
+          />
         </ImagePosition>
       </FormPosition>
     </PageContainer>

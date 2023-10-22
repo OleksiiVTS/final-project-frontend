@@ -1,8 +1,7 @@
 import { initializeApp } from 'firebase/app';
-const { REACT_APP_FIREBASE_API_KEY } = process.env;
 
 const firebaseConfig = {
-  apiKey: `${REACT_APP_FIREBASE_API_KEY}`,
+  apiKey: "AIzaSyBEgrHUWZSQaIHXbvdDYaU2gnwhximhORc",
   authDomain: 'goose-track-final-project-goit.firebaseapp.com',
   projectId: 'goose-track-final-project-goit',
   storageBucket: 'goose-track-final-project-goit.appspot.com',
