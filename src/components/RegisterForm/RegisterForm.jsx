@@ -31,8 +31,8 @@ import IMG from '../Pictures/singup_goose.jpg';
 import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading } from 'redux/auth/authSelectors';
-import Loader from 'components/Loader';
 import { toast } from 'react-toastify';
+import { Circles } from 'react-loader-spinner';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -301,15 +301,17 @@ const RegisterForm = () => {
                 </BoxInput>
 
                 {isLoading ? (
-                  <>
-                    <RegButton type="submit" disabled={isLoading}>
-                      Sign up <FiLogIn style={{ marginLeft: 11 }} />
-                      <Loader />
-                    </RegButton>
-                    <GoogleBtn type="button" onClick={GoogleAuth}>
-                      Sign in with Google 🚀{' '}
-                    </GoogleBtn>
-                  </>
+                  <div style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                    <Circles
+                      height="80"
+                      width="80"
+                      color="#3E85F3"
+                      ariaLabel="circles-loading"
+                      wrapperStyle={{}}
+                      wrapperClass=""
+                      visible={true}
+                    />
+                  </div>
                 ) : (
                   <>
                     <RegButton type="submit" disabled={isLoading}>
