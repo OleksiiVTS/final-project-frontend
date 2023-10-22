@@ -29,6 +29,15 @@ const NewCalendarDatePicker = ({ type, date }) => {
 
   const handleClick = () => setIsOpen(!isOpen);
 
+  const handleChange = date => {
+    setDateValue(date);
+    const formattedDate = format(date, 'yyyy-MM-dd');
+
+    setDateValue(date);
+    navigate(isParams ? `/calendar/${type}/${formattedDate}` : '/statistics');
+    handleClick();
+  };
+
   return (
     <DatePickerWrapper>
       <DatePickerButton type="button" onClick={handleClick}>
@@ -38,16 +47,8 @@ const NewCalendarDatePicker = ({ type, date }) => {
         <>
           <ReactDatePicker
             selected={dateValue}
-            onChange={date => {
-              setDateValue(date);
-              const formattedDate = format(date, 'yyyy-MM-dd');
-
-              setDateValue(date);
-              navigate(
-                isParams ? `/calendar/${type}/${formattedDate}` : '/statistics'
-              );
-              handleClick();
-            }}
+            onChange={date => handleChange(date)}
+            allowSameDay={true}
             inline
             calendarStartDay={1}
             dateFormat={type === 'day' ? 'dd MMMM yyyy' : 'MMMM yyyy'}
