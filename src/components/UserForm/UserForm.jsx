@@ -1,10 +1,10 @@
 //import moment from 'moment';
 import { format } from 'date-fns';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { Formik, useFormik } from 'formik';
 import ValidSchema from 'helpers/ValidSchema.js';
-import { update } from 'redux/auth/authOperations.js';
+
 import { selectUser } from '../../redux/auth/authSelectors.js';
 import {
   Avatar,
@@ -25,7 +25,7 @@ import { useRef } from 'react';
 import PreviewAvatar from './PreviewAvatar.js';
 import { selectTheme } from 'redux/header/headerSlice.js';
 import { useState } from 'react';
-import TaskModal from 'components/TaskModal/TaskModal.jsx';
+
 import ConfirmationModal from './ConfirmationModal/ConfirmationModal.jsx';
 
 const UserForm = () => {
