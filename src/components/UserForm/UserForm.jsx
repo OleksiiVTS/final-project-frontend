@@ -27,6 +27,7 @@ import { selectTheme } from 'redux/header/headerSlice.js';
 import { useState } from 'react';
 
 import ConfirmationModal from './ConfirmationModal/ConfirmationModal.jsx';
+import { useSelector } from 'react-redux';
 
 const UserForm = () => {
   const [showModal, setShowModal] = useState(false);
