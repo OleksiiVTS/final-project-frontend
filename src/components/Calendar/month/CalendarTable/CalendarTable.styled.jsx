@@ -25,16 +25,12 @@ export const GridWrapper = styled.ul`
   background-color: ${({ bgcolor }) => bgcolor};
   overflow: hidden;
 
-  /* height: 564px; */
-  /* height: 470px; */
-
   @media screen and (min-width: 768px) {
-    /* height: 860px; */
-    /* height: 720px; */
+    width: 704px;
   }
+
   @media screen and (min-width: 1440px) {
-    /* height: 750px; */
-    /* height: 625px; */
+    width: 1087px;
   }
 `;
 
@@ -114,7 +110,6 @@ export const CurrentDay = styled.div`
 export const ShowDayWrapper = styled.div``;
 
 export const TaskListWrapper = styled.ul`
-  /* padding-inline: 8px; */
   padding: 8px;
 `;
 
@@ -133,20 +128,14 @@ export const TaskItem = styled.li`
   white-space: nowrap;
 
   @media screen and (min-width: 768px) {
-    /* min-width: 92px; */
     height: 26px;
     padding: 4px 8px 4px 12px;
     font-size: 14px;
     line-height: calc(13 / 10);
   }
-
-  @media screen and (min-width: 1440px) {
-    /* min-width: 114px; */
-  }
 `;
 
 export const ShowMoreTasks = styled.div`
-  /* margin-top: auto; */
   margin: auto;
   overflow: hidden;
   color: ${({ color }) => color};
