@@ -1,5 +1,4 @@
-//import moment from 'moment';
-//import { format } from 'date-fns';
+import { format } from 'date-fns';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, useFormik } from 'formik';
@@ -37,10 +36,20 @@ const UserForm = () => {
     dispatch(update(updateUser));
   };
   const isUser = useSelector(selectUser);
-  //const dateMoment = format(new Date(), 'MM/dd/yyyy');
   const theme = useSelector(selectTheme);
 
   const fileRef = useRef(null);
+
+  const submit = values => {
+    const imagefile = document.getElementById('avatar');
+    console.log(values);
+    const formatedDate = format(values.birthday, 'yyyy-MM-dd');
+
+    console.log(formatedDate);
+    const data = { ...values, birthday: formatedDate };
+
+    updateUser({ ...data, avatarURL: imagefile });
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -51,11 +60,7 @@ const UserForm = () => {
       email: isUser.email ?? '',
       file: isUser.file,
     },
-    onSubmit: values => {
-      var imagefile = document.getElementById('avatar');
-      //console.log(imagefile);
-      updateUser({ ...values, avatarURL: imagefile });
-    },
+    onSubmit: submit,
   });
   console.log(formik.values.birthday);
 
@@ -150,24 +155,6 @@ const UserForm = () => {
             ) : null}
 
             <LabelUserForm htmlFor="birthday">Birthday</LabelUserForm>
-            {/* <InputUserForm
-              bg={
-                theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'
-              }
-              color={theme === 'dark' ? '#fff' : '#000'}
-              bordercolor={
-                theme === 'dark'
-                  ? 'var(--color-field-names-dark)'
-                  : 'rgba(17, 17, 17, 0.1)'
-              }
-              id="birthday"
-              name="birthday"
-              type="birthday"
-              placeholder={dateMoment}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.birthday}
-            ></InputUserForm>  */}
 
             <DatePicker
               id="birthday"

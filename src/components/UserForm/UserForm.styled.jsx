@@ -260,6 +260,7 @@ export const Chevron = styled.svg`
   position: absolute;
   bottom: 58%;
   right: 30px;
+  cursor: pointer;
   pointer-events: none;
 
   @media screen and (min-width: 768px) {
