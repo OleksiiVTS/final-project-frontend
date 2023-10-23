@@ -27,11 +27,11 @@ export const ModalContainer = styled.div`
   box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
 
   @media screen and (max-width: 767px) {
-    max-width: 303px;
+    max-width: 365px;
   }
 
   @media screen and (min-width: 768px) {
-    width: 396px;
+    max-width: 468px;
   }
 `;
 
