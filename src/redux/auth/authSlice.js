@@ -75,7 +75,6 @@ export const authSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
-          toast.error(state.error);
         }
       )
       .addMatcher(
