@@ -18,7 +18,6 @@ import { getReviews } from '../../redux/review/review-api';
 import defaultReviews from './DefaultReviews';
 
 const Slider = () => {
-  
   const [reviews, setreviews] = useState(defaultReviews);
 
   useEffect(() => {
@@ -70,15 +69,17 @@ const Slider = () => {
               swiperInstance.current = swiper;
             }}
           >
-            {reviews.map(review => (
-              <SwiperSlide key={reviews.indexOf(review)}>
+            {reviews.map((review, index) => (
+              <SwiperSlide key={index}>
                 <SliderItem
                   name={
-                    review.owner.username ? review.owner.username : 'Ananimus'
+                    review.owner && review.owner.username
+                      ? review.owner.username
+                      : 'Anonymous'
                   }
                   comment={review.comment}
                   rating={review.rating}
-                  avatar={review.owner.avatarURL}
+                  avatar={review.owner ? review.owner.avatarURL : ''}
                 />
               </SwiperSlide>
             ))}
