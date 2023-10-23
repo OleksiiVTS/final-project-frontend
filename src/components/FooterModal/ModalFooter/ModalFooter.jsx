@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { ModalStyled, CloseIcon, Overlay } from './ModalFooter.styled';
 
-import sprite from 'images/team_icon.svg';
+import sprite from '../../Pictures/sprite.svg';
 
 const modalRoot = document.getElementById('modal-root');
 

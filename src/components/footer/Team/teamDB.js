@@ -5,9 +5,7 @@ export const teams = [
     position: 'Team-lead',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: [
-      'Building the project architecture, calendar, developing the project backend and frontend',
-    ],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -16,7 +14,7 @@ export const teams = [
     position: 'Scrum-master',
     git: 'https://github.com/',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Organization of teamwork'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -25,9 +23,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: [
-      'Development of a user registration block, сalendar development',
-    ],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -36,9 +32,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: [
-      'Development of the backend of registration, login and avatar blocks. Swagger',
-    ],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -47,7 +41,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Calendar and tasks development'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -56,7 +50,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com/Erlara',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Development of a block of statistics'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -65,7 +59,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com/Anton-Logvinenko',
     linkedin: 'https://www.linkedin.com/',
-    description: ['LoginPage development'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -74,9 +68,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: [
-      'Development of a slider with reviews and a modal window with information about the team',
-    ],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -85,7 +77,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Development of a modal window with reviews'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -94,7 +86,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Calendar and tasks development'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -103,7 +95,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com/',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Calendar and tasks development'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -112,7 +104,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com/zhdima',
     linkedin: 'https://www.linkedin.com/',
-    description: ['Development of the backend of reviews and tasks. Swagger'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
   {
@@ -121,7 +113,7 @@ export const teams = [
     position: 'Developer',
     git: 'https://github.com/',
     linkedin: 'https://www.linkedin.com/in/',
-    description: ['Development of sidebar and header modules'],
+    description: ['Organization'],
     avatar: require('../../Pictures/avatar.jpg'),
   },
 ];

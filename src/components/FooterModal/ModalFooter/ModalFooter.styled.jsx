@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #3e85f3;
+  background-color: #a4c6e6;
   z-index: 1200;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 `;
@@ -31,15 +31,17 @@ export const ModalStyled = styled.div`
 
 export const CloseIcon = styled.svg`
   position: absolute;
-  width: 14px;
-  height: 14px;
-  top: 14px;
-  right: 14px;
-  transition: fill #3e85f3;
-  fill: #2b78ef;
+  width: 16px;
+  height: 16px;
+  top: 18px;
+  right: 18px;
+  border: 2px solid black;
+  /* transition: fill #3e85f3; */
+  fill: #090909;
+  /* z-index: 55; */
 
   &:hover,
   &:focus {
-    fill: #3e85f3;
+    fill: #060249;
   }
 `;

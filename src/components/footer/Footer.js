@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import sprite from '../../../images/team_icon.svg';
+import sprite from '../Pictures/sprite.svg';
 import Team from './Team/Team';
-import SwaggerButton from '../SwaggerButton/SwaggerButton';
+// import SwaggerButton from '../SwaggerButton/SwaggerButton';
 import {
   FooterWrapper,
   FooterContainer,
@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <FooterWrapper>
-      <SwaggerButton />
+      {/* <SwaggerButton /> */}
       <FooterContainer>
         <FooterText>
           {'© 2023 | All Rights Reserved | Developed with '}
@@ -29,7 +29,7 @@ export default function Footer() {
           </StudentsText>
         </FooterText>
       </FooterContainer>
-      {isOpened && <Team onCloseModal={handleToggleModal} />}
+      {!isOpened && <Team onCloseModal={handleToggleModal} />}
     </FooterWrapper>
   );
 }

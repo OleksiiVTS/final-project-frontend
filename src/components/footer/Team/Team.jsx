@@ -10,7 +10,7 @@ import {
 import { teams } from './teamDB';
 import ModalFooter from 'components/FooterModal/ModalFooter/ModalFooter';
 import CurrentTeam from '../CurrentTeam/CurrentTeam';
-import { FooterModalContainer, FooterModalTeam } from './Teams.styled';
+import { FooterModalContainer, FooterModalTeam } from './Team.styled';
 
 import 'swiper/css';
 import 'swiper/css/effect-flip';
@@ -21,7 +21,7 @@ const Team = ({ onCloseModal }) => {
   return (
     <ModalFooter onCloseModal={onCloseModal}>
       <FooterModalContainer>
-        <FooterModalTeam>BackToFront</FooterModalTeam>
+        <FooterModalTeam>Frontend and backend developers</FooterModalTeam>
         <Swiper
           effect={'coverflow'}
           breakpoints={{

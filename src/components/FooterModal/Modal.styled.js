@@ -1,10 +1,10 @@
 // Import
 import styled from 'styled-components';
-import { ReactComponent as CloseIcon } from '../../images/x-close.svg';
+import { ReactComponent as CloseIcon } from '../Pictures/sprite.svg';
 
 // Styled Components
 export const Backdrop = styled.div`
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #3458aa;
   position: fixed;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@ export const Backdrop = styled.div`
 
 export const ModalContainer = styled.div`
   position: relative;
-  background-color: #171820;
+  background-color: #000fff;
   border: none;
   min-width: 100px;
   min-height: 100px;
