@@ -1,12 +1,27 @@
 import styled from 'styled-components';
 
+const textColor = {
+  dark: '#FFFFFF',
+  light: '#111111',
+};
+
+const elementBorderColor = {
+  dark: 'rgba(255, 255, 255, 0.15)',
+  light: 'rgba(220, 227, 229, 0.80)',
+};
+
+const elementBgColor = {
+  dark: '#21222c',
+  light: '#ffffff',
+};
+
 export const StyledCategoryModal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* overflow: hidden; */
+  overflow: hidden;
   /* background-color: rgba(0, 0, 0, 0.8); */
 
   & .modal {
@@ -23,8 +38,8 @@ export const StyledCategoryModal = styled.div`
     height: 90px;
 
     border-radius: 8px;
-    background: #fff;
-    box-shadow: 0px 4px 16px 0px rgba(17, 17, 17, 0.1);
+    background: ${({ theme }) => elementBgColor[theme]};
+    box-shadow: 0px 4px 16px 0px ${({ theme }) => elementBorderColor[theme]};
   }
 
   & button {
@@ -36,15 +51,15 @@ export const StyledCategoryModal = styled.div`
     font-family: Inter;
     font-size: 14px;
     font-weight: 500;
-    line-height: 1.2857; /* 128.571% */
+    line-height: calc(18 / 14); /* 128.571% */
 
-    color: #343434;
+    color: ${({ theme }) => textColor[theme]};
     border: none;
-    background-color: #fff;
+    background-color: ${({ theme }) => elementBgColor[theme]};
   }
 
   & button:hover {
-    color: #3e85f3;
+    color: #2b78ef;
   }
 
   & button span {
@@ -54,7 +69,7 @@ export const StyledCategoryModal = styled.div`
     width: 14px;
     height: 14px;
     stroke: currentColor;
-    fill: #f7f6f9;
+    fill: ${({ theme }) => elementBgColor[theme]};
 
     @media screen and (min-width: 768px) {
       width: 16px;

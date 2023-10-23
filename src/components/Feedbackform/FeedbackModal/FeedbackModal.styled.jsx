@@ -45,10 +45,12 @@ export const FormFeedback = styled.form`
     padding: 14px 18px;
     // box-sizing: border-box;
     resize: none;
-    /* background: #efefef;
+    border: ${({textfielborder}) => textfielborder || 'none'};
+    border-radius: 8px;
+    /* background: #F6F6F6;
     color: #343434; */
     color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
-    background-color: ${({textfieldbg}) => textfieldbg || '#efefef'};
+    background-color: ${({textfieldbg}) => textfieldbg || '#F6F6F6'};
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
@@ -133,6 +135,7 @@ export const StyledFeedbackToolbar = styled.div`
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
 
   & button:not(:last-child) {

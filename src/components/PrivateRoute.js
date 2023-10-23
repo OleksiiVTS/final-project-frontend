@@ -1,13 +1,11 @@
-// import React from 'react';
-// import { useSelector } from 'react-redux';
-// import { Navigate } from 'react-router-dom';
-// import { selectLoggedIn } from 'redux/auth/authSelectors';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
+import { selectToken } from 'redux/auth/authSelectors';
 
-// const PrivateRoute = ({ children, redirectTo = '/' }) => {
-//   const logedIn = useSelector(selectLoggedIn);
+const PrivateRoute = () => {
+  const IsToken = useSelector(selectToken);
+  return IsToken ? <Outlet /> : <Navigate to={'/login'} />;
+};
 
-
-//   return logedIn ? children : <Navigate to={redirectTo} />;
-// };
-
-// export default PrivateRoute;
+export default PrivateRoute;
