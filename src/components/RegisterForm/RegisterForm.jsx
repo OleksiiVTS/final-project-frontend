@@ -83,10 +83,12 @@ const RegisterForm = () => {
   const onSubmit = values => {
     try {
       dispatch(register(values));
+
       setShowModal(true);
-      setModalMessage(
-        'To complete the registration process, please check your mailbox!'
-      );
+      const message = regError
+        ? 'Oops! Something went wrong. Try again.'
+        : 'To complete the registration process, please check your mailbox';
+      setModalMessage(message);
     } catch (error) {
       setModalMessage(regError);
       setShowModal(true);

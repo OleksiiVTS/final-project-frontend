@@ -9,7 +9,7 @@ const InfoModal = ({ message, closeModal }) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleClick = () => {
-    setTimeout(() => closeModal(), 1500);
+    closeModal();
   };
 
   return (
