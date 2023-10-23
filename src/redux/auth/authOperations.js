@@ -91,3 +91,15 @@ export const logoutUser = createAsyncThunk(
     }
   }
 );
+
+export const deleteUser = createAsyncThunk(
+  'auth/delete',
+  async (_, thunkAPI) => {
+    try {
+      await $instance.delete('/users/delete');
+      authToken.unset();
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
