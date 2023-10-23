@@ -23,7 +23,6 @@ const StatisticsPage = () => {
 
   useEffect(() => {
     const currentMonth = format(date, 'MM');
-    console.log('effect', currentMonth);
     if (prevMonthRef.current === currentMonth) return;
     prevMonthRef.current = currentMonth;
     dispatch(getTasks(format(date, 'yyyy-MM-dd').slice(0, 7)));
