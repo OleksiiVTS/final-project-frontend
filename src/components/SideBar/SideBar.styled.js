@@ -13,7 +13,7 @@ export const SideBarBox = styled.aside`
   justify-content: space-between;
   color: rgba(52, 52, 52, 0.5);
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1440px) {
     display: none;
   }
 `;

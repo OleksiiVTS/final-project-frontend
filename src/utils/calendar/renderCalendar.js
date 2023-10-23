@@ -76,11 +76,15 @@ const renderCalendar = ({
                   </TaskItem>
                 ))}
 
-              {calendarWithTask && calendarWithTask.length > 2 && (
-                <ShowMoreTasks color={theme === 'dark' ? '#ffffff' : '#3e85f3'}>
-                  ...
-                </ShowMoreTasks>
-              )}
+              {window.innerWidth >= 768 &&
+                calendarWithTask &&
+                calendarWithTask.length > 2 && (
+                  <ShowMoreTasks
+                    color={theme === 'dark' ? '#ffffff' : '#3e85f3'}
+                  >
+                    <b>...</b>
+                  </ShowMoreTasks>
+                )}
             </TaskListWrapper>
           </RowInCell>
         </CellWrapper>

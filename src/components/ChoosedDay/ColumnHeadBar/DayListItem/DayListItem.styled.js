@@ -47,7 +47,7 @@ export const StyledDayListItem = styled.li`
   & button:hover,
   .current {
     color: #ffffff;
-    background-color: #3e85f3;
+    background-color: #2b78ef;
   }
 
   & .tablet {
