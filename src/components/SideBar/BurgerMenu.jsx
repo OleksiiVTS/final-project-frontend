@@ -77,10 +77,13 @@ const BurgerMenu = () => {
   return (
     <>
       <BackgroundOverlay open={sidebarModalStatus} onClick={closeBurgerMenu} />
-      <BurgerMenuWrapper bg={theme === 'dark' ? '#000' : '#fff'} open={sidebarModalStatus}>
+      <BurgerMenuWrapper
+        bg={theme === 'dark' ? '#000' : '#fff'}
+        open={sidebarModalStatus}
+      >
         <BurgerContainer>
           <UserNav onCloseMenu={closeBurgerMenu} />
-          <LogoutBtn />
+          <LogoutBtn onCloseMenu={closeBurgerMenu} />
         </BurgerContainer>
       </BurgerMenuWrapper>
     </>

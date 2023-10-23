@@ -35,13 +35,13 @@ export const authSlice = createSlice({
           dataUser: payload,
           token: payload.token,
           isLoggedIn: true,
-        };
+             };
       })
       .addCase(logoutUser.fulfilled, state => {
         state.dataUser = null;
         state.token = null;
         state.isLoggedIn = false;
-      })
+          })
       .addCase(getUser.pending, state => {
         state.isRefreshing = true;
       })

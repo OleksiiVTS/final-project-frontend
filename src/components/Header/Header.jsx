@@ -27,7 +27,7 @@ import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
 
-const Header = ({pageName = 'GooseTrack'}) => {
+const Header = ({ pageName = 'GooseTrack' }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -72,7 +72,7 @@ const Header = ({pageName = 'GooseTrack'}) => {
       }
       color={theme === 'dark' ? '#fff' : '#000'}
     >
-      {windowWidth < 769 ? (
+      {windowWidth < 1441 ? (
         <BurgerIcon onClick={handleSidebarChange}>
           <span>
             <svg
@@ -97,11 +97,7 @@ const Header = ({pageName = 'GooseTrack'}) => {
 
       <SectionWrapper>
         <>
-          <FeedbackBtn
-            onClick={() => toggleModal()}
-          >
-            Feedback
-          </FeedbackBtn>
+          <FeedbackBtn onClick={() => toggleModal()}>Feedback</FeedbackBtn>
         </>
         {showModal && (
           <Modal closeModal={toggleModal}>
