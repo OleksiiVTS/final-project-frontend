@@ -31,7 +31,7 @@ import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
 import { selectTasks } from 'redux/task/taskSelectors';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 const Header = ({ pageName = 'GooseTrack' }) => {
   const [showModal, setShowModal] = useState(false);
@@ -72,6 +72,7 @@ const Header = ({ pageName = 'GooseTrack' }) => {
   }, []);
 
   const showLogo = Array.isArray(tasks) && tasks?.length > 0;
+  console.log(showLogo);
 
   return (
     <Wrapper
@@ -101,7 +102,9 @@ const Header = ({ pageName = 'GooseTrack' }) => {
               <Goose src={goose} alt="menu goose"></Goose>
               <PageNameInfo>
                 <h2>{pageName}</h2>
-                <Username>Let go of the past and focus on the present!</Username>
+                <Username>
+                  Let go of the past and focus on the present!
+                </Username>
               </PageNameInfo>
             </LeftSide>
           ) : (
