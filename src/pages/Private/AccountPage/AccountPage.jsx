@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
 import { selectIsRefreshing } from 'redux/auth/authSelectors.js';
 import { useSelector } from 'react-redux';
-import { Circles } from 'react-loader-spinner';
+import Loader from 'components/Loader/Loader.jsx';
 import UserForm from 'components/UserForm/UserForm.jsx';
 import { HeaderContainer } from '../CalendarPage/CalendarPage.styled.jsx';
 import Header from 'components/Header/Header.jsx';
@@ -17,31 +17,13 @@ const AccountPage = () => {
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header pageName='My Account'/>
+          <Header pageName="My Account" />
         </HeaderContainer>
-        {IsRefreshing ? (
-          <Circles
-            height="80"
-            width="80"
-            color="#4d78a9"
-            // wrapperClass={css.loader}
-          />
-        ) : (
-          <UserForm />
-        )}
+        <UserForm />
+        {IsRefreshing && <Loader />}
       </CalendarContainer>
     </MainLayout>
   );
 };
 
 export default AccountPage;
-
-// .loader {
-//     position: fixed;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }

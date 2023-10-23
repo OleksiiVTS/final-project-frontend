@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const CalendarContainer = styled.div`
-  /* width: 1151px; */
+  width: 100%;
   /* height: 100%; */
   padding-inline: 20px;
   padding-bottom: 52px;
@@ -14,7 +14,7 @@ const CalendarContainer = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1151px;
+    width: 100%;
     padding-bottom: 32px;
   }
 `;

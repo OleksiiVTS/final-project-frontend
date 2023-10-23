@@ -3,8 +3,6 @@ import loadable from '@loadable/component';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from 'pages/NotFound/NotFound.jsx';
 
-import { Circles } from 'react-loader-spinner';
-import css from '../components/Loader/Loader.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsRefreshing,
@@ -17,6 +15,7 @@ import { getUser } from 'redux/auth/authOperations';
 import { getCurrentDate } from 'utils/calendar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './Loader';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -49,9 +48,7 @@ export const App = () => {
     dispatch(getUser());
   }, [dispatch, token, isAuthenticated]);
 
-  const Loading = (
-    <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
-  );
+  const Loading = <Loader />;
 
   if (isRefreshing && !isAuthenticated) {
     return Loading;
@@ -59,7 +56,7 @@ export const App = () => {
 
   return (
     <main>
-      <Suspense fallback={Loading}>
+      <Suspense fallback={null}>
         <Routes>
           <Route
             path="/account"
