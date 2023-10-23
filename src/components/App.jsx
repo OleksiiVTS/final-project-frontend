@@ -1,8 +1,9 @@
 import { Suspense, useEffect } from 'react';
 import loadable from '@loadable/component';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NotFound from 'pages/NotFound/NotFound.jsx';
-
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsRefreshing,
@@ -10,9 +11,7 @@ import {
   selectToken,
 } from 'redux/auth/authSelectors.js';
 
-import TestPage from 'pages/Private/TestPage';
 import { getUser } from 'redux/auth/authOperations';
-import { getCurrentDate } from 'utils/calendar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
@@ -41,7 +40,6 @@ export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isAuthenticated = useSelector(selectLoggedIn);
   const token = useSelector(selectToken);
-  const currentDate = getCurrentDate();
 
   useEffect(() => {
     if (!token || isAuthenticated) return;
@@ -55,69 +53,21 @@ export const App = () => {
   }
 
   return (
-    <main>
-      <Suspense fallback={null}>
-        <Routes>
-          <Route
-            path="/account"
-            element={
-              isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/calendar/*"
-            element={
-              isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/statistics"
-            element={
-              isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/testpage"
-            element={isAuthenticated ? <TestPage /> : <Navigate to="/login" />}
-          />
-
-          <Route
-            path="/login"
-            element={
-              !isAuthenticated ? (
-                <LoginPage />
-              ) : (
-                <Navigate
-                  replace={true}
-                  to={`/calendar/month/${currentDate}`}
-                />
-              )
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              !isAuthenticated ? (
-                <RegisterPage />
-              ) : (
-                <Navigate
-                  replace={true}
-                  to={`/calendar/month/${currentDate}`}
-                />
-              )
-            }
-          />
-          <Route
-            path="/"
-            element={
-              !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
-            }
-          />
-
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <ToastContainer />
-      </Suspense>
-    </main>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/calendar/*" element={<CalendarPage />} />
+          <Route path="/statistics" element={<StatisticsPage />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <ToastContainer />
+    </Suspense>
   );
 };
