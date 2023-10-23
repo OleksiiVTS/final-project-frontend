@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #a4c6e6;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1200;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 `;
@@ -18,6 +18,7 @@ export const ModalStyled = styled.div`
   position: relative;
   box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
   border-radius: 8px;
+  background-color: #7ccbf8;
 
   @media screen and (min-width: 50px) {
     width: 280px;

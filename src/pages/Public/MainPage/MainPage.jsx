@@ -10,7 +10,7 @@ const MainPage = () => {
       <MainPageWrapper>
         <MainPageContainer>
           <Description />
-          <Slider />
+          {/* <Slider /> */}
           <Footer />
         </MainPageContainer>
       </MainPageWrapper>
