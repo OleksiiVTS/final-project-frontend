@@ -2,7 +2,7 @@ import styled from '@emotion/styled/macro';
 
 export const Stars = styled.div`
 .star {
-    cursor: pointer;
+    // cursor: pointer;
     height: 24px;
     width: 24px;
     margin: 2px;
