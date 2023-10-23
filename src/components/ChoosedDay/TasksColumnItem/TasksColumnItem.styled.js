@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const elementBorderColor = {
   dark: 'rgba(255, 255, 255, 0.15)',
-  light: 'rgba(220, 227, 229, 0.50)',
+  light: 'rgba(220, 227, 229, 0.80)',
 };
 
 const elementBgColor = {
