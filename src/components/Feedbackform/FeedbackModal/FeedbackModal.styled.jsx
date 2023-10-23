@@ -44,6 +44,7 @@ export const FormFeedback = styled.form`
     height: 130px;
     padding: 14px 18px;
     border: none;
+    border-radius: 8px;
     // box-sizing: border-box;
     resize: none;
     /* background: #efefef;
