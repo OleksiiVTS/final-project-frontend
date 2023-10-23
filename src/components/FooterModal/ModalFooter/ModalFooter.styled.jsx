@@ -37,10 +37,7 @@ export const CloseIcon = styled.svg`
   top: 28px;
   right: 12px;
   cursor: pointer;
-  /* border: 4px solid black; */
-  /* transition: fill #3e85f3; */
   stroke: #090909;
-  /* z-index: 55; */
 
   &:hover,
   &:focus {

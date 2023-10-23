@@ -25,7 +25,6 @@ export const Modal = ({ children, handlerCloseModal }) => {
     }
   };
 
-  // useEffect
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
 

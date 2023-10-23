@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import sprite from '../Pictures/sprite.svg';
 import Team from './Team/Team';
-// import SwaggerButton from '../SwaggerButton/SwaggerButton';
 import {
   FooterWrapper,
   FooterContainer,
@@ -16,7 +15,6 @@ export default function Footer() {
 
   return (
     <FooterWrapper>
-      {/* <SwaggerButton /> */}
       <FooterContainer>
         <FooterText>
           {'© 2023 | All Rights Reserved | Developed with '}

@@ -77,12 +77,6 @@ const CurrentTeam = ({
                 ))
               : null}
           </TeamText>
-
-          {/* <TeamText>
-            {description.map((element, index) => (
-              <li key={keyId + index}>{element}</li>
-            ))}
-          </TeamText> */}
         </TextContainer>
       </CurrentTeamItem>
     </CurrentTeamContainer>

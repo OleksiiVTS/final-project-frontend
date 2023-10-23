@@ -1,14 +1,12 @@
 import styled from 'styled-components';
 
 export const CurrentTeamContainer = styled.div`
-  // width: 450px;
   height: 600px;
   padding-top: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  // margin-right: 20px;
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     height: 583px;
@@ -26,7 +24,6 @@ export const CurrentTeamItem = styled.div`
 
   @media screen and (min-width: 375px) and (max-width: 767px) {
     width: 215px;
-    /* padding-left: 7px; */
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
@@ -58,7 +55,6 @@ export const TeamImage = styled.img`
   border: 2px solid blue;
   border-radius: 50%;
   box-sizing: border-box;
-  /* z-index: 44; */
 `;
 
 export const TeamName = styled.p`

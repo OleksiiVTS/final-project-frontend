@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 import { ReactComponent as CloseIcon } from '../Pictures/sprite.svg';
 
-// Styled Components
 export const Backdrop = styled.div`
   background-color: #3458aa;
   position: fixed;
