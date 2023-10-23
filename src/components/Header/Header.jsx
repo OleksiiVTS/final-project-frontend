@@ -31,7 +31,6 @@ import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
 import { selectTasks } from 'redux/task/taskSelectors';
-import styled from 'styled-components';
 
 const Header = ({ pageName = 'GooseTrack' }) => {
   const [showModal, setShowModal] = useState(false);
@@ -40,7 +39,6 @@ const Header = ({ pageName = 'GooseTrack' }) => {
 
   const theme = useSelector(selectTheme);
   const tasks = useSelector(selectTasks);
-  console.log(tasks);
   const { username, avatarURL } = useSelector(selectUser);
   const sidebarModalStatus = useSelector(selectSidebarModalOpen);
   const dispatch = useDispatch();
