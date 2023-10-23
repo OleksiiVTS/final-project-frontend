@@ -22,7 +22,6 @@ import {
   selectTheme,
 } from 'redux/header/headerSlice';
 import { useEffect, useState } from 'react';
-// import { PageContainer } from 'components/LoginForm/LoginForm.styled';
 import sprite from '../Pictures/sprite.svg';
 import goose from '../Pictures/goose-header.png';
 import FeedbackModal from '../Feedbackform/FeedbackModal/FeedbackModal';
@@ -31,7 +30,9 @@ import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
 import { selectTasks } from 'redux/task/taskSelectors';
-// import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
+import { filterDayTasks } from 'helpers/helpers';
+
 
 const Header = ({ pageName = 'GooseTrack' }) => {
   const [showModal, setShowModal] = useState(false);
@@ -40,7 +41,11 @@ const Header = ({ pageName = 'GooseTrack' }) => {
 
   const theme = useSelector(selectTheme);
   const tasks = useSelector(selectTasks);
-  console.log(tasks);
+ 
+  const { pathname } = useLocation();
+  const day = pathname.slice(-2);
+  const dayTasks = filterDayTasks(tasks, day);
+
   const { username, avatarURL } = useSelector(selectUser);
   const sidebarModalStatus = useSelector(selectSidebarModalOpen);
   const dispatch = useDispatch();
@@ -71,8 +76,7 @@ const Header = ({ pageName = 'GooseTrack' }) => {
     };
   }, []);
 
-  const showLogo = Array.isArray(tasks) && tasks?.length > 0;
-  console.log(showLogo);
+  const showLogo = Array.isArray(dayTasks) && dayTasks?.length > 0 && pathname.includes('day');
 
   return (
     <Wrapper
