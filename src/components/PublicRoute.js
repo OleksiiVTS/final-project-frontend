@@ -1,18 +1,18 @@
-// import React from 'react';
-// import { Navigate } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-// import { selectLoggedIn } from 'redux/auth/authSelectors.js';
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectLoggedIn } from 'redux/auth/authSelectors.js';
+import { getCurrentDate } from 'utils/calendar';
 
-// const PublicRoute = ({ children }) => {
-//   const logedIn = useSelector(selectLoggedIn);
+const PublicRoute = () => {
+  const loggedIn = useSelector(selectLoggedIn);
+  const currentDate = getCurrentDate();
 
+  return !loggedIn ? (
+    <Outlet />
+  ) : (
+    <Navigate to={`/calendar/month/${currentDate}`} />
+  );
+};
 
-
-//   if (logedIn) {
-//     return <Navigate to="/account" />;
-//   }
-
-//   return children;
-// };
-
-// export default PublicRoute;
+export default PublicRoute;

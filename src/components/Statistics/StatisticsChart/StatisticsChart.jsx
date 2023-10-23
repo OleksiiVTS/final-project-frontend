@@ -5,13 +5,13 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Legend,
-  Rectangle,
-  Tooltip,
+  LabelList,
+  Legend,  
   XAxis,
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
+import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
 
 const StatisticsChart = ({ today, currentDate }) => {
   const isTasks = useSelector(selectTasks);
@@ -45,39 +45,39 @@ const StatisticsChart = ({ today, currentDate }) => {
   const doneByDayPercentages = ((doneByDay / allTasksByDay) * 100).toFixed(0);
   console.log('doneByDayPercentages: ', doneByDayPercentages);
 
-  const dataCurrentMonth = {
-    categoryTask: isTasks.map(task => task.category),
-  };
+  // const dataCurrentMonth = {
+  //   categoryTask: isTasks.map(task => task.category),
+  // };
 
-  const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
-    el.includes('to-do')
-  );
+  // const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
+  //   el.includes('to-do')
+  // );
 
-  const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
-    el.includes('in-progress')
-  );
+  // const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
+  //   el.includes('in-progress')
+  // );
 
-  const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
-    el.includes('done')
-  );
+  // const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
+  //   el.includes('done')
+  // );
 
-  const allTasksByMonth =
-    todoByMonth.length + inprogressByMonth.length + doneByMonth.length;
+  // const allTasksByMonth =
+  //   todoByMonth.length + inprogressByMonth.length + doneByMonth.length;
 
-  const todoByMonthPercentages = (
-    (todoByMonth.length / allTasksByMonth) *
-    100
-  ).toFixed(0);
+  // const todoByMonthPercentages = (
+  //   (todoByMonth.length / allTasksByMonth) *
+  //   100
+  // ).toFixed(0);
 
-  const inprogressByMonthPercentages = (
-    (inprogressByMonth.length / allTasksByMonth) *
-    100
-  ).toFixed(0);
+  // const inprogressByMonthPercentages = (
+  //   (inprogressByMonth.length / allTasksByMonth) *
+  //   100
+  // ).toFixed(0);
 
-  const doneByMonthPercentages = (
-    (doneByMonth.length / allTasksByMonth) *
-    100
-  ).toFixed(0);
+  // const doneByMonthPercentages = (
+  //   (doneByMonth.length / allTasksByMonth) *
+  //   100
+  // ).toFixed(0);
 
   // const renderLabelMonth = () => {
   //   if (todoByMonth[0] === 'to-do') return todoByMonthPercentages;
@@ -88,53 +88,100 @@ const StatisticsChart = ({ today, currentDate }) => {
   // };
   const data = [
     {
-      name: 'To-Do',
-      uv: todoByMonthPercentages,
-      pv: todoByDayPercentages,
-      amt: 100,
+      name: 'To Do',
+      'By Day': 75,
+      'By Month': 44,
     },
     {
-      name: 'In-Progress',
-      uv: inprogressByMonthPercentages,
-      pv: inprogressByDayPercentages,
-      amt: 100,
+      name: 'In Progress',
+      'By Day': 60,
+      'By Month': 64,
     },
     {
       name: 'Done',
-      uv: doneByMonthPercentages,
-      pv: doneByDayPercentages,
-      amt: 100,
+      'By Day': 60,
+      'By Month': 44,
     },
   ];
 
   return (
-    <BarChart
-      width={1100}
-      height={800}
-      data={data}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis dataKey="amt" />
-      <Tooltip />
-      <Legend />
-      <Bar
-        dataKey="pv"
-        fill="#82ca9d"
-        activeBar={<Rectangle fill="pink" stroke="blue" />}
-      />
-      <Bar
-        dataKey="uv"
-        fill="#8884d8"
-        activeBar={<Rectangle fill="gold" stroke="purple" />}
-      />
-    </BarChart>
+    <StatsPageBox>
+      <StatsContainer>
+        <BarChart
+          width={640}
+          height={424}
+          data={data}
+          margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
+        >
+          <CartesianGrid vertical={false} stroke="#E3F3FF" />
+          <XAxis
+            dataKey="name"
+            axisLine={false}
+            tickLine={false}
+            fontSize={14}
+            fontFamily="Inter"
+            tickMargin={20}
+          />
+          <YAxis
+            domain={[0, 100]}
+            tickCount={6}
+            axisLine={false}
+            tickLine={false}
+            label={{
+              value: 'Tasks',
+              position: 'top',
+              dx: -14,
+              dy: -24,
+              fontFamily: 'Inter',
+              fontSize: 14,
+              fontWeight: 600,
+              fill: '#343434',
+            }}
+            tickMargin={32}
+            fontFamily="Inter"
+            fontSize={14}
+          />
+          <Legend
+            wrapperStyle={{ position: 'absolute', top: -50 }}
+            layout="horizontal"
+            verticalAlign="top"
+            align="end"
+            iconSize={8}
+            iconType="circle"
+            markerWidth={5}
+            fontSize={16}
+          />
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="1" x2="0" y2="0.2">
+              <stop offset="30%" stopColor="#FFD2DD" stopOpacity={1} />
+              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+            </linearGradient>
+          </defs>
+          <defs>
+            <linearGradient id="colorXv" x1="0" y1="1" x2="0" y2="0.2">
+              <stop offset="30%" stopColor="#3E85F3" stopOpacity={1} />
+              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+            </linearGradient>
+          </defs>
+          <Bar dataKey="By Day" fill="url(#colorUv)" barSize={27} radius={10}>
+            <LabelList
+              dataKey="By Day"
+              position="insideTop"
+              fill="#343434"
+              style={{ fontWeight: 500 }}
+            />
+          </Bar>
+          <Bar dataKey="By Month" fill="url(#colorXv)" barSize={27} radius={10}>
+            <LabelList
+              dataKey="By Month"
+              position="insideTop"
+              fill="#343434"
+              style={{ fontWeight: 500 }}
+            />
+          </Bar>
+        </BarChart>
+      </StatsContainer>
+    </StatsPageBox>
   );
 };
 
