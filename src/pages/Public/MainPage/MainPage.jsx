@@ -1,9 +1,8 @@
 import AuthSection from 'components/AuthSection/AuthSection';
 import Description from 'components/Description/Description';
-// import Slider from 'components/Slider/Slider';
+import Slider from 'components/Slider/Slider';
 import Footer from 'components/footer/Footer';
 import { MainPageContainer, MainPageWrapper } from './MainPage.styled';
-// import Footer from 'components/MainPage/Footer/Footer';
 const MainPage = () => {
   return (
     <>
@@ -11,7 +10,7 @@ const MainPage = () => {
       <MainPageWrapper>
         <MainPageContainer>
           <Description />
-          {/* <Slider /> */}
+          <Slider />
           <Footer />
         </MainPageContainer>
       </MainPageWrapper>
