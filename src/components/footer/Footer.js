@@ -29,7 +29,7 @@ export default function Footer() {
           </StudentsText>
         </FooterText>
       </FooterContainer>
-      {!isOpened && <Team onCloseModal={handleToggleModal} />}
+      {isOpened && <Team onCloseModal={handleToggleModal} />}
     </FooterWrapper>
   );
 }
