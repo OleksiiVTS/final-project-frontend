@@ -1,15 +1,31 @@
 import styled from 'styled-components';
 
+const sectionBgColor = {
+  dark: '#171820',
+  light: '#F7F6F9',
+};
+
+const sectionBorderColor = {
+  dark: 'rgba(255, 255, 255, 0.15)',
+  light: 'rgba(220, 227, 229, 0.80);',
+};
+
+const textColor = {
+  dark: '#FFFFFF',
+  light: '#111111',
+};
+
 export const StyledTaskColumnCard = styled.div`
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  row-gap: 14px;
-  margin-bottom: 32px; */
+  justify-content: space-between;
   padding: 14px 14px 18px;
 
+  min-height: 108px;
+
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.8);
-  background: #f7f6f9;
+  border: 1px solid ${({ theme }) => sectionBorderColor[theme]};
+  background-color: ${({ theme }) => sectionBgColor[theme]};
 
   & .title,
   .time {
@@ -17,10 +33,7 @@ export const StyledTaskColumnCard = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    /* margin-bottom: 28px; */
-    margin-bottom: 5px;
-
-    color: #111;
+    color: ${({ theme }) => textColor[theme]};
     font-family: Inter;
     font-size: 14px;
     font-weight: 500;

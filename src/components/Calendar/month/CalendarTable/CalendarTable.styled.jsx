@@ -20,19 +20,17 @@ export const GridWrapper = styled.ul`
   gap: 0px;
   align-content: flex-start;
   width: 100%;
+  border: 1px solid ${({ bordercolor }) => bordercolor};
   border-radius: 8px;
+  background-color: ${({ bgcolor }) => bgcolor};
   overflow: hidden;
 
-  /* height: 564px; */
-  /* height: 470px; */
-
   @media screen and (min-width: 768px) {
-    /* height: 860px; */
-    /* height: 720px; */
+    max-width: 1065px;
   }
+
   @media screen and (min-width: 1440px) {
-    /* height: 750px; */
-    /* height: 625px; */
+    width: 1087px;
   }
 `;
 
@@ -42,8 +40,7 @@ export const CellWrapper = styled(NavLink)`
   height: 93px;
   padding-top: 31px;
   padding-bottom: 1px;
-  border: 1px solid rgba(220, 227, 229, 0.5);
-  background-color: #ffffff;
+  border: 1px solid ${({ bordercolor }) => bordercolor};
   text-align: right;
   cursor: pointer;
 
@@ -70,7 +67,7 @@ export const DayWrapper = styled.div`
   right: 4px;
   padding: 4px 6px;
   border-radius: 6px;
-  color: #343434;
+  color: ${({ color }) => color};
   font-size: 12px;
   font-weight: 700;
   line-height: calc(14 / 12);
@@ -113,7 +110,6 @@ export const CurrentDay = styled.div`
 export const ShowDayWrapper = styled.div``;
 
 export const TaskListWrapper = styled.ul`
-  /* padding-inline: 8px; */
   padding: 8px;
 `;
 
@@ -132,23 +128,18 @@ export const TaskItem = styled.li`
   white-space: nowrap;
 
   @media screen and (min-width: 768px) {
-    /* min-width: 92px; */
     height: 26px;
     padding: 4px 8px 4px 12px;
     font-size: 14px;
     line-height: calc(13 / 10);
   }
-
-  @media screen and (min-width: 1440px) {
-    /* min-width: 114px; */
-  }
 `;
 
-export const TasksMoreLabel = styled.div`
-  /* margin-top: auto; */
+export const ShowMoreTasks = styled.div`
   margin: auto;
   overflow: hidden;
-  color: #3e85f3;
+  color: ${({ color }) => color};
   font-size: 14px;
+  line-height: 0.6;
   text-align: center;
 `;

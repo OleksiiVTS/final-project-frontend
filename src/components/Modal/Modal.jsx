@@ -9,11 +9,15 @@ import {
 } from './Modal.styled';
 import sprite from '../Pictures/sprite.svg';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectTheme } from 'redux/header/headerSlice';
 
 const Modal = ({ closeModal, children }) => {
   const dispatch = useDispatch();
+  const theme = useSelector(selectTheme);
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = event => {
       if (event.code === 'Escape') {
         closeModal();
@@ -21,6 +25,7 @@ const Modal = ({ closeModal, children }) => {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => {
+      document.body.style.overflow = 'unset';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [dispatch, closeModal]);
@@ -31,10 +36,17 @@ const Modal = ({ closeModal, children }) => {
         closeModal();
       }}
     >
-      <ModalContainer onClick={e => e.stopPropagation()}>
+      <ModalContainer
+        onClick={e => e.stopPropagation()}
+        bg={theme !== 'dark' ? '#fff' : 'var(--color-theme-dark)'}
+      >
         <CloseBtnContainer onClick={closeModal}>
-          <CloseBtn>
-            <svg width="24" height="24">
+          <CloseBtn bg={theme !== 'dark' ? '#fff' : 'var(--color-theme-dark)'}>
+            <svg
+              width="24"
+              height="24"
+              stroke={theme === 'dark' ? '#fff' : '#000'}
+            >
               <use href={sprite + '#close-btn'}></use>
             </svg>
           </CloseBtn>

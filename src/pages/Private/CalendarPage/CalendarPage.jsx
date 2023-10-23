@@ -1,12 +1,6 @@
 import { Suspense, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { addDays, addMonths, format, subDays, subMonths } from 'date-fns';
 
@@ -20,40 +14,31 @@ import MainLayout from '../../../components/MainLayout/MainLayout.jsx';
 import ChoosedDay from 'components/ChoosedDay/ChoosedDay.jsx';
 
 import { getTasks as getTasksThunk } from 'redux/task/taskOperations';
-import { selectTasks } from 'redux/task/taskSelectors';
+import { selectTheme } from 'redux/header/headerSlice.js';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const tasks = useSelector(selectTasks);
+  const theme = useSelector(selectTheme);
 
-  const currentDate = Object.values(useParams())[0].slice(-10);
-  const requestDate = currentDate.slice(0, 7);
-
-  const prevMonthRef = useRef(pathname.slice(-5).slice(0, 2));
+  const currentDate = pathname.slice(-10);
+  const prevMonthRef = useRef(null);
 
   useEffect(() => {
-    if (tasks.length > 0) return;
-
-    dispatch(getTasksThunk(requestDate));
-  }, [dispatch, requestDate, tasks.length]);
-
-  useEffect(() => {
-    if (tasks.length === 0) return;
-
     const currentMonth = pathname.slice(-5).slice(0, 2);
     if (prevMonthRef.current === currentMonth) return;
 
     prevMonthRef.current = currentMonth;
+    const requestDate = currentDate.slice(0, 7);
+
     dispatch(getTasksThunk(requestDate));
-  }, [dispatch, requestDate, tasks.length, pathname]);
+  }, [dispatch, currentDate, pathname]);
 
   const handlePrev = () => {
     if (pathname.includes('day')) {
       const newDate = subDays(new Date(currentDate), 1);
       navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
-
       return;
     }
 
@@ -65,7 +50,6 @@ const CalendarPage = () => {
     if (pathname.includes('day')) {
       const newDate = addDays(new Date(currentDate), 1);
       navigate(`/calendar/day/${format(newDate, 'yyyy-MM-dd')}`);
-
       return;
     }
 
@@ -75,9 +59,9 @@ const CalendarPage = () => {
 
   return (
     <MainLayout>
-      <CalendarContainer>
+      <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
         <HeaderContainer>
-          <Header />
+          <Header pageName="Calendar" />
         </HeaderContainer>
 
         <Suspense fallback={null}>
@@ -85,10 +69,17 @@ const CalendarPage = () => {
             onClickPrev={handlePrev}
             onClickNext={handleNext}
             today={currentDate}
+            theme={theme}
           />
           <Routes>
-            <Route path="/month/:currentDate" element={<ChoosedMonth />} />
-            <Route path="/day/:currentDate" element={<ChoosedDay />} />
+            <Route
+              path="/month/:currentDate"
+              element={<ChoosedMonth theme={theme} />}
+            />
+            <Route
+              path="/day/:currentDate"
+              element={<ChoosedDay theme={theme} />}
+            />
           </Routes>
         </Suspense>
       </CalendarContainer>

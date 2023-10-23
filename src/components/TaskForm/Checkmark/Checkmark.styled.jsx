@@ -14,18 +14,18 @@ const strokeAnimation = keyframes`
   }
 `;
 
+const fillAnimation = keyframes`
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #ffffff0;
+  }
+`;
+
 const scaleAnimation = keyframes`
   0%, 100% {
     transform: none;
   }
   50% {
     transform: scale3d(1.1, 1.1, 1);
-  }
-`;
-
-const fillAnimation = keyframes`
-  100% {
-    box-shadow: inset 0px 0px 0px 30px #fff;
   }
 `;
 

@@ -1,10 +1,9 @@
 import { Suspense, useEffect } from 'react';
 import loadable from '@loadable/component';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import NotFound from 'pages/NotFound/NotFound.jsx';
-
-import { Circles } from 'react-loader-spinner';
-import css from '../components/Loader/Loader.module.css';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectIsRefreshing,
@@ -12,12 +11,11 @@ import {
   selectToken,
 } from 'redux/auth/authSelectors.js';
 
-import TestPage from 'pages/Private/TestPage';
-import VerifiedPage from 'pages/Public/VerifiedPage';
 import { getUser } from 'redux/auth/authOperations';
-import { getCurrentDate } from 'utils/calendar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './Loader';
+import VerifiedPage from 'pages/Public/VerifiedPage';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
@@ -43,99 +41,35 @@ export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isAuthenticated = useSelector(selectLoggedIn);
   const token = useSelector(selectToken);
-  const currentDate = getCurrentDate();
 
   useEffect(() => {
     if (!token || isAuthenticated) return;
     dispatch(getUser());
   }, [dispatch, token, isAuthenticated]);
 
-  const Loading = (
-    <Circles height="80" width="80" color="#4d78a9" wrapperClass={css.loader} />
-  );
+  const Loading = <Loader />;
 
-  if (isRefreshing) {
+  if (isRefreshing && !isAuthenticated) {
     return Loading;
   }
 
   return (
-    <main>
-      <Suspense fallback={Loading}>
-        <Routes>
-          <Route
-            path="/account"
-            element={
-              isAuthenticated ? <AccountPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/calendar/*"
-            element={
-              isAuthenticated ? <CalendarPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/statistics"
-            element={
-              isAuthenticated ? <StatisticsPage /> : <Navigate to="/login" />
-            }
-          />
-          <Route
-            path="/testpage"
-            element={isAuthenticated ? <TestPage /> : <Navigate to="/login" />}
-          />
-
-          <Route
-            path="/login"
-            element={
-              !isAuthenticated ? (
-                <LoginPage />
-              ) : (
-                <Navigate
-                  replace={true}
-                  to={`/calendar/month/${currentDate}`}
-                />
-              )
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              !isAuthenticated ? (
-                <RegisterPage />
-              ) : (
-                <Navigate
-                  replace={true}
-                  to={`/calendar/month/${currentDate}`}
-                />
-              )
-            }
-          />
-          <Route
-            path="/"
-            element={
-              !isAuthenticated ? <MainPage /> : <Navigate to="/account" />
-            }
-          />
-
-          <Route
-            path="/verified/:token"
-            element={
-              !isAuthenticated ? (
-                <VerifiedPage />
-              ) : (
-                <Navigate
-                  replace={true}
-                  to={`/calendar/month/${currentDate}`}
-                />
-              )
-            }
-          />
-
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <ToastContainer />
-      </Suspense>
-    </main>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/verified/:token" element={<VerifiedPage />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/calendar/*" element={<CalendarPage />} />
+          <Route path="/statistics" element={<StatisticsPage />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <ToastContainer />
+    </Suspense>
   );
 };

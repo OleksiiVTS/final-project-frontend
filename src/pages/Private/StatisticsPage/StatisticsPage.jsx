@@ -1,39 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MainLayout from 'components/MainLayout/MainLayout';
-import StatisticsChart from 'components/Statistics/StatisticsChart';
+import StatisticsChart from 'components/Statistics/StatisticsChart/StatisticsChart';
 // import Header from 'components/Header/Header';
 import { getCurrentDate } from 'utils/calendar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTasks } from 'redux/task/taskOperations';
+import { HeaderContainer } from '../CalendarPage/CalendarPage.styled';
+import Header from 'components/Header/Header';
+import { selectTheme } from 'redux/header/headerSlice';
+import { CalendarContainer } from 'components/Calendar/common';
+import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
+import { addDays, subDays } from 'date-fns';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
-  const currentDate = getCurrentDate().slice(0, 7);
-  console.log('currentDate: ', currentDate);
+  const [dateData, setDateData] = useState('');
   const dispatch = useDispatch();
+
+  const theme = useSelector(selectTheme);
+  const currentDay = getCurrentDate();
   useEffect(() => {
-    dispatch(getTasks(currentDate));
-  }, [dispatch, currentDate]);
+    dispatch(getTasks(dateData.slice(0, 7)));
+  }, [dispatch, dateData]);
+
+  const currentDateData = childData => {
+    setDateData(childData);
+  };
+  console.log('dateData:', dateData);
+
+  const handlePrev = () => {
+    subDays(new Date(dateData), 1);
+  };
+
+  const handleNext = () => {
+    addDays(new Date(dateData), 1);
+  };
 
   return (
     <MainLayout>
-      <div>
-        <div>
-          <h1>Statistics</h1>
-        </div>
-        {/* <Header /> */}
-        <StatisticsChart />
-        {/* <Suspense fallback={null}>
-          <CalendarToolbar
-            onClickPrev={handlePrev}
-            onClickNext={handleNext}
-            today={currentDate}
-          />
-        </Suspense> */}
-      </div>
+      <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
+        <HeaderContainer>
+          <Header pageName="Statistics" />
+        </HeaderContainer>
+        <PeriodPaginator
+          currentDateData={currentDateData}
+          today={currentDay}
+          onClickPrev={handlePrev}
+          onClickNext={handleNext}
+        />
+        <StatisticsChart currentDate={dateData} />
+      </CalendarContainer>
     </MainLayout>
 
     // {isLoading && !error && (

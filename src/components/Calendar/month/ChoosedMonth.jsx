@@ -2,12 +2,11 @@ import CalendarHead from './CalendarHead';
 import CalendarTable from './CalendarTable';
 import { Container } from './ChoosedMonth.styled';
 
-const ChoosedMonth = () => {
+const ChoosedMonth = ({ theme }) => {
   return (
     <Container>
-      {/* <h2>Month</h2> */}
-      <CalendarHead />
-      <CalendarTable />
+      <CalendarHead theme={theme} />
+      <CalendarTable theme={theme} />
     </Container>
   );
 };
