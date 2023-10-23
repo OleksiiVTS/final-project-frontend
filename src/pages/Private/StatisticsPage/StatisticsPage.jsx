@@ -49,7 +49,14 @@ const StatisticsPage = () => {
           onClickNext={handleNext}
           setDate={setDate}
         />
-        <StatisticsChart date={date} />
+        <StatisticsChart date={date}>
+          <PeriodPaginator
+            date={date}
+            onClickPrev={handlePrev}
+            onClickNext={handleNext}
+            setDate={setDate}
+          />
+        </StatisticsChart>
       </CalendarContainer>
     </MainLayout>
 

@@ -6,7 +6,7 @@ import {
   BarChart,
   CartesianGrid,
   LabelList,
-  Legend,  
+  Legend,
   XAxis,
   YAxis,
 } from 'recharts';
@@ -41,55 +41,55 @@ const StatisticsChart = ({ date }) => {
 
   const doneByDayPercentages = ((doneByDay / allTasksByDay) * 100).toFixed(0);
 
-  // const dataCurrentMonth = {
-  //   categoryTask: isTasks.map(task => task.category),
-  // };
+  const dataCurrentMonth = {
+    categoryTask: isTasks.map(task => task.category),
+  };
 
-  // const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
-  //   el.includes('to-do')
-  // );
+  const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
+    el.includes('to-do')
+  );
 
-  // const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
-  //   el.includes('in-progress')
-  // );
+  const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
+    el.includes('in-progress')
+  );
 
-  // const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
-  //   el.includes('done')
-  // );
+  const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
+    el.includes('done')
+  );
 
-  // const allTasksByMonth =
-  //   todoByMonth.length + inprogressByMonth.length + doneByMonth.length;
+  const allTasksByMonth =
+    todoByMonth.length + inprogressByMonth.length + doneByMonth.length;
 
-  // const todoByMonthPercentages = (
-  //   (todoByMonth.length / allTasksByMonth) *
-  //   100
-  // ).toFixed(0);
+  const todoByMonthPercentages = (
+    (todoByMonth.length / allTasksByMonth) *
+    100
+  ).toFixed(0);
 
-  // const inprogressByMonthPercentages = (
-  //   (inprogressByMonth.length / allTasksByMonth) *
-  //   100
-  // ).toFixed(0);
+  const inprogressByMonthPercentages = (
+    (inprogressByMonth.length / allTasksByMonth) *
+    100
+  ).toFixed(0);
 
-  // const doneByMonthPercentages = (
-  //   (doneByMonth.length / allTasksByMonth) *
-  //   100
-  // ).toFixed(0);
+  const doneByMonthPercentages = (
+    (doneByMonth.length / allTasksByMonth) *
+    100
+  ).toFixed(0);
 
   const data = [
     {
       name: 'To Do',
-      'By Day': 75,
-      'By Month': 44,
+      'By Day': todoByDayPercentages,
+      'By Month': todoByMonthPercentages,
     },
     {
       name: 'In Progress',
-      'By Day': 60,
-      'By Month': 64,
+      'By Day': inprogressByDayPercentages,
+      'By Month': inprogressByMonthPercentages,
     },
     {
       name: 'Done',
-      'By Day': 60,
-      'By Month': 44,
+      'By Day': doneByDayPercentages,
+      'By Month': doneByMonthPercentages,
     },
   ];
 
