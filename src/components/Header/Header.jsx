@@ -31,8 +31,7 @@ import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
 import { selectTasks } from 'redux/task/taskSelectors';
-import { useLocation } from 'react-router-dom';
-import { filterDayTasks } from 'helpers/helpers';
+// import styled from 'styled-components';
 
 const Header = ({ pageName = 'GooseTrack' }) => {
   const [showModal, setShowModal] = useState(false);
@@ -41,14 +40,10 @@ const Header = ({ pageName = 'GooseTrack' }) => {
 
   const theme = useSelector(selectTheme);
   const tasks = useSelector(selectTasks);
+  console.log(tasks);
   const { username, avatarURL } = useSelector(selectUser);
   const sidebarModalStatus = useSelector(selectSidebarModalOpen);
   const dispatch = useDispatch();
-
-  const { pathname } = useLocation();
-
-  const day = pathname.slice(-2);
-  const dayTasks = filterDayTasks(tasks, day);
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
@@ -76,7 +71,8 @@ const Header = ({ pageName = 'GooseTrack' }) => {
     };
   }, []);
 
-  const showLogo = Array.isArray(dayTasks) && dayTasks?.length > 0 && pathname.includes('day');
+  const showLogo = Array.isArray(tasks) && tasks?.length > 0;
+  console.log(showLogo);
 
   return (
     <Wrapper
@@ -106,7 +102,9 @@ const Header = ({ pageName = 'GooseTrack' }) => {
               <Goose src={goose} alt="menu goose"></Goose>
               <PageNameInfo>
                 <h2>{pageName}</h2>
-                <Username>Let go of the past and focus on the present!</Username>
+                <Username>
+                  Let go of the past and focus on the present!
+                </Username>
               </PageNameInfo>
             </LeftSide>
           ) : (
