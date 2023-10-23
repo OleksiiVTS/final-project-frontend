@@ -15,7 +15,7 @@ const elementBgColor = {
 export const DayContainer = styled.div`
   width: 100%;
   @media screen and (min-width: 768px) {
-    width: 100%;
+    max-width: 1065px;
   }
   @media screen and (min-width: 1440px) {
     width: 1087px;
