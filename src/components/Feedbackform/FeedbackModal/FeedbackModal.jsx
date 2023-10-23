@@ -90,12 +90,12 @@ const FeedbackModal = ({ isActive, closeModal }) => {
           <RatingWrapper>
             <RatingTitle color={theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'}>Rating</RatingTitle>
             <div className="stars">
-              <StarApp rating={feedbackRating} getRating={getFeedbackRating} />
+            <StarApp isEditing={isEditing} isReview={isReview} rating={feedbackRating} getRating={getFeedbackRating} />
             </div>
           </RatingWrapper>
           {isActive && (
             <FormFeedback onSubmit={handleSubmit} 
-            textfieldbg={theme === 'dark' ? 'var(--color-theme-dark)' : '#efefef'}
+            textfieldbg={theme === 'dark' ? 'var(--color-theme-dark)' : '#F6F6F6'}
             textfieldcolor={theme === 'dark' ? '#ffffff' : '#343434'}
             reviewtextcolor={theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'}
             bgbtn={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}

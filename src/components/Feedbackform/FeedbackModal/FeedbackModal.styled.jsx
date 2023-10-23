@@ -43,12 +43,13 @@ export const FormFeedback = styled.form`
     width: 100%;
     height: 130px;
     padding: 14px 18px;
+    border: none;
     // box-sizing: border-box;
     resize: none;
     /* background: #efefef;
     color: #343434; */
     color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
-    background-color: ${({textfieldbg}) => textfieldbg || '#efefef'};
+    background-color: ${({textfieldbg}) => textfieldbg || '#F6F6F6'};
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
