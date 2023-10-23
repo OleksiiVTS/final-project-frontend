@@ -8,6 +8,9 @@ import {
   ThemeToggler,
   Username,
   Userphoto,
+  Goose,
+  LeftSide,
+  PageNameInfo,
 } from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -21,18 +24,23 @@ import {
 import { useEffect, useState } from 'react';
 // import { PageContainer } from 'components/LoginForm/LoginForm.styled';
 import sprite from '../Pictures/sprite.svg';
+import goose from '../Pictures/goose-header.png';
 import FeedbackModal from '../Feedbackform/FeedbackModal/FeedbackModal';
 import Modal from 'components/Modal/Modal';
 import BurgerMenu from 'components/SideBar/BurgerMenu';
 import { selectUser } from 'redux/auth/authSelectors';
 import debounce from 'lodash/debounce';
+import { selectTasks } from 'redux/task/taskSelectors';
+import styled from 'styled-components';
 
-const Header = ({pageName = 'GooseTrack'}) => {
+const Header = ({ pageName = 'GooseTrack' }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const theme = useSelector(selectTheme);
+  const tasks = useSelector(selectTasks);
+  console.log(tasks);
   const { username, avatarURL } = useSelector(selectUser);
   const sidebarModalStatus = useSelector(selectSidebarModalOpen);
   const dispatch = useDispatch();
@@ -63,6 +71,8 @@ const Header = ({pageName = 'GooseTrack'}) => {
     };
   }, []);
 
+  const showLogo = Array.isArray(tasks) && tasks?.length > 0;
+
   return (
     <Wrapper
       bg={
@@ -85,7 +95,19 @@ const Header = ({pageName = 'GooseTrack'}) => {
           </span>
         </BurgerIcon>
       ) : (
-        <h2>{pageName}</h2>
+        <>
+          {showLogo ? (
+            <LeftSide>
+              <Goose src={goose} alt="menu goose"></Goose>
+              <PageNameInfo>
+                <h2>{pageName}</h2>
+                <Username>Let go of the past and focus on the present!</Username>
+              </PageNameInfo>
+            </LeftSide>
+          ) : (
+            <h2>{pageName}</h2>
+          )}
+        </>
       )}
       <BurgerIcon>
         <span>
@@ -97,11 +119,7 @@ const Header = ({pageName = 'GooseTrack'}) => {
 
       <SectionWrapper>
         <>
-          <FeedbackBtn
-            onClick={() => toggleModal()}
-          >
-            Feedback
-          </FeedbackBtn>
+          <FeedbackBtn onClick={() => toggleModal()}>Feedback</FeedbackBtn>
         </>
         {showModal && (
           <Modal closeModal={toggleModal}>

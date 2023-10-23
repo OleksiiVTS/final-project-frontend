@@ -68,3 +68,20 @@ export const Userphoto = styled.div`
   height: 32px;
   border-radius: 50%;
 `;
+
+export const LeftSide = styled.div`
+  display: flex;
+  gap: 8px;
+`
+
+export const PageNameInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
+export const Goose = styled.img`
+
+  width: 64px;
+  height: 60px;
+`
