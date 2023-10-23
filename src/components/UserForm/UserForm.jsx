@@ -42,12 +42,8 @@ const UserForm = () => {
 
   const submit = values => {
     const imagefile = document.getElementById('avatar');
-    console.log(values);
     const formatedDate = format(values.birthday, 'yyyy-MM-dd');
-
-    console.log(formatedDate);
     const data = { ...values, birthday: formatedDate };
-
     updateUser({ ...data, avatarURL: imagefile });
   };
 
