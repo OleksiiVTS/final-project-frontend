@@ -21,6 +21,7 @@ const CalendarDate = ({ date, currentData }) => {
   useEffect(() => {
     setDateValue(date);
   }, [date]);
+
   console.log('dateValue: ', dateValue);
 
   const handleClick = () => setIsOpen(!isOpen);
@@ -52,7 +53,6 @@ const CalendarDate = ({ date, currentData }) => {
             inline
             calendarStartDay={1}
             dateFormat="dd MMMM yyyy"
-            // formatWeekDay={day => day.substring(0, 1)}
           />
           <CalendarGlobalStyles />
         </>

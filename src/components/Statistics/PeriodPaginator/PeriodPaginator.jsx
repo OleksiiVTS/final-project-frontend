@@ -18,7 +18,7 @@ const PeriodPaginator = ({
   onClickNext,
   today,
 }) => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState(today);
 
   const theme = useSelector(selectTheme);
 
