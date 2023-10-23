@@ -11,7 +11,7 @@ import Header from 'components/Header/Header';
 import { selectTheme } from 'redux/header/headerSlice';
 import { CalendarContainer } from 'components/Calendar/common';
 import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
-import { addDays, parseISO, subDays } from 'date-fns';
+import { addDays, subDays } from 'date-fns';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
@@ -19,7 +19,6 @@ import { addDays, parseISO, subDays } from 'date-fns';
 const StatisticsPage = () => {
   const [dateData, setDateData] = useState('');
   const dispatch = useDispatch();
-  console.log('dateData: ', dateData);
 
   const theme = useSelector(selectTheme);
   const currentDay = getCurrentDate();
@@ -33,11 +32,8 @@ const StatisticsPage = () => {
     setDateData(childData);
   };
 
-  console.log('dateData:', dateData);
-
   const handlePrev = () => {
-    const newData = subDays(parseISO(String(new Date(dateData))), 1);
-    console.log('newData: ', newData);
+    subDays(new Date(dateData), 1);
   };
 
   const handleNext = () => {

@@ -13,16 +13,12 @@ import {
 } from 'components/Calendar/common/NewCalendarDatePicker.styled';
 
 const CalendarDate = ({ date, currentData }) => {
-  console.log('date: ', date);
-
   const [dateValue, setDateValue] = useState(date);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     setDateValue(date);
   }, [date]);
-
-  console.log('dateValue: ', dateValue);
 
   const handleClick = () => setIsOpen(!isOpen);
 
@@ -45,14 +41,15 @@ const CalendarDate = ({ date, currentData }) => {
             onChange={date => {
               setDateValue(date);
               const formattedDate = format(date, 'yyyy-MM-dd');
-              setDateValue(date);
+              // setDateValue(date);
               currentData(formattedDate);
               handleClick();
             }}
             allowSameDay={true}
             inline
             calendarStartDay={1}
-            dateFormat="dd MMMM yyyy"
+            dateFormat={'dd MMMM yyyy'}
+            formatWeekDay={day => day.substring(0, 1)}
           />
           <CalendarGlobalStyles />
         </>

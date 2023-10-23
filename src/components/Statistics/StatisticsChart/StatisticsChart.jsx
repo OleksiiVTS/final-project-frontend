@@ -22,13 +22,10 @@ const StatisticsChart = ({ currentDate }) => {
   // useEffect(() => {
   //   setCurrentDay(currentDate);
   // }, [currentDate]);
-  console.log('currentDate: ', currentDate);
 
   const dateTask = isTasks
     .filter(el => el.date === currentDate)
     .map(task => task.category);
-  console.log('isTasks: ', isTasks);
-  console.log('dateTask: ', dateTask);
 
   const todoByDay = dateTask.filter(el => el.includes('to-do')).length;
 
@@ -41,16 +38,13 @@ const StatisticsChart = ({ currentDate }) => {
   const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
 
   const todoByDayPercentages = ((todoByDay / allTasksByDay) * 100).toFixed(0);
-  console.log('todoByDayPercentages: ', todoByDayPercentages);
 
   const inprogressByDayPercentages = (
     (inprogressByDay / allTasksByDay) *
     100
   ).toFixed(0);
-  console.log('inprogressByDayPercentages: ', inprogressByDayPercentages);
 
   const doneByDayPercentages = ((doneByDay / allTasksByDay) * 100).toFixed(0);
-  console.log('doneByDayPercentages: ', doneByDayPercentages);
 
   const dataCurrentMonth = {
     categoryTask: isTasks.map(task => task.category),
