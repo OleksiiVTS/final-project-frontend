@@ -38,11 +38,12 @@ const LogoutButton = styled.button`
   }
 `;
 
-const LogoutBtn = () => {
+const LogoutBtn = ( {onCloseMenu}) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    onCloseMenu()
   };
 
   return (

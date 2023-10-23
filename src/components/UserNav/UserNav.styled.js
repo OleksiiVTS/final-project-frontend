@@ -51,7 +51,7 @@ export const CloseBurgerBtn = styled.button`
   padding: 0;
   stroke: currentColor;
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 1440px) {
     font-size: 16px;
     display: none;
   }
