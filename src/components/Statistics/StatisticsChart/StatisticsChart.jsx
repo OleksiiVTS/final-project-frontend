@@ -1,7 +1,5 @@
-import React from 'react';
-// import { useEffect } from 'react';
-// import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { format } from 'date-fns';
 
 import {
   Bar,
@@ -15,16 +13,13 @@ import {
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
 
-const StatisticsChart = ({ currentDate }) => {
+const StatisticsChart = ({ date }) => {
   const isTasks = useSelector(selectTasks);
-  // const [currentDay] = useState(currentDate);
 
-  // useEffect(() => {
-  //   setCurrentDay(currentDate);
-  // }, [currentDate]);
+  const parsedDate = format(date, 'yyyy-MM-dd');
 
   const dateTask = isTasks
-    .filter(el => el.date === currentDate)
+    .filter(el => el.date === parsedDate)
     .map(task => task.category);
 
   const todoByDay = dateTask.filter(el => el.includes('to-do')).length;

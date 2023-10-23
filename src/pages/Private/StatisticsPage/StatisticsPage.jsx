@@ -1,45 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { addDays, format, subDays } from 'date-fns';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MainLayout from 'components/MainLayout/MainLayout';
 import StatisticsChart from 'components/Statistics/StatisticsChart/StatisticsChart';
-// import Header from 'components/Header/Header';
-import { getCurrentDate } from 'utils/calendar';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTasks } from 'redux/task/taskOperations';
 import { HeaderContainer } from '../CalendarPage/CalendarPage.styled';
 import Header from 'components/Header/Header';
-import { selectTheme } from 'redux/header/headerSlice';
 import { CalendarContainer } from 'components/Calendar/common';
 import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
-import { addDays, subDays } from 'date-fns';
+// import Header from 'components/Header/Header';
+import { getTasks } from 'redux/task/taskOperations';
+import { selectTheme } from 'redux/header/headerSlice';
 
 // import { Link } from 'react-router-dom';
 // import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
-  const [dateData, setDateData] = useState('');
   const dispatch = useDispatch();
+  const [date, setDate] = useState(new Date());
 
-  const theme = useSelector(selectTheme);
-  const currentDay = getCurrentDate();
-  const requestDate = dateData.slice(0, 7);
+  const prevMonthRef = useRef(null);
 
   useEffect(() => {
-    dispatch(getTasks(requestDate));
-  }, [dispatch, requestDate]);
-
-  const currentDateData = childData => {
-    setDateData(childData);
-  };
+    const currentMonth = format(date, 'MM');
+    console.log('effect', currentMonth);
+    if (prevMonthRef.current === currentMonth) return;
+    prevMonthRef.current = currentMonth;
+    dispatch(getTasks(format(date, 'yyyy-MM-dd').slice(0, 7)));
+  }, [dispatch, date]);
 
   const handlePrev = () => {
-    subDays(new Date(dateData), 1);
+    setDate(subDays(date, 1));
   };
 
   const handleNext = () => {
-    addDays(new Date(dateData), 1);
+    setDate(addDays(date, 1));
   };
 
+  const theme = useSelector(selectTheme);
   return (
     <MainLayout>
       <CalendarContainer bgcolor={theme === 'dark' ? '#171820' : '#f7f6f9'}>
@@ -47,12 +45,12 @@ const StatisticsPage = () => {
           <Header pageName="Statistics" />
         </HeaderContainer>
         <PeriodPaginator
-          currentDateData={currentDateData}
-          today={currentDay}
+          date={date}
           onClickPrev={handlePrev}
           onClickNext={handleNext}
+          setDate={setDate}
         />
-        <StatisticsChart currentDate={dateData} />
+        <StatisticsChart date={date} />
       </CalendarContainer>
     </MainLayout>
 

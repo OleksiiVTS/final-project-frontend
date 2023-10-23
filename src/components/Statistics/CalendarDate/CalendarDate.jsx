@@ -1,9 +1,5 @@
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import { format } from 'date-fns';
-// import DatePicker from 'react-date-picker';
-// import 'react-date-picker/dist/DatePicker.css';
-// import 'react-calendar/dist/Calendar.css';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import {
@@ -12,37 +8,22 @@ import {
   CalendarGlobalStyles,
 } from 'components/Calendar/common/NewCalendarDatePicker.styled';
 
-const CalendarDate = ({ date, currentData }) => {
-  const [dateValue, setDateValue] = useState(date);
+const CalendarDate = ({ date, setDate }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setDateValue(date);
-  }, [date]);
-
   const handleClick = () => setIsOpen(!isOpen);
-
-  // const handleChange = date => {
-  //   setDateValue(date);
-  //   const formattedDate = format(date, 'yyyy-MM-dd');
-  //   setDateValue(formattedDate);
-  //   handleClick();
-  // };
 
   return (
     <DatePickerWrapper>
       <DatePickerButton type="button" onClick={handleClick}>
-        {format(dateValue, 'd MMM y')}
+        {format(date, 'd MMM y')}
       </DatePickerButton>
       {isOpen && (
         <>
           <ReactDatePicker
-            selected={dateValue}
-            onChange={date => {
-              setDateValue(date);
-              const formattedDate = format(date, 'yyyy-MM-dd');
-              // setDateValue(date);
-              currentData(formattedDate);
+            selected={date}
+            onChange={newDate => {
+              setDate(newDate);
               handleClick();
             }}
             allowSameDay={true}
