@@ -14,7 +14,7 @@ export const Icon = styled(AiFillPlusCircle)`
 
 export const FormaBox = styled.form`
   /* width: 100vh; */
-  height: 100vh;
+  height: auto;
 
   /* padding: 95px 20px 40px 20px; */
   /* background-color: #f7f6f9; */

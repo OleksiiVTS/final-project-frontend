@@ -11,6 +11,7 @@ export const StyledTasksColumnsList = styled.div`
   @media screen and (min-width: 768px) {
     column-gap: 16px;
     /* width: 704px; */
+    overflow-x: auto;
   }
 
   @media screen and (min-width: 1440px) {
