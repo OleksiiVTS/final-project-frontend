@@ -19,24 +19,30 @@ import { addDays, subDays } from 'date-fns';
 const StatisticsPage = () => {
   const [dateData, setDateData] = useState('');
   const dispatch = useDispatch();
+  console.log('dateData: ', dateData);
 
   const theme = useSelector(selectTheme);
   const currentDay = getCurrentDate();
+  const requestDate = dateData.slice(0, 7);
+
   useEffect(() => {
-    dispatch(getTasks(dateData.slice(0, 7)));
-  }, [dispatch, dateData]);
+    dispatch(getTasks(requestDate));
+  }, [dispatch, requestDate]);
 
   const currentDateData = childData => {
     setDateData(childData);
   };
+
   console.log('dateData:', dateData);
 
   const handlePrev = () => {
     subDays(new Date(dateData), 1);
+    return;
   };
 
   const handleNext = () => {
     addDays(new Date(dateData), 1);
+    return;
   };
 
   return (

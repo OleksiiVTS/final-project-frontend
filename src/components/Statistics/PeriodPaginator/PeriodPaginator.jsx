@@ -85,6 +85,7 @@ const PeriodPaginator = ({
 export default PeriodPaginator;
 
 PeriodPaginator.propTypes = {
+  // currentDateData: PropTypes.func,
   // onClickPrev: PropTypes.func.isRequired,
   // onClickNext: PropTypes.func.isRequired,
   // type: PropTypes.string,

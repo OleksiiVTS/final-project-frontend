@@ -1,4 +1,6 @@
 import React from 'react';
+// import { useEffect } from 'react';
+// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
@@ -13,8 +15,13 @@ import {
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
 
-const StatisticsChart = ({ today, currentDate }) => {
+const StatisticsChart = ({ currentDate }) => {
   const isTasks = useSelector(selectTasks);
+  // const [currentDay] = useState(currentDate);
+
+  // useEffect(() => {
+  //   setCurrentDay(currentDate);
+  // }, [currentDate]);
   console.log('currentDate: ', currentDate);
 
   const dateTask = isTasks
@@ -79,13 +86,6 @@ const StatisticsChart = ({ today, currentDate }) => {
     100
   ).toFixed(0);
 
-  // const renderLabelMonth = () => {
-  //   if (todoByMonth[0] === 'to-do') return todoByMonthPercentages;
-
-  //   if (inprogressByMonth[0] === 'in-progress')
-  //     return inprogressByMonthPercentages;
-  //   if (doneByMonth[0] === 'done') return doneByMonthPercentages;
-  // };
   const data = [
     {
       name: 'To-Do',
