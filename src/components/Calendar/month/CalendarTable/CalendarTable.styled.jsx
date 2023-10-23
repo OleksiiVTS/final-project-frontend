@@ -26,7 +26,7 @@ export const GridWrapper = styled.ul`
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
-    width: 100%;
+    max-width: 1065px;
   }
 
   @media screen and (min-width: 1440px) {

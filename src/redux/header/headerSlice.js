@@ -2,9 +2,9 @@ const { createSlice } = require('@reduxjs/toolkit');
 
 const initialState = {
   theme: 'light',
-  isFeedbackModalOpen: false,
   isSidebarModalOpen: false,
-};
+  isFeedbackModalOpen: false,
+  };
 
 const HeaderSlice = createSlice({
   name: 'header',
@@ -18,6 +18,7 @@ const HeaderSlice = createSlice({
       },
       changeSidebarModalOpen: (state, action) => {
         void (state.isSidebarModalOpen = action.payload);
+        
       },
   },
 });

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const StyledTasksColumnsContainer = styled.div`
-  width: 344px;
+  width: 100%;
   overflow-x: auto;
   @media screen and (min-width: 768px) {
-    width: 100%;
+    max-width: 1065px;
     overflow-x: auto;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1086px;
+    width: 1087px;
   }
 `;
 
@@ -28,7 +28,7 @@ export const StyledTasksColumnsList = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    column-gap: 27px;
+    column-gap: 16px;
     /* width: 1086px; */
   }
 `;

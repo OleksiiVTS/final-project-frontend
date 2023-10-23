@@ -88,25 +88,63 @@ const FeedbackModal = ({ isActive, closeModal }) => {
       {!isLoading && (
         <>
           <RatingWrapper>
-            <RatingTitle color={theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'}>Rating</RatingTitle>
-            <div className="stars">
-              <StarApp rating={feedbackRating} getRating={getFeedbackRating} />
-            </div>
+            <RatingTitle
+              color={
+                theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'
+              }
+            >
+              Rating
+            </RatingTitle>
+        
+              {(!isReview || isEditing) && (
+                <div className="stars"  style={{ cursor: "pointer" }}>
+                  <StarApp
+                    rating={feedbackRating}
+                    getRating={getFeedbackRating}
+                  />
+                </div>
+              )}
+
+              {isReview && !isEditing && (<div className="stars"><StarApp rating={feedbackRating} /></div>)}
+            
           </RatingWrapper>
           {isActive && (
-            <FormFeedback onSubmit={handleSubmit} 
-            textfieldbg={theme === 'dark' ? 'var(--color-theme-dark)' : '#efefef'}
-            textfieldcolor={theme === 'dark' ? '#ffffff' : '#343434'}
-            reviewtextcolor={theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'}
-            bgbtn={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}
-            editbtnbg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}
+            <FormFeedback
+              onSubmit={handleSubmit}
+              textfieldbg={
+                theme === 'dark' ? 'var(--color-theme-dark)' : '#F6F6F6'
+              }
+              textfieldcolor={theme === 'dark' ? '#ffffff' : '#343434'}
+
+              textfielborder={theme === 'dark' ? '1px solid  #FFFFFF26' : 'none'}
+
+
+              reviewtextcolor={
+                theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'
+              }
+              bgbtn={
+                theme === 'dark'
+                  ? 'var(--color-choice-dark-no-active)'
+                  : 'var(--color-choice-light-no-active)'
+              }
+              editbtnbg={
+                theme === 'dark'
+                  ? 'var(--color-choice-dark-no-active)'
+                  : 'var(--color-choice-light-no-active)'
+              }
             >
               <div className="toolbar">
                 <div>
                   <p className="head">Review</p>
                 </div>
                 {isReview && (
-                  <StyledFeedbackToolbar editbtnbg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : 'var(--color-choice-light-no-active)'}>
+                  <StyledFeedbackToolbar
+                    editbtnbg={
+                      theme === 'dark'
+                        ? 'var(--color-choice-dark-no-active)'
+                        : 'var(--color-choice-light-no-active)'
+                    }
+                  >
                     <div className="controlsWrapper">
                       <button
                         className="btnEdit"

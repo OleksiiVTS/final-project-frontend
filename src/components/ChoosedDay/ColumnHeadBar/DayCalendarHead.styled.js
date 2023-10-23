@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const elementBorderColor = {
   dark: 'rgba(255, 255, 255, 0.15)',
-  light: 'rgba(220, 227, 229, 0.50)',
+  light: 'rgba(220, 227, 229, 0.80)',
 };
 
 const elementBgColor = {
@@ -15,7 +15,7 @@ const elementBgColor = {
 export const DayContainer = styled.div`
   width: 100%;
   @media screen and (min-width: 768px) {
-    width: 100%;
+    max-width: 1065px;
   }
   @media screen and (min-width: 1440px) {
     width: 1087px;

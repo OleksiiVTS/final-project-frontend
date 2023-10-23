@@ -4,10 +4,9 @@ const textColor = {
   dark: '#FFFFFF',
   light: '#111111',
 };
-
-const iconBgColor = {
-  dark: '#111111',
-  light: '#FFFFFF',
+const elementBgColor = {
+  dark: '#21222c',
+  light: '#ffffff',
 };
 
 export const StyledColumnHeadBar = styled.div`
@@ -45,18 +44,18 @@ export const StyledColumnHeadBar = styled.div`
     border: none;
 
     color: ${({ theme }) => textColor[theme]};
-    background-color: ${({ theme }) => iconBgColor[theme]};
+    background-color: ${({ theme }) => elementBgColor[theme]};
   }
 
   & button:hover {
-    color: #3e85f3;
+    color: #2b78ef;
   }
 
   & svg {
     width: 22px;
     height: 22px;
     stroke: currentColor;
-    fill: ${({ theme }) => iconBgColor[theme]};
+    fill: ${({ theme }) => elementBgColor[theme]};
 
     @media screen and (min-width: 768px) {
       width: 24px;
