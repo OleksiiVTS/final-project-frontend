@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const textColor = {
+  dark: '#FFFFFF',
+  light: '#111111',
+};
+
+const bgColor = {
+  dark: '#3E85F3',
+  light: '#E3F3FF',
+};
+
 export const StyledAddTaskBtn = styled.button`
   display: flex;
   justify-content: center;
@@ -11,15 +21,14 @@ export const StyledAddTaskBtn = styled.button`
 
   border-radius: 8px;
   border: 1px dashed #3e85f3;
-  background: #e3f3ff;
 
-  color: #111;
-  /* text-align: center; */
   font-family: Inter;
   font-size: 14px;
-  /* font-style: normal; */
   font-weight: 600;
-  line-height: 1.285; /* 128.571% */
+  line-height: calc(18 / 14); /* 128.571% */
+
+  color: ${({ theme }) => textColor[theme]};
+  background-color: ${({ theme }) => bgColor[theme]};
 
   & span {
     line-height: 0;
@@ -30,12 +39,12 @@ export const StyledAddTaskBtn = styled.button`
     width: 24px;
     height: 24px;
     stroke: currentColor;
-    fill: white;
+    /* fill: white; */
   }
 
   &:hover {
     color: white;
-    border: 1px solid #3e85f3;
-    background: #3e85f3;
+    border: 1px solid #2b78ef;
+    background-color: #2b78ef;
   }
 `;
