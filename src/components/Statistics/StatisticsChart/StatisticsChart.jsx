@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Bar,
@@ -12,16 +12,31 @@ import {
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
 import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
+import { getCurrentDate } from 'utils/calendar';
+import { useEffect } from 'react';
+import { getTasks } from 'redux/task/taskOperations';
 
-const StatisticsChart = ({ today, currentDate }) => {
+const StatisticsChart = ({ currentDateData }) => {
+  const dispatch = useDispatch();
+  const today = getCurrentDate();
+
+  const byMonth = currentDateData.slice(0, 7);
+  
+  useEffect(() => {
+    try {
+      if (byMonth) {
+        dispatch(getTasks(byMonth));
+      } else {
+        dispatch(getTasks(today.slice(0, 7)));
+      }
+    } catch (error) {}
+  }, [dispatch, byMonth, today]);
+  
   const isTasks = useSelector(selectTasks);
-  console.log('currentDate: ', currentDate);
 
   const dateTask = isTasks
-    .filter(el => el.date === currentDate)
-    .map(task => task.category);
-  console.log('isTasks: ', isTasks);
-  console.log('dateTask: ', dateTask);
+    .filter(el => el.date === currentDateData)
+    .map(task => task.category);  
 
   const todoByDay = dateTask.filter(el => el.includes('to-do')).length;
 
@@ -34,50 +49,48 @@ const StatisticsChart = ({ today, currentDate }) => {
   const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
 
   const todoByDayPercentages = ((todoByDay / allTasksByDay) * 100).toFixed(0);
-  console.log('todoByDayPercentages: ', todoByDayPercentages);
 
+  
   const inprogressByDayPercentages = (
     (inprogressByDay / allTasksByDay) *
     100
   ).toFixed(0);
-  console.log('inprogressByDayPercentages: ', inprogressByDayPercentages);
 
   const doneByDayPercentages = ((doneByDay / allTasksByDay) * 100).toFixed(0);
-  console.log('doneByDayPercentages: ', doneByDayPercentages);
 
-  // const dataCurrentMonth = {
-  //   categoryTask: isTasks.map(task => task.category),
-  // };
+  const dataCurrentMonth = {
+    categoryTask: isTasks.map(task => task.category),
+  };
 
-  // const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
-  //   el.includes('to-do')
-  // );
+  const todoByMonth = dataCurrentMonth.categoryTask.filter(el =>
+    el.includes('to-do')
+  );
 
-  // const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
-  //   el.includes('in-progress')
-  // );
+  const inprogressByMonth = dataCurrentMonth.categoryTask.filter(el =>
+    el.includes('in-progress')
+  );
 
-  // const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
-  //   el.includes('done')
-  // );
+  const doneByMonth = dataCurrentMonth.categoryTask.filter(el =>
+    el.includes('done')
+  );
 
-  // const allTasksByMonth =
-  //   todoByMonth.length + inprogressByMonth.length + doneByMonth.length;
+  const allTasksByMonth =
+    todoByMonth.length + inprogressByMonth.length + doneByMonth.length;
 
-  // const todoByMonthPercentages = (
-  //   (todoByMonth.length / allTasksByMonth) *
-  //   100
-  // ).toFixed(0);
+  const todoByMonthPercentages = (
+    (todoByMonth.length / allTasksByMonth) *
+    100
+  ).toFixed(0);
 
-  // const inprogressByMonthPercentages = (
-  //   (inprogressByMonth.length / allTasksByMonth) *
-  //   100
-  // ).toFixed(0);
+  const inprogressByMonthPercentages = (
+    (inprogressByMonth.length / allTasksByMonth) *
+    100
+  ).toFixed(0);
 
-  // const doneByMonthPercentages = (
-  //   (doneByMonth.length / allTasksByMonth) *
-  //   100
-  // ).toFixed(0);
+  const doneByMonthPercentages = (
+    (doneByMonth.length / allTasksByMonth) *
+    100
+  ).toFixed(0);
 
   // const renderLabelMonth = () => {
   //   if (todoByMonth[0] === 'to-do') return todoByMonthPercentages;
@@ -89,18 +102,18 @@ const StatisticsChart = ({ today, currentDate }) => {
   const data = [
     {
       name: 'To Do',
-      'By Day': 75,
-      'By Month': 44,
+      'By Day': todoByDayPercentages,
+      'By Month': todoByMonthPercentages,
     },
     {
       name: 'In Progress',
-      'By Day': 60,
-      'By Month': 64,
+      'By Day': inprogressByDayPercentages,
+      'By Month': inprogressByMonthPercentages,
     },
     {
       name: 'Done',
-      'By Day': 60,
-      'By Month': 44,
+      'By Day': doneByDayPercentages,
+      'By Month': doneByMonthPercentages,
     },
   ];
 

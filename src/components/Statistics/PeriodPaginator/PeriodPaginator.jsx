@@ -25,10 +25,8 @@ const PeriodPaginator = ({
   const currentData = childData => {
     setData(childData);
   };
-  console.log('data:', data);
 
   const currentDate = parse(today, 'yyyy-MM-dd', new Date());
-  console.log('currentDate: ', currentDate);
   return (
     <Wrapper>
       <CalendarDate

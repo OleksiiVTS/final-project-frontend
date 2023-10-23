@@ -13,31 +13,33 @@ import { CalendarContainer } from 'components/Calendar/common';
 import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
 import { addDays, subDays } from 'date-fns';
 
-// import { Link } from 'react-router-dom';
-// import { Circles } from 'react-loader-spinner'; //! Спинер
 
 const StatisticsPage = () => {
-  const [dateData, setDateData] = useState('');
-  const dispatch = useDispatch();
+  const [calendarDay, setCalendarDay] = useState('');
+  // const dispatch = useDispatch();
 
   const theme = useSelector(selectTheme);
   const currentDay = getCurrentDate();
-  useEffect(() => {
-    dispatch(getTasks(dateData.slice(0, 7)));
-  }, [dispatch, dateData]);
 
+  // useEffect(() => {
+  //   dispatch(getTasks(currentDay))
+  //   setDateData(currentDay);
+  // },
+  //   [currentDay, dispatch]);
+
+  
   const currentDateData = childData => {
-    setDateData(childData);
-  };
-  console.log('dateData:', dateData);
+  setCalendarDay(childData);
+  return childData;
+};
+  
+  // const handlePrev = () => {
+  //   subDays(new Date(dateData), 1);
+  // };
 
-  const handlePrev = () => {
-    subDays(new Date(dateData), 1);
-  };
-
-  const handleNext = () => {
-    addDays(new Date(dateData), 1);
-  };
+  // const handleNext = () => {
+  //   addDays(new Date(dateData), 1);
+  // };
 
   return (
     <MainLayout>
@@ -48,32 +50,15 @@ const StatisticsPage = () => {
         <PeriodPaginator
           currentDateData={currentDateData}
           today={currentDay}
-          onClickPrev={handlePrev}
-          onClickNext={handleNext}
+          // onClickPrev={handlePrev}
+          // onClickNext={handleNext}
         />
-        <StatisticsChart currentDate={dateData} />
+        <StatisticsChart currentDateData={calendarDay} />
       </CalendarContainer>
     </MainLayout>
-
-    // {isLoading && !error && (
-    //     <Circles
-    //       height="80"
-    //       width="80"
-    //       color="#4d78a9"
-    //!       wrapperClass={css.loader}
-    //     />
-    //   )}
   );
 };
 
 export default StatisticsPage;
 
-// .loader {
-//     position: fixed;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
+
