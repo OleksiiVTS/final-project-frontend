@@ -32,10 +32,9 @@ import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/auth/authSelectors';
 import { Circles } from 'react-loader-spinner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import InfoModal from 'components/InfoModal/InfoModal';
-import { useEffect } from 'react';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -44,7 +43,9 @@ const RegisterForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState(null);
 
-  useEffect(() => {}, [modalMessage, regError]);
+  useEffect(() => {
+    regError && setModalMessage(regError);
+  }, [regError]);
 
   let userSchema = Yup.object().shape({
     username: Yup.string()
@@ -84,12 +85,8 @@ const RegisterForm = () => {
   const onSubmit = (values, { resetForm }) => {
     try {
       dispatch(register(values));
-
+      setModalMessage(regError);
       setShowModal(true);
-      const message = regError
-        ? 'Oops! Something went wrong. Try again.'
-        : 'To complete the registration process, please check your mailbox';
-      setModalMessage(message);
       resetForm();
     } catch (error) {
       setModalMessage(regError);
