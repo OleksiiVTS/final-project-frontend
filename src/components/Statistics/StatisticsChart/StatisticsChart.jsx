@@ -118,103 +118,110 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   //     width: "860";
   //   }
   // }
-  const [width, setWidth] = useState(window.innerWidth / 2);
+  const [width, setWidth] = useState(window.innerWidth / 1.7);
   window.addEventListener(
     'resize',
     event => {
-      setWidth(event.target.outerWidth / 2);
+      setWidth(event.target.innerWidth / 1.7);
     },
     false
   );
 
   return (
     <StatsPageBox>
-      <PeriodPaginator
-        onClickPrev={onClickPrev}
-        onClickNext={onClickNext}
-        setDate={setDate}
-        date={date}
-      />
-      <StatsContainer>
-        <BarChart
-          width={width}
-          height={440}
-          data={data}
-          margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
-        >
-          <CartesianGrid vertical={false} stroke="#E3F3FF" />
-          <XAxis
-            dataKey="name"
-            axisLine={false}
-            tickLine={false}
-            fontSize={14}
-            fontFamily="Inter"
-            tickMargin={20}
-          />
-          <YAxis
-            domain={[0, 100]}
-            tickCount={6}
-            axisLine={false}
-            tickLine={false}
-            label={{
-              value: 'Tasks',
-              position: 'top',
-              dx: -14,
-              dy: -24,
-              fontFamily: 'Inter',
-              fontSize: 14,
-              fontWeight: 600,
-              fill: '#343434',
-            }}
-            tickMargin={32}
-            fontFamily="Inter"
-            fontSize={14}
-          />
-          <Legend
-            wrapperStyle={{
-              position: 'absolute',
-              top: -60,
-              right: 135,
-            }}
-            layout="horizontal"
-            verticalAlign="top"
-            align="end"
-            iconSize={8}
-            iconType="circle"
-            markerWidth={5}
-            fontSize={16}
-          />
-          <defs>
-            <linearGradient id="colorUv" x1="0" y1="1" x2="0" y2="0.2">
-              <stop offset="30%" stopColor="#FFD2DD" stopOpacity={1} />
-              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
-            </linearGradient>
-          </defs>
-          <defs>
-            <linearGradient id="colorXv" x1="0" y1="1" x2="0" y2="0.2">
-              <stop offset="30%" stopColor="#3E85F3" stopOpacity={1} />
-              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
-            </linearGradient>
-          </defs>
-          <Bar dataKey="By Day" fill="url(#colorUv)" barSize={22} radius={10}>
-            <LabelList
-              barCategoryGap={50}
-              dataKey="By Day"
-              position="insideTop"
-              fill="#343434"
-              style={{ fontWeight: 500 }}
+      <div>
+        <PeriodPaginator
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+          setDate={setDate}
+          date={date}
+        />
+        <StatsContainer>
+          <BarChart
+            width={width <= 1065 ? width : 1065}
+            height={440}
+            data={data}
+            margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
+          >
+            <CartesianGrid vertical={false} stroke="#E3F3FF" />
+            <XAxis
+              dataKey="name"
+              axisLine={false}
+              tickLine={false}
+              fontSize={14}
+              fontFamily="Inter"
+              tickMargin={20}
             />
-          </Bar>
-          <Bar dataKey="By Month" fill="url(#colorXv)" barSize={22} radius={10}>
-            <LabelList
+            <YAxis
+              domain={[0, 100]}
+              tickCount={6}
+              axisLine={false}
+              tickLine={false}
+              label={{
+                value: 'Tasks',
+                position: 'top',
+                dx: -14,
+                dy: -24,
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: 600,
+                fill: '#343434',
+              }}
+              tickMargin={32}
+              fontFamily="Inter"
+              fontSize={14}
+            />
+            <Legend
+              wrapperStyle={{
+                position: 'absolute',
+                top: -60,
+                right: 0,
+              }}
+              layout="horizontal"
+              verticalAlign="top"
+              align="end"
+              iconSize={8}
+              iconType="circle"
+              markerWidth={5}
+              fontSize={16}
+            />
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="1" x2="0" y2="0.2">
+                <stop offset="30%" stopColor="#FFD2DD" stopOpacity={1} />
+                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+              </linearGradient>
+            </defs>
+            <defs>
+              <linearGradient id="colorXv" x1="0" y1="1" x2="0" y2="0.2">
+                <stop offset="30%" stopColor="#3E85F3" stopOpacity={1} />
+                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+              </linearGradient>
+            </defs>
+            <Bar dataKey="By Day" fill="url(#colorUv)" barSize={22} radius={10}>
+              <LabelList
+                barCategoryGap={50}
+                dataKey="By Day"
+                position="insideTop"
+                fill="#343434"
+                style={{ fontWeight: 500 }}
+              />
+            </Bar>
+            <Bar
               dataKey="By Month"
-              position="insideTop"
-              fill="#343434"
-              style={{ fontWeight: 500 }}
-            />
-          </Bar>
-        </BarChart>
-      </StatsContainer>
+              fill="url(#colorXv)"
+              barSize={22}
+              radius={10}
+            >
+              <LabelList
+                dataKey="By Month"
+                position="insideTop"
+                fill="#343434"
+                style={{ fontWeight: 500 }}
+              />
+            </Bar>
+          </BarChart>
+        </StatsContainer>
+      </div>
     </StatsPageBox>
   );
 };

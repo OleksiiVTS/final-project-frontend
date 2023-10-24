@@ -2,13 +2,15 @@ import styled from '@emotion/styled/macro';
 
 export const FeedbackContainer = styled.div`
   box-sizing: border-box;
-  padding: 0 18px 18px 18px;
-  margin-top: -20px;
-  width: 335px;
-  min-height: 246px;
 
+  margin-top: -10px;
+  width: 335px;
+
+  min-height: 246px;
+  margin-right: auto;
+  margin-left: auto;
   @media screen and (min-width: 768px) {
-    width: 468px;
+    width: 404px;
   }
 `;
 export const RatingWrapper = styled.div`
@@ -96,6 +98,7 @@ export const FormFeedback = styled.form`
       font-weight: 600;
       line-height: 1.17;
       border: 0;
+      cursor: pointer;
 
       &:hover {
         background: #2b78ef;
@@ -155,11 +158,15 @@ export const StyledFeedbackToolbar = styled.div`
       editbtnbg || 'var(--color-choice-light-no-active)'};
   }
 
-  .btnEdit:hover {
+  .btnEdit:hover,
+  .btnEdit:active {
     background-color: #3e85f3;
     color: #ffffff;
   }
-
+  .textInFover {
+    background-color: #3e85f3;
+    color: #ffffff;
+  }
   .btnDel {
     background-color: #ea3d6533;
     color: #ea3d65;

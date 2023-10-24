@@ -61,7 +61,6 @@ function RatingStars() {
       <RaitingTextarea
         placeholder="Enter text"
         value={review}
-        required
         onChange={handleReviewChange} // Вывод текста из Textarea в консоль
       />
       <RaitingButton>Edit</RaitingButton>

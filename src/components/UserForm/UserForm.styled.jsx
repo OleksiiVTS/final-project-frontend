@@ -92,6 +92,7 @@ export const Avatar = styled.img`
   margin-right: auto;
   margin-left: auto;
   border: 2px solid #3e85f3;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     position: relative;
@@ -223,7 +224,7 @@ export const BtnUserForm = styled.button`
   height: 46px;
 
   display: flex;
-
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   margin-left: auto;
