@@ -44,25 +44,26 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(getUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(getUser.fulfilled, (state, { payload }) => {
-        if (payload.token) state.token = payload.token;
-        state.dataUser = payload.data;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(getUser.rejected, state => {
-        state.isRefreshing = false;
-      })
       .addCase(update.fulfilled, (state, action) => {
         state.dataUser = action.payload;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
+      .addCase(getUser.fulfilled, (state, { payload }) => {
+        if (payload.token) state.token = payload.token;
+        state.dataUser = payload.data;
+        state.isLoggedIn = true;
+
+        state.isRefreshing = false; //!
+      })
+      .addCase(getUser.pending, state => {
+        state.isRefreshing = true; //!
+      })
+      .addCase(getUser.rejected, state => {
+        state.isRefreshing = false; //!
+      })
       .addMatcher(
-        isAnyOf(isPending(register, login, logoutUser, getUser)),
+        isAnyOf(isPending(register, login, update, logoutUser, getUser)),
         state => {
           state.isLoading = true;
         }
