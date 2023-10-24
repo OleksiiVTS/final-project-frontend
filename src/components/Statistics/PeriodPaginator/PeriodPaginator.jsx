@@ -9,7 +9,7 @@ import {
   ButtonsWrapper,
   ButtonLeft,
   ButtonRight,
-} from '../../Calendar/common/PeriodSelector.styled';
+} from '../PeriodPaginator/PeriodPaginator.styled';
 
 const PeriodPaginator = ({ date, onClickPrev, onClickNext, setDate }) => {
   const theme = useSelector(selectTheme);
