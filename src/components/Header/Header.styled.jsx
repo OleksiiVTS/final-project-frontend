@@ -17,7 +17,7 @@ export const BurgerIcon = styled.div`
   display: block;
   border: none;
 
-  @media (min-width: 1441px) {
+  @media (min-width: 1440px) {
     display: none;
   }
 `;
