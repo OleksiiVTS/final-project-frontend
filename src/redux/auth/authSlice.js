@@ -9,7 +9,7 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
 import { getUser, register, login, logoutUser, update } from './authOperations';
-import { toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 export const authSlice = createSlice({
@@ -53,16 +53,10 @@ export const authSlice = createSlice({
       .addCase(getUser.rejected, state => {
         state.isRefreshing = false;
       })
-      .addCase(update.pending, state => {
-        state.isRefreshing = true;
-      })
       .addCase(update.fulfilled, (state, action) => {
         state.dataUser = action.payload;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(update.rejected, state => {
-        state.isRefreshing = false;
+        state.isLoading = false;
       })
       .addMatcher(
         isAnyOf(isPending(register, login, logoutUser, getUser)),
@@ -71,15 +65,14 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(isRejected(register, login, logoutUser, getUser)),
+        isAnyOf(isRejected(register, login, update, logoutUser, getUser)),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
-          toast.error(state.error);
         }
       )
       .addMatcher(
-        isAnyOf(isFulfilled(register, login, logoutUser, getUser)),
+        isAnyOf(isFulfilled(register, login, update, logoutUser, getUser)),
         state => {
           state.isLoading = false;
           state.error = null;
