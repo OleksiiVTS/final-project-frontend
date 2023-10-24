@@ -30,13 +30,21 @@ import IMG from '../Pictures/singup_goose.jpg';
 
 import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading } from 'redux/auth/authSelectors';
-import { toast } from 'react-toastify';
+import { selectError, selectIsLoading } from 'redux/auth/authSelectors';
 import { Circles } from 'react-loader-spinner';
+import { useState } from 'react';
+import Modal from 'components/Modal/Modal';
+import InfoModal from 'components/InfoModal/InfoModal';
+import { useEffect } from 'react';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const regError = useSelector(selectError);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState(null);
+
+  useEffect(() => {}, [modalMessage, regError]);
 
   let userSchema = Yup.object().shape({
     username: Yup.string()
@@ -73,6 +81,27 @@ const RegisterForm = () => {
     } catch (error) {}
   };
 
+  const onSubmit = (values, { resetForm }) => {
+    try {
+      dispatch(register(values));
+
+      setShowModal(true);
+      const message = regError
+        ? 'Oops! Something went wrong. Try again.'
+        : 'To complete the registration process, please check your mailbox';
+      setModalMessage(message);
+      resetForm();
+    } catch (error) {
+      setModalMessage(regError);
+      setShowModal(true);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalMessage(null);
+  };
+
   return (
     <PageContainer>
       <FormPosition>
@@ -83,12 +112,8 @@ const RegisterForm = () => {
             validationSchema={userSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={async values => {
-              try {
-                dispatch(register(values));
-              } catch (error) {
-                toast.error(error.message);
-              }
+            onSubmit={async (values, API) => {
+              onSubmit(values, API);
             }}
           >
             {({ errors, isValid }) => (
@@ -322,7 +347,7 @@ const RegisterForm = () => {
                       onClick={GoogleAuth}
                       disabled={isLoading}
                     >
-                      Sign in with Google 🚀{' '}
+                      Sign up with Google 🚀{' '}
                     </GoogleBtn>
                   </>
                 )}
@@ -342,6 +367,11 @@ const RegisterForm = () => {
           />
         </ImagePosition>
       </FormPosition>
+      {showModal && (
+        <Modal closeModal={closeModal}>
+          <InfoModal message={modalMessage} closeModal={closeModal}></InfoModal>
+        </Modal>
+      )}
     </PageContainer>
   );
 };

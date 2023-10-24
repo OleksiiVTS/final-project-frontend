@@ -83,7 +83,7 @@ const BurgerMenu = () => {
       >
         <BurgerContainer>
           <UserNav onCloseMenu={closeBurgerMenu} />
-          <LogoutBtn onCloseMenu={closeBurgerMenu} />
+          <LogoutBtn />
         </BurgerContainer>
       </BurgerMenuWrapper>
     </>

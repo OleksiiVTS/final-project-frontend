@@ -10,7 +10,7 @@ const SideBar = () => {
   return (
   <SideBarBox bg={theme === 'dark' ? '#000' : '#fff'}>
     <UserNav />
-    <LogoutBtn />
+    <LogoutBtn/>
   </SideBarBox>
 )
 };
