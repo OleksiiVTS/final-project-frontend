@@ -61,6 +61,10 @@ const FeedbackModal = ({ isActive, closeModal }) => {
   const getFeedbackRating = rating => {
     setFeedbackRating(rating);
   };
+  if (!isLoading && isEditing) {
+    const edit = document.getElementById('edit');
+    edit.classList.add('textInFover');
+  }
 
   useEffect(() => {
     if (Object.keys(ownReview).length !== 0) {
@@ -150,6 +154,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
                   >
                     <div className="controlsWrapper">
                       <button
+                        id="edit"
                         className="btnEdit"
                         aria-label="edit feedback"
                         type="button"
@@ -175,6 +180,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
               </div>
               {(!isReview || isEditing) && (
                 <textarea
+                  required
                   name="user_message"
                   placeholder="Enter text"
                   className="text_content"
@@ -184,6 +190,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
               )}
               {isReview && !isEditing && (
                 <textarea
+                  required
                   name="user_message"
                   placeholder="Enter text"
                   className="text_content"
