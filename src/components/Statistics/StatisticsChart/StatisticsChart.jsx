@@ -12,12 +12,8 @@ import {
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
-import {
-  StatsContainer,
-  StatsPageBox,
-  // WrapperDiagram,
-} from './StatisticsChart.styled';
-import { useEffect, useState } from 'react';
+import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
+import { useState } from 'react';
 
 const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const isTasks = useSelector(selectTasks);
@@ -109,20 +105,10 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
     },
   ];
 
-  // function screenWidth() {
-  //   if (window.screen.width < 768) {
-  //     width: "307";
-  //   } else if (768 < window.screen.width < 1440) {
-  //     width: "640";
-  //   } else {
-  //     width: "860";
-  //   }
-  // }
   const [width, setWidth] = useState(window.innerWidth / 1.7);
   window.addEventListener(
     'resize',
     event => {
-      // console.log(event.target);
       setWidth(event.target.innerWidth / 1.7);
     },
     false
