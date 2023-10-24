@@ -6,7 +6,6 @@ import { selectTheme } from 'redux/header/headerSlice';
 
 const InfoModal = ({ message, closeModal }) => {
   const theme = useSelector(selectTheme);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleClick = () => {
     closeModal();
@@ -14,20 +13,16 @@ const InfoModal = ({ message, closeModal }) => {
 
   return (
     <>
-      {isSubmitted ? (
-        <Checkmark />
-      ) : (
-        <>
-          <TextDiv
-            style={theme === 'dark' ? { color: '#fff' } : { color: '#000' }}
-          >
-            {message}
-          </TextDiv>
-          <BtnWrapper>
-            <ConfirmBtn onClick={handleClick}>OK</ConfirmBtn>
-          </BtnWrapper>
-        </>
-      )}
+      <>
+        <TextDiv
+          style={theme === 'dark' ? { color: '#fff' } : { color: '#000' }}
+        >
+          {message}
+        </TextDiv>
+        <BtnWrapper>
+          <ConfirmBtn onClick={handleClick}>OK</ConfirmBtn>
+        </BtnWrapper>
+      </>
     </>
   );
 };
