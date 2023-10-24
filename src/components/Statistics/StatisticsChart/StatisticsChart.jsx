@@ -12,7 +12,12 @@ import {
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
-import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
+import {
+  StatsContainer,
+  StatsPageBox,
+  // WrapperDiagram,
+} from './StatisticsChart.styled';
+import { useEffect, useState } from 'react';
 
 const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const isTasks = useSelector(selectTasks);
@@ -24,6 +29,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
     .map(task => task.category);
 
   const todoByDay = dateTask.filter(el => el.includes('to-do')).length;
+  console.log('todoByDay: ', isNaN(todoByDay));
 
   const inprogressByDay = dateTask.filter(el =>
     el.includes('in-progress')
@@ -32,8 +38,15 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const doneByDay = dateTask.filter(el => el.includes('done')).length;
 
   const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
+  console.log('allTasksByDay: ', allTasksByDay);
 
-  const todoByDayPercentages = ((todoByDay / allTasksByDay) * 100).toFixed(0);
+  const todoByDayPercentages = Number(
+    ((todoByDay / allTasksByDay) * 100).toFixed(0)
+  );
+  console.log(
+    'todoByDayPercentages: ',
+    isNaN(todoByDayPercentages) === true ? 0 : todoByDayPercentages
+  );
 
   const inprogressByDayPercentages = (
     (inprogressByDay / allTasksByDay) *
@@ -79,20 +92,46 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const data = [
     {
       name: 'To Do',
-      'By Day': todoByDayPercentages,
-      'By Month': todoByMonthPercentages,
+      'By Day': isNaN(todoByDayPercentages) === true ? 0 : todoByDayPercentages,
+      'By Month':
+        isNaN(todoByMonthPercentages) === true ? 0 : todoByMonthPercentages,
     },
     {
       name: 'In Progress',
-      'By Day': inprogressByDayPercentages,
-      'By Month': inprogressByMonthPercentages,
+      'By Day':
+        isNaN(inprogressByDayPercentages) === true
+          ? 0
+          : inprogressByDayPercentages,
+      'By Month':
+        isNaN(inprogressByMonthPercentages) === true
+          ? 0
+          : inprogressByMonthPercentages,
     },
     {
       name: 'Done',
-      'By Day': doneByDayPercentages,
-      'By Month': doneByMonthPercentages,
+      'By Day': isNaN(doneByDayPercentages) === true ? 0 : doneByDayPercentages,
+      'By Month':
+        isNaN(doneByMonthPercentages) === true ? 0 : doneByMonthPercentages,
     },
   ];
+
+  // function screenWidth() {
+  //   if (window.screen.width < 768) {
+  //     width: "307";
+  //   } else if (768 < window.screen.width < 1440) {
+  //     width: "640";
+  //   } else {
+  //     width: "860";
+  //   }
+  // }
+  const [width, setWidth] = useState();
+  window.addEventListener(
+    'resize',
+    event => {
+      setWidth(event.target.outerWidth / 2);
+    },
+    false
+  );
 
   return (
     <StatsPageBox>
@@ -104,9 +143,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
       />
       <StatsContainer>
         <BarChart
-          ma
-          width={640}
-          height={414}
+          width={width}
+          height={440}
           data={data}
           margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
         >
