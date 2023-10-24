@@ -7,7 +7,9 @@ const sectionBgColor = {
 
 export const StyledChoosedDay = styled.div`
   /* padding: 24px 20px 20px; */
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* overflow-x: auto; */
 
   /* height: 100%; */

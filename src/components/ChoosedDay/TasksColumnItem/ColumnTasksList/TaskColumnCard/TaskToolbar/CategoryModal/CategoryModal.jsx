@@ -9,6 +9,7 @@ import { editTask } from 'redux/task/taskOperations';
 import { selectIsError } from 'redux/task/taskSelectors';
 import { CATEGORY_LIST } from 'constants/categoryList';
 import { parseCategoryTitle } from 'helpers/helpers';
+import { useTheme } from 'styled-components';
 
 const CategoryModal = ({ task, coords, closeModal }) => {
   const dispatch = useDispatch();
@@ -34,8 +35,13 @@ const CategoryModal = ({ task, coords, closeModal }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [closeModal]);
 
+  const { theme } = useTheme();
   return createPortal(
-    <StyledCategoryModal coords={coords} onClick={handleOverlayClick}>
+    <StyledCategoryModal
+      coords={coords}
+      onClick={handleOverlayClick}
+      theme={theme}
+    >
       <div className="modal">
         {variants.map(variant => (
           <CategoryButton

@@ -4,13 +4,23 @@ import styled from 'styled-components';
 
 const elementBorderColor = {
   dark: 'rgba(255, 255, 255, 0.15)',
-  light: 'rgba(220, 227, 229, 0.50)',
+  light: 'rgba(220, 227, 229, 0.80)',
 };
 
 const elementBgColor = {
   dark: '#21222c',
   light: '#ffffff',
 };
+
+export const DayContainer = styled.div`
+  width: 100%;
+  @media screen and (min-width: 768px) {
+    max-width: 1065px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1087px;
+  }
+`;
 
 export const DayList = styled.ul`
   display: flex;

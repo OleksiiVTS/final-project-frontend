@@ -3,6 +3,7 @@ import { logoutUser } from '../../redux//auth/authOperations';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import sprite from '../Pictures/sprite.svg';
+import { changeSidebarModalOpen } from 'redux/header/headerSlice';
 
 const LogoutButton = styled.button`
   display: flex;
@@ -43,6 +44,7 @@ const LogoutBtn = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    dispatch(changeSidebarModalOpen(false));
   };
 
   return (

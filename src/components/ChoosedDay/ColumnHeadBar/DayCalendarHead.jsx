@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { eachDayOfInterval, endOfWeek, format, startOfWeek } from 'date-fns';
 
-import { DayList } from './DayCalendarHead.styled.js';
+import { DayList, DayContainer } from './DayCalendarHead.styled.js';
 import DayListItem from './DayListItem/DayListItem.jsx';
 import { useTheme } from 'styled-components';
 
@@ -25,7 +25,7 @@ const DayCalendarHead = () => {
 
   const { theme } = useTheme();
   return (
-    <div className="DayCalendarHead">
+    <DayContainer className="DayCalendarHead">
       <DayList theme={theme}>
         {weekDates.map((date, idx) => {
           return (
@@ -39,7 +39,7 @@ const DayCalendarHead = () => {
           );
         })}
       </DayList>
-    </div>
+    </DayContainer>
   );
 };
 

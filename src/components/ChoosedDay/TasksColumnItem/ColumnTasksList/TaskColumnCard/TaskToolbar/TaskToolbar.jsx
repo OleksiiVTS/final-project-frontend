@@ -7,6 +7,7 @@ import CategoryModal from './CategoryModal/CategoryModal';
 
 import { selectUser } from 'redux/auth/authSelectors';
 import sprite from 'components/Pictures/sprite.svg';
+import { useTheme } from 'styled-components';
 
 const TaskToolbar = ({ task }) => {
   const [showModal, setShowModal] = useState(false);
@@ -19,12 +20,6 @@ const TaskToolbar = ({ task }) => {
   const user = useSelector(selectUser);
   const { avatarURL, name } = user;
   const { priority } = task;
-
-  const priorityColors = {
-    low: '#72C2F8',
-    medium: '#F3B249',
-    high: '#EA3D65',
-  };
 
   const handleClick = ({ clientX, clientY }) => {
     setCategoryModal({
@@ -53,11 +48,14 @@ const TaskToolbar = ({ task }) => {
     setShowModal(false);
     setDeleteTask(false);
   };
+
+  const { theme } = useTheme();
   return (
     <>
       <StyledTaskToolbar
         className="taskToolbar"
-        priority={priorityColors[priority]}
+        priority={priority}
+        theme={theme}
       >
         <div className="infoWrapper">
           <div className="imgWrapper">

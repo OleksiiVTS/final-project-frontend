@@ -83,7 +83,9 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(isRejected(register, login, logoutUser, getUser, deleteUser)),
+        isAnyOf(
+          isRejected(register, login, update, logoutUser, getUser, deleteUser)
+        ),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
@@ -91,7 +93,9 @@ export const authSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(isFulfilled(register, login, logoutUser, getUser, deleteUser)),
+        isAnyOf(
+          isFulfilled(register, login, update, logoutUser, getUser, deleteUser)
+        ),
         state => {
           state.isLoading = false;
           state.error = null;

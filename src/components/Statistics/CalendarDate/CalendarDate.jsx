@@ -1,38 +1,41 @@
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 import { format } from 'date-fns';
-import DatePicker from 'react-date-picker';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
-// import { useNavigate } from 'react-router-dom';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import {
+  DatePickerButton,
+  DatePickerWrapper,
+  CalendarGlobalStyles,
+} from 'components/Calendar/common/NewCalendarDatePicker.styled';
 
-const CalendarDate = ({ date, currentData }) => {
-  console.log('date: ', date);
-  // const navigate = useNavigate();
+const CalendarDate = ({ date, setDate }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [dateValue, setDateValue] = useState(date);
-  console.log('dateValue: ', dateValue);
-
-  useEffect(() => {
-    setDateValue(date);
-  }, [date]);
+  const handleClick = () => setIsOpen(!isOpen);
 
   return (
-    <DatePicker
-      onChange={date => {
-        setDateValue(date);
-        const formattedDate = format(date, 'yyyy-MM-dd');
-        if (setDateValue) {
-          setDateValue(formattedDate);
-        }
-        return currentData(formattedDate);
-      }}
-      value={dateValue}
-      clearIcon={null}
-      format={'y-MM-dd'}
-      locale="en-US"
-      showLeadingZeros={true}
-    />
+    <DatePickerWrapper>
+      <DatePickerButton type="button" onClick={handleClick}>
+        {format(date, 'd MMM y')}
+      </DatePickerButton>
+      {isOpen && (
+        <>
+          <ReactDatePicker
+            selected={date}
+            onChange={newDate => {
+              setDate(newDate);
+              handleClick();
+            }}
+            allowSameDay={true}
+            inline
+            calendarStartDay={1}
+            dateFormat={'dd MMMM yyyy'}
+            formatWeekDay={day => day.substring(0, 1)}
+          />
+          <CalendarGlobalStyles />
+        </>
+      )}
+    </DatePickerWrapper>
   );
 };
 
