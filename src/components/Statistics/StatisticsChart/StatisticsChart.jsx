@@ -122,11 +122,12 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   window.addEventListener(
     'resize',
     event => {
-      console.log(event.target);
       setWidth(event.target.innerWidth / 1.7);
     },
     false
   );
+
+  const size = width >= 307 ? width : 307;
 
   return (
     <StatsPageBox>
@@ -139,7 +140,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
         />
         <StatsContainer>
           <BarChart
-            width={width <= 1065 ? width : 1065}
+            width={size <= 1065 ? size : 1065}
             height={440}
             data={data}
             margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
