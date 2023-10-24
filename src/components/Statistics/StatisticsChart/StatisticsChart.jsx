@@ -122,7 +122,6 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   window.addEventListener(
     'resize',
     event => {
-      console.log(event.target);
       setWidth(event.target.innerWidth / 1.7);
     },
     false
