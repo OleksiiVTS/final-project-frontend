@@ -74,9 +74,7 @@ export const StyledNavLink = styled(NavLink)`
   }
 
   &.active {
-    /* color: #3e85f3; */
     border-radius: 8px;
-    /* background: #e3f3ff; */
     color: ${({ activecolor }) => activecolor || '#3e85f3'};
     background: ${({ bgactivecolor }) => bgactivecolor || '#e3f3ff'};
   }
