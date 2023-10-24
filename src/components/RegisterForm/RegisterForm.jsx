@@ -70,17 +70,18 @@ const RegisterForm = () => {
     const auth = getAuth(app);
     const googleAuthProvider = new GoogleAuthProvider().addScope('email');
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider);
+      const { user } = await signInWithPopup(auth, googleAuthProvider);
       const googleUser = {
-        username: result.user.providerData[0].displayName,
-        email: result.user.providerData[0].email,
-        password: result.user.providerData[0].uid,
+        username: user.providerData[0].displayName,
+        email: user.providerData[0].email,
+        password: user.providerData[0].uid,
+        token: user.accessToken,
       };
       dispatch(register(googleUser));
     } catch (error) {}
   };
 
-  const onSubmit = values => {
+  const onSubmit = (values, { resetForm }) => {
     try {
       dispatch(register(values));
 
@@ -89,6 +90,7 @@ const RegisterForm = () => {
         ? 'Oops! Something went wrong. Try again.'
         : 'To complete the registration process, please check your mailbox';
       setModalMessage(message);
+      resetForm();
     } catch (error) {
       setModalMessage(regError);
       setShowModal(true);
@@ -110,8 +112,8 @@ const RegisterForm = () => {
             validationSchema={userSchema}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={async values => {
-              onSubmit(values);
+            onSubmit={async (values, API) => {
+              onSubmit(values, API);
             }}
           >
             {({ errors, isValid }) => (
@@ -345,7 +347,7 @@ const RegisterForm = () => {
                       onClick={GoogleAuth}
                       disabled={isLoading}
                     >
-                      Sign in with Google 🚀{' '}
+                      Sign up with Google 🚀{' '}
                     </GoogleBtn>
                   </>
                 )}

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
+import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 
 import {
   Bar,
@@ -11,9 +12,14 @@ import {
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
-import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
+import {
+  StatsContainer,
+  StatsPageBox,
+  // WrapperDiagram,
+} from './StatisticsChart.styled';
+import { useState } from 'react';
 
-const StatisticsChart = ({ date }) => {
+const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const isTasks = useSelector(selectTasks);
 
   const parsedDate = format(date, 'yyyy-MM-dd');
@@ -32,7 +38,9 @@ const StatisticsChart = ({ date }) => {
 
   const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
 
-  const todoByDayPercentages = ((todoByDay / allTasksByDay) * 100).toFixed(0);
+  const todoByDayPercentages = Number(
+    ((todoByDay / allTasksByDay) * 100).toFixed(0)
+  );
 
   const inprogressByDayPercentages = (
     (inprogressByDay / allTasksByDay) *
@@ -78,27 +86,59 @@ const StatisticsChart = ({ date }) => {
   const data = [
     {
       name: 'To Do',
-      'By Day': todoByDayPercentages,
-      'By Month': todoByMonthPercentages,
+      'By Day': isNaN(todoByDayPercentages) === true ? 0 : todoByDayPercentages,
+      'By Month':
+        isNaN(todoByMonthPercentages) === true ? 0 : todoByMonthPercentages,
     },
     {
       name: 'In Progress',
-      'By Day': inprogressByDayPercentages,
-      'By Month': inprogressByMonthPercentages,
+      'By Day':
+        isNaN(inprogressByDayPercentages) === true
+          ? 0
+          : inprogressByDayPercentages,
+      'By Month':
+        isNaN(inprogressByMonthPercentages) === true
+          ? 0
+          : inprogressByMonthPercentages,
     },
     {
       name: 'Done',
-      'By Day': doneByDayPercentages,
-      'By Month': doneByMonthPercentages,
+      'By Day': isNaN(doneByDayPercentages) === true ? 0 : doneByDayPercentages,
+      'By Month':
+        isNaN(doneByMonthPercentages) === true ? 0 : doneByMonthPercentages,
     },
   ];
 
+  // function screenWidth() {
+  //   if (window.screen.width < 768) {
+  //     width: "307";
+  //   } else if (768 < window.screen.width < 1440) {
+  //     width: "640";
+  //   } else {
+  //     width: "860";
+  //   }
+  // }
+  const [width, setWidth] = useState(window.innerWidth / 2);
+  window.addEventListener(
+    'resize',
+    event => {
+      setWidth(event.target.outerWidth / 2);
+    },
+    false
+  );
+
   return (
     <StatsPageBox>
+      <PeriodPaginator
+        onClickPrev={onClickPrev}
+        onClickNext={onClickNext}
+        setDate={setDate}
+        date={date}
+      />
       <StatsContainer>
         <BarChart
-          width={640}
-          height={424}
+          width={width}
+          height={440}
           data={data}
           margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
         >
@@ -131,7 +171,11 @@ const StatisticsChart = ({ date }) => {
             fontSize={14}
           />
           <Legend
-            wrapperStyle={{ position: 'absolute', top: -50 }}
+            wrapperStyle={{
+              position: 'absolute',
+              top: -60,
+              right: 135,
+            }}
             layout="horizontal"
             verticalAlign="top"
             align="end"
@@ -152,15 +196,16 @@ const StatisticsChart = ({ date }) => {
               <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
             </linearGradient>
           </defs>
-          <Bar dataKey="By Day" fill="url(#colorUv)" barSize={27} radius={10}>
+          <Bar dataKey="By Day" fill="url(#colorUv)" barSize={22} radius={10}>
             <LabelList
+              barCategoryGap={50}
               dataKey="By Day"
               position="insideTop"
               fill="#343434"
               style={{ fontWeight: 500 }}
             />
           </Bar>
-          <Bar dataKey="By Month" fill="url(#colorXv)" barSize={27} radius={10}>
+          <Bar dataKey="By Month" fill="url(#colorXv)" barSize={22} radius={10}>
             <LabelList
               dataKey="By Month"
               position="insideTop"

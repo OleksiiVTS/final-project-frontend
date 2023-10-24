@@ -50,7 +50,7 @@ const UserForm = () => {
     initialValues: {
       usrName: isUser.username ?? '',
       phone: isUser.phone ?? '',
-      birthday: new Date(),
+      birthday: new Date(isUser.birthday),
       skype: isUser.skype ?? '',
       email: isUser.email ?? '',
       file: isUser.file,

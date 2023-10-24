@@ -32,9 +32,11 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
-        state.dataUser = payload;
-        state.token = payload.token;
-        state.isLoggedIn = true;
+        if (payload.user) {
+          state.dataUser = payload.user;
+          state.token = payload.user.token;
+          state.isLoggedIn = true;
+        }
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         return {
@@ -49,20 +51,6 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(getUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.dataUser = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(getUser.rejected, state => {
-        state.isRefreshing = false;
-      })
-      .addCase(update.pending, state => {
-        state.isRefreshing = true;
-      })
       .addCase(update.fulfilled, (state, action) => {
         state.dataUser = action.payload;
         state.isLoggedIn = true;
@@ -75,6 +63,19 @@ export const authSlice = createSlice({
         state.dataUser = null;
         state.token = null;
         state.isLoggedIn = false;
+      })
+      .addCase(getUser.fulfilled, (state, { payload }) => {
+        if (payload.token) state.token = payload.token;
+        state.dataUser = payload.data;
+        state.isLoggedIn = true;
+
+        state.isRefreshing = false; //!
+      })
+      .addCase(getUser.pending, state => {
+        state.isRefreshing = true; //!
+      })
+      .addCase(getUser.rejected, state => {
+        state.isRefreshing = false; //!
       })
       .addMatcher(
         isAnyOf(isPending(register, login, logoutUser, getUser, deleteUser)),

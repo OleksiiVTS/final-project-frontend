@@ -23,7 +23,7 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, thunkAPI) => {
   try {
     authToken.set(token);
     const { data } = await $instance.get('/users/current');
-    return data;
+    return { data };
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
   }
@@ -34,7 +34,7 @@ export const register = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const { data } = await $instance.post('/users/register', user);
-      authToken.set(data.token);
+      authToken.set(data.user.token);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -96,6 +96,19 @@ export const deleteUser = createAsyncThunk(
     try {
       await $instance.delete('/users/delete', { data: { email } });
       authToken.unset();
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getVerifiedUser = createAsyncThunk(
+  'auth/getUser',
+  async (token, thunkAPI) => {
+    try {
+      authToken.set(token);
+      const { data } = await $instance.get('/users/current');
+      return { data, token };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
