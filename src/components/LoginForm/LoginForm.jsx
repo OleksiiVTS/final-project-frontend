@@ -48,7 +48,7 @@ const LoginForm = () => {
       .required('Email is required field'),
     password: Yup.string()
       .trim()
-      .min(8, 'Password should be 6 chars minimum.')
+      .min(8, 'Password should be 8 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
       .required('Password is required field')
   });
