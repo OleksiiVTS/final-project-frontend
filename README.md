@@ -1,113 +1,84 @@
-# React homework template
+# Goose-Track
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+Greetings to the Task Planner Application! This software has been crafted to
+assist you in arranging your assignments and overseeing your day-to-day
+operations with maximum effectiveness. Utilizing this application, you have the
+ability to sign up, sign in, establish tasks, classify them, assign due dates,
+monitor their significance, observe tasks on a monthly calendar, modify your
+personal details, upload profile images, offer input, and tailor theme
+preferences.
 
-## Создание репозитория по шаблону
+## Installation
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+To set up the Task Planner App locally, follow these steps: Clone the
+repository: git clone https://github.com/your-repository.git  Navigate to the
+project directory: cd task-planner-app Install the dependencies: npm install
+Start the development server: npm start Open your browser and
+visit http://localhost:3000 to access the GooseTrack.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+## Usage
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+Users can make use of our website without the need for installation to
+efficiently handle their tasks and boost their productivity by visiting the
+following URL: https://oleksiivts.github.io/final-project-frontend/
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+## Feature
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
+- Register/Login - A form for user registration and authorization, including
+  validation checks for fields. Employing JWT (JSON Web Token) authentication
+  for secure access control, and also integrating Google account authentication
+  for added login options.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+- My Account - grants you the ability to oversee and adjust your profile details
+  and configuration.
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
+- Calendar - Users have the option to access the calendar page for a visual
+  representation of their tasks on a monthly calendar. Dates with assigned tasks
+  are accentuated, and users can select a particular date to either view or
+  insert tasks. This calendar offers a summary of how tasks are distributed
+  across dates, empowering users to streamline their scheduling effectively.
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+- Task - Within the dashboard, users have a clear view of their current tasks,
+  neatly sorted into categories (To Do, In Progress, Done). To introduce a new
+  task, users can simply click the "Add Task" button and input task specifics
+  like title, description, category, due date, and level of importance.
+  Completing this process, users can click the "Save" button to incorporate the
+  task into the appropriate category.
+- Statistics - Users can visit the task statistics page to acquire a deeper
+  understanding of their task management and productivity. These statistics may
+  encompass completion rates, task categories, and importance levels, aiding
+  users in assessing their advancement and making decisions based on data.
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
+- Profile and Avatar - Users can personalize their profile by accessing the
+  profile settings. Within the profile settings, users can update their personal
+  information. Users can also upload an avatar image to further customize their
+  profile
 
-## Подготовка к работе
+- Feedback - Users are afforded the choice to offer feedback on the website.
+  They can access the feedback section and complete a form with their remarks,
+  recommendations, or concerns. This valuable feedback aids the development team
+  in refining the website and elevating the user experience.
 
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
+## <a href="https://github.com/OleksiiVTS/final-project-backend">Backend Repository</a>
 
-## Деплой
+### Stack's used:
 
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
+[![React](https://img.shields.io/static/v1?label=&message=React&color=2ea44f)](https://)
+[![Redux](https://img.shields.io/static/v1?label=&message=Redux&color=2ea44f)](https://)
+[![Axios](https://img.shields.io/static/v1?label=&message=Axios&color=2ea44f)](https://)
+[![Node.js](https://img.shields.io/static/v1?label=&message=Node.js&color=2ea44f)](https://)
+[![HTML](https://img.shields.io/static/v1?label=&message=HTML&color=2ea44f)](https://)
+[![CSS](https://img.shields.io/static/v1?label=&message=HTML&color=2ea44f)](https://)
+[![Git](https://img.shields.io/static/v1?label=&message=Git&color=2ea44f)](https://)
 
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
+### Frameworks:
 
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
-
-![GitHub Pages settings](./assets/repo-settings.png)
-
-### Статус деплоя
-
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
-
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
-
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
-
-![Deployment status](./assets/deploy-status.png)
-
-### Живая страница
-
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
-
-### Маршрутизация
-
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Как это работает
-
-![How it works](./assets/how-it-works.png)
-
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
+[![react-datepicker](https://img.shields.io/static/v1?label=&message=Jest&color=orange)](https://)
+[![mongoose](https://img.shields.io/static/v1?label=&message=mongoose&color=orange)](https://)
+[![swagger](https://img.shields.io/static/v1?label=&message=swagger&color=orange)](https://)
+[![style-Components](https://img.shields.io/static/v1?label=&message=style-Components&color=orange)](https://)
+[![modern-normalize](https://img.shields.io/static/v1?label=&message=modern-normolize&color=orange)](https://)
+[![date-fns](https://img.shields.io/static/v1?label=&message=moment&color=orange)](https://)
+[![redux-persist](https://img.shields.io/static/v1?label=&message=redux-persist&color=orange)](https://)
+[![swiper](https://img.shields.io/static/v1?label=&message=redux-persist&color=orange)](https://)
+[![and other's](https://img.shields.io/static/v1?label=&message=and+other's&color=orange)](https://)
