@@ -278,7 +278,7 @@ const UserForm = () => {
                 ></InputUserForm>
                 {formik.touched.skype && formik.errors.skype ? (
                   <Error>{formik.errors.skype}</Error>
-                ) : null}{' '}
+                ) : null}
               </FieldWrap>
             </BoxForm>
             <BtnUserForm type="submit">Save changes</BtnUserForm>

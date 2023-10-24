@@ -94,7 +94,7 @@ export const deleteUser = createAsyncThunk(
   'auth/delete',
   async (email, thunkAPI) => {
     try {
-      await $instance.delete('/users/delete', { data: { email } });
+      await $instance.delete(`/users/delete/${email}`);
       authToken.unset();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

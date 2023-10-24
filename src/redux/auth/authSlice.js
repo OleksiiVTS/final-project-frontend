@@ -16,7 +16,7 @@ import {
   update,
   deleteUser,
 } from './authOperations';
-import { toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 export const authSlice = createSlice({
@@ -54,15 +54,7 @@ export const authSlice = createSlice({
       .addCase(update.fulfilled, (state, action) => {
         state.dataUser = action.payload;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(update.rejected, state => {
-        state.isRefreshing = false;
-      })
-      .addCase(deleteUser.fulfilled, state => {
-        state.dataUser = null;
-        state.token = null;
-        state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(getUser.fulfilled, (state, { payload }) => {
         if (payload.token) state.token = payload.token;
@@ -77,8 +69,15 @@ export const authSlice = createSlice({
       .addCase(getUser.rejected, state => {
         state.isRefreshing = false; //!
       })
+      .addCase(deleteUser.fulfilled, state => {
+        state.dataUser = null;
+        state.token = null;
+        state.isLoggedIn = false;
+      })
       .addMatcher(
-        isAnyOf(isPending(register, login, logoutUser, getUser, deleteUser)),
+        isAnyOf(
+          isPending(register, login, update, logoutUser, getUser, deleteUser)
+        ),
         state => {
           state.isLoading = true;
         }
@@ -90,7 +89,6 @@ export const authSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
-          toast.error(state.error);
         }
       )
       .addMatcher(
