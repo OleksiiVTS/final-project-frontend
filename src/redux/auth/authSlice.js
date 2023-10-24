@@ -21,15 +21,15 @@ export const authSlice = createSlice({
     isLoggedIn: false,
     isLoading: false,
     error: null,
-    // hasRegistered: false,
   },
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
-        // state.dataUser = payload;
-        // state.token = payload.token;
-        // state.isLoggedIn = true;
-        // state.hasRegistered = true;
+        if (payload.user) {
+          state.dataUser = payload.user;
+          state.token = payload.user.token;
+          state.isLoggedIn = true;
+        }
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         return {

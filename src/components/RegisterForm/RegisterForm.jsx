@@ -55,23 +55,23 @@ const RegisterForm = () => {
       .trim()
       .min(8, 'Password should be 8 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
-      .required('Password is required field')
+      .required('Password is required field'),
   });
 
   const GoogleAuth = async () => {
     const auth = getAuth(app);
-    const googleAuthProvider = new GoogleAuthProvider().addScope("email");
+    const googleAuthProvider = new GoogleAuthProvider().addScope('email');
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider);
+      const { user } = await signInWithPopup(auth, googleAuthProvider);
       const googleUser = {
-        username: result.user.providerData[0].displayName,
-        email: result.user.providerData[0].email,
-        password: result.user.providerData[0].uid,
+        username: user.providerData[0].displayName,
+        email: user.providerData[0].email,
+        password: user.providerData[0].uid,
+        token: user.accessToken,
       };
       dispatch(register(googleUser));
     } catch (error) {}
   };
-  
 
   return (
     <PageContainer>
