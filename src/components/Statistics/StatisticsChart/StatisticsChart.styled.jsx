@@ -5,8 +5,7 @@ export const StatsPageBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding-top: 150px;
-  background: ${({ bg }) => bg || 'var(--color-choice-dark-no-active)'};
-  color: ${({ color }) => color || '#000'};
+  background-color: #ffffff;
 `;
 
 export const StatsContainer = styled.div`
