@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfinal_project_frontend=self.webpackChunkfinal_project_frontend||[]).push([[949],{4949:function(e,n,t){t(2791);n.Z=t.p+"static/media/sprite.7f7a1cc3e02233d145e2b8a365d8e33a.svg"}}]);
+//# sourceMappingURL=949.1d3a8b6b.chunk.js.map
