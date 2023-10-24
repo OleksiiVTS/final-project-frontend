@@ -69,17 +69,17 @@ const Slider = () => {
               swiperInstance.current = swiper;
             }}
           >
-            {reviews.map((review, index) => (
-              <SwiperSlide key={index}>
+            {reviews.map(review => (
+              <SwiperSlide key={reviews.indexOf(review)}>
                 <SliderItem
-                  name={
-                    review.owner && review.owner.username
-                      ? review.owner.username
-                      : 'Anonymous'
-                  }
+                  name={review.owner ? review.owner.username : 'Anonymous'}
                   comment={review.comment}
                   rating={review.rating}
-                  avatar={review.owner ? review.owner.avatarURL : ''}
+                  avatar={
+                    review.owner
+                      ? review.owner.avatarURL
+                      : 'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg'
+                  }
                 />
               </SwiperSlide>
             ))}
