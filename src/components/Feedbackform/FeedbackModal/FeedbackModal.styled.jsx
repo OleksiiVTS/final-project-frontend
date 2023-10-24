@@ -4,12 +4,8 @@ export const FeedbackContainer = styled.div`
   box-sizing: border-box;
   padding: 0 18px 18px 18px;
   margin-top: -20px;
-  width: 335px;
+  /* position: relative; */
   min-height: 246px;
-
-  @media screen and (min-width: 768px) {
-    width: 468px;
-  }
 `;
 export const RatingWrapper = styled.div`
   display: flex;
@@ -17,7 +13,7 @@ export const RatingWrapper = styled.div`
 `;
 
 export const RatingTitle = styled.div`
-  color: ${({ color }) => color || '#343434cc'};
+  color: ${({color})=> color || '#343434cc'};
   font-family: Inter;
   font-size: 12px;
   font-weight: 500;
@@ -27,7 +23,6 @@ export const FormFeedback = styled.form`
   .toolbar {
     display: flex;
     justify-content: space-between;
-    max-width: 404px;
     margin-top: 18px;
     padding-bottom: 8px;
     align-items: center;
@@ -36,7 +31,7 @@ export const FormFeedback = styled.form`
   .head {
     align-items: center;
     /* color: #343434cc; */
-    color: ${({ reviewtextcolor }) => reviewtextcolor || '#343434cc'};
+    color: ${({reviewtextcolor})=> reviewtextcolor || '#343434cc'};
     font-family: Inter;
     font-size: 12px;
     font-weight: 500;
@@ -50,19 +45,19 @@ export const FormFeedback = styled.form`
     padding: 14px 18px;
     // box-sizing: border-box;
     resize: none;
-    border: ${({ textfielborder }) => textfielborder || 'none'};
+    border: ${({textfielborder}) => textfielborder || 'none'};
     border-radius: 8px;
     /* background: #F6F6F6;
     color: #343434; */
-    color: ${({ textfieldcolor }) => textfieldcolor || '#343434'};
-    background-color: ${({ textfieldbg }) => textfieldbg || '#F6F6F6'};
+    color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
+    background-color: ${({textfieldbg}) => textfieldbg || '#F6F6F6'};
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.28;
 
     ::placeholder {
-      color: ${({ textfieldcolor }) => textfieldcolor || '#343434'};
+      color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
       opacity: 1;
     }
     :active,
@@ -73,7 +68,6 @@ export const FormFeedback = styled.form`
     }
 
     @media screen and (min-width: 768px) {
-      max-width: 404px;
       height: 127px;
     }
   }
@@ -110,12 +104,11 @@ export const FormFeedback = styled.form`
       display: flex;
       justify-content: center;
       align-items: center;
-      background: ${({ bgbtn }) =>
-        bgbtn || 'var(--color-choice-light-no-active)'};
+      background: ${({bgbtn}) => bgbtn || 'var(--color-choice-light-no-active)'};
       border-radius: 8px;
       padding: 10px;
       /* color: #343434; */
-      color: ${({ textfieldcolor }) => textfieldcolor || '#343434'};
+      color: ${({textfieldcolor}) => textfieldcolor || '#343434'};
       font-size: 14px;
       font-weight: 600;
       line-height: 1.17;
@@ -137,6 +130,7 @@ export const StyledFeedbackToolbar = styled.div`
 
   & button {
     line-height: 0;
+    padding: 10;
     border: none;
     border-radius: 50%;
     width: 30px;
@@ -151,8 +145,7 @@ export const StyledFeedbackToolbar = styled.div`
   .btnEdit {
     color: #3e85f3;
     /* background-color: #e3f3ff; */
-    background-color: ${({ editbtnbg }) =>
-      editbtnbg || 'var(--color-choice-light-no-active)'};
+    background-color: ${({editbtnbg})=> editbtnbg || 'var(--color-choice-light-no-active)'};
   }
 
   .btnEdit:hover {

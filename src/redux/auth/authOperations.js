@@ -57,6 +57,7 @@ export const update = createAsyncThunk(
   'auth/update',
   async (user, thunkAPI) => {
     const { usrName, phone, birthday, skype, email, avatarURL } = user;
+    console.log(user);
     const formData = new FormData();
     formData.append('username', usrName);
     formData.append('phone', phone);
@@ -73,6 +74,7 @@ export const update = createAsyncThunk(
 
       return data.updatedUser;
     } catch (e) {
+      console.log(e.message);
       return thunkAPI.rejectWithValue(e.message);
     }
   }

@@ -1,15 +1,6 @@
 import styled from 'styled-components';
 import { AiFillPlusCircle } from 'react-icons/ai';
 
-export const LabelAvatar = styled.label`
-  @media screen and (min-width: 768px) {
-    display: block;
-    width: 124px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-`;
-
 export const Icon = styled(AiFillPlusCircle)`
   fill: #3e85f3;
   width: 14px;
@@ -21,19 +12,9 @@ export const Icon = styled(AiFillPlusCircle)`
   }
 `;
 
-export const Chevron = styled.svg`
-  cursor: pointer;
-  pointer-events: none;
-
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
-`;
-
 export const FormaBox = styled.form`
   /* width: 100vh; */
-  height: 100vh;
+  height: auto;
 
   /* padding: 95px 20px 40px 20px; */
   /* background-color: #f7f6f9; */
@@ -67,14 +48,24 @@ export const UserFormBox = styled.div`
     padding: 60px 165px;
   }
 `;
+
+export const LabelAvatar = styled.label`
+  @media screen and (min-width: 768px) {
+    display: block;
+    width: 124px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+`;
+
 export const BoxForm = styled.div`
   display: flex;
   flex-direction: column;
   column-gap: 50px;
-  row-gap: 24px;
+
   box-sizing: border-box;
   @media screen and (min-width: 1440px) {
-    height: 270px;
+    height: 264px;
     width: 758px;
     flex-wrap: wrap;
   }
@@ -108,11 +99,16 @@ export const IconDiv = styled.button`
   left: 52%;
   z-index: 2;
   cursor: pointer;
+  padding: 0;
   background-color: transparent;
+  border-radius: 50%;
   border: none;
+
   @media screen and (min-width: 768px) {
     top: 150px;
     left: 51%;
+    width: 25px;
+    height: 25px;
   }
   @media screen and (min-width: 1440px) {
     top: 168px;
@@ -129,10 +125,12 @@ export const WhiteBox = styled.div`
   border-radius: 50%;
   z-index: 1;
   @media screen and (min-width: 768px) {
-    top: 156.5px;
+    top: 157px;
     left: 52%;
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
+    width: 12px;
+    height: 12px;
   }
   @media screen and (min-width: 1440px) {
     top: 175px;
@@ -188,7 +186,7 @@ export const LabelUserForm = styled.label`
   margin-bottom: 8px;
   @media screen and (min-width: 768px) {
     font-size: 14px;
-    line-height: 1.29; /* 128.571% */
+    line-height: 1.28; /* 128.571% */
   }
 `;
 
@@ -201,8 +199,11 @@ export const InputUserForm = styled.input`
   line-height: 1.29; /* 128.571% */
   color: ${({ color }) => color || '#000'};
   background: ${({ bg }) => bg || '#fff'};
+
+  margin-bottom: 18px;
   padding: 12px 14px;
   border-radius: 8px;
+
   width: 100%;
   border: 1px solid
     ${({ bordercolor }) => bordercolor || 'rgba(17, 17, 17, 0.1)'};
@@ -210,18 +211,72 @@ export const InputUserForm = styled.input`
   @media screen and (min-width: 768px) {
     padding: 13px 18px;
     width: 354px;
+    margin-bottom: 24px;
     font-size: 16px;
     line-height: 1.12; /* 112.5% */
   }
   @media screen and (min-width: 1440px) {
     width: 354px;
+
+    &:nth-child(-n + 3) {
+      margin-right: 50px;
+    }
+  }
+`;
+
+export const InputUserFormEmail = styled.input`
+  box-sizing: border-box;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.29; /* 128.571% */
+  color: ${({ color }) => color || '#000'};
+  background: ${({ bg }) => bg || '#fff'};
+
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border-radius: 8px;
+
+  width: 100%;
+  border: 1px solid
+    ${({ bordercolor }) => bordercolor || 'rgba(17, 17, 17, 0.1)'};
+
+  @media screen and (min-width: 768px) {
+    padding: 13px 18px;
+    width: 354px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    line-height: 1.12; /* 112.5% */
+  }
+  @media screen and (min-width: 1440px) {
+    width: 354px;
+    margin-bottom: 0;
+    margin-right: 50px;
+  }
+`;
+
+export const Chevron = styled.svg`
+  position: absolute;
+  bottom: 58%;
+  right: 30px;
+  cursor: pointer;
+  pointer-events: none;
+
+  @media screen and (min-width: 768px) {
+    bottom: 50.5%;
+    right: 189px;
+  }
+  @media screen and (min-width: 1440px) {
+    bottom: 40.5%;
+    right: 583px;
   }
 `;
 
 export const BtnUserForm = styled.button`
   width: 195px;
   height: 46px;
-
+  margin-top: 22px;
   display: flex;
 
   justify-content: center;
@@ -232,7 +287,7 @@ export const BtnUserForm = styled.button`
   background: #3e85f3;
   border: none;
   color: #fff;
-  margin-top: 40px;
+
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
@@ -247,9 +302,9 @@ export const BtnUserForm = styled.button`
   @media screen and (min-width: 768px) {
     width: 262px;
     height: 48px;
-    margin-top: 18px;
+    margin-top: 16px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1440px) {
     margin-top: 88px;
   }
 `;
@@ -267,23 +322,4 @@ export const Error = styled.p`
 
 export const FieldWrap = styled.div`
   position: relative;
-`;
-
-export const FieldWrapDate = styled.div`
-  position: relative;
-
-  .react-datepicker-wrapper {
-    width: 100%;
-  }
-`;
-
-export const SVGWrap = styled.div`
-  width: 20px;
-  position: absolute;
-  bottom: 20px;
-  right: 0;
-  width: 200px;
-  height: 10px;
-  text-align: right;
-  padding-right: 20px;
 `;

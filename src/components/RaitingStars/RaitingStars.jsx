@@ -1,26 +1,21 @@
-import { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
-import {
-  StarColors,
-  RaitngContainer,
-  RaitingStars,
-  RaitingTextarea,
-  RaitingButton,
-} from './RaitingStars.styled';
+
+import { useState } from "react";
+import { FaStar } from "react-icons/fa";
+import { StarColors, RaitngContainer, RaitingStars, RaitingTextarea, RaitingButton } from "./RaitingStars.styled";
 
 function RatingStars() {
-  const [currentValue, setCurrentValue] = useState(4); //Начальный рейтинг
+  const [currentValue, setCurrentValue] = useState(4);  //Начальный рейтинг
   const [hoverValue, setHoverValue] = useState(undefined);
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState("");
 
   const stars = Array(5).fill(0); //Кол-во звезд
 
-  const handleClick = value => {
+  const handleClick = (value) => {
     setCurrentValue(value);
-    console.log('Current rating:', value); // Вывод значения рейтинга (от 1 до 5) в консоль
+    console.log("Current rating:", value);  // Вывод значения рейтинга (от 1 до 5) в консоль
   };
 
-  const handleMouseOver = newHoverValue => {
+  const handleMouseOver = (newHoverValue) => {
     setHoverValue(newHoverValue);
   };
 
@@ -28,9 +23,9 @@ function RatingStars() {
     setHoverValue(undefined);
   };
 
-  const handleReviewChange = event => {
+  const handleReviewChange = (event) => {
     setReview(event.target.value);
-    console.log('Review:', event.target.value); // Вывод текста из Textarea в консоль
+    console.log("Review:", event.target.value); // Вывод текста из Textarea в консоль
   };
 
   return (
@@ -52,7 +47,7 @@ function RatingStars() {
               }
               style={{
                 marginRight: 10,
-                cursor: 'pointer',
+                cursor: "pointer",
               }}
             />
           );
@@ -61,7 +56,6 @@ function RatingStars() {
       <RaitingTextarea
         placeholder="Enter text"
         value={review}
-        required
         onChange={handleReviewChange} // Вывод текста из Textarea в консоль
       />
       <RaitingButton>Edit</RaitingButton>

@@ -3,21 +3,13 @@ import React from 'react';
 import StarRating from './StartRange';
 import { Stars } from './Stars.styled';
 
-const StarApp = ({ isActive, rating, getRating }) => {
+const StarApp = ({ rating, getRating }) => {
   const onChangeRate = stars => {
     getRating(stars);
   };
   return (
     <Stars>
-      {isActive ? (
-        <StarRating
-          starsSelected={rating}
-          totalStars={5}
-          onRate={onChangeRate}
-        />
-      ) : (
-        <StarRating starsSelected={rating} totalStars={5} />
-      )}
+      <StarRating starsSelected={rating} totalStars={5} onRate={onChangeRate} />
     </Stars>
   );
 };

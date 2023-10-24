@@ -17,11 +17,14 @@ const ConfirmationModal = ({ values, closeModal }) => {
   const dispatch = useDispatch();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const theme = useSelector(selectTheme);
+  const updateUser = updateUser => {
+    dispatch(update(updateUser));
+  };
 
   const submitForm = () => {
     setIsSubmitted(true);
-    dispatch(update(values));
     setTimeout(() => closeModal(), 1500);
+    setTimeout(() => updateUser(values), 1500);
   };
 
   return createPortal(
