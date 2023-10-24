@@ -5,7 +5,7 @@ import { selectToken } from 'redux/auth/authSelectors';
 
 const PrivateRoute = () => {
   const IsToken = useSelector(selectToken);
-  return IsToken ? <Outlet /> : <Navigate to={'/login'} />;
+  return IsToken ? <Outlet /> : <Navigate to={'/'} />;
 };
 
 export default PrivateRoute;
