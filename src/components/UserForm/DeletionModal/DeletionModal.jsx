@@ -16,9 +16,11 @@ import {
   StyledWarningText,
 } from './DeletionModal.styled';
 import { selectUser } from 'redux/auth/authSelectors';
+import { selectTheme } from 'redux/header/headerSlice';
 
 const DeletionModal = ({ closeModal }) => {
   const [error, setError] = useState(false);
+  const theme = useSelector(selectTheme);
 
   const dispatch = useDispatch();
 
@@ -41,8 +43,8 @@ const DeletionModal = ({ closeModal }) => {
   return (
     <Modal closeModal={closeModal}>
       <>
-        <StyledTitle>Warning!</StyledTitle>
-        <StyledWarningText>
+        <StyledTitle color={theme === 'dark' ? '#fff' : '#000'}>Warning!</StyledTitle>
+        <StyledWarningText color={theme === 'dark' ? '#fff' : '#343434'}>
           Deleting your account can't be undone, and all data associated with it
           will be lost.
         </StyledWarningText>
@@ -54,7 +56,7 @@ const DeletionModal = ({ closeModal }) => {
           onSubmit={handleSubmit}
         >
           <StyledForm>
-            <StyledFormText>
+            <StyledFormText color={theme === 'dark' ? '#fff' : '#343434'}>
               Enter your email to confirm your action
             </StyledFormText>
             <div>

@@ -14,7 +14,8 @@ export const StatsPageBox = styled.div`
   padding-bottom: 135px;
   border-radius: 16px;
 
-  background-color: #ffffff;
+  background: ${({ bg }) => bg || 'var(--color-choice-dark-no-active)'};
+  color: ${({ color }) => color || '#000'};
 
   @media screen and (min-width: 768px) {
     padding-top: 132px;
