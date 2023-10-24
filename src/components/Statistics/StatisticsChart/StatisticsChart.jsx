@@ -176,7 +176,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
               wrapperStyle={{
                 position: 'absolute',
                 top: -60,
-                right: 135,
+                right: 0,
               }}
               layout="horizontal"
               verticalAlign="top"
