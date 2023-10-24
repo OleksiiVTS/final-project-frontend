@@ -2,8 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const $instance = axios.create({
-  // baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
+  // baseURL: 'http://localhost:4000/api',
 });
 
 const authToken = {
