@@ -14,9 +14,11 @@ import {
 import { selectTasks } from 'redux/task/taskSelectors';
 import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
 import { useState } from 'react';
+import { selectTheme } from 'redux/header/headerSlice';
 
 const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const isTasks = useSelector(selectTasks);
+  const theme = useSelector(selectTheme);
 
   const parsedDate = format(date, 'yyyy-MM-dd');
 
@@ -117,7 +119,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const size = width >= 307 ? width : 307;
 
   return (
-    <StatsPageBox>
+    <StatsPageBox bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
+    color={theme === 'dark' ? '#fff' : '#000'}>
       <div>
         <PeriodPaginator
           onClickPrev={onClickPrev}
@@ -141,7 +144,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
               fontFamily="Inter"
               tickMargin={20}
             />
-            <YAxis
+            {theme === 'light' ? (            <YAxis
               domain={[0, 100]}
               tickCount={6}
               axisLine={false}
@@ -159,7 +162,25 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
               tickMargin={32}
               fontFamily="Inter"
               fontSize={14}
-            />
+            />) : (            <YAxis
+              domain={[0, 100]}
+              tickCount={6}
+              axisLine={false}
+              tickLine={false}
+              label={{
+                value: 'Tasks',
+                position: 'top',
+                dx: -14,
+                dy: -24,
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: 600,
+                fill: '#ffffff',
+              }}
+              tickMargin={32}
+              fontFamily="Inter"
+              fontSize={14}
+            />)}
             <Legend
               wrapperStyle={{
                 position: 'absolute',

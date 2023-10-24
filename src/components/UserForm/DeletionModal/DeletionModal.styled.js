@@ -5,6 +5,7 @@ export const StyledTitle = styled.h2`
   font-size: 24px;
   text-align: center;
   margin-bottom: 16px;
+  color: ${({ color }) => color || '#000'};
 `;
 
 export const StyledWarningText = styled.p`
@@ -12,7 +13,8 @@ export const StyledWarningText = styled.p`
   text-align: center;
   font-size: 16px;
   line-height: 1.3;
-  color: #343434;
+  /* color: #343434; */
+  color: ${({ color }) => color || '#343434'};
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 16px;
@@ -30,7 +32,7 @@ export const StyledForm = styled(Form)`
 
 export const StyledFormText = styled.p`
   font-size: 14px;
-  color: #343434;
+  color: ${({ color }) => color || '#343434'};
 `;
 
 export const StyledField = styled(Field)`
