@@ -69,10 +69,14 @@ const Slider = () => {
               swiperInstance.current = swiper;
             }}
           >
-            {reviews.map(review => (
-              <SwiperSlide key={reviews.indexOf(review)}>
+            {reviews.map((review, index) => (
+              <SwiperSlide key={index}>
                 <SliderItem
-                  name={review.owner ? review.owner.username : 'Anonymous'}
+                  name={
+                    review.owner && review.owner.username
+                      ? review.owner.username
+                      : 'Anonymous'
+                  }
                   comment={review.comment}
                   rating={review.rating}
                   avatar={
