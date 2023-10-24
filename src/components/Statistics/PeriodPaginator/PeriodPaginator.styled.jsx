@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 
   @media screen and (max-width: 767px) {
+    /* width: 65%; */
   }
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
