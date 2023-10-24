@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
+import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 
 import {
   Bar,
@@ -12,11 +13,11 @@ import {
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
 import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
-import { selectTheme } from 'redux/header/headerSlice';
+import { useState } from 'react';
 
-const StatisticsChart = ({ date }) => {
+const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const isTasks = useSelector(selectTasks);
-  const theme = useSelector(selectTheme);
+
   const parsedDate = format(date, 'yyyy-MM-dd');
 
   const dateTask = isTasks
@@ -33,7 +34,9 @@ const StatisticsChart = ({ date }) => {
 
   const allTasksByDay = todoByDay + inprogressByDay + doneByDay;
 
-  const todoByDayPercentages = ((todoByDay / allTasksByDay) * 100).toFixed(0);
+  const todoByDayPercentages = Number(
+    ((todoByDay / allTasksByDay) * 100).toFixed(0)
+  );
 
   const inprogressByDayPercentages = (
     (inprogressByDay / allTasksByDay) *
@@ -79,99 +82,135 @@ const StatisticsChart = ({ date }) => {
   const data = [
     {
       name: 'To Do',
-      'By Day': todoByDayPercentages,
-      'By Month': todoByMonthPercentages,
+      'By Day': isNaN(todoByDayPercentages) === true ? 0 : todoByDayPercentages,
+      'By Month':
+        isNaN(todoByMonthPercentages) === true ? 0 : todoByMonthPercentages,
     },
     {
       name: 'In Progress',
-      'By Day': inprogressByDayPercentages,
-      'By Month': inprogressByMonthPercentages,
+      'By Day':
+        isNaN(inprogressByDayPercentages) === true
+          ? 0
+          : inprogressByDayPercentages,
+      'By Month':
+        isNaN(inprogressByMonthPercentages) === true
+          ? 0
+          : inprogressByMonthPercentages,
     },
     {
       name: 'Done',
-      'By Day': doneByDayPercentages,
-      'By Month': doneByMonthPercentages,
+      'By Day': isNaN(doneByDayPercentages) === true ? 0 : doneByDayPercentages,
+      'By Month':
+        isNaN(doneByMonthPercentages) === true ? 0 : doneByMonthPercentages,
     },
   ];
 
+  const [width, setWidth] = useState(window.innerWidth / 1.7);
+  window.addEventListener(
+    'resize',
+    event => {
+      setWidth(event.target.innerWidth / 1.7);
+    },
+    false
+  );
+
+  const size = width >= 307 ? width : 307;
+
   return (
-    <StatsPageBox bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
-    color={theme === 'dark' ? '#fff' : '#000'}>
-      <StatsContainer>
-        <BarChart
-          width={640}
-          height={424}
-          data={data}
-          margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
-        >
-          <CartesianGrid vertical={false} stroke="#E3F3FF" />
-          <XAxis
-            dataKey="name"
-            axisLine={false}
-            tickLine={false}
-            fontSize={14}
-            fontFamily="Inter"
-            tickMargin={20}
-          />
-          <YAxis
-            domain={[0, 100]}
-            tickCount={6}
-            axisLine={false}
-            tickLine={false}
-            label={{
-              value: 'Tasks',
-              position: 'top',
-              dx: -14,
-              dy: -24,
-              fontFamily: 'Inter',
-              fontSize: 14,
-              fontWeight: 600,
-              fill: '#343434',
-            }}
-            tickMargin={32}
-            fontFamily="Inter"
-            fontSize={14}
-          />
-          <Legend
-            wrapperStyle={{ position: 'absolute', top: -50 }}
-            layout="horizontal"
-            verticalAlign="top"
-            align="end"
-            iconSize={8}
-            iconType="circle"
-            markerWidth={5}
-            fontSize={16}
-          />
-          <defs>
-            <linearGradient id="colorUv" x1="0" y1="1" x2="0" y2="0.2">
-              <stop offset="30%" stopColor="#FFD2DD" stopOpacity={1} />
-              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
-            </linearGradient>
-          </defs>
-          <defs>
-            <linearGradient id="colorXv" x1="0" y1="1" x2="0" y2="0.2">
-              <stop offset="30%" stopColor="#3E85F3" stopOpacity={1} />
-              <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
-            </linearGradient>
-          </defs>
-          <Bar dataKey="By Day" fill="url(#colorUv)" barSize={27} radius={10}>
-            <LabelList
-              dataKey="By Day"
-              position="insideTop"
-              fill="#343434"
-              style={{ fontWeight: 500 }}
+    <StatsPageBox>
+      <div>
+        <PeriodPaginator
+          onClickPrev={onClickPrev}
+          onClickNext={onClickNext}
+          setDate={setDate}
+          date={date}
+        />
+        <StatsContainer>
+          <BarChart
+            width={size <= 1065 ? size : 1065}
+            height={440}
+            data={data}
+            margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
+          >
+            <CartesianGrid vertical={false} stroke="#E3F3FF" />
+            <XAxis
+              dataKey="name"
+              axisLine={false}
+              tickLine={false}
+              fontSize={14}
+              fontFamily="Inter"
+              tickMargin={20}
             />
-          </Bar>
-          <Bar dataKey="By Month" fill="url(#colorXv)" barSize={27} radius={10}>
-            <LabelList
+            <YAxis
+              domain={[0, 100]}
+              tickCount={6}
+              axisLine={false}
+              tickLine={false}
+              label={{
+                value: 'Tasks',
+                position: 'top',
+                dx: -14,
+                dy: -24,
+                fontFamily: 'Inter',
+                fontSize: 14,
+                fontWeight: 600,
+                fill: '#343434',
+              }}
+              tickMargin={32}
+              fontFamily="Inter"
+              fontSize={14}
+            />
+            <Legend
+              wrapperStyle={{
+                position: 'absolute',
+                top: width * 1.7 > 768 ? -110 : -60,
+                right: 0,
+              }}
+              layout="horizontal"
+              verticalAlign="top"
+              align="end"
+              iconSize={8}
+              iconType="circle"
+              markerWidth={5}
+              fontSize={16}
+            />
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="1" x2="0" y2="0.2">
+                <stop offset="30%" stopColor="#FFD2DD" stopOpacity={1} />
+                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+              </linearGradient>
+            </defs>
+            <defs>
+              <linearGradient id="colorXv" x1="0" y1="1" x2="0" y2="0.2">
+                <stop offset="30%" stopColor="#3E85F3" stopOpacity={1} />
+                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+              </linearGradient>
+            </defs>
+            <Bar dataKey="By Day" fill="url(#colorUv)" barSize={22} radius={10}>
+              <LabelList
+                barCategoryGap={50}
+                dataKey="By Day"
+                position="insideTop"
+                fill="#343434"
+                style={{ fontWeight: 500 }}
+              />
+            </Bar>
+            <Bar
               dataKey="By Month"
-              position="insideTop"
-              fill="#343434"
-              style={{ fontWeight: 500 }}
-            />
-          </Bar>
-        </BarChart>
-      </StatsContainer>
+              fill="url(#colorXv)"
+              barSize={22}
+              radius={10}
+            >
+              <LabelList
+                dataKey="By Month"
+                position="insideTop"
+                fill="#343434"
+                style={{ fontWeight: 500 }}
+              />
+            </Bar>
+          </BarChart>
+        </StatsContainer>
+      </div>
     </StatsPageBox>
   );
 };
