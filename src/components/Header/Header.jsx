@@ -32,6 +32,7 @@ import debounce from 'lodash/debounce';
 import { selectTasks } from 'redux/task/taskSelectors';
 import { useLocation } from 'react-router-dom';
 import { filterDayTasks } from 'helpers/helpers';
+import { Link } from 'react-router-dom';
 
 
 const Header = ({ pageName = 'GooseTrack' }) => {
@@ -107,7 +108,7 @@ const Header = ({ pageName = 'GooseTrack' }) => {
               <PageNameInfo>
                 <h2>{pageName}</h2>
                 <Username>
-                  Let go of the past and focus on the present!
+                  <span style={{color: 'var(--color-button-blue)'}}>Let go</span> of the past and focus on the present!
                 </Username>
               </PageNameInfo>
             </LeftSide>
@@ -145,10 +146,20 @@ const Header = ({ pageName = 'GooseTrack' }) => {
               </svg>
             </span>
           </ThemeToggler>
-          <Username>{username}</Username>
+          {/* <Username>{username}</Username> */}
+          <Username>
+            {theme === 'light' ? (
+              <Link style={{color: 'black' }} to="/account">{username}</Link>
+            ) : (
+            <Link style={{color: 'white' }} to="/account">{username}</Link>
+            )}   
+          </Username>
+          <Link to="/account">
           <Userphoto
             style={{ backgroundImage: `url(${avatarURL})` }}
-          ></Userphoto>
+          >
+          </Userphoto>
+          </Link>
         </UserWrapper>
       </SectionWrapper>
       <BurgerMenu />

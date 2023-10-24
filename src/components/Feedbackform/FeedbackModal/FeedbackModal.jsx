@@ -95,18 +95,22 @@ const FeedbackModal = ({ isActive, closeModal }) => {
             >
               Rating
             </RatingTitle>
-        
-              {(!isReview || isEditing) && (
-                <div className="stars"  style={{ cursor: "pointer" }}>
-                  <StarApp
-                    rating={feedbackRating}
-                    getRating={getFeedbackRating}
-                  />
-                </div>
-              )}
 
-              {isReview && !isEditing && (<div className="stars"><StarApp rating={feedbackRating} /></div>)}
-            
+            {(!isReview || isEditing) && (
+              <div className="stars" style={{ cursor: 'pointer' }}>
+                <StarApp
+                  isActive={isActive}
+                  rating={feedbackRating}
+                  getRating={getFeedbackRating}
+                />
+              </div>
+            )}
+
+            {isReview && !isEditing && (
+              <div className="stars">
+                <StarApp rating={feedbackRating} />
+              </div>
+            )}
           </RatingWrapper>
           {isActive && (
             <FormFeedback
@@ -115,10 +119,9 @@ const FeedbackModal = ({ isActive, closeModal }) => {
                 theme === 'dark' ? 'var(--color-theme-dark)' : '#F6F6F6'
               }
               textfieldcolor={theme === 'dark' ? '#ffffff' : '#343434'}
-
-              textfielborder={theme === 'dark' ? '1px solid  #FFFFFF26' : 'none'}
-
-
+              textfielborder={
+                theme === 'dark' ? '1px solid  #FFFFFF26' : 'none'
+              }
               reviewtextcolor={
                 theme === 'dark' ? 'var(--color-field-names-dark)' : '#343434cc'
               }

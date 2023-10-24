@@ -1,47 +1,25 @@
 import { useSelector } from 'react-redux';
-import { selectTheme } from 'redux/header/headerSlice';
 import PropTypes from 'prop-types';
-import { parse } from 'date-fns';
-import { ChevronLeft, ChevronRight } from '../../Calendar/icons';
+
 import CalendarDate from '../CalendarDate/CalendarDate';
+import { selectTheme } from 'redux/header/headerSlice';
+import { ChevronLeft, ChevronRight } from '../../Calendar/icons';
 import {
   Wrapper,
   ButtonsWrapper,
   ButtonLeft,
   ButtonRight,
-} from '../../Calendar/common/PeriodSelector.styled';
-import { useState } from 'react';
+} from '../PeriodPaginator/PeriodPaginator.styled';
 
-const PeriodPaginator = ({
-  currentDateData,
-  onClickPrev,
-  onClickNext,
-  today,
-}) => {
-  const [data, setData] = useState('');
-
+const PeriodPaginator = ({ date, onClickPrev, onClickNext, setDate }) => {
   const theme = useSelector(selectTheme);
-
-  const currentData = childData => {
-    setData(childData);
-  };
-  console.log('data:', data);
-
-  const currentDate = parse(today, 'yyyy-MM-dd', new Date());
-  console.log('currentDate: ', currentDate);
   return (
     <Wrapper>
-      <CalendarDate
-        currentData={currentData}
-        date={currentDate}
-        currentDateData={currentDateData(data)}
-      />
+      <CalendarDate date={date} setDate={setDate} />
 
       <ButtonsWrapper>
         <ButtonLeft
-          onClick={() => {
-            onClickPrev();
-          }}
+          onClick={() => onClickPrev()}
           bgcolor={theme === 'dark' ? '#21222c' : '#ffffff'}
           bordercolor={
             theme === 'dark'
@@ -59,9 +37,7 @@ const PeriodPaginator = ({
         </ButtonLeft>
 
         <ButtonRight
-          onClick={() => {
-            onClickNext();
-          }}
+          onClick={() => onClickNext()}
           bgcolor={theme === 'dark' ? '#21222C' : '#ffffff'}
           bordercolor={
             theme === 'dark'
@@ -85,8 +61,9 @@ const PeriodPaginator = ({
 export default PeriodPaginator;
 
 PeriodPaginator.propTypes = {
+  // currentDateData: PropTypes.func,
   // onClickPrev: PropTypes.func.isRequired,
   // onClickNext: PropTypes.func.isRequired,
   // type: PropTypes.string,
-  date: PropTypes.string,
+  date: PropTypes.object,
 };

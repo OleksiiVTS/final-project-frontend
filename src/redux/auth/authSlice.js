@@ -9,7 +9,7 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
 import { getUser, register, login, logoutUser, update } from './authOperations';
-import { toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 export const authSlice = createSlice({
@@ -25,9 +25,11 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
-        state.dataUser = payload;
-        state.token = payload.token;
-        state.isLoggedIn = true;
+        if (payload.user) {
+          state.dataUser = payload.user;
+          state.token = payload.user.token;
+          state.isLoggedIn = true;
+        }
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         return {
@@ -42,44 +44,39 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(getUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(getUser.fulfilled, (state, action) => {
-        state.dataUser = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(getUser.rejected, state => {
-        state.isRefreshing = false;
-      })
-      .addCase(update.pending, state => {
-        state.isRefreshing = true;
-      })
       .addCase(update.fulfilled, (state, action) => {
         state.dataUser = action.payload;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
+        state.isLoading = false;
       })
-      .addCase(update.rejected, state => {
-        state.isRefreshing = false;
+      .addCase(getUser.fulfilled, (state, { payload }) => {
+        if (payload.token) state.token = payload.token;
+        state.dataUser = payload.data;
+        state.isLoggedIn = true;
+
+        state.isRefreshing = false; //!
+      })
+      .addCase(getUser.pending, state => {
+        state.isRefreshing = true; //!
+      })
+      .addCase(getUser.rejected, state => {
+        state.isRefreshing = false; //!
       })
       .addMatcher(
-        isAnyOf(isPending(register, login, logoutUser, getUser)),
+        isAnyOf(isPending(register, login, update, logoutUser, getUser)),
         state => {
           state.isLoading = true;
         }
       )
       .addMatcher(
-        isAnyOf(isRejected(register, login, logoutUser, getUser)),
+        isAnyOf(isRejected(register, login, update, logoutUser, getUser)),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
-          toast.error(state.error);
         }
       )
       .addMatcher(
-        isAnyOf(isFulfilled(register, login, logoutUser, getUser)),
+        isAnyOf(isFulfilled(register, login, update, logoutUser, getUser)),
         state => {
           state.isLoading = false;
           state.error = null;
