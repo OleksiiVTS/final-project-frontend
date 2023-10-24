@@ -88,7 +88,7 @@ const Header = ({ pageName = 'GooseTrack' }) => {
       }
       color={theme === 'dark' ? '#fff' : '#000'}
     >
-      {windowWidth < 1441 ? (
+      {windowWidth < 1440 ? (
         <BurgerIcon onClick={handleSidebarChange}>
           <span>
             <svg

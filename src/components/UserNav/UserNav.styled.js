@@ -16,7 +16,8 @@ export const LogoBox = styled.div`
   color: ${({ color }) => color || '#3e85f3'};
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
-  font-size: 24px;
+  
+  font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   gap: 6px;
@@ -24,8 +25,8 @@ export const LogoBox = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 1440px) {
-    font-size: 16px;
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
   }
 `;
 
