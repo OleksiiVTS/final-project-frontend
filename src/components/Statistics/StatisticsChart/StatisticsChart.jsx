@@ -17,7 +17,7 @@ import {
   StatsPageBox,
   // WrapperDiagram,
 } from './StatisticsChart.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const isTasks = useSelector(selectTasks);
@@ -122,7 +122,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   window.addEventListener(
     'resize',
     event => {
-      console.log(event.target);
+      // console.log(event.target);
       setWidth(event.target.innerWidth / 1.7);
     },
     false
@@ -175,8 +175,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
             <Legend
               wrapperStyle={{
                 position: 'absolute',
-                top: -60,
-                right: 0,
+                top: width * 1.7 > 768 ? -110 : -60,
+                right: width * 1.7 > 768 ? 0 : 210,
               }}
               layout="horizontal"
               verticalAlign="top"
