@@ -127,6 +127,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
     false
   );
 
+  const size = width >= 307 ? width : 307;
+
   return (
     <StatsPageBox>
       <div>
@@ -138,7 +140,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
         />
         <StatsContainer>
           <BarChart
-            width={width <= 1065 ? width : 1065}
+            width={size <= 1065 ? size : 1065}
             height={440}
             data={data}
             margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
