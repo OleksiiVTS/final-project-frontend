@@ -1,6 +1,6 @@
 import { ConfirmBtn, BtnWrapper, TextDiv } from './InfoModal.styled';
-import Checkmark from 'components/TaskForm/Checkmark/Checkmark';
-import { useState } from 'react';
+// import Checkmark from 'components/TaskForm/Checkmark/Checkmark';
+// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectTheme } from 'redux/header/headerSlice';
 
