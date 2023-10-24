@@ -12,9 +12,11 @@ import {
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
 import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
+import { selectTheme } from 'redux/header/headerSlice';
 
 const StatisticsChart = ({ today, currentDate }) => {
   const isTasks = useSelector(selectTasks);
+  const theme = useSelector(selectTheme);
   console.log('currentDate: ', currentDate);
 
   const dateTask = isTasks
@@ -105,7 +107,8 @@ const StatisticsChart = ({ today, currentDate }) => {
   ];
 
   return (
-    <StatsPageBox>
+    <StatsPageBox bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
+    color={theme === 'dark' ? '#fff' : '#000'}>
       <StatsContainer>
         <BarChart
           width={640}
