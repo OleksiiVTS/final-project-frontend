@@ -94,9 +94,9 @@ export const logoutUser = createAsyncThunk(
 
 export const deleteUser = createAsyncThunk(
   'auth/delete',
-  async (_, thunkAPI) => {
+  async (email, thunkAPI) => {
     try {
-      await $instance.delete('/users/delete');
+      await $instance.delete('/users/delete', email);
       authToken.unset();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
