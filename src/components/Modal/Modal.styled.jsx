@@ -9,6 +9,7 @@ export const ModalBackdrop = styled.div`
   bottom: 0;
   width: 100%;
   height: 100vh;
+
   background-color: #f7f6f960;
 `;
 
@@ -20,6 +21,7 @@ export const ModalContainer = styled.div`
   padding: 14px;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -50%);
   background-color: ${({ bg }) => bg || '#fff'};
   border-radius: 8px;
@@ -32,6 +34,7 @@ export const ModalContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     max-width: 468px;
+    padding: 18px;
   }
 `;
 
