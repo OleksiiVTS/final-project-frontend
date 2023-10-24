@@ -15,7 +15,7 @@ import { getUser } from 'redux/auth/authOperations';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
-import VerifiedPage from 'pages/Public/VerifiedPage';
+import VerifiedPage from 'pages/Public/VerifiedPage.jsx';
 
 const MainPage = loadable(() =>
   import('../pages/Public/MainPage/MainPage.jsx')
