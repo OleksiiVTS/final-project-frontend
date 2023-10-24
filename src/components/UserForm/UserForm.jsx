@@ -23,6 +23,8 @@ import {
   WhiteBox,
   FieldWrapDate,
   SVGWrap,
+  StyledDeleteButton,
+  StyledDeleteIcon,
 } from './UserForm.styled.jsx';
 import { useRef } from 'react';
 import PreviewAvatar from './PreviewAvatar.js';
@@ -32,10 +34,12 @@ import { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal/ConfirmationModal.jsx';
 import { useSelector } from 'react-redux';
 import sprite from '../Pictures/sprite.svg';
+import DeletionModal from './DeletionModal/DeletionModal.jsx';
 
 const UserForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const isUser = useSelector(selectUser);
   const theme = useSelector(selectTheme);
@@ -274,15 +278,34 @@ const UserForm = () => {
                 ></InputUserForm>
                 {formik.touched.skype && formik.errors.skype ? (
                   <Error>{formik.errors.skype}</Error>
-                ) : null}{' '}
+                ) : null}
               </FieldWrap>
             </BoxForm>
             <BtnUserForm type="submit">Save changes</BtnUserForm>
+            <StyledDeleteButton
+              type="button"
+              onClick={() => {
+                setShowModal(!showModal);
+                setIsDeleting(true);
+              }}
+            >
+              <StyledDeleteIcon>
+                <use href={sprite + '#icon-trash'}></use>
+              </StyledDeleteIcon>
+            </StyledDeleteButton>
           </UserFormBox>
         </FormaBox>
       </Formik>
-      {showModal && (
+      {showModal && !isDeleting && (
         <ConfirmationModal values={formValues} closeModal={closeModal} />
+      )}
+      {showModal && isDeleting && (
+        <DeletionModal
+          closeModal={() => {
+            closeModal();
+            setIsDeleting(false);
+          }}
+        />
       )}
     </>
   );

@@ -288,3 +288,46 @@ export const SVGWrap = styled.div`
   text-align: right;
   padding-right: 20px;
 `;
+
+export const StyledDeleteButton = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  width: 28px;
+  heigh: 28px;
+  justify-content: center;
+  align-items: center;
+  background: rgb(234, 61, 101);
+  border-radius: 8px;
+  padding: 6px;
+  color: #f8f8f8;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.28;
+  border: 0;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: 4px 2px 16px 0px rgba(136, 165, 191, 0.48);
+    transition: box-shadow 0.2s;
+  }
+
+  @media screen and (min-width: 768px) {
+    top: 32px;
+    right: 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    top: 48px;
+    right: 48px;
+  }
+`;
+
+export const StyledDeleteIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: #ffffff;
+  fill: #ffffff;
+`;
