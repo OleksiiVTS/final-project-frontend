@@ -7,7 +7,7 @@ import StatisticsChart from 'components/Statistics/StatisticsChart/StatisticsCha
 import { HeaderContainer } from '../CalendarPage/CalendarPage.styled';
 import Header from 'components/Header/Header';
 import { CalendarContainer } from 'components/Calendar/common';
-import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
+// import PeriodPaginator from 'components/Statistics/PeriodPaginator/PeriodPaginator';
 // import Header from 'components/Header/Header';
 import { getTasks } from 'redux/task/taskOperations';
 import { selectTheme } from 'redux/header/headerSlice';
@@ -43,20 +43,13 @@ const StatisticsPage = () => {
         <HeaderContainer>
           <Header pageName="Statistics" />
         </HeaderContainer>
-        <PeriodPaginator
-          date={date}
+
+        <StatisticsChart
           onClickPrev={handlePrev}
           onClickNext={handleNext}
           setDate={setDate}
-        />
-        <StatisticsChart date={date}>
-          <PeriodPaginator
-            date={date}
-            onClickPrev={handlePrev}
-            onClickNext={handleNext}
-            setDate={setDate}
-          />
-        </StatisticsChart>
+          date={date}
+        ></StatisticsChart>
       </CalendarContainer>
     </MainLayout>
 
