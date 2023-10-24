@@ -10,6 +10,7 @@ const LogoutButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 11px;
+  cursor: pointer;
 
   padding: 16px;
   border-radius: 16px;

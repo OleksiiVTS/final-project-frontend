@@ -12,11 +12,7 @@ import {
   YAxis,
 } from 'recharts';
 import { selectTasks } from 'redux/task/taskSelectors';
-import {
-  StatsContainer,
-  StatsPageBox,
-  // WrapperDiagram,
-} from './StatisticsChart.styled';
+import { StatsContainer, StatsPageBox } from './StatisticsChart.styled';
 import { useState } from 'react';
 
 const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
@@ -109,15 +105,6 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
     },
   ];
 
-  // function screenWidth() {
-  //   if (window.screen.width < 768) {
-  //     width: "307";
-  //   } else if (768 < window.screen.width < 1440) {
-  //     width: "640";
-  //   } else {
-  //     width: "860";
-  //   }
-  // }
   const [width, setWidth] = useState(window.innerWidth / 1.7);
   window.addEventListener(
     'resize',
@@ -176,7 +163,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
             <Legend
               wrapperStyle={{
                 position: 'absolute',
-                top: -60,
+                top: width * 1.7 > 768 ? -110 : -60,
                 right: 0,
               }}
               layout="horizontal"
