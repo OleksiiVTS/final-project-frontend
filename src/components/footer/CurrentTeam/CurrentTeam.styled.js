@@ -17,7 +17,7 @@ export const CurrentTeamItem = styled.div`
   height: 70%;
   width: 250px;
   padding: 10px;
-  background-color: #3e85f3;
+  background-color: #5eb7eb;
   border-radius: 20px;
   margin-top: 10px;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.7);
@@ -48,12 +48,12 @@ export const SwiperImg = styled.div`
 `;
 
 export const TeamImage = styled.img`
-  width: 120px;
+  width: 150px;
   height: 120px;
   max-width: 100%;
   max-height: 100%;
   border: 2px solid blue;
-  border-radius: 50%;
+  border-radius: 10%;
   box-sizing: border-box;
 `;
 

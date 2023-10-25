@@ -18,7 +18,7 @@ export const ModalStyled = styled.div`
   position: relative;
   box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
   border-radius: 8px;
-  background-color: #7ccbf8;
+  background-color: #78ddff9e;
 
   @media screen and (min-width: 50px) {
     width: 280px;
