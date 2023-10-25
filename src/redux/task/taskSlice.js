@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf, isPending, isRejected } from '@reduxjs/toolkit';
 import {
   getTasks,
   addTask,
   deleteTask,
   editTask,
 } from '../task/taskOperations';
+import { logoutUser } from 'redux/auth/authOperations';
 
 const taskSlice = createSlice({
   name: 'tasks',
@@ -16,14 +17,11 @@ const taskSlice = createSlice({
 
   extraReducers: builder => {
     builder
-      .addCase(getTasks.pending, handlePending)
-      .addCase(addTask.pending, handlePending)
-      .addCase(deleteTask.pending, handlePending)
-      .addCase(editTask.pending, handlePending)
-      .addCase(getTasks.rejected, handleRejected)
-      .addCase(addTask.rejected, handleRejected)
-      .addCase(deleteTask.rejected, handleRejected)
-      .addCase(editTask.rejected, handleRejected)
+      .addCase(logoutUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.tasks = [];
+      })
       .addCase(getTasks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -53,17 +51,23 @@ const taskSlice = createSlice({
         editedTask.priority = action.payload.priority;
         editedTask.category = action.payload.category;
         editedTask.date = action.payload.date;
-      });
+      })
+      .addMatcher(
+        isAnyOf(isPending(logoutUser, getTasks, addTask, deleteTask, editTask)),
+        state => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          isRejected(logoutUser, getTasks, addTask, deleteTask, editTask)
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        }
+      );
   },
 });
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
-};
 
 export const taskReducer = taskSlice.reducer;
