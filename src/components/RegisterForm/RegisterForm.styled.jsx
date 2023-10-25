@@ -96,9 +96,13 @@ export const FormField = styled(styledField)`
   background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid #dce3e599;
-  border-color: ${({ touched, isValid }) => {
-    if (touched && isValid) return '#3CBC81';
-    if (touched && !isValid) return '#E74A3B';
+  border-color: ${({ state }) => {
+    if (state) {
+      const { touched, isValid } = state;
+      if (touched && isValid) return '#3CBC81';
+      if (touched && !isValid) return '#E74A3B';
+    }
+
     return '#dce3e599';
   }};
 

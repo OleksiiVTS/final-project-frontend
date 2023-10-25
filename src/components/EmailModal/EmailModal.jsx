@@ -19,16 +19,18 @@ import {
   FormField,
   FormStyled,
 } from 'components/RegisterForm/RegisterForm.styled';
-import { selectError } from 'redux/auth/authSelectors';
+import { selectError, selectIsLoading } from 'redux/auth/authSelectors';
+import { resendEmail } from 'redux/auth/authOperations';
 
 const EmailModal = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const isLoading = useSelector(selectIsLoading);
+
   const authError = useSelector(selectError);
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
 
   const Submit = ({ subEmail }) => {
-    console.log(subEmail);
-    // dispach();
+    dispatch(resendEmail({ email: subEmail }));
     setHasSubmitted(true);
   };
 
@@ -45,7 +47,7 @@ const EmailModal = () => {
   const theme = useSelector(selectTheme);
   return (
     <>
-      {!hasSubmitted && (
+      {(!hasSubmitted || (hasSubmitted && isLoading)) && (
         <>
           <TextDiv
             style={theme === 'dark' ? { color: '#fff' } : { color: '#000' }}
@@ -58,17 +60,14 @@ const EmailModal = () => {
             validationSchema={emailSchema}
             validateOnBlur={true}
             validateOnChange={false}
-            onSubmit={async (values, API) => {
-              Submit(values, API);
-            }}
+            onSubmit={Submit}
           >
             {({ errors, isValid, touched }) => (
               <FormStyled>
                 <BoxInput>
                   <>
                     <FormField
-                      touched={touched.subEmail}
-                      isValid={isValid}
+                      state={{ isValid, touched: touched.subEmail }}
                       id="subEmail"
                       type="text"
                       name="subEmail"
@@ -104,11 +103,11 @@ const EmailModal = () => {
           </Formik>
         </>
       )}
-      {hasSubmitted && !authError && (
+      {hasSubmitted && !isLoading && (
         <TextDiv
           style={theme === 'dark' ? { color: '#fff' } : { color: '#000' }}
         >
-          Email has been sent
+          {authError ? authError : 'Email has been sent'}
         </TextDiv>
       )}
     </>

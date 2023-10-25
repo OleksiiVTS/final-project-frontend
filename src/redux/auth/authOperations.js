@@ -2,8 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const $instance = axios.create({
-  // baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'https://final-project-backend-6uyr.onrender.com/api',
+  // baseURL: 'http://localhost:4000/api',
 });
 
 const authToken = {
@@ -114,6 +114,20 @@ export const getVerifiedUser = createAsyncThunk(
       return { data, token };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const resendEmail = createAsyncThunk(
+  'auth/resendEmail',
+  async (email, thunkAPI) => {
+    try {
+      const { data } = await $instance.post('/users/verify', email);
+      return data;
+    } catch (e) {
+      // console.log(e);
+      const text = e.response.data.message;
+      return thunkAPI.rejectWithValue(text);
     }
   }
 );

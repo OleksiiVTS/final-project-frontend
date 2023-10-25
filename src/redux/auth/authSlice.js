@@ -15,6 +15,7 @@ import {
   logoutUser,
   update,
   deleteUser,
+  resendEmail,
 } from './authOperations';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -76,7 +77,15 @@ export const authSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(
-          isPending(register, login, update, logoutUser, getUser, deleteUser)
+          isPending(
+            register,
+            login,
+            update,
+            logoutUser,
+            getUser,
+            deleteUser,
+            resendEmail
+          )
         ),
         state => {
           state.isLoading = true;
@@ -84,7 +93,15 @@ export const authSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          isRejected(register, login, update, logoutUser, getUser, deleteUser)
+          isRejected(
+            register,
+            login,
+            update,
+            logoutUser,
+            getUser,
+            deleteUser,
+            resendEmail
+          )
         ),
         (state, action) => {
           state.isLoading = false;
@@ -93,7 +110,15 @@ export const authSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          isFulfilled(register, login, update, logoutUser, getUser, deleteUser)
+          isFulfilled(
+            register,
+            login,
+            update,
+            logoutUser,
+            getUser,
+            deleteUser,
+            resendEmail
+          )
         ),
         state => {
           state.isLoading = false;
