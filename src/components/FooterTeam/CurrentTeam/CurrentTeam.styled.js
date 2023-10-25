@@ -17,7 +17,7 @@ export const CurrentTeamItem = styled.div`
   height: 70%;
   width: 250px;
   padding: 10px;
-  background-color: #3e85f3;
+  background-color: rgb(140 211 241);
   border-radius: 20px;
   margin-top: 10px;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.7);
