@@ -384,7 +384,7 @@ const RegisterForm = () => {
       )}
       {isOpenEmailModal && (
         <Modal closeModal={toggleEmailModal}>
-          <EmailModal closeModal={toggleEmailModal} />
+          <EmailModal />
         </Modal>
       )}
     </PageContainer>
