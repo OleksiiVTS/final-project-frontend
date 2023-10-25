@@ -32,7 +32,7 @@ import { register } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectError, selectIsLoading } from 'redux/auth/authSelectors';
 import { Circles } from 'react-loader-spinner';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import InfoModal from 'components/InfoModal/InfoModal';
 
@@ -40,12 +40,11 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const regError = useSelector(selectError);
+  const [isGoogle, setIsGoogle] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState(null);
 
-  useEffect(() => {
-    regError && setModalMessage(regError);
-  }, [regError]);
+  const message =
+    'To complete the registration process, please check your mailbox';
 
   let userSchema = Yup.object().shape({
     username: Yup.string()
@@ -79,25 +78,23 @@ const RegisterForm = () => {
         token: user.accessToken,
       };
       dispatch(register(googleUser));
-    } catch (error) {}
-  };
-
-  const onSubmit = (values, { resetForm }) => {
-    try {
-      dispatch(register(values));
-      setModalMessage(regError);
       setShowModal(true);
-      resetForm();
+      setIsGoogle(true);
+      //
     } catch (error) {
-      setModalMessage(regError);
-      setShowModal(true);
+      console.log(error);
     }
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-    setModalMessage(null);
+  const onSubmit = (values, { resetForm }) => {
+    dispatch(register(values));
+    setShowModal(true);
+    setIsGoogle(false);
+
+    resetForm();
   };
+
+  const closeModal = () => setShowModal(false);
 
   return (
     <PageContainer>
@@ -364,9 +361,14 @@ const RegisterForm = () => {
           />
         </ImagePosition>
       </FormPosition>
-      {showModal && (
+      {showModal && regError && !isLoading && (
         <Modal closeModal={closeModal}>
-          <InfoModal message={modalMessage} closeModal={closeModal}></InfoModal>
+          <InfoModal message={regError} closeModal={closeModal}></InfoModal>
+        </Modal>
+      )}
+      {showModal && !regError && !isGoogle && !isLoading && (
+        <Modal closeModal={closeModal}>
+          <InfoModal message={message} closeModal={closeModal}></InfoModal>
         </Modal>
       )}
     </PageContainer>
