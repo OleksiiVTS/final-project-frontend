@@ -79,7 +79,7 @@ export const teams = [
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com',
     description: ['Organization'],
-    avatar: require('../../Pictures/avatar.jpg'),
+    avatar: require('../../Pictures/team-developer/90782810_105360824447942_776154535176437760_n-removebg-preview.jpg'),
   },
 
   {
@@ -98,7 +98,7 @@ export const teams = [
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com',
     description: ['Organization'],
-    avatar: require('../../Pictures/avatar.jpg'),
+    avatar: require('../../Pictures/team-developer/271756947_330723378923002_7938579506488609202_n-removebg-preview.jpg'),
   },
   {
     name: 'Vladyslav',
