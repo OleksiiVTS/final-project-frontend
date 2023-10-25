@@ -35,6 +35,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
     event.preventDefault();
     const comment = event.currentTarget.elements.user_message.value;
     const userReview = { comment, rating: feedbackRating };
+    closeModal();
 
     if (!isEditing) {
       dispatch(addReview(userReview));
@@ -56,6 +57,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
     setFeedbackRating(5);
     setFeedbackComment('');
     dispatch(deleteReview());
+   closeModal();
   };
 
   const getFeedbackRating = rating => {
@@ -200,7 +202,8 @@ const FeedbackModal = ({ isActive, closeModal }) => {
               )}
               {isActive && (!isReview || isEditing) && (
                 <div className="buttonwrapper">
-                  <button type="submit" className="btn-foot-first">
+                  <button type="submit" 
+                  className="btn-foot-first">
                     {!isEditing ? 'Save' : 'Edit'}
                   </button>
                   <button

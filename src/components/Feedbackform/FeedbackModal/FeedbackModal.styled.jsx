@@ -2,10 +2,8 @@ import styled from '@emotion/styled/macro';
 
 export const FeedbackContainer = styled.div`
   box-sizing: border-box;
-
   margin-top: -10px;
   width: 335px;
-
   min-height: 246px;
   margin-right: auto;
   margin-left: auto;
@@ -37,7 +35,6 @@ export const FormFeedback = styled.form`
 
   .head {
     align-items: center;
-    /* color: #343434cc; */
     color: ${({ reviewtextcolor }) => reviewtextcolor || '#343434cc'};
     font-family: Inter;
     font-size: 12px;
@@ -50,12 +47,9 @@ export const FormFeedback = styled.form`
     width: 100%;
     height: 130px;
     padding: 14px 18px;
-    // box-sizing: border-box;
     resize: none;
     border: ${({ textfielborder }) => textfielborder || 'none'};
     border-radius: 8px;
-    /* background: #F6F6F6;
-    color: #343434; */
     color: ${({ textfieldcolor }) => textfieldcolor || '#343434'};
     background-color: ${({ textfieldbg }) => textfieldbg || '#F6F6F6'};
     font-family: Inter;
@@ -117,12 +111,12 @@ export const FormFeedback = styled.form`
         bgbtn || 'var(--color-choice-light-no-active)'};
       border-radius: 8px;
       padding: 10px;
-      /* color: #343434; */
       color: ${({ textfieldcolor }) => textfieldcolor || '#343434'};
       font-size: 14px;
       font-weight: 600;
       line-height: 1.17;
       border: 0;
+      cursor: pointer;
 
       &:hover {
         background: #2b78ef;
@@ -153,7 +147,6 @@ export const StyledFeedbackToolbar = styled.div`
 
   .btnEdit {
     color: #3e85f3;
-    /* background-color: #e3f3ff; */
     background-color: ${({ editbtnbg }) =>
       editbtnbg || 'var(--color-choice-light-no-active)'};
   }
