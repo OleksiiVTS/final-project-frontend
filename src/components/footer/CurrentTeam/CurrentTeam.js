@@ -1,6 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import sprite from '../../Pictures/sprite.svg';
+import sprite from '../../Pictures/sprite-team.svg';
 import {
   CurrentTeamContainer,
   CurrentTeamItem,

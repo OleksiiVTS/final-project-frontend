@@ -4,7 +4,7 @@ import { ModalStyled, CloseIcon, Overlay } from './ModalFooter.styled';
 
 import sprite from '../../Pictures/sprite.svg';
 
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = document.getElementById('root');
 
 const ModalFooter = ({ children, onCloseModal, isOpened }) => {
   useEffect(() => {

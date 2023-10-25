@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import sprite from '../Pictures/sprite.svg';
+import sprite from '../Pictures/sprite-team.svg';
 import Team from './Team/Team';
 import {
   FooterWrapper,
