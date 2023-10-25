@@ -35,6 +35,7 @@ import { Circles } from 'react-loader-spinner';
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
 import InfoModal from 'components/InfoModal/InfoModal';
+import EmailModal from 'components/EmailModal/EmailModal';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,11 @@ const RegisterForm = () => {
   const regError = useSelector(selectError);
   const [isGoogle, setIsGoogle] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isOpenEmailModal, setIsOpenEmailModal] = useState(false);
 
   const closeModal = () => setShowModal(false);
+
+  const toggleEmailModal = () => setIsOpenEmailModal(!isOpenEmailModal);
 
   const message =
     'To complete the registration process, please check your mailbox';
@@ -343,6 +347,13 @@ const RegisterForm = () => {
                     >
                       Sign up with Google 🚀{' '}
                     </GoogleBtn>
+                    <RegButton
+                      type="button"
+                      onClick={toggleEmailModal}
+                      disabled={isLoading}
+                    >
+                      Resend verification email
+                    </RegButton>
                   </>
                 )}
               </FormStyled>
@@ -363,12 +374,17 @@ const RegisterForm = () => {
       </FormPosition>
       {showModal && regError && !isLoading && (
         <Modal closeModal={closeModal}>
-          <InfoModal message={regError} closeModal={closeModal}></InfoModal>
+          <InfoModal message={regError} closeModal={closeModal} />
         </Modal>
       )}
       {showModal && !regError && !isGoogle && !isLoading && (
         <Modal closeModal={closeModal}>
-          <InfoModal message={message} closeModal={closeModal}></InfoModal>
+          <InfoModal message={message} closeModal={closeModal} />
+        </Modal>
+      )}
+      {isOpenEmailModal && (
+        <Modal closeModal={toggleEmailModal}>
+          <EmailModal closeModal={toggleEmailModal} />
         </Modal>
       )}
     </PageContainer>
