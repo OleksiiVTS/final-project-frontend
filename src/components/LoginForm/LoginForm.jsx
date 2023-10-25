@@ -29,14 +29,19 @@ import { app } from '../../redux/auth/firebase';
 import IMG from '../Pictures/login_goose.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
-import { selectIsLoading } from 'redux/auth/authSelectors';
-import { toast } from 'react-toastify';
+import { selectError, selectIsLoading } from 'redux/auth/authSelectors';
 import { Circles } from 'react-loader-spinner';
+import Modal from 'components/Modal/Modal';
+import InfoModal from 'components/InfoModal/InfoModal';
+import { useState } from 'react';
 
 const LoginForm = () => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const loginError = useSelector(selectError);
+  const [showModal, setShowModal] = useState(false);
 
+  const closeModal = () => setShowModal(false);
 
   let userSchema = Yup.object().shape({
     email: Yup.string()
@@ -50,22 +55,27 @@ const LoginForm = () => {
       .trim()
       .min(8, 'Password should be 8 chars minimum.')
       .max(20, 'Password should be 20 chars maximum')
-      .required('Password is required field')
+      .required('Password is required field'),
   });
 
-  const GoogleAuth = async () => {
+  const googleLogin = async () => {
     const auth = getAuth(app);
-    const googleAuthProvider = new GoogleAuthProvider().addScope("email");
+    const googleAuthProvider = new GoogleAuthProvider().addScope('email');
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider);      
+      const result = await signInWithPopup(auth, googleAuthProvider);
       const googleUser = {
         email: result.user.providerData[0].email,
         password: result.user.providerData[0].uid,
       };
-      dispacth(login(googleUser));
+      dispatch(login(googleUser));
+      setShowModal(true);
     } catch (error) {}
-  };  
-  
+  };
+
+  const commonLogin = async values => {
+    dispatch(login(values));
+    setShowModal(true);
+  };
 
   return (
     <PageContainer>
@@ -77,13 +87,7 @@ const LoginForm = () => {
             validationSchema={userSchema}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={async values => {
-              try {
-                dispacth(login(values));
-              } catch (error) {
-                toast.error(error.message);
-              }
-            }}
+            onSubmit={commonLogin}
           >
             {({ errors, isValid }) => (
               <FormStyled>
@@ -249,7 +253,7 @@ const LoginForm = () => {
                     </LoginButton>
                     <GoogleBtn
                       type="button"
-                      onClick={GoogleAuth}
+                      onClick={googleLogin}
                       disabled={isLoading}
                     >
                       Sign in with Google 🚀{' '}
@@ -272,6 +276,11 @@ const LoginForm = () => {
           />
         </ImagePosition>
       </FormPosition>
+      {showModal && loginError && !isLoading && (
+        <Modal closeModal={closeModal}>
+          <InfoModal message={loginError} closeModal={closeModal}></InfoModal>
+        </Modal>
+      )}
     </PageContainer>
   );
 };

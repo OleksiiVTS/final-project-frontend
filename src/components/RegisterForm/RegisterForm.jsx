@@ -43,6 +43,8 @@ const RegisterForm = () => {
   const [isGoogle, setIsGoogle] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  const closeModal = () => setShowModal(false);
+
   const message =
     'To complete the registration process, please check your mailbox';
 
@@ -93,8 +95,6 @@ const RegisterForm = () => {
 
     resetForm();
   };
-
-  const closeModal = () => setShowModal(false);
 
   return (
     <PageContainer>
