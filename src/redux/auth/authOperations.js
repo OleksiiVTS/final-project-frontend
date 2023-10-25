@@ -48,7 +48,7 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     const { data } = await $instance.post('/users/login', user);
     authToken.set(data.token);
-    return data;
+    return data.user;
   } catch (e) {
     console.log(e);
     const text = e.response.data.message;
