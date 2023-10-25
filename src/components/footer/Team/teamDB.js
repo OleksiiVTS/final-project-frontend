@@ -60,7 +60,7 @@ export const teams = [
     git: 'https://github.com',
     linkedin: 'https://www.linkedin.com',
     description: ['Organization'],
-    avatar: require('../../Pictures/team-developer/MaksK-min-removebg-preview.jpg'),
+    avatar: require('../../Pictures/team-developer/MaksK-min-removebg-preview.png'),
   },
   {
     name: 'Nataliia',
@@ -95,10 +95,10 @@ export const teams = [
     name: 'Stanislav',
     surName: 'Izotov',
     position: 'Developer',
-    git: 'https://github.com',
-    linkedin: 'https://www.linkedin.com',
+    git: 'https://github.com/Stanislav-i',
+    linkedin: 'https://www.linkedin.com/in/stanislav-izotov-dev',
     description: ['Organization'],
-    avatar: require('../../Pictures/team-developer/271756947_330723378923002_7938579506488609202_n-removebg-preview.jpg'),
+    avatar: require('../../Pictures/team-developer/Stanislav_Izotov-removebg-preview.png'),
   },
   {
     name: 'Vladyslav',

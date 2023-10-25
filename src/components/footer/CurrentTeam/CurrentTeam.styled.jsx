@@ -39,22 +39,25 @@ export const BorderOutside = styled.div`
 `;
 
 export const SwiperImg = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  display: block;
+  height: 0;
+  padding-top: 130%;
+  background-color: rgb(41, 160, 240);
   padding: 5px;
-  width: 115px;
-  height: 115px;
+  width: 105px;
+  height: 105px;
+  border-radius: 10%;
 `;
 
 export const TeamImage = styled.img`
-  width: 150px;
-  height: 120px;
-  max-width: 100%;
-  max-height: 100%;
-  border: 2px solid blue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
   border-radius: 10%;
-  box-sizing: border-box;
 `;
 
 export const TeamName = styled.p`
