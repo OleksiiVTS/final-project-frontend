@@ -144,7 +144,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
               tickLine={false}
               fontSize={14}
               fontFamily="Inter"
-              tickMargin={20}
+              tickMargin={width <= 335 ? 8 : 20}
             />
             {theme === 'light' ? (
               <YAxis
