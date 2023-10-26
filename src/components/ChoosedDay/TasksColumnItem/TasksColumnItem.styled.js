@@ -15,9 +15,9 @@ export const StyledTasksColumnItem = styled.div`
   flex-direction: column;
 
   padding: 18px 18px 20px;
-  width: 335px;
-  min-height: 155px;
-  height: 100%;
+  min-width: 334px;
+  max-height: 568px;
+  overflow-y: auto;
 
   border-radius: 8px;
   border: 1px solid ${({ theme }) => elementBorderColor[theme]};

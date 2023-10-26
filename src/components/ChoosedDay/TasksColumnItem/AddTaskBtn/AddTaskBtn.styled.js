@@ -15,7 +15,7 @@ export const StyledAddTaskBtn = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: 299px;
+  max-width: 299px;
   height: 48px;
   padding: 16px 20px;
 
