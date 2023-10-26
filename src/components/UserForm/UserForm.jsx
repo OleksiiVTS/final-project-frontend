@@ -172,15 +172,15 @@ const UserForm = () => {
               </FieldWrap>
               <FieldWrapDate>
                 <LabelUserForm htmlFor="birthday">Birthday</LabelUserForm>
-                {/* <Input /> */}
-                <DatePicker
+                <Input />
+                {/* <DatePicker
                   id="birthday"
                   selected={formik.values.birthday}
                   name="birthday"
                   customInput={<Input inputRef={fileRef} />}
                   onChange={date => formik.setFieldValue('birthday', date)}
                   style={{ width: '100%' }}
-                />
+                /> */}
                 <SVGWrap>
                   <Chevron
                     width="18"
