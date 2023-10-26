@@ -137,7 +137,7 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
             data={data}
             margin={{ top: 77, right: 32, left: 32, bottom: 60 }}
           >
-            <CartesianGrid vertical={false} stroke="#E3F3FF" />
+            <CartesianGrid vertical={false} stroke="#a5a5a5" />
             <XAxis
               dataKey="name"
               axisLine={false}
@@ -226,8 +226,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
                 barCategoryGap={50}
                 dataKey="By Day"
                 position="top"
-                fill={theme === 'light' ? '#343434' : '#cac4c4'}
-                style={{ fontWeight: 300 }}
+                fill={theme === 'light' ? '#343434' : '#ffffff'}
+                style={{ fontWeight: 400, fontFamily: 'Inter', fontSize: 14 }}
               />
             </Bar>
             <Bar
@@ -239,8 +239,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
               <LabelList
                 dataKey="By Month"
                 position="top"
-                fill={theme === 'light' ? '#343434' : '#cac4c4'}
-                style={{ fontWeight: 300 }}
+                fill={theme === 'light' ? '#343434' : '#ffffff'}
+                style={{ fontWeight: 400, fontFamily: 'Inter', fontSize: 14 }}
               />
             </Bar>
           </BarChart>
