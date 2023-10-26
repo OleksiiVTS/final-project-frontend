@@ -102,14 +102,13 @@ export const CalendarGlobalStyles = createGlobalStyle`
   }
 
   .react-datepicker__navigation {
-    margin-top: 24px;
-    color: #ffffff;
+    margin-top: 17px;
 
-		align-items: center;
+    align-items: center;
     background: none;
     border: none;
     cursor: pointer;
-    display: none;
+    display: flex;
     height: 32px;
     justify-content: center;
     overflow: hidden;
@@ -119,7 +118,7 @@ export const CalendarGlobalStyles = createGlobalStyle`
     text-indent: -999em;
     top: 2px;
     width: 32px;
-    z-index: 10000;
+    z-index: 1;
   }
 
 	.react-datepicker__aria-live {
@@ -136,24 +135,68 @@ export const CalendarGlobalStyles = createGlobalStyle`
     width: 18px;
     height: 18px;
   }
-
+  
 	.react-datepicker__navigation-icon {
-		position: relative;
-		visibility: hidden;
+    position: relative;
+		/* visibility: hidden; */
 		top: -1px;
 		width: 0;
 		font-size: 20px;
+    
 	}
-
-	.react-datepicker__navigation-icon--previous {
-		right: -2px;
-	}
-
+  
   .react-datepicker__navigation-icon::before {
-		&:hover, &:focus {
-    	border-color: #ffffff;
+    &:hover, &:focus {
+      border-color: #ffffff;
 		}
   }
+  .react-datepicker__navigation-icon--previous {
+    right: -2px;
+  }
+  .react-datepicker__navigation-icon--next {
+    right: -2px;
+  }
+
+  .react-datepicker__navigation-icon--previous::before  {
+    right: -7px;
+    transform: rotate(225deg);
+
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    content: "";
+    display: block;
+    height: 9px;
+    position: absolute;
+    top: 6px;
+    width: 9px;
+  }
+
+  .react-datepicker__navigation-icon--next::before  {
+    left: -7px;
+    transform: rotate(45deg);
+
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    content: "";
+    display: block;
+    height: 9px;
+    position: absolute;
+    top: 6px;
+    width: 9px;
+  }
+  
+
+
+
+
+
+
+
+
+
+
 
   .react-datepicker__week {
     display: flex;

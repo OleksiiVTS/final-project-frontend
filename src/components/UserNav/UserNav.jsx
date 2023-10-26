@@ -79,7 +79,7 @@ const UserNav = ({ onCloseMenu }) => {
               theme === 'dark' ? 'var(--color-button-blue)' : '#e3f3ff'
             }
             to={`/calendar/${isMonthView ? 'month' : 'day'}/${currentDate}`}
-                    >
+          >
             <span>
               <svg width="24" height="24">
                 <use href={sprite + '#icon-calendar'}></use>
