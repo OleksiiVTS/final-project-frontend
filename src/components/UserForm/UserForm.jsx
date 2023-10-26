@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-// import DatePicker from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import { Formik, useFormik } from 'formik';
 import ValidSchema from 'helpers/ValidSchema.js';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -50,7 +50,7 @@ const UserForm = () => {
     initialValues: {
       usrName: isUser.username ?? '',
       phone: isUser.phone ?? '',
-      birthday: isUser.birthday ?? '',
+      birthday: new Date(isUser.birthday),
       skype: isUser.skype ?? '',
       email: isUser.email ?? '',
       file: isUser.file,
@@ -69,23 +69,24 @@ const UserForm = () => {
   });
 
   const closeModal = () => setShowModal(false);
-  // const Input = ({ onChange, placeholder, value, isSecure, id, onClick }) => (
-  //   <InputUserForm
-  //     bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
-  //     color={theme === 'dark' ? '#fff' : '#000'}
-  //     bordercolor={
-  //       theme === 'dark'
-  //         ? 'var(--color-field-names-dark)'
-  //         : 'rgba(17, 17, 17, 0.1)'
-  //     }
-  //     onChange={onChange}
-  //     placeholder={placeholder}
-  //     value={value}
-  //     isSecure={isSecure}
-  //     id={id}
-  //     onClick={onClick}
-  //   />
-  // );
+
+  const Input = ({ onChange, placeholder, value, isSecure, id, onClick }) => (
+    <InputUserForm
+      bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
+      color={theme === 'dark' ? '#fff' : '#000'}
+      bordercolor={
+        theme === 'dark'
+          ? 'var(--color-field-names-dark)'
+          : 'rgba(17, 17, 17, 0.1)'
+      }
+      onChange={onChange}
+      placeholder={placeholder}
+      value={value}
+      isSecure={isSecure}
+      id={id}
+      onClick={onClick}
+    />
+  );
 
   return (
     <>
@@ -171,34 +172,15 @@ const UserForm = () => {
               </FieldWrap>
               <FieldWrapDate>
                 <LabelUserForm htmlFor="birthday">Birthday</LabelUserForm>
-                <InputUserForm
-                  bg={
-                    theme === 'dark'
-                      ? 'var(--color-choice-dark-no-active)'
-                      : '#fff'
-                  }
-                  color={theme === 'dark' ? '#fff' : '#000'}
-                  bordercolor={
-                    theme === 'dark'
-                      ? 'var(--color-field-names-dark)'
-                      : 'rgba(17, 17, 17, 0.1)'
-                  }
-                  id="birthday"
-                  name="birthday"
-                  type="birthday"
-                  placeholder={'YYYY/MM/DD'}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.birthday}
-                />
-                {/* <DatePicker
+                {/* <Input /> */}
+                <DatePicker
                   id="birthday"
                   selected={formik.values.birthday}
                   name="birthday"
                   customInput={<Input inputRef={fileRef} />}
                   onChange={date => formik.setFieldValue('birthday', date)}
                   style={{ width: '100%' }}
-                /> */}
+                />
                 <SVGWrap>
                   <Chevron
                     width="18"
