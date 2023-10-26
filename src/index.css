@@ -13,17 +13,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-	--color-theme-dark: #13151a;
-	--color-theme-light: #f8f8f8;
-	--color-button-blue: #3e85f3;
-	--color-button-blue-hover: #2b78ef;
-	--color-choice-light-active: #cae8ff;
-	--color-choice-light-no-active: #e3f3ff;
-	--color-choice-dark-active: #3e85f3;
-	--color-choice-dark-no-active: #21222c;
-	--color-bg-main-dark: #171820;
-	--color-bg-main-light: #F7F6F9;
-	--color-field-names-dark: #534f4f;
+  --color-theme-dark: #13151a;
+  --color-theme-light: #f8f8f8;
+  --color-button-blue: #3e85f3;
+  --color-button-blue-hover: #2b78ef;
+  --color-choice-light-active: #cae8ff;
+  --color-choice-light-no-active: #e3f3ff;
+  --color-choice-dark-active: #3e85f3;
+  --color-choice-dark-no-active: #21222c;
+  --color-bg-main-dark: #171820;
+  --color-bg-main-light: #f7f6f9;
+  --color-field-names-dark: #534f4f;
 }
 
 code {
@@ -40,4 +40,8 @@ p {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+button {
+  cursor: pointer;
 }

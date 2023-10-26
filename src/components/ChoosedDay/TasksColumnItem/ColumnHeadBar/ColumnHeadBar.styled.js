@@ -37,6 +37,7 @@ export const StyledColumnHeadBar = styled.div`
   }
 
   & button {
+    cursor: pointer;
     padding: 0;
 
     line-height: 0;

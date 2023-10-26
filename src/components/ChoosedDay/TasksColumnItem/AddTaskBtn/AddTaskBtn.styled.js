@@ -11,6 +11,7 @@ const bgColor = {
 };
 
 export const StyledAddTaskBtn = styled.button`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

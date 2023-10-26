@@ -62,6 +62,7 @@ export const StyledTaskToolbar = styled.div`
     line-height: 0;
   }
   & button {
+    cursor: pointer;
     line-height: 0;
     padding: 0;
     border: none;
