@@ -57,7 +57,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
     setFeedbackRating(5);
     setFeedbackComment('');
     dispatch(deleteReview());
-   closeModal();
+    closeModal();
   };
 
   const getFeedbackRating = rating => {
@@ -202,8 +202,7 @@ const FeedbackModal = ({ isActive, closeModal }) => {
               )}
               {isActive && (!isReview || isEditing) && (
                 <div className="buttonwrapper">
-                  <button type="submit" 
-                  className="btn-foot-first">
+                  <button type="submit" className="btn-foot-first">
                     {!isEditing ? 'Save' : 'Edit'}
                   </button>
                   <button
