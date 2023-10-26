@@ -189,8 +189,9 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
             )}
             <Legend
               wrapperStyle={{
+                width: 'auto',
                 position: 'absolute',
-                top: width * 1.7 > 768 ? -110 : -60,
+                top: width * 1.7 > 768 ? -105 : -60,
                 right: 0,
               }}
               layout="horizontal"
