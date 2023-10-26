@@ -119,8 +119,10 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
   const size = width >= 307 ? width : 307;
 
   return (
-    <StatsPageBox bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
-    color={theme === 'dark' ? '#fff' : '#000'}>
+    <StatsPageBox
+      bg={theme === 'dark' ? 'var(--color-choice-dark-no-active)' : '#fff'}
+      color={theme === 'dark' ? '#fff' : '#000'}
+    >
       <div>
         <PeriodPaginator
           onClickPrev={onClickPrev}
@@ -144,43 +146,47 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
               fontFamily="Inter"
               tickMargin={20}
             />
-            {theme === 'light' ? (            <YAxis
-              domain={[0, 100]}
-              tickCount={6}
-              axisLine={false}
-              tickLine={false}
-              label={{
-                value: 'Tasks',
-                position: 'top',
-                dx: -14,
-                dy: -24,
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: 600,
-                fill: '#343434',
-              }}
-              tickMargin={32}
-              fontFamily="Inter"
-              fontSize={14}
-            />) : (            <YAxis
-              domain={[0, 100]}
-              tickCount={6}
-              axisLine={false}
-              tickLine={false}
-              label={{
-                value: 'Tasks',
-                position: 'top',
-                dx: -14,
-                dy: -24,
-                fontFamily: 'Inter',
-                fontSize: 14,
-                fontWeight: 600,
-                fill: '#ffffff',
-              }}
-              tickMargin={32}
-              fontFamily="Inter"
-              fontSize={14}
-            />)}
+            {theme === 'light' ? (
+              <YAxis
+                domain={[0, 100]}
+                tickCount={6}
+                axisLine={false}
+                tickLine={false}
+                label={{
+                  value: 'Tasks',
+                  position: 'top',
+                  dx: -14,
+                  dy: -24,
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: 600,
+                  fill: '#343434',
+                }}
+                tickMargin={32}
+                fontFamily="Inter"
+                fontSize={14}
+              />
+            ) : (
+              <YAxis
+                domain={[0, 100]}
+                tickCount={6}
+                axisLine={false}
+                tickLine={false}
+                label={{
+                  value: 'Tasks',
+                  position: 'top',
+                  dx: -14,
+                  dy: -24,
+                  fontFamily: 'Inter',
+                  fontSize: 14,
+                  fontWeight: 600,
+                  fill: '#ffffff',
+                }}
+                tickMargin={32}
+                fontFamily="Inter"
+                fontSize={18}
+              />
+            )}
             <Legend
               wrapperStyle={{
                 position: 'absolute',
@@ -197,23 +203,31 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
             />
             <defs>
               <linearGradient id="colorUv" x1="0" y1="1" x2="0" y2="0.2">
-                <stop offset="30%" stopColor="#FFD2DD" stopOpacity={1} />
-                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+                <stop offset="50%" stopColor="#ffd2dd" stopOpacity={1} />
+                <stop
+                  offset="100%"
+                  stopColor="rgb(255, 210, 221, 0.01)"
+                  stopOpacity={0.8}
+                />
               </linearGradient>
             </defs>
             <defs>
               <linearGradient id="colorXv" x1="0" y1="1" x2="0" y2="0.2">
-                <stop offset="30%" stopColor="#3E85F3" stopOpacity={1} />
-                <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0.8} />
+                <stop offset="50%" stopColor="#3E85F3" stopOpacity={1} />
+                <stop
+                  offset="100%"
+                  stopColor="rgb(62, 133, 243, 0.01)"
+                  stopOpacity={0.8}
+                />
               </linearGradient>
             </defs>
             <Bar dataKey="By Day" fill="url(#colorUv)" barSize={22} radius={10}>
               <LabelList
                 barCategoryGap={50}
                 dataKey="By Day"
-                position="insideTop"
-                fill="#343434"
-                style={{ fontWeight: 500 }}
+                position="top"
+                fill={theme === 'light' ? '#343434' : '#cac4c4'}
+                style={{ fontWeight: 300 }}
               />
             </Bar>
             <Bar
@@ -224,9 +238,9 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
             >
               <LabelList
                 dataKey="By Month"
-                position="insideTop"
-                fill="#343434"
-                style={{ fontWeight: 500 }}
+                position="top"
+                fill={theme === 'light' ? '#343434' : '#cac4c4'}
+                style={{ fontWeight: 300 }}
               />
             </Bar>
           </BarChart>
