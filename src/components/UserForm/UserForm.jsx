@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 import { Formik, useFormik } from 'formik';
 import ValidSchema from 'helpers/ValidSchema.js';
 import 'react-datepicker/dist/react-datepicker.css';
