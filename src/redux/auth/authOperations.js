@@ -117,3 +117,17 @@ export const getVerifiedUser = createAsyncThunk(
     }
   }
 );
+
+export const resendEmail = createAsyncThunk(
+  'auth/resendEmail',
+  async (email, thunkAPI) => {
+    try {
+      const { data } = await $instance.post('/users/verify', email);
+      return data;
+    } catch (e) {
+      // console.log(e);
+      const text = e.response.data.message;
+      return thunkAPI.rejectWithValue(text);
+    }
+  }
+);

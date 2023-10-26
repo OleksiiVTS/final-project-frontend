@@ -75,25 +75,36 @@ export const FormLabel = styled.label`
   font-weight: 600;
   line-height: 1.29;
   color: #111111;
-  
+
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
 `;
 
 export const FormField = styled(styledField)`
+  position: 'relative';
+
   padding-top: 14px;
   padding-bottom: 14px;
   padding-left: 14px;
   margin-bottom: 4px;
+
   font-family: Inter;
   font-size: 14px;
   font-weight: 400;
   color: #111111;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 8px;
-  border: 1px solid #dce3e599;   
-  
+  border: 1px solid #dce3e599;
+  border-color: ${({ state }) => {
+    if (state) {
+      const { touched, isValid } = state;
+      if (touched && isValid) return '#3CBC81';
+      if (touched && !isValid) return '#E74A3B';
+    }
+
+    return '#dce3e599';
+  }};
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
