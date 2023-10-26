@@ -175,12 +175,12 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
                 label={{
                   value: 'Tasks',
                   position: 'top',
-                  dx: -14,
+                  dx: -22,
                   dy: -24,
                   fontFamily: 'Inter',
                   fontSize: 14,
                   fontWeight: 600,
-                  fill: '#ffffff',
+                  fill: '#666',
                 }}
                 tickMargin={32}
                 fontFamily="Inter"
@@ -206,8 +206,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
                 <stop offset="50%" stopColor="#ffd2dd" stopOpacity={1} />
                 <stop
                   offset="100%"
-                  stopColor="rgb(255, 210, 221, 0.01)"
-                  stopOpacity={0.8}
+                  stopColor="rgb(255, 210, 221)"
+                  stopOpacity={0.05}
                 />
               </linearGradient>
             </defs>
@@ -216,8 +216,8 @@ const StatisticsChart = ({ date, onClickPrev, onClickNext, setDate }) => {
                 <stop offset="50%" stopColor="#3E85F3" stopOpacity={1} />
                 <stop
                   offset="100%"
-                  stopColor="rgb(62, 133, 243, 0.01)"
-                  stopOpacity={0.8}
+                  stopColor="rgb(62, 133, 243)"
+                  stopOpacity={0.05}
                 />
               </linearGradient>
             </defs>
