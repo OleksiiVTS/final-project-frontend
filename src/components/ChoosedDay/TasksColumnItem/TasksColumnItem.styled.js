@@ -16,6 +16,7 @@ export const StyledTasksColumnItem = styled.div`
 
   padding: 18px 18px 20px;
   min-width: 334px;
+  height: 100%;
   max-height: 568px;
   overflow-y: auto;
 
